@@ -1,0 +1,71 @@
+C:\Users\cechece\Documents\Visual Studio 2012\Projects\BlockAndPassAdminWebSolucion\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Users\cechece\Documents\Visual Studio 2012\Projects\BlockAndPassAdminWebSolucion\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Users\cechece\Documents\Visual Studio 2012\Projects\BlockAndPassAdminWebSolucion\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Users\cechece\Documents\Visual Studio 2012\Projects\BlockAndPassAdminWebSolucion\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\Mis Documentos\Fuentes\BlockAndPassAdminWebSolucion\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+D:\Mis Documentos\Fuentes\BlockAndPassAdminWebSolucion\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+D:\Mis Documentos\Fuentes\BlockAndPassAdminWebSolucion\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+D:\Mis Documentos\Fuentes\BlockAndPassAdminWebSolucion\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Proyectos\Desarrollo Admin Parking Colombia\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Proyectos\Desarrollo Admin Parking Colombia\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Proyectos\Desarrollo Admin Parking Colombia\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Proyectos\Desarrollo Admin Parking Colombia\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\AdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\AdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\CCLaFlorida\AdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\CCLaFlorida\AdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\CCLaFlorida\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\CCLaFlorida\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\CCLaFlorida\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\AdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\AdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\AdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\MejorasmoduloAdmin\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\MejorasSoftParking\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\MejorasSoftParking\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\MejorasSoftParking\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\MejorasSoftParking\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\MejorasSoftParking\VERSIONESTANDARAdminParquearse\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Proyectos\SANTOTO\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Proyectos\SANTOTO\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Proyectos\SANTOTO\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Proyectos\SANTOTO\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Proyectos\SANTOTO\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\SANTOTO - copia\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\SANTOTO - copia\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\SANTOTO - copia\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\SANTOTO - copia\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Proyectos\PARQUEARSE\SANTO TOMAS\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Proyectos\PARQUEARSE\USTA FLORIDA\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Proyectos\PARQUEARSE\USTA FLORIDA\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Proyectos\PARQUEARSE\USTA FLORIDA\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Proyectos\PARQUEARSE\USTA FLORIDA\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Proyectos\PARQUEARSE\USTA FLORIDA\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\PROYECTOS\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\PROYECTOS\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\PROYECTOS\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\PROYECTOS\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\PROYECTOS\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+C:\Users\LJ\Documents\PARQUEARSE\NEOMUNDO\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Users\LJ\Documents\PARQUEARSE\NEOMUNDO\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Users\LJ\Documents\PARQUEARSE\NEOMUNDO\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Users\LJ\Documents\PARQUEARSE\NEOMUNDO\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Users\LJ\Documents\PARQUEARSE\NEOMUNDO\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
