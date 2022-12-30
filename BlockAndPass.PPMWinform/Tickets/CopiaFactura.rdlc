@@ -177,7 +177,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>FACTURA No. </Value>
+                <Value>FACTURA POS No. </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -378,7 +378,7 @@
                         <Paragraph>
                           <TextRuns>
                             <TextRun>
-                              <Value>Iva</Value>
+                              <Value>Iva 19%</Value>
                               <Style />
                             </TextRun>
                           </TextRuns>
@@ -596,7 +596,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>NEOMUNDO</Value>
+                <Value>=First(Fields!Nombre.Value, "DataSet1")</Value>
                 <Style />
               </TextRun>
             </TextRuns>
@@ -607,7 +607,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>NIT 900554696-8</Value>
+                <Value>=First(Fields!NIT.Value, "DataSet1")</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -620,7 +620,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>VIADUCTO FLORA</Value>
+                <Value>=First(Fields!Direccion.Value, "DataSet1")</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -639,8 +639,10 @@
                 </Style>
               </TextRun>
               <TextRun>
-                <Value>6520587</Value>
-                <Style />
+                <Value>=First(Fields!TelefonoContacto.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
               </TextRun>
             </TextRuns>
             <Style>
@@ -650,7 +652,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Regimen Comun - Fact. Ventas P.O.S.</Value>
+                <Value>Responsable de IVA</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -676,8 +678,83 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox16">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Para facturación electrónica enviar solicitud a: </Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>auxiliar@parquearse.com</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox16</rd:DefaultName>
+        <Top>9.78487cm</Top>
+        <Left>0.30693cm</Left>
+        <Height>1.05127cm</Height>
+        <Width>5.70357cm</Width>
+        <ZIndex>12</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox18">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>power by Asesorias SAS
+NIT: 901308148-3</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                  <FontWeight>Bold</FontWeight>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox15</rd:DefaultName>
+        <Top>8.63454cm</Top>
+        <Left>0.30693cm</Left>
+        <Height>0.97394cm</Height>
+        <Width>5.72792cm</Width>
+        <ZIndex>13</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>3.5245in</Height>
+    <Height>4.3995in</Height>
     <Style />
   </Body>
   <Width>2.5655in</Width>

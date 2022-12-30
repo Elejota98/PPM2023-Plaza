@@ -14,17 +14,20 @@ namespace BlockAndPass.PPMWinform
     public partial class CopiaFacturaM : Form
     {
         string _NumFact = string.Empty;
+        string _IdModulo = string.Empty;
 
-        public CopiaFacturaM(string NUM)
+        public CopiaFacturaM(string NUM, string IDMOD)
         {
             _NumFact = NUM;
+            _IdModulo = IDMOD;
             InitializeComponent();
         }
 
         private void btn_Ok_Click(object sender, EventArgs e)
         {
             string NUMFACT = tbnumerofactura.Text;
-            this.dataTable2TableAdapter1.Fill(this.dataSetCopia.DataTable2, NUMFACT);
+            string IDMODULO = cboIdModulo.SelectedItem.ToString();
+            this.dataTable2TableAdapter1.Fill(this.dataSetCopia.DataTable2, NUMFACT , IDMODULO );
             //this.DATA
 
             this.reportViewer1.RefreshReport();

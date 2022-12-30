@@ -89,7 +89,7 @@ namespace BlockAndPass.WebServiceLocalReader
             }
             else
             {
-                horaFinal = Convert.ToInt32(hora) + 12;
+                horaFinal = Convert.ToInt32(hora);
             }
 
             Lectora_ACR122U lectora = new Lectora_ACR122U();

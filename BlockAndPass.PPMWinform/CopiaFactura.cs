@@ -47,6 +47,7 @@ namespace BlockAndPass.PPMWinform
         {
 
             string NUMFACT = tbnumerofactura.Text;
+            string IDMOULO = cboIdModulo.SelectedItem.ToString();
 
             string data = @"" + sSerial + "";
             conexionSQL.ConnectionString = data;
@@ -73,14 +74,14 @@ namespace BlockAndPass.PPMWinform
             if (TIPO == "1")
             {
 
-                this.dataTable1TableAdapter1.Fill(this.dataSetCopia.DataTable1, NUMFACT);
+                this.dataTable1TableAdapter1.Fill(this.dataSetCopia.DataTable1, NUMFACT, IDMOULO);
                 //this.DATA
 
                 this.reportViewer1.RefreshReport();
             }
             else 
             {
-                CopiaFacturaM popup = new CopiaFacturaM(tbnumerofactura.Text);
+                CopiaFacturaM popup = new CopiaFacturaM(tbnumerofactura.Text, cboIdModulo.SelectedItem.ToString());
                 popup.ShowDialog();
                 if (popup.DialogResult == DialogResult.OK)
                 {

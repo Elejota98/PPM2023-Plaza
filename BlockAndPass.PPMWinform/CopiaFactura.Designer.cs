@@ -42,7 +42,7 @@
             this.dataSetCopiaBindingSource = new System.Windows.Forms.BindingSource(this.components);
             this.dataTable1TableAdapter1 = new BlockAndPass.PPMWinform.Tickets.DataSetCopiaTableAdapters.DataTable1TableAdapter();
             this.label2 = new System.Windows.Forms.Label();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.cboIdModulo = new System.Windows.Forms.ComboBox();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable1BindingSource)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dataSetCopia)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.DataTable2BindingSource)).BeginInit();
@@ -81,7 +81,7 @@
             this.btn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_Cancel.FlatAppearance.BorderSize = 0;
             this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cancel.Location = new System.Drawing.Point(116, 557);
+            this.btn_Cancel.Location = new System.Drawing.Point(116, 543);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(76, 61);
             this.btn_Cancel.TabIndex = 21;
@@ -94,7 +94,7 @@
             this.btn_Ok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
             this.btn_Ok.FlatAppearance.BorderSize = 0;
             this.btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Ok.Location = new System.Drawing.Point(219, 557);
+            this.btn_Ok.Location = new System.Drawing.Point(198, 542);
             this.btn_Ok.Name = "btn_Ok";
             this.btn_Ok.Size = new System.Drawing.Size(76, 61);
             this.btn_Ok.TabIndex = 20;
@@ -138,30 +138,27 @@
             this.label2.TabIndex = 22;
             this.label2.Text = "Modulo";
             // 
-            // comboBox1
+            // cboIdModulo
             // 
-            this.comboBox1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Items.AddRange(new object[] {
-            "PPM1 Entrada",
-            "PPM2 Santander",
-            "PPM3 Angelico",
-            "PPA1 Santander",
-            "PPA2 Angelico",
-            "PPA3 Sotano"});
-            this.comboBox1.Location = new System.Drawing.Point(12, 513);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(121, 24);
-            this.comboBox1.TabIndex = 23;
+            this.cboIdModulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
+            this.cboIdModulo.FormattingEnabled = true;
+            this.cboIdModulo.Items.AddRange(new object[] {
+            "NM1",
+            "NM2",
+            "NM3"});
+            this.cboIdModulo.Location = new System.Drawing.Point(12, 513);
+            this.cboIdModulo.Name = "cboIdModulo";
+            this.cboIdModulo.Size = new System.Drawing.Size(121, 24);
+            this.cboIdModulo.TabIndex = 23;
             // 
             // CopiaFactura
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(377, 613);
+            this.ClientSize = new System.Drawing.Size(365, 601);
             this.ControlBox = false;
-            this.Controls.Add(this.comboBox1);
+            this.Controls.Add(this.cboIdModulo);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Ok);
@@ -198,6 +195,6 @@
         private Tickets.DataSetCopiaTableAdapters.DataTable1TableAdapter dataTable1TableAdapter1;
         private System.Windows.Forms.BindingSource DataTable2BindingSource;
         private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox cboIdModulo;
     }
 }

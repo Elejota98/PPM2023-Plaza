@@ -2308,22 +2308,29 @@ FROM            dbo.T_Pagos INNER JOIN
                          dbo.T_Facturacion ON dbo.T_Pagos.IdFacturacion = dbo.T_Facturacion.IdFacturacion INNER JOIN
                          dbo.T_Estacionamientos ON dbo.T_Pagos.IdEstacionamiento = dbo.T_Estacionamientos.IdEstacionamiento LEFT OUTER JOIN
                          dbo.T_Transacciones ON dbo.T_Pagos.IdTransaccion = dbo.T_Transacciones.IdTransaccion
-WHERE  dbo.T_Pagos.NUMEROFACTURA = @NUMEROFACTURA";
+WHERE  dbo.T_Pagos.NUMEROFACTURA = @NUMEROFACTURA AND dbo.T_Pagos.IdModulo=@IdModulo";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMEROFACTURA", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NumeroFactura", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdModulo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "IdModulo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSetCopia.DataTable1DataTable dataTable, string NUMEROFACTURA) {
+        public virtual int Fill(DataSetCopia.DataTable1DataTable dataTable, string NUMEROFACTURA, string IdModulo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((NUMEROFACTURA == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NUMEROFACTURA));
+            }
+            if ((IdModulo == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(IdModulo));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2336,13 +2343,19 @@ WHERE  dbo.T_Pagos.NUMEROFACTURA = @NUMEROFACTURA";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSetCopia.DataTable1DataTable GetData(string NUMEROFACTURA) {
+        public virtual DataSetCopia.DataTable1DataTable GetData(string NUMEROFACTURA, string IdModulo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((NUMEROFACTURA == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NUMEROFACTURA));
+            }
+            if ((IdModulo == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(IdModulo));
             }
             DataSetCopia.DataTable1DataTable dataTable = new DataSetCopia.DataTable1DataTable();
             this.Adapter.Fill(dataTable);
@@ -2512,22 +2525,29 @@ FROM            dbo.T_Autorizaciones INNER JOIN
                          dbo.T_Pagos INNER JOIN
                          dbo.T_Facturacion ON dbo.T_Pagos.IdFacturacion = dbo.T_Facturacion.IdFacturacion INNER JOIN
                          dbo.T_Estacionamientos ON dbo.T_Pagos.IdEstacionamiento = dbo.T_Estacionamientos.IdEstacionamiento ON dbo.T_PersonasAutorizadas.Documento = dbo.T_Pagos.IdTransaccion
-WHERE  dbo.T_Pagos.NUMEROFACTURA = @NUMEROFACTURA AND IdTipoPago = 2";
+WHERE  dbo.T_Pagos.NUMEROFACTURA = @NUMEROFACTURA AND  dbo.T_Pagos.IdModulo=@IdModulo AND IdTipoPago = 2";
             this._commandCollection[0].CommandType = global::System.Data.CommandType.Text;
             this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@NUMEROFACTURA", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "NumeroFactura", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
+            this._commandCollection[0].Parameters.Add(new global::System.Data.SqlClient.SqlParameter("@IdModulo", global::System.Data.SqlDbType.VarChar, 50, global::System.Data.ParameterDirection.Input, 0, 0, "IdModulo", global::System.Data.DataRowVersion.Current, false, null, "", "", ""));
         }
         
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Fill, true)]
-        public virtual int Fill(DataSetCopia.DataTable2DataTable dataTable, string NUMEROFACTURA) {
+        public virtual int Fill(DataSetCopia.DataTable2DataTable dataTable, string NUMEROFACTURA, string IdModulo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((NUMEROFACTURA == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NUMEROFACTURA));
+            }
+            if ((IdModulo == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(IdModulo));
             }
             if ((this.ClearBeforeFill == true)) {
                 dataTable.Clear();
@@ -2540,13 +2560,19 @@ WHERE  dbo.T_Pagos.NUMEROFACTURA = @NUMEROFACTURA AND IdTipoPago = 2";
         [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
         [global::System.ComponentModel.Design.HelpKeywordAttribute("vs.data.TableAdapter")]
         [global::System.ComponentModel.DataObjectMethodAttribute(global::System.ComponentModel.DataObjectMethodType.Select, true)]
-        public virtual DataSetCopia.DataTable2DataTable GetData(string NUMEROFACTURA) {
+        public virtual DataSetCopia.DataTable2DataTable GetData(string NUMEROFACTURA, string IdModulo) {
             this.Adapter.SelectCommand = this.CommandCollection[0];
             if ((NUMEROFACTURA == null)) {
                 this.Adapter.SelectCommand.Parameters[0].Value = global::System.DBNull.Value;
             }
             else {
                 this.Adapter.SelectCommand.Parameters[0].Value = ((string)(NUMEROFACTURA));
+            }
+            if ((IdModulo == null)) {
+                this.Adapter.SelectCommand.Parameters[1].Value = global::System.DBNull.Value;
+            }
+            else {
+                this.Adapter.SelectCommand.Parameters[1].Value = ((string)(IdModulo));
             }
             DataSetCopia.DataTable2DataTable dataTable = new DataSetCopia.DataTable2DataTable();
             this.Adapter.Fill(dataTable);

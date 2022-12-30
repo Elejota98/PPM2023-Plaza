@@ -56,3 +56,8 @@ D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\bin\
 D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\obj\Debug\BlockAndPass.AdminWeb.csprojResolveAssemblyReference.cache
 D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\obj\Debug\BlockAndPass.AdminWeb.dll
 D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\obj\Debug\BlockAndPass.AdminWeb.pdb
+D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\bin\BlockAndPass.AdminWeb.dll
+D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\bin\BlockAndPass.AdminWeb.pdb
+D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\obj\Debug\BlockAndPass.AdminWeb.csprojResolveAssemblyReference.cache
+D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\obj\Debug\BlockAndPass.AdminWeb.dll
+D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPassAdminWeb\obj\Debug\BlockAndPass.AdminWeb.pdb
