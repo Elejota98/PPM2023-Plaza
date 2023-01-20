@@ -73,15 +73,16 @@
             this.tbIdTransaccion = new System.Windows.Forms.TextBox();
             this.btn_Copia = new System.Windows.Forms.Button();
             this.panelTodo = new System.Windows.Forms.Panel();
+            this.PnelMensualidadPlaca = new System.Windows.Forms.Panel();
+            this.ckMensualidadDocumento = new System.Windows.Forms.CheckBox();
+            this.label13 = new System.Windows.Forms.Label();
+            this.txtPlaca = new System.Windows.Forms.TextBox();
             this.btn_Entrada = new System.Windows.Forms.Button();
             this.btn_Eventos = new System.Windows.Forms.Button();
             this.lblHoraPago = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
             this.tbUsuario = new System.Windows.Forms.TextBox();
-            this.PnelMensualidadPlaca = new System.Windows.Forms.Panel();
-            this.ckMensualidadDocumento = new System.Windows.Forms.CheckBox();
-            this.label13 = new System.Windows.Forms.Label();
-            this.txtPlaca = new System.Windows.Forms.TextBox();
+            this.tbCodigo = new System.Windows.Forms.TextBox();
             this.groupBox1.SuspendLayout();
             this.panelPagar.SuspendLayout();
             this.panelTodo.SuspendLayout();
@@ -593,6 +594,48 @@
             this.panelTodo.TabIndex = 9;
             this.panelTodo.Paint += new System.Windows.Forms.PaintEventHandler(this.panelTodo_Paint);
             // 
+            // PnelMensualidadPlaca
+            // 
+            this.PnelMensualidadPlaca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.PnelMensualidadPlaca.Controls.Add(this.ckMensualidadDocumento);
+            this.PnelMensualidadPlaca.Controls.Add(this.label13);
+            this.PnelMensualidadPlaca.Controls.Add(this.txtPlaca);
+            this.PnelMensualidadPlaca.Location = new System.Drawing.Point(610, 104);
+            this.PnelMensualidadPlaca.Name = "PnelMensualidadPlaca";
+            this.PnelMensualidadPlaca.Size = new System.Drawing.Size(369, 100);
+            this.PnelMensualidadPlaca.TabIndex = 35;
+            // 
+            // ckMensualidadDocumento
+            // 
+            this.ckMensualidadDocumento.AutoSize = true;
+            this.ckMensualidadDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.ckMensualidadDocumento.Location = new System.Drawing.Point(21, 20);
+            this.ckMensualidadDocumento.Name = "ckMensualidadDocumento";
+            this.ckMensualidadDocumento.Size = new System.Drawing.Size(287, 24);
+            this.ckMensualidadDocumento.TabIndex = 31;
+            this.ckMensualidadDocumento.Text = "Renovar Mensualidad Con Placa";
+            this.ckMensualidadDocumento.UseVisualStyleBackColor = true;
+            // 
+            // label13
+            // 
+            this.label13.AutoSize = true;
+            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label13.Location = new System.Drawing.Point(43, 65);
+            this.label13.Name = "label13";
+            this.label13.Size = new System.Drawing.Size(58, 20);
+            this.label13.TabIndex = 33;
+            this.label13.Text = "Placa:";
+            // 
+            // txtPlaca
+            // 
+            this.txtPlaca.BackColor = System.Drawing.Color.Gold;
+            this.txtPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.txtPlaca.Location = new System.Drawing.Point(127, 58);
+            this.txtPlaca.Name = "txtPlaca";
+            this.txtPlaca.Size = new System.Drawing.Size(104, 31);
+            this.txtPlaca.TabIndex = 32;
+            this.txtPlaca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
             // btn_Entrada
             // 
             this.btn_Entrada.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Entrada.BackgroundImage")));
@@ -648,47 +691,14 @@
             this.tbUsuario.Size = new System.Drawing.Size(211, 26);
             this.tbUsuario.TabIndex = 12;
             // 
-            // PnelMensualidadPlaca
+            // tbCodigo
             // 
-            this.PnelMensualidadPlaca.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.PnelMensualidadPlaca.Controls.Add(this.ckMensualidadDocumento);
-            this.PnelMensualidadPlaca.Controls.Add(this.label13);
-            this.PnelMensualidadPlaca.Controls.Add(this.txtPlaca);
-            this.PnelMensualidadPlaca.Location = new System.Drawing.Point(610, 104);
-            this.PnelMensualidadPlaca.Name = "PnelMensualidadPlaca";
-            this.PnelMensualidadPlaca.Size = new System.Drawing.Size(369, 100);
-            this.PnelMensualidadPlaca.TabIndex = 35;
-            // 
-            // ckMensualidadDocumento
-            // 
-            this.ckMensualidadDocumento.AutoSize = true;
-            this.ckMensualidadDocumento.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.ckMensualidadDocumento.Location = new System.Drawing.Point(21, 20);
-            this.ckMensualidadDocumento.Name = "ckMensualidadDocumento";
-            this.ckMensualidadDocumento.Size = new System.Drawing.Size(287, 24);
-            this.ckMensualidadDocumento.TabIndex = 31;
-            this.ckMensualidadDocumento.Text = "Renovar Mensualidad Con Placa";
-            this.ckMensualidadDocumento.UseVisualStyleBackColor = true;
-            // 
-            // label13
-            // 
-            this.label13.AutoSize = true;
-            this.label13.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label13.Location = new System.Drawing.Point(43, 65);
-            this.label13.Name = "label13";
-            this.label13.Size = new System.Drawing.Size(58, 20);
-            this.label13.TabIndex = 33;
-            this.label13.Text = "Placa:";
-            // 
-            // txtPlaca
-            // 
-            this.txtPlaca.BackColor = System.Drawing.Color.Gold;
-            this.txtPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlaca.Location = new System.Drawing.Point(127, 58);
-            this.txtPlaca.Name = "txtPlaca";
-            this.txtPlaca.Size = new System.Drawing.Size(104, 31);
-            this.txtPlaca.TabIndex = 32;
-            this.txtPlaca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbCodigo.Location = new System.Drawing.Point(150, 516);
+            this.tbCodigo.Name = "tbCodigo";
+            this.tbCodigo.Size = new System.Drawing.Size(100, 20);
+            this.tbCodigo.TabIndex = 13;
+            this.tbCodigo.Visible = false;
+            this.tbCodigo.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbCodigo_KeyPress);
             // 
             // PPM
             // 
@@ -697,6 +707,7 @@
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
             this.ClientSize = new System.Drawing.Size(1066, 544);
             this.ControlBox = false;
+            this.Controls.Add(this.tbCodigo);
             this.Controls.Add(this.tbUsuario);
             this.Controls.Add(this.label9);
             this.Controls.Add(this.lblHoraPago);
@@ -773,6 +784,7 @@
         private System.Windows.Forms.CheckBox ckMensualidadDocumento;
         private System.Windows.Forms.Label label13;
         private System.Windows.Forms.TextBox txtPlaca;
+        private System.Windows.Forms.TextBox tbCodigo;
     }
 }
 

@@ -2755,6 +2755,40 @@ namespace BlockAndPass.WebService
             return array;
         }
 
+
+        [WebMethod]
+        public ValidarConvenioResponse ValidarConvenios(string codigo)
+        {
+            string response = string.Empty;
+            ValidarConvenioResponse oValidarConvenioResponse = new ValidarConvenioResponse();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+
+
+            query = "SELECT CodigoCompleto"+
+		            " FROM T_ConveniosValidados WHERE ConsecutivoConvenio = '"+codigo+"'";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    int respuesta = cmd.ExecuteNonQuery();
+
+                    if (respuesta <= 0)
+                    {
+                        oValidarConvenioResponse.Exito = false;
+                        oValidarConvenioResponse.ErrorMessage = "No fue posible consultar la información";
+                    }
+                }
+            }
+
+
+            return oValidarConvenioResponse;
+        }
+
     }
 
     public class EstacionamientosResponse
@@ -3429,6 +3463,7 @@ namespace BlockAndPass.WebService
             set { _Descripcion = value; }
         }
     }
+
     public class ConsultarIdTarjetaPlacaResponse
     {
         private bool _Exito = true;
@@ -4314,6 +4349,7 @@ namespace BlockAndPass.WebService
             set { _Casillero = value; }
         }
     }
+
     public class InfoTransaccionService
     {
         private bool _Exito = true;
@@ -4362,6 +4398,27 @@ namespace BlockAndPass.WebService
         {
             get { return _lstTransac; }
             set { _lstTransac = value; }
+        }
+
+
+    }
+
+    public class ValidarConvenioResponse
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
         }
     }
 }

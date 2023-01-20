@@ -1,1 +1,0 @@
-﻿<%@ WebService Language="C#" CodeBehind="ServicesByP.asmx.cs" Class="BlockAndPass.WebService.ServicesByP" %>

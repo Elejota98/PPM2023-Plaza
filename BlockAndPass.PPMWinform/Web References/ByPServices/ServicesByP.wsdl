@@ -639,6 +639,27 @@
           <s:element minOccurs="0" maxOccurs="1" name="Descripcion" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ConsultarIdTarjetaPorPlaca">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarIdTarjetaPorPlacaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarIdTarjetaPorPlacaResult" type="tns:ConsultarIdTarjetaPlacaResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ConsultarIdTarjetaPlacaResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdTarjetaDescripcion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="RegistrarElArqueo">
         <s:complexType>
           <s:sequence>
@@ -1145,6 +1166,26 @@
           <s:element minOccurs="0" maxOccurs="1" name="Display" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ValidarConvenios">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="codigo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidarConveniosResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidarConveniosResult" type="tns:ValidarConvenioResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ValidarConvenioResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="ObtenerInformacionUsuarioSoapIn">
@@ -1297,6 +1338,12 @@
   <wsdl:message name="ConsultarDescripcionConvenioSoapOut">
     <wsdl:part name="parameters" element="tns:ConsultarDescripcionConvenioResponse" />
   </wsdl:message>
+  <wsdl:message name="ConsultarIdTarjetaPorPlacaSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarIdTarjetaPorPlaca" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarIdTarjetaPorPlacaSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarIdTarjetaPorPlacaResponse" />
+  </wsdl:message>
   <wsdl:message name="RegistrarElArqueoSoapIn">
     <wsdl:part name="parameters" element="tns:RegistrarElArqueo" />
   </wsdl:message>
@@ -1417,6 +1464,12 @@
   <wsdl:message name="ObtenerListaEstacionamientoXSedeSoapOut">
     <wsdl:part name="parameters" element="tns:ObtenerListaEstacionamientoXSedeResponse" />
   </wsdl:message>
+  <wsdl:message name="ValidarConveniosSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidarConvenios" />
+  </wsdl:message>
+  <wsdl:message name="ValidarConveniosSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidarConveniosResponse" />
+  </wsdl:message>
   <wsdl:portType name="ServicesByPSoap">
     <wsdl:operation name="ObtenerInformacionUsuario">
       <wsdl:input message="tns:ObtenerInformacionUsuarioSoapIn" />
@@ -1518,6 +1571,10 @@
       <wsdl:input message="tns:ConsultarDescripcionConvenioSoapIn" />
       <wsdl:output message="tns:ConsultarDescripcionConvenioSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ConsultarIdTarjetaPorPlaca">
+      <wsdl:input message="tns:ConsultarIdTarjetaPorPlacaSoapIn" />
+      <wsdl:output message="tns:ConsultarIdTarjetaPorPlacaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="RegistrarElArqueo">
       <wsdl:input message="tns:RegistrarElArqueoSoapIn" />
       <wsdl:output message="tns:RegistrarElArqueoSoapOut" />
@@ -1597,6 +1654,10 @@
     <wsdl:operation name="ObtenerListaEstacionamientoXSede">
       <wsdl:input message="tns:ObtenerListaEstacionamientoXSedeSoapIn" />
       <wsdl:output message="tns:ObtenerListaEstacionamientoXSedeSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ValidarConvenios">
+      <wsdl:input message="tns:ValidarConveniosSoapIn" />
+      <wsdl:output message="tns:ValidarConveniosSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServicesByPSoap" type="tns:ServicesByPSoap">
@@ -1826,6 +1887,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ConsultarIdTarjetaPorPlaca">
+      <soap:operation soapAction="http://tempuri.org/ConsultarIdTarjetaPorPlaca" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RegistrarElArqueo">
       <soap:operation soapAction="http://tempuri.org/RegistrarElArqueo" style="document" />
       <wsdl:input>
@@ -1999,6 +2069,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerListaEstacionamientoXSede">
       <soap:operation soapAction="http://tempuri.org/ObtenerListaEstacionamientoXSede" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarConvenios">
+      <soap:operation soapAction="http://tempuri.org/ValidarConvenios" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2234,6 +2313,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ConsultarIdTarjetaPorPlaca">
+      <soap12:operation soapAction="http://tempuri.org/ConsultarIdTarjetaPorPlaca" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="RegistrarElArqueo">
       <soap12:operation soapAction="http://tempuri.org/RegistrarElArqueo" style="document" />
       <wsdl:input>
@@ -2407,6 +2495,15 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerListaEstacionamientoXSede">
       <soap12:operation soapAction="http://tempuri.org/ObtenerListaEstacionamientoXSede" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarConvenios">
+      <soap12:operation soapAction="http://tempuri.org/ValidarConvenios" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

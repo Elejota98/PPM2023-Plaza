@@ -250,6 +250,7 @@ namespace BlockAndPass.PPMWinform
         private void btn_Leer_Click(object sender, EventArgs e)
         {
             //liquidacion = cliente.ConsultarValorPagar(true, true, 1, "0", "0EEEC6CB");
+            tbCodigo.Focus();
             cnt = 0;
             Cargando(true);
             string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
@@ -1259,6 +1260,7 @@ namespace BlockAndPass.PPMWinform
             tbTiempo.Text = string.Empty;
             tbHoraPago.Text = string.Empty;
             tbCasillero.Text = string.Empty;
+            tbCodigo.Text = string.Empty;
         }
         private void CargarUsuario()
         {
@@ -2146,6 +2148,59 @@ namespace BlockAndPass.PPMWinform
         private void label1_Click(object sender, EventArgs e)
         {
 
+        }
+
+        private void tbCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                if (tbCodigo.Text != string.Empty)
+                {
+                    ValidarConvenioResponse oValidarConvenio = cliente.ValidarConvenios(tbCodigo.Text.ToString());
+
+                    if (!oValidarConvenio.Exito)
+                    {
+                        if (tbCodigo.Text.Length >= 20)
+                        {
+                            int codigoBarras = 0;
+                            int consecutivo = 0;
+                            int numTienda = 0;
+                            codigoBarras = Convert.ToInt32(tbCodigo.Text.Substring(16, 4));
+                            consecutivo = Convert.ToInt32(tbCodigo.Text.Substring(5, 5));
+                            numTienda = Convert.ToInt32(tbCodigo.Text.Substring(0, 3));
+
+                            string añoFecha = tbCodigo.Text.Substring(10, 2);
+                            string mesFecha = tbCodigo.Text.Substring(12, 2);
+                            string diaFecha = tbCodigo.Text.Substring(14, 2);
+
+                            string fechaCodigo = "20" + añoFecha + "/" + mesFecha + "/" + diaFecha;
+                             
+                            // Se arma la fechaActual
+
+                            string añoAct = DateTime.Now.Year.ToString();
+
+                            string mesAct = DateTime.Now.Month.ToString();
+                            mesAct = mesAct.PadLeft(2, '0');
+                            string diaAct = DateTime.Now.Day.ToString();
+                            diaAct = diaAct.PadLeft(2, '0');
+
+                            string fechaAct = añoFecha + "/" + mesAct + "/" + diaAct;
+
+                            if (fechaCodigo == fechaAct)
+                            {
+                                if (codigoBarras >= 20) //Valido el total de la compra que en este caso es 20.000
+                                {
+
+                                }
+                            }
+                            
+
+                        }
+                    }
+
+                }
+
+            }
         }
 
     }

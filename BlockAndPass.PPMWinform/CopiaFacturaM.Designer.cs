@@ -114,7 +114,7 @@
             this.reportViewer1.LocalReport.ReportEmbeddedResource = "BlockAndPass.PPMWinform.Tickets.CopiaFacturaM.rdlc";
             this.reportViewer1.Location = new System.Drawing.Point(2, 2);
             this.reportViewer1.Name = "reportViewer1";
-            this.reportViewer1.Size = new System.Drawing.Size(371, 479);
+            this.reportViewer1.Size = new System.Drawing.Size(356, 479);
             this.reportViewer1.TabIndex = 22;
             // 
             // dataTable2TableAdapter1
@@ -149,7 +149,7 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.BackColor = System.Drawing.SystemColors.ActiveCaption;
-            this.ClientSize = new System.Drawing.Size(361, 597);
+            this.ClientSize = new System.Drawing.Size(357, 611);
             this.ControlBox = false;
             this.Controls.Add(this.cboIdModulo);
             this.Controls.Add(this.label2);
