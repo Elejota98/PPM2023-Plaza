@@ -10,6 +10,7 @@ using System.ComponentModel;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
+using System.Drawing.Imaging;
 using System.Drawing.Printing;
 using System.Globalization;
 using System.IO;
@@ -251,6 +252,7 @@ namespace BlockAndPass.PPMWinform
         {
             //liquidacion = cliente.ConsultarValorPagar(true, true, 1, "0", "0EEEC6CB");
             tbCodigo.Focus();
+
             cnt = 0;
             Cargando(true);
             string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
@@ -619,7 +621,7 @@ namespace BlockAndPass.PPMWinform
                 {
                     if (ckMensualidadDocumento.Checked == true)
                     {
-                        IdTarjetaResponse IdTarjeta = cliente.ConsultarIdTarjetaPorPlaca(txtPlaca.Text);
+                        ConsultarIdTarjetaPlacaResponse IdTarjeta = cliente.ConsultarIdTarjetaPorPlaca(txtPlaca.Text);
                         if (IdTarjeta.Exito)
                         {
                             tbIdTarjeta.Text = IdTarjeta.IdTarjetaDescripcion;
@@ -1122,7 +1124,9 @@ namespace BlockAndPass.PPMWinform
             if (popup.DialogResult == DialogResult.OK)
             {
                 Cargando(false);
+
                 MessageBox.Show("Entrada creada con EXITO", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ImprimirTicketEntrada();
             }
             else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
             {
@@ -1201,6 +1205,7 @@ namespace BlockAndPass.PPMWinform
             tmrHora.Interval = 1000;
             tmrHora.Tick += tmrHora_Tick;
             tmrHora.Start();
+            TmnCodigo.Start();
             panelPagar.Enabled = false;
             panelTodo.Enabled = false;
             lblTiempoFuera.Text = string.Empty;
@@ -1769,6 +1774,102 @@ namespace BlockAndPass.PPMWinform
                 MessageBox.Show(oInfoFacturaResponse.ErrorMessage, "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ImprimirTicketEntrada()
+        {
+            InfoEntradaResponse oInfoFacturaEntradaResponse = cliente.ObtenerDatosFacturaEntrada();
+            if (oInfoFacturaEntradaResponse.Exito)
+            {
+                bool resultado = PrintTicketEntrada(oInfoFacturaEntradaResponse.LstItems.ToList());
+                if (!resultado)
+                {
+                    MessageBox.Show("No fue posible imprimir ticket", "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //RestablecerPPM();
+                Cargando(false);
+            }
+            else
+            {
+                RestablecerPPM();
+                Cargando(false);
+                MessageBox.Show(oInfoFacturaEntradaResponse.ErrorMessage, "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        public bool PrintTicketEntrada(List<InfoItemsFacturaEntradaResponse> datos)
+        {
+            
+            bool bPrint = false;
+
+            try
+            {
+
+                List<List<InfoItemsFacturaEntradaResponse>> facturas = new List<List<InfoItemsFacturaEntradaResponse>>();
+                foreach (InfoItemsFacturaEntradaResponse item in datos)
+                {
+                    bool find = false;
+                    if (facturas.Count > 0)
+                    {
+                        foreach (List<InfoItemsFacturaEntradaResponse> item2 in facturas)
+                        {
+                            if (item2[0].IdTransaccion == item.IdTransaccion)
+                            {
+                                find = true;
+                                item2.Add(item);
+                            }
+                        }
+
+                        if (!find)
+                        {
+                            List<InfoItemsFacturaEntradaResponse> otraFactura = new List<InfoItemsFacturaEntradaResponse>();
+                            otraFactura.Add(item);
+                            facturas.Add(otraFactura);
+                        }
+                        find = false;
+                    }
+                    else
+                    {
+                        List<InfoItemsFacturaEntradaResponse> primeraFactura = new List<InfoItemsFacturaEntradaResponse>();
+                        primeraFactura.Add(item);
+                        facturas.Add(primeraFactura);
+                    }
+                }
+
+
+
+                if (facturas.Count > 0)
+                {
+                    foreach (var item in facturas)
+                    {
+                        ReportDataSource datasource = new ReportDataSource();
+                        LocalReport oLocalReport = new LocalReport();
+
+                        datasource = new ReportDataSource("DataSetTicketEntrada", (DataTable)GenerarTicketEntrada(item).Tables[0]);
+                        oLocalReport.ReportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Tickets\{0}.rdlc", "ticketEntrada"));
+
+
+                        oLocalReport.DataSources.Add(datasource);
+                        oLocalReport.Refresh();
+
+                        ReportPrintDocument ore = new ReportPrintDocument(oLocalReport);
+                        ore.PrintController = new StandardPrintController();
+                        ore.Print();
+
+                        oLocalReport.Dispose();
+                        oLocalReport = null;
+                        ore.Dispose();
+                        ore = null;
+                    }
+                }
+                bPrint = true;
+            }
+            catch (Exception e)
+            {
+                bPrint = false;
+            }
+            return bPrint;
+        }
         public bool PrintTicket(List<InfoItemsFacturaResponse> datos)
         {
             bool bPrint = false;
@@ -1833,11 +1934,6 @@ namespace BlockAndPass.PPMWinform
                         ore = null;
                     }
                 }
-
-
-
-
-
                 bPrint = true;
             }
             catch (Exception e)
@@ -1883,6 +1979,62 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.VigenciaFactura = item.Vigencia;
 
                 facturacion.TablaTicketPago.AddTablaTicketPagoRow(rowDatosFactura);
+            }
+
+            return facturacion;
+        }
+
+        private byte[] GetBytes(Image imageIn)
+        {
+            MemoryStream ms = new MemoryStream();
+            imageIn.Save(ms, ImageFormat.Jpeg);
+            return ms.ToArray();
+        }
+
+        private DataSetTicketEntrada GenerarTicketEntrada(List<InfoItemsFacturaEntradaResponse> infoTicket)
+        {
+            DataSetTicketEntrada facturacion = new DataSetTicketEntrada();
+
+            double total = 0;
+            foreach (var item in infoTicket)
+            {
+                //total += Convert.ToDouble(item.Total);
+            }
+
+            foreach (var item in infoTicket)
+            {
+                DataSetTicketEntrada.TablaTicketEntradaRow rowDatosFactura = facturacion.TablaTicketEntrada.NewTablaTicketEntradaRow();
+
+                BarcodeLib.Barcode Codigo = new BarcodeLib.Barcode();
+
+                rowDatosFactura.IdTransaccion = item.IdTransaccion;
+                //panelCodigo.Visible = false;
+                //panelCodigo1.BackgroundImage = Codigo.Encode(BarcodeLib.TYPE.CODE128B,item.IdTransaccion,Color.Black,Color.White,400,100);      
+                rowDatosFactura.PlacaEntrada = item.PlacaEntrada;
+                rowDatosFactura.FechaEntrada = item.FechaEntrada;
+                rowDatosFactura.TipoVehiculo = item.TipoVehiculo;
+                rowDatosFactura.Rut = "NIT 900.554.696 -8";
+                rowDatosFactura.Nombre = "CENTRO COMERCIAL GRATAMIRA";
+                rowDatosFactura.Telefono = "6520587";
+                //rowDatosFactura.Informacion = "Esta infromacion esta quemada en el codigo, deberia obtenerse de algun lugar";
+                //rowDatosFactura.Modulo = item.Modulo;
+                //rowDatosFactura.Nombre = item.Nombre;
+                //rowDatosFactura.NumeroFactura = item.NumeroFactura;
+                //rowDatosFactura.Placa = item.Placa;
+                //rowDatosFactura.Recibido = Convert.ToDouble(item.ValorRecibido);
+                //rowDatosFactura.Resolucion = item.NumeroResolucion;
+                //rowDatosFactura.Rut = "NIT 900.554.696 -8";
+                //rowDatosFactura.Telefono = item.Telefono;
+                //rowDatosFactura.TotalFinal = total;
+                //rowDatosFactura.Total = Convert.ToDouble(item.Total);
+                //rowDatosFactura.Subtotal = Convert.ToDouble(item.Subtotal);
+                //rowDatosFactura.Iva = Convert.ToDouble(item.Iva);
+                //rowDatosFactura.TipoPago = item.Tipo;
+                //rowDatosFactura.Fecha2 = item.FechaEntrada;
+                //rowDatosFactura.Vehiculo = item.TipoVehiculo;
+                //rowDatosFactura.VigenciaFactura = item.Vigencia;
+
+                facturacion.TablaTicketEntrada.AddTablaTicketEntradaRow(rowDatosFactura);
             }
 
             return facturacion;
@@ -2152,55 +2304,142 @@ namespace BlockAndPass.PPMWinform
 
         private void tbCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
+            
             if (e.KeyChar == (char)13)
             {
+                CardResponse oCardResponse = new CardResponse();
+                #region Lector Codigo Barras
+                //tbCodigo.Text = "87203063242302140034";
                 if (tbCodigo.Text != string.Empty)
                 {
-                    ValidarConvenioResponse oValidarConvenio = cliente.ValidarConvenios(tbCodigo.Text.ToString());
+                    if (tbCodigo.Text != string.Empty)
+                    {                       
+                        ValidarConvenioResponse oValidarConvenio = cliente.ValidarConvenios(tbCodigo.Text.ToString());
 
-                    if (!oValidarConvenio.Exito)
-                    {
-                        if (tbCodigo.Text.Length >= 20)
+                        if (!oValidarConvenio.Exito)
                         {
-                            int codigoBarras = 0;
-                            int consecutivo = 0;
-                            int numTienda = 0;
-                            codigoBarras = Convert.ToInt32(tbCodigo.Text.Substring(16, 4));
-                            consecutivo = Convert.ToInt32(tbCodigo.Text.Substring(5, 5));
-                            numTienda = Convert.ToInt32(tbCodigo.Text.Substring(0, 3));
-
-                            string añoFecha = tbCodigo.Text.Substring(10, 2);
-                            string mesFecha = tbCodigo.Text.Substring(12, 2);
-                            string diaFecha = tbCodigo.Text.Substring(14, 2);
-
-                            string fechaCodigo = "20" + añoFecha + "/" + mesFecha + "/" + diaFecha;
-                             
-                            // Se arma la fechaActual
-
-                            string añoAct = DateTime.Now.Year.ToString();
-
-                            string mesAct = DateTime.Now.Month.ToString();
-                            mesAct = mesAct.PadLeft(2, '0');
-                            string diaAct = DateTime.Now.Day.ToString();
-                            diaAct = diaAct.PadLeft(2, '0');
-
-                            string fechaAct = añoFecha + "/" + mesAct + "/" + diaAct;
-
-                            if (fechaCodigo == fechaAct)
+                            if (tbCodigo.Text.Length >= 20)
                             {
-                                if (codigoBarras >= 20) //Valido el total de la compra que en este caso es 20.000
+                                int codigoBarras = 0;
+                                int consecutivo = 0;
+                                int numTienda = 0;
+                                codigoBarras = Convert.ToInt32(tbCodigo.Text.Substring(16, 4));
+                                consecutivo = Convert.ToInt32(tbCodigo.Text.Substring(5, 5));
+                                numTienda = Convert.ToInt32(tbCodigo.Text.Substring(0, 3));
+
+                                string añoFecha = tbCodigo.Text.Substring(10, 2);
+                                string mesFecha = tbCodigo.Text.Substring(12, 2);
+                                string diaFecha = tbCodigo.Text.Substring(14, 2);
+
+                                string fechaCodigo = "20" + añoFecha + "/" + mesFecha + "/" + diaFecha;
+
+                                // Se arma la fechaActual
+
+                                string añoAct = DateTime.Now.Year.ToString();
+
+                                string mesAct = DateTime.Now.Month.ToString();
+                                mesAct = mesAct.PadLeft(2, '0');
+                                string diaAct = DateTime.Now.Day.ToString();
+                                diaAct = diaAct.PadLeft(2, '0');
+
+                                string fechaAct = "20"+ añoFecha + "/" + mesAct + "/" + diaAct;
+                                if (numTienda == 872)
                                 {
+                                    if (fechaCodigo == fechaAct)
+                                    {
+                                        if (codigoBarras >= 30) //Valido el total de la compra que en este caso es 30.000
+                                        {
+                                            string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+
+                                            if (clave != string.Empty)
+                                            {
+                                                oCardResponse = GetCardInfo(clave);
+
+                                                int IdConvenio1 = 0;
+
+                                                if (oCardResponse.tipoVehiculo == "AUTOMOBILE")
+                                                {
+                                                    IdConvenio1 = 3;
+                                                }
+                                                else if (oCardResponse.tipoVehiculo == "MOTORCYCLE")
+                                                {
+                                                    IdConvenio1 = 4;
+                                                }
+
+                                                oCardResponse = AplicarConvenio(clave, IdConvenio1.ToString());
+                                                if (!oCardResponse.error)
+                                                {
+                                                    // registrar convenio 
+                                                    RegistrarConvenioResponse oRegistraConvenio = new RegistrarConvenioResponse();
+                                                    oRegistraConvenio = cliente.RegistrarConvenioValidado(tbCodigo.Text.ToString(), consecutivo.ToString(), cbPPM.SelectedValue.ToString());
+                                                    cliente.RegistrarConvenioAplicao(tbIdTransaccion.Text, IdConvenio1);
+                                                    cliente.AplicarConvenios(tbIdTransaccion.Text, IdConvenio1, oCardResponse.codeAutorizacion2, oCardResponse.codeAutorizacion3);
+
+
+                                                    MessageBox.Show("Convenio aplicado exitosamente", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    Cargando(false);
+                                                }
+                                                else
+                                                {
+                                                    Cargando(false);
+                                                    MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
+                                            }
+                                            else
+                                            {
+                                                Cargando(false);
+                                                MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+
+
+                                        }
+                                        else
+                                        {
+                                            Cargando(false);
+                                            MessageBox.Show("El total de la factura no es valida para aplicar el convenio", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        Cargando(false);
+                                        MessageBox.Show("La fecha de la factura no es valida", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
 
                                 }
+                                else
+                                {
+                                    Cargando(false);
+                                    MessageBox.Show("El numero de la tienda no es valido", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
                             }
-                            
+                            else
+                            {
+                                Cargando(false);
+                                MessageBox.Show("Factura no valida", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
 
                         }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("Esta factura ya fue validada", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
+
                     }
 
                 }
 
+                #endregion
             }
+
+
+        }
+
+        private void TmnCodigo_Tick(object sender, EventArgs e)
+        {
+
         }
 
     }

@@ -291,6 +291,36 @@
           <s:element minOccurs="0" maxOccurs="1" name="Vigencia" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ObtenerDatosFacturaEntrada">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObtenerDatosFacturaEntradaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerDatosFacturaEntradaResult" type="tns:InfoEntradaResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoEntradaResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LstItems" type="tns:ArrayOfInfoItemsFacturaEntradaResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfInfoItemsFacturaEntradaResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="InfoItemsFacturaEntradaResponse" nillable="true" type="tns:InfoItemsFacturaEntradaResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="InfoItemsFacturaEntradaResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="1" name="IdTransaccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="FechaEntrada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoVehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlacaEntrada" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="PagarMensualidad">
         <s:complexType>
           <s:sequence>
@@ -373,6 +403,27 @@
         </s:complexType>
       </s:element>
       <s:complexType name="AplicarConvenioResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="RegistrarConvenioAplicao">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idTransaccion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="idConvenio1" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistrarConvenioAplicaoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrarConvenioAplicaoResult" type="tns:RegistrarConvenioAplicadoResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RegistrarConvenioAplicadoResponse">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
@@ -1186,6 +1237,29 @@
           <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="RegistrarConvenioValidado">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="consecutivo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="codigoCompleto" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idModulo" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="RegistrarConvenioValidadoResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="RegistrarConvenioValidadoResult" type="tns:RegistrarConvenioResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="RegistrarConvenioResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdConsecutivo" type="s:int" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="ObtenerInformacionUsuarioSoapIn">
@@ -1248,6 +1322,12 @@
   <wsdl:message name="ObtenerDatosFacturaSoapOut">
     <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaResponse" />
   </wsdl:message>
+  <wsdl:message name="ObtenerDatosFacturaEntradaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaEntrada" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerDatosFacturaEntradaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaEntradaResponse" />
+  </wsdl:message>
   <wsdl:message name="PagarMensualidadSoapIn">
     <wsdl:part name="parameters" element="tns:PagarMensualidad" />
   </wsdl:message>
@@ -1271,6 +1351,12 @@
   </wsdl:message>
   <wsdl:message name="AplicarConveniosSoapOut">
     <wsdl:part name="parameters" element="tns:AplicarConveniosResponse" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarConvenioAplicaoSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistrarConvenioAplicao" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarConvenioAplicaoSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistrarConvenioAplicaoResponse" />
   </wsdl:message>
   <wsdl:message name="AplicarCascoSoapIn">
     <wsdl:part name="parameters" element="tns:AplicarCasco" />
@@ -1470,6 +1556,12 @@
   <wsdl:message name="ValidarConveniosSoapOut">
     <wsdl:part name="parameters" element="tns:ValidarConveniosResponse" />
   </wsdl:message>
+  <wsdl:message name="RegistrarConvenioValidadoSoapIn">
+    <wsdl:part name="parameters" element="tns:RegistrarConvenioValidado" />
+  </wsdl:message>
+  <wsdl:message name="RegistrarConvenioValidadoSoapOut">
+    <wsdl:part name="parameters" element="tns:RegistrarConvenioValidadoResponse" />
+  </wsdl:message>
   <wsdl:portType name="ServicesByPSoap">
     <wsdl:operation name="ObtenerInformacionUsuario">
       <wsdl:input message="tns:ObtenerInformacionUsuarioSoapIn" />
@@ -1511,6 +1603,10 @@
       <wsdl:input message="tns:ObtenerDatosFacturaSoapIn" />
       <wsdl:output message="tns:ObtenerDatosFacturaSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaEntrada">
+      <wsdl:input message="tns:ObtenerDatosFacturaEntradaSoapIn" />
+      <wsdl:output message="tns:ObtenerDatosFacturaEntradaSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="PagarMensualidad">
       <wsdl:input message="tns:PagarMensualidadSoapIn" />
       <wsdl:output message="tns:PagarMensualidadSoapOut" />
@@ -1526,6 +1622,10 @@
     <wsdl:operation name="AplicarConvenios">
       <wsdl:input message="tns:AplicarConveniosSoapIn" />
       <wsdl:output message="tns:AplicarConveniosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarConvenioAplicao">
+      <wsdl:input message="tns:RegistrarConvenioAplicaoSoapIn" />
+      <wsdl:output message="tns:RegistrarConvenioAplicaoSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AplicarCasco">
       <wsdl:input message="tns:AplicarCascoSoapIn" />
@@ -1659,6 +1759,10 @@
       <wsdl:input message="tns:ValidarConveniosSoapIn" />
       <wsdl:output message="tns:ValidarConveniosSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="RegistrarConvenioValidado">
+      <wsdl:input message="tns:RegistrarConvenioValidadoSoapIn" />
+      <wsdl:output message="tns:RegistrarConvenioValidadoSoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServicesByPSoap" type="tns:ServicesByPSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -1752,6 +1856,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaEntrada">
+      <soap:operation soapAction="http://tempuri.org/ObtenerDatosFacturaEntrada" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="PagarMensualidad">
       <soap:operation soapAction="http://tempuri.org/PagarMensualidad" style="document" />
       <wsdl:input>
@@ -1781,6 +1894,15 @@
     </wsdl:operation>
     <wsdl:operation name="AplicarConvenios">
       <soap:operation soapAction="http://tempuri.org/AplicarConvenios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarConvenioAplicao">
+      <soap:operation soapAction="http://tempuri.org/RegistrarConvenioAplicao" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2085,6 +2207,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="RegistrarConvenioValidado">
+      <soap:operation soapAction="http://tempuri.org/RegistrarConvenioValidado" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ServicesByPSoap12" type="tns:ServicesByPSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2178,6 +2309,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaEntrada">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerDatosFacturaEntrada" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="PagarMensualidad">
       <soap12:operation soapAction="http://tempuri.org/PagarMensualidad" style="document" />
       <wsdl:input>
@@ -2207,6 +2347,15 @@
     </wsdl:operation>
     <wsdl:operation name="AplicarConvenios">
       <soap12:operation soapAction="http://tempuri.org/AplicarConvenios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarConvenioAplicao">
+      <soap12:operation soapAction="http://tempuri.org/RegistrarConvenioAplicao" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -2504,6 +2653,15 @@
     </wsdl:operation>
     <wsdl:operation name="ValidarConvenios">
       <soap12:operation soapAction="http://tempuri.org/ValidarConvenios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="RegistrarConvenioValidado">
+      <soap12:operation soapAction="http://tempuri.org/RegistrarConvenioValidado" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

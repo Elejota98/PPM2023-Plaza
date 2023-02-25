@@ -187,7 +187,7 @@ namespace BlockAndPass.PPMWinform
         {
             if (chbAutorizado.Checked)
             {
-                DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado SIN tarjeta? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION","Crear Entrada", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION","Crear Entrada", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (result3 == DialogResult.Yes)
                 {
                     CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdAutorizacion);
@@ -204,13 +204,13 @@ namespace BlockAndPass.PPMWinform
                 }
                 else
                 {
-                    MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                    //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
 
-                    string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
+                    //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
 
-                    CardResponse oCardResponse = CreateAuthEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdTarjeta);
-                    if (!oCardResponse.error)
-                    {
+                    //CardResponse oCardResponse = CreateAuthEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdTarjeta);
+                    //if (!oCardResponse.error)
+                    //{
                         CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdAutorizacion);
 
                         if (oInfo.Exito)
@@ -222,24 +222,25 @@ namespace BlockAndPass.PPMWinform
                             this.DialogResult = DialogResult.None;
                             MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM Clienete Normal", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-                    }
-                    else
-                    {
-                        this.DialogResult = DialogResult.None;
-                        MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
+                    //}
+                    //else
+                    //{
+                    //    this.DialogResult = DialogResult.None;
+                    //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
                 }
             }
             else
             {
-                MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+                //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
 
-                string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
+                //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
 
-                CardResponse oCardResponse = CreateEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString());
-                if (!oCardResponse.error)
-                {
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), oCardResponse.idCard, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), string.Empty);
+                //CardResponse oCardResponse = CreateEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString());
+                //if (!oCardResponse.error)
+                //{
+                string idTarjeta="";
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), idTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), string.Empty);
 
                     if (oInfo.Exito)
                     {
@@ -250,195 +251,195 @@ namespace BlockAndPass.PPMWinform
                         this.DialogResult = DialogResult.None;
                         MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
-                }
-                else
-                {
-                    this.DialogResult = DialogResult.None;
-                    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                }
+                //}
+                //else
+                //{
+                //    this.DialogResult = DialogResult.None;
+                //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
             }
 
             this.Close();
         }
 
-        public CardResponse CreateEntry(string password, string plate, string modulo, DateTime dtFecha, string tipov)
-        {
-            dtFecha = new DateTime(dtFecha.Year, dtFecha.Month, dtFecha.Day, dtFecha.Hour, dtFecha.Minute, dtFecha.Second);
-            CardResponse oCardResponse = new CardResponse();
+        //public CardResponse CreateEntry(string password, string plate, string modulo, DateTime dtFecha, string tipov)
+        //{
+        //    dtFecha = new DateTime(dtFecha.Year, dtFecha.Month, dtFecha.Day, dtFecha.Hour, dtFecha.Minute, dtFecha.Second);
+        //    CardResponse oCardResponse = new CardResponse();
 
 
-            Lectora_ACR122U lectora = new Lectora_ACR122U();
-            Rspsta_Conexion_LECTOR res = lectora.Conectar(false);
-            if (res.Conectado)
-            {
-                Rspsta_DetectarTarjeta_LECTOR re = lectora.DetectarTarjeta();
-                if (re.TarjetaDetectada)
-                {
-                    Rspsta_CodigoTarjeta_LECTOR resp = lectora.ObtenerIDTarjeta();
-                    if (resp.CodigoTarjeta != null && resp.CodigoTarjeta != string.Empty)
-                    {
-                        Rspsta_EstablecerClave_LECTOR resp1 = lectora.EstablecerClaveLECTOR(password);
-                        if (resp1.ClaveEstablecida)
-                        {
+        //    Lectora_ACR122U lectora = new Lectora_ACR122U();
+        //    Rspsta_Conexion_LECTOR res = lectora.Conectar(false);
+        //    if (res.Conectado)
+        //    {
+        //        Rspsta_DetectarTarjeta_LECTOR re = lectora.DetectarTarjeta();
+        //        if (re.TarjetaDetectada)
+        //        {
+        //            Rspsta_CodigoTarjeta_LECTOR resp = lectora.ObtenerIDTarjeta();
+        //            if (resp.CodigoTarjeta != null && resp.CodigoTarjeta != string.Empty)
+        //            {
+        //                Rspsta_EstablecerClave_LECTOR resp1 = lectora.EstablecerClaveLECTOR(password);
+        //                if (resp1.ClaveEstablecida)
+        //                {
 
-                            Rspsta_BorrarTarjeta_LECTOR respBorrar = lectora.BorrarTarjetaLECTORA(TYPE_STRUCTURE_SMARTCARD.SMARTCARD_PARKING_V1, false);
+        //                    Rspsta_BorrarTarjeta_LECTOR respBorrar = lectora.BorrarTarjetaLECTORA(TYPE_STRUCTURE_SMARTCARD.SMARTCARD_PARKING_V1, false);
 
-                            if (respBorrar.TarjetaBorrada)
-                            {
-                                SMARTCARD_PARKING_V1 oTarjeta = new SMARTCARD_PARKING_V1();
-                                oTarjeta.TypeCard = TYPE_TARJETAPARKING_V1.VISITOR;
-                                if (tipov == "1")
-                                {
-                                    oTarjeta.TypeVehicle = TYPEVEHICLE_TARJETAPARKING_V1.AUTOMOBILE;
-                                }
-                                else if (tipov == "2")
-                                {
-                                    oTarjeta.TypeVehicle = TYPEVEHICLE_TARJETAPARKING_V1.MOTORCYCLE;
-                                }
-                                oTarjeta.Replacement = false;
-                                oTarjeta.CodeCard = resp.CodigoTarjeta;
-                                oTarjeta.ActiveCycle = true;
-                                oTarjeta.DateTimeEntrance = dtFecha;
-                                oTarjeta.EntranceModule = modulo;
-                                oTarjeta.EntrancePlate = plate;
-                                Rspsta_Escribir_Tarjeta_LECTOR resp4 = lectora.EscribirTarjeta(oTarjeta, false, false);
-                                if (resp4.TarjetaEscrita)
-                                {
-                                    oCardResponse.idCard = resp.CodigoTarjeta;
-                                    oCardResponse.error = false;
-                                }
-                                else
-                                {
-                                    oCardResponse.error = true;
-                                    oCardResponse.errorMessage = "No escribe tarjeta.";
-                                }
-                            }
-                            else
-                            {
-                                oCardResponse.error = true;
-                                oCardResponse.errorMessage = "No borra tarjeta.";
-                            }
-                        }
-                        else
-                        {
-                            oCardResponse.error = true;
-                            oCardResponse.errorMessage = "No establece clave tarjeta.";
-                        }
-                    }
-                    else
-                    {
-                        oCardResponse.error = true;
-                        oCardResponse.errorMessage = "No obtiene id tarjeta.";
-                    }
-                }
-                else
-                {
-                    oCardResponse.error = true;
-                    oCardResponse.errorMessage = "No detecta tarjeta.";
-                }
-            }
-            else
-            {
-                oCardResponse.error = true;
-                oCardResponse.errorMessage = "No conecta con lectora de tarjetas.";
-            }
-
-
-            return oCardResponse;
-        }
-
-        public CardResponse CreateAuthEntry(string password, string plate, string modulo, DateTime dtFecha, string tipov, string sIdTarjeta)
-        {
-            dtFecha = new DateTime(dtFecha.Year, dtFecha.Month, dtFecha.Day, dtFecha.Hour, dtFecha.Minute, dtFecha.Second);
-            CardResponse oCardResponse = new CardResponse();
+        //                    if (respBorrar.TarjetaBorrada)
+        //                    {
+        //                        SMARTCARD_PARKING_V1 oTarjeta = new SMARTCARD_PARKING_V1();
+        //                        oTarjeta.TypeCard = TYPE_TARJETAPARKING_V1.VISITOR;
+        //                        if (tipov == "1")
+        //                        {
+        //                            oTarjeta.TypeVehicle = TYPEVEHICLE_TARJETAPARKING_V1.AUTOMOBILE;
+        //                        }
+        //                        else if (tipov == "2")
+        //                        {
+        //                            oTarjeta.TypeVehicle = TYPEVEHICLE_TARJETAPARKING_V1.MOTORCYCLE;
+        //                        }
+        //                        oTarjeta.Replacement = false;
+        //                        oTarjeta.CodeCard = resp.CodigoTarjeta;
+        //                        oTarjeta.ActiveCycle = true;
+        //                        oTarjeta.DateTimeEntrance = dtFecha;
+        //                        oTarjeta.EntranceModule = modulo;
+        //                        oTarjeta.EntrancePlate = plate;
+        //                        Rspsta_Escribir_Tarjeta_LECTOR resp4 = lectora.EscribirTarjeta(oTarjeta, false, false);
+        //                        if (resp4.TarjetaEscrita)
+        //                        {
+        //                            oCardResponse.idCard = resp.CodigoTarjeta;
+        //                            oCardResponse.error = false;
+        //                        }
+        //                        else
+        //                        {
+        //                            oCardResponse.error = true;
+        //                            oCardResponse.errorMessage = "No escribe tarjeta.";
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        oCardResponse.error = true;
+        //                        oCardResponse.errorMessage = "No borra tarjeta.";
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    oCardResponse.error = true;
+        //                    oCardResponse.errorMessage = "No establece clave tarjeta.";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                oCardResponse.error = true;
+        //                oCardResponse.errorMessage = "No obtiene id tarjeta.";
+        //            }
+        //        }
+        //        else
+        //        {
+        //            oCardResponse.error = true;
+        //            oCardResponse.errorMessage = "No detecta tarjeta.";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        oCardResponse.error = true;
+        //        oCardResponse.errorMessage = "No conecta con lectora de tarjetas.";
+        //    }
 
 
-            Lectora_ACR122U lectora = new Lectora_ACR122U();
-            Rspsta_Conexion_LECTOR res = lectora.Conectar(false);
-            if (res.Conectado)
-            {
-                Rspsta_DetectarTarjeta_LECTOR re = lectora.DetectarTarjeta();
-                if (re.TarjetaDetectada)
-                {
-                    Rspsta_CodigoTarjeta_LECTOR resp = lectora.ObtenerIDTarjeta();
-                    if (resp.CodigoTarjeta != null && resp.CodigoTarjeta != string.Empty)
-                    {
-                        Rspsta_EstablecerClave_LECTOR resp1 = lectora.EstablecerClaveLECTOR(password);
-                        if (resp1.ClaveEstablecida)
-                        {
-                            Rspsta_Leer_Tarjeta_LECTOR resp2 = lectora.LeerTarjeta(TYPE_STRUCTURE_SMARTCARD.SMARTCARD_PARKING_V1, false);
-                            if (resp2.TarjetaLeida)
-                            {
-                                SMARTCARD_PARKING_V1 myTarjeta = (SMARTCARD_PARKING_V1)resp2.Tarjeta;
+        //    return oCardResponse;
+        //}
 
-                                if (!Convert.ToBoolean(myTarjeta.ActiveCycle))
-                                {
-
-                                    if (tipov == "1")
-                                    {
-                                        myTarjeta.TypeVehicle = TYPEVEHICLE_TARJETAPARKING_V1.AUTOMOBILE;
-                                    }
-                                    else if (tipov == "2")
-                                    {
-                                        myTarjeta.TypeVehicle = TYPEVEHICLE_TARJETAPARKING_V1.MOTORCYCLE;
-                                    }
-                                    myTarjeta.Replacement = false;
-                                    myTarjeta.CodeCard = sIdTarjeta;
-                                    myTarjeta.ActiveCycle = true;
-                                    myTarjeta.DateTimeEntrance = dtFecha;
-                                    myTarjeta.EntranceModule = modulo;
-                                    myTarjeta.EntrancePlate = plate;
-
-                                    Rspsta_Escribir_Tarjeta_LECTOR resp4 = lectora.EscribirTarjeta(myTarjeta, false, false);
-                                    if (resp4.TarjetaEscrita)
-                                    {
-                                        oCardResponse.error = false;
-                                    }
-                                    else
-                                    {
-                                        oCardResponse.error = true;
-                                        oCardResponse.errorMessage = "No escribe tarjeta.";
-                                    }
-                                }
-                                else
-                                {
-                                    oCardResponse.error = true;
-                                    oCardResponse.errorMessage = "Tarjeta con entrada registrada.";
-                                }
-                            }
-                            else
-                            {
-                                oCardResponse.error = true;
-                                oCardResponse.errorMessage = "No lee tarjeta.";
-                            }
-                        }
-                        else
-                        {
-                            oCardResponse.error = true;
-                            oCardResponse.errorMessage = "No establece clave tarjeta.";
-                        }
-                    }
-                    else
-                    {
-                        oCardResponse.error = true;
-                        oCardResponse.errorMessage = "No obtiene id tarjeta.";
-                    }
-                }
-                else
-                {
-                    oCardResponse.error = true;
-                    oCardResponse.errorMessage = "No detecta tarjeta.";
-                }
-            }
-            else
-            {
-                oCardResponse.error = true;
-                oCardResponse.errorMessage = "No conecta con lectora de tarjetas.";
-            }
+        //public CardResponse CreateAuthEntry(string password, string plate, string modulo, DateTime dtFecha, string tipov, string sIdTarjeta)
+        //{
+        //    dtFecha = new DateTime(dtFecha.Year, dtFecha.Month, dtFecha.Day, dtFecha.Hour, dtFecha.Minute, dtFecha.Second);
+        //    CardResponse oCardResponse = new CardResponse();
 
 
-            return oCardResponse;
-        }
+        //    Lectora_ACR122U lectora = new Lectora_ACR122U();
+        //    Rspsta_Conexion_LECTOR res = lectora.Conectar(false);
+        //    if (res.Conectado)
+        //    {
+        //        Rspsta_DetectarTarjeta_LECTOR re = lectora.DetectarTarjeta();
+        //        if (re.TarjetaDetectada)
+        //        {
+        //            Rspsta_CodigoTarjeta_LECTOR resp = lectora.ObtenerIDTarjeta();
+        //            if (resp.CodigoTarjeta != null && resp.CodigoTarjeta != string.Empty)
+        //            {
+        //                Rspsta_EstablecerClave_LECTOR resp1 = lectora.EstablecerClaveLECTOR(password);
+        //                if (resp1.ClaveEstablecida)
+        //                {
+        //                    Rspsta_Leer_Tarjeta_LECTOR resp2 = lectora.LeerTarjeta(TYPE_STRUCTURE_SMARTCARD.SMARTCARD_PARKING_V1, false);
+        //                    if (resp2.TarjetaLeida)
+        //                    {
+        //                        SMARTCARD_PARKING_V1 myTarjeta = (SMARTCARD_PARKING_V1)resp2.Tarjeta;
+
+        //                        if (!Convert.ToBoolean(myTarjeta.ActiveCycle))
+        //                        {
+
+        //                            if (tipov == "1")
+        //                            {
+        //                                myTarjeta.TypeVehicle = TYPEVEHICLE_TARJETAPARKING_V1.AUTOMOBILE;
+        //                            }
+        //                            else if (tipov == "2")
+        //                            {
+        //                                myTarjeta.TypeVehicle = TYPEVEHICLE_TARJETAPARKING_V1.MOTORCYCLE;
+        //                            }
+        //                            myTarjeta.Replacement = false;
+        //                            myTarjeta.CodeCard = sIdTarjeta;
+        //                            myTarjeta.ActiveCycle = true;
+        //                            myTarjeta.DateTimeEntrance = dtFecha;
+        //                            myTarjeta.EntranceModule = modulo;
+        //                            myTarjeta.EntrancePlate = plate;
+
+        //                            Rspsta_Escribir_Tarjeta_LECTOR resp4 = lectora.EscribirTarjeta(myTarjeta, false, false);
+        //                            if (resp4.TarjetaEscrita)
+        //                            {
+        //                                oCardResponse.error = false;
+        //                            }
+        //                            else
+        //                            {
+        //                                oCardResponse.error = true;
+        //                                oCardResponse.errorMessage = "No escribe tarjeta.";
+        //                            }
+        //                        }
+        //                        else
+        //                        {
+        //                            oCardResponse.error = true;
+        //                            oCardResponse.errorMessage = "Tarjeta con entrada registrada.";
+        //                        }
+        //                    }
+        //                    else
+        //                    {
+        //                        oCardResponse.error = true;
+        //                        oCardResponse.errorMessage = "No lee tarjeta.";
+        //                    }
+        //                }
+        //                else
+        //                {
+        //                    oCardResponse.error = true;
+        //                    oCardResponse.errorMessage = "No establece clave tarjeta.";
+        //                }
+        //            }
+        //            else
+        //            {
+        //                oCardResponse.error = true;
+        //                oCardResponse.errorMessage = "No obtiene id tarjeta.";
+        //            }
+        //        }
+        //        else
+        //        {
+        //            oCardResponse.error = true;
+        //            oCardResponse.errorMessage = "No detecta tarjeta.";
+        //        }
+        //    }
+        //    else
+        //    {
+        //        oCardResponse.error = true;
+        //        oCardResponse.errorMessage = "No conecta con lectora de tarjetas.";
+        //    }
+
+
+        //    return oCardResponse;
+        //}
 
         private void dtpFechaIngreso_ValueChanged(object sender, EventArgs e)
         {

@@ -55,6 +55,9 @@
     <Prefer32Bit>false</Prefer32Bit>
   </PropertyGroup>
   <ItemGroup>
+    <Reference Include="BarcodeLib, Version=1.1.0.0, Culture=neutral, PublicKeyToken=5f09bda868cc39e7, processorArchitecture=MSIL">
+      <HintPath>..\packages\BarcodeLib.1.1.0.0\lib\net20\BarcodeLib.dll</HintPath>
+    </Reference>
     <Reference Include="EGlobalT.Device.SmartCard">
       <HintPath>..\BlockAndPass.Library\EGlobalT.Device.SmartCard.dll</HintPath>
     </Reference>
@@ -178,6 +181,11 @@
       <DesignTime>True</DesignTime>
       <DependentUpon>DataSetTicketCarga.xsd</DependentUpon>
     </Compile>
+    <Compile Include="Tickets\DataSetTicketEntrada.Designer.cs">
+      <AutoGen>True</AutoGen>
+      <DesignTime>True</DesignTime>
+      <DependentUpon>DataSetTicketEntrada.xsd</DependentUpon>
+    </Compile>
     <Compile Include="Tickets\DataSetTicketPago.cs">
       <DependentUpon>DataSetTicketPago.xsd</DependentUpon>
       <SubType>Component</SubType>
@@ -255,6 +263,7 @@
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
     <EmbeddedResource Include="Tickets\CopiaFacturaM.rdlc" />
+    <EmbeddedResource Include="Tickets\ticketEntrada.rdlc" />
     <EmbeddedResource Include="Tickets\ticketPagoSimplificado.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>
@@ -276,6 +285,7 @@
     <None Include="app.config">
       <SubType>Designer</SubType>
     </None>
+    <None Include="packages.config" />
     <None Include="Properties\Settings.settings">
       <Generator>SettingsSingleFileGenerator</Generator>
       <LastGenOutput>Settings.Designer.cs</LastGenOutput>
@@ -320,6 +330,17 @@
     </None>
     <None Include="Tickets\DataSetTicketCarga.xss">
       <DependentUpon>DataSetTicketCarga.xsd</DependentUpon>
+    </None>
+    <None Include="Tickets\DataSetTicketEntrada.xsc">
+      <DependentUpon>DataSetTicketEntrada.xsd</DependentUpon>
+    </None>
+    <None Include="Tickets\DataSetTicketEntrada.xsd">
+      <SubType>Designer</SubType>
+      <Generator>MSDataSetGenerator</Generator>
+      <LastGenOutput>DataSetTicketEntrada.Designer.cs</LastGenOutput>
+    </None>
+    <None Include="Tickets\DataSetTicketEntrada.xss">
+      <DependentUpon>DataSetTicketEntrada.xsd</DependentUpon>
     </None>
     <None Include="Tickets\DataSetTicketPago.xsc">
       <DependentUpon>DataSetTicketPago.xsd</DependentUpon>
@@ -376,6 +397,9 @@
     <None Include="Web References\ByPServices\ConfirmarCargaResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\ByPServices\ConsultarIdTarjetaPlacaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\ByPServices\ConveniosResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -398,6 +422,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ByPServices\InfoCargaResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ByPServices\InfoEntradaResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ByPServices\InfoFacturaResponse.datasource">
@@ -437,6 +464,12 @@
     <None Include="Web References\ByPServices\RegistrarCargaResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\ByPServices\RegistrarConvenioAplicadoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ByPServices\RegistrarConvenioResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\ByPServices\SaveConveniosResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -444,6 +477,9 @@
       <DependentUpon>Reference.map</DependentUpon>
     </None>
     <None Include="Web References\ByPServices\ServicesByP.wsdl" />
+    <None Include="Web References\ByPServices\ValidarConvenioResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\ByPServices\VehiculosEnValetResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>

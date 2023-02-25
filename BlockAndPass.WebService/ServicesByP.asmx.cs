@@ -642,9 +642,61 @@ namespace BlockAndPass.WebService
         }
 
         [WebMethod]
+        public InfoEntradaResponse ObtenerDatosFacturaEntrada()
+        {
+            List<InfoItemsFacturaEntradaResponse> lstItemsFacturaEntrada = new List<InfoItemsFacturaEntradaResponse>();
+            InfoEntradaResponse oInfoFacturaEntradaResponse = new InfoEntradaResponse();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+
+            query = "SELECT      TOP(1)  dbo.T_Transacciones.IdTransaccion, dbo.T_Transacciones.FechaEntrada, dbo.T_TipoVehiculo.TipoVehiculo, dbo.T_Transacciones.PlacaEntrada "+
+                    "FROM            dbo.T_Transacciones INNER JOIN "+
+                    "dbo.T_TipoVehiculo ON dbo.T_Transacciones.IdTipoVehiculo = dbo.T_TipoVehiculo.IdTipoVehiculo "+
+						 "ORDER BY FechaEntrada DESC ";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+                                InfoItemsFacturaEntradaResponse oInfoItemsFacturaEntradaResponse = new InfoItemsFacturaEntradaResponse();
+                                oInfoItemsFacturaEntradaResponse.IdTransaccion = reader[0].ToString();
+                                oInfoItemsFacturaEntradaResponse.FechaEntrada = reader[1].ToString();
+                                oInfoItemsFacturaEntradaResponse.TipoVehiculo = reader[2].ToString();
+                                oInfoItemsFacturaEntradaResponse.PlacaEntrada = reader[3].ToString();
+
+                                lstItemsFacturaEntrada.Add(oInfoItemsFacturaEntradaResponse);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (lstItemsFacturaEntrada.Count > 0)
+            {
+                oInfoFacturaEntradaResponse.LstItems = lstItemsFacturaEntrada;
+            }
+            else
+            {
+                oInfoFacturaEntradaResponse.Exito = false;
+                oInfoFacturaEntradaResponse.ErrorMessage = "No encuentra información de entrada.";
+            }
+
+            return oInfoFacturaEntradaResponse;
+        }
+        [WebMethod]
         public InfoPagoMensualidadService PagarMensualidad(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string idTarjeta)
         {
-
             ArrayList pagosFinal = new ArrayList();
 
             fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
@@ -975,6 +1027,38 @@ namespace BlockAndPass.WebService
 
 
                 return oAplicarConvenioResponse;
+        }
+
+        [WebMethod]
+        public RegistrarConvenioAplicadoResponse RegistrarConvenioAplicao(string idTransaccion, int idConvenio1)
+        {
+            string response = string.Empty;
+            RegistrarConvenioAplicadoResponse oRegistrarConvenioApliado = new RegistrarConvenioAplicadoResponse();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+
+            query = "INSERT INTO T_ConveniosAplicados(IdTransaccion,IdConvenio,FechaAplicacion)" +
+			" VALUES('"+idTransaccion+"','"+idConvenio1+"',GETDATE())";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    int respuesta = cmd.ExecuteNonQuery();
+
+                    if (respuesta <= 0)
+                    {
+                        oRegistrarConvenioApliado.Exito = false;
+                        oRegistrarConvenioApliado.ErrorMessage = "No fue posible actualizar el registro.";
+                    }
+                }
+            }
+
+
+            return oRegistrarConvenioApliado;
         }
 
         [WebMethod]
@@ -1426,6 +1510,7 @@ namespace BlockAndPass.WebService
 
             return oDescripcionConvenioResponse;
         }
+
         #region ConsultarIdTarjetaPorPlaca
 
         [WebMethod]
@@ -1472,6 +1557,7 @@ namespace BlockAndPass.WebService
 
         }
         #endregion
+
         [WebMethod]
         public RegistrarArqueoResponse RegistrarElArqueo(string idEstacionamiento, string idModulo, string user)
         {
@@ -2789,6 +2875,42 @@ namespace BlockAndPass.WebService
             return oValidarConvenioResponse;
         }
 
+        [WebMethod]
+        public RegistrarConvenioResponse RegistrarConvenioValidado(string consecutivo, string codigoCompleto, string idModulo)
+        {
+            string response = string.Empty;
+            RegistrarConvenioResponse oRegistrarConvenioValidadoResponse = new RegistrarConvenioResponse();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+
+            query = "insert into T_ConveniosValidados with(RowLock) (ConsecutivoConvenio,FechaConvenio,CodigoCompleto,IdModulo)" +
+            " values ('" + consecutivo + "',GETDATE(),'" + codigoCompleto + "','" + idModulo + "')";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+
+                    int result2 = Convert.ToInt32(cmd.ExecuteScalar());
+
+                    if (result2 != 0)
+                    {
+                        oRegistrarConvenioValidadoResponse.Exito = true;
+                        oRegistrarConvenioValidadoResponse.IdConsecutivo = result2;
+                    }
+                    else
+                    {
+                        oRegistrarConvenioValidadoResponse.Exito = false;
+                        oRegistrarConvenioValidadoResponse.ErrorMessage = "No se puede insertar arqueo";
+                    }
+                }
+            }
+
+            return oRegistrarConvenioValidadoResponse;
+        }
+
     }
 
     public class EstacionamientosResponse
@@ -3794,6 +3916,25 @@ namespace BlockAndPass.WebService
         }
     }
 
+    public class RegistrarConvenioAplicadoResponse
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+    }
+
     public class AplicaCascoResponse
     {
         private bool _Exito = true;
@@ -4038,6 +4179,70 @@ namespace BlockAndPass.WebService
             set { _lstLiquidacion = value; }
         }
     }
+
+    public class InfoEntradaResponse
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+        private List<InfoItemsFacturaEntradaResponse> _lstItems = new List<InfoItemsFacturaEntradaResponse>();
+
+        public List<InfoItemsFacturaEntradaResponse> LstItems
+        {
+            get { return _lstItems; }
+            set { _lstItems = value; }
+        }
+
+
+
+    }
+
+    public class InfoItemsFacturaEntradaResponse
+        {
+            private string _IdTransaccion = string.Empty;
+
+            public string IdTransaccion
+            {
+                get { return _IdTransaccion; }
+                set { _IdTransaccion = value; }
+            }
+
+            private string _FechaEntrada = string.Empty;
+
+            public string FechaEntrada
+            {
+                get { return _FechaEntrada; }
+                set { _FechaEntrada = value; }
+            }
+
+            private string _TipoVehiculo = string.Empty;
+
+            public string TipoVehiculo
+            {
+                get { return _TipoVehiculo; }
+                set { _TipoVehiculo = value; }
+            }
+
+            private string _PlacaEntrada = string.Empty;
+
+            public string PlacaEntrada
+            {
+                get { return _PlacaEntrada; }
+                set { _PlacaEntrada = value; }
+            }
+        }
 
     public class InfoItemsFacturaResponse
     {
@@ -4419,6 +4624,33 @@ namespace BlockAndPass.WebService
         {
             get { return _ErrorMessage; }
             set { _ErrorMessage = value; }
+        }
+    }
+
+    public class RegistrarConvenioResponse
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+
+        private int _IdConsecutivo = 0;
+
+        public int IdConsecutivo
+        {
+            get { return _IdConsecutivo; }
+            set { _IdConsecutivo = value; }
         }
     }
 }

@@ -71,6 +71,10 @@ D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\o
 D:\PROYECTOS\PARQUEARSE\Neomundo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
 D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
 D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
-D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
 D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
 D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
