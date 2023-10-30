@@ -12,10 +12,10 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
   </PropertyGroup>
   <ItemGroup>
     <File Include="bin/BlockAndPass.WebService.dll">
-      <publishTime>02/09/2023 08:50:51</publishTime>
+      <publishTime>10/04/2023 16:16:21</publishTime>
     </File>
     <File Include="bin/BlockAndPass.WebService.pdb">
-      <publishTime>02/09/2023 08:50:51</publishTime>
+      <publishTime>10/04/2023 16:16:21</publishTime>
     </File>
     <File Include="Service References/LiquidacionWR/BlockAndPass.WebService.LiquidacionWR.Liquidacion_Response.datasource">
       <publishTime>08/16/2022 21:09:54</publishTime>
@@ -24,7 +24,7 @@ editando este archivo MSBuild. Para conocer más acerca de esto, visite http://g
       <publishTime>08/16/2022 21:09:54</publishTime>
     </File>
     <File Include="Web.config">
-      <publishTime>02/09/2023 09:06:46</publishTime>
+      <publishTime>10/04/2023 16:30:24</publishTime>
     </File>
   </ItemGroup>
 </Project>

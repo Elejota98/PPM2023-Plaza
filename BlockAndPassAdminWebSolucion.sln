@@ -1,6 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-# Visual Studio 2012
+# Visual Studio Version 17
+VisualStudioVersion = 17.7.34202.233
+MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockAndPass.AdminWeb", "BlockAndPassAdminWeb\BlockAndPass.AdminWeb.csproj", "{216D896D-8AB2-4EFF-9E15-558AE937B1BD}"
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BlockAndPass.WebServiceLocalReader", "BlockAndPass.WebServiceLocalReader\BlockAndPass.WebServiceLocalReader.csproj", "{A67B3ECF-83C7-42DD-B9CC-68E0E90448E8}"

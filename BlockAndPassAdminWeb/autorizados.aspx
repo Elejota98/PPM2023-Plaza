@@ -660,19 +660,19 @@
 	        var idEstacio;
 
 	        function reponer(e) {
-	            var index = $(e).closest("tr");
-	            var data = $('#sampleTable').dataTable().fnGetData(index);
-	            var id = data[1];
-	            var name = data[4];
-	            var card = data[5];
-	            idEstacio = data[3];
-	            //alert(data[3]);
-	            idAuto = id;
-	            idTarjeta = card;
-	            //alert(placa);
-	            $('#resModalRepo').html('Esta a punto de reponer la tarjeta para el autorizado Id = ' + id + " (" + name + "), esta seguro que desea continuar? (No olvide colocar una nueva tarjeta en el lector.)");
+	            //var index = $(e).closest("tr");
+	            //var data = $('#sampleTable').dataTable().fnGetData(index);
+	            //var id = data[1];
+	            //var name = data[4];
+	            //var card = data[5];
+	            //idEstacio = data[3];
+	            ////alert(data[3]);
+	            //idAuto = id;
+	            //idTarjeta = card;
+	            ////alert(placa);
+	            //$('#resModalRepo').html('Esta a punto de reponer la tarjeta para el autorizado Id = ' + id + " (" + name + "), esta seguro que desea continuar? (No olvide colocar una nueva tarjeta en el lector.)");
 
-	            $('#myModalRepo').modal('show');
+	            //$('#myModalRepo').modal('show');
 	        }
 	        function btnModalGuardarRepo_click() {
 	            //alert(idAuto + " - " + idTarjeta);

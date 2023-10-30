@@ -82,7 +82,7 @@
 			<header>
                 <div class="logo">
                     <a class="simple-text">
-                        <img src="assets/img/logoparking.jpg" class="img-rounded" width="150" height="60">
+                        <img src="assets/img/logoLogin.jpg" class="img-rounded" width="180" height="60">
                     </a>
                 </div>
             </header>

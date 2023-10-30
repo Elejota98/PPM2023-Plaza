@@ -5024,7 +5024,7 @@ namespace BlockAndPass.AdminWeb
             DataTable dt = new DataTable();
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
          //   string query = "SELECT Documento, IdAutorizacion, e.idEstacionamiento, NombreApellidos, IdTarjeta, NombreEmpresa, Nit, p.Congelar, FechaCreacion, FechaFin, DocumentoUsuarioCreacion, p.Estado, Nombre, p.Telefono, p.Email, p.Placa1, p.Placa2, p.Placa3, p.Placa4, p.Placa5 FROM T_PersonasAutorizadas as p inner join t_estacionamientos as e on p.idestacionamiento=e.idestacionamiento";
-            string query = "SELECT Documento, IdAutorizacion, e.idEstacionamiento, NombreApellidos, IdTarjeta, NombreEmpresa, Nit, FechaCreacion, FechaFin, DocumentoUsuarioCreacion, p.Estado, Nombre, p.Telefono, p.Email, p.Placa1, p.Placa2, p.Placa3, p.Placa4, p.Placa5 FROM T_PersonasAutorizadas as p inner join t_estacionamientos as e on p.idestacionamiento=e.idestacionamiento";
+            string query = "SELECT Documento, IdAutorizacion, e.idEstacionamiento, NombreApellidos, NombreEmpresa, Nit, FechaCreacion, FechaFin, DocumentoUsuarioCreacion, p.Estado, Nombre, p.Telefono, p.Email, p.Placa1, p.Placa2, p.Placa3, p.Placa4, p.Placa5 FROM T_PersonasAutorizadas as p inner join t_estacionamientos as e on p.idestacionamiento=e.idestacionamiento";
 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -5048,7 +5048,7 @@ namespace BlockAndPass.AdminWeb
                         IdAutorizacion = myRow["IdAutorizacion"],
                         idEstacionamiento = myRow["idEstacionamiento"],
                         NombreApellidos = myRow["NombreApellidos"],
-                        IdTarjeta = myRow["IdTarjeta"],
+                        //IdTarjeta = myRow["IdTarjeta"],
                         NombreEmpresa = myRow["NombreEmpresa"],
                         Nit = myRow["Nit"],
                         //Congelar = myRow["Congelar"],
@@ -5315,7 +5315,7 @@ namespace BlockAndPass.AdminWeb
                     {
                         NombreEstacionamiento = myRow["Nombre"],
                         IdEstacionamiento = myRow["IdEstacionamiento"],
-                        IdTarjeta = myRow["IdTarjeta"],
+                        //IdTarjeta = myRow["IdTarjeta"],
                         FechaRegistro = myRow["FechaRegistro"].ToString(),
                         DocumentoUsuarioRegistro = myRow["DocumentoUsuarioRegistro"],
                         Estado = myRow["Estado"],
@@ -5798,7 +5798,7 @@ namespace BlockAndPass.AdminWeb
         public string ActualizarTarjeta()
         {
             string idEstacionamiento = HttpContext.Current.Request.Params["idEstacionamiento"];
-            string idTarjeta = HttpContext.Current.Request.Params["idTarjeta"];
+            //string idTarjeta = HttpContext.Current.Request.Params["idTarjeta"];
             string estado = HttpContext.Current.Request.Params["estado"];
 
             string response = string.Empty;
@@ -5807,9 +5807,7 @@ namespace BlockAndPass.AdminWeb
 
             string query = string.Empty;
 
-            query = "update t_tarjetas set idEstacionamiento='" + idEstacionamiento
-                    + "', estado='" + estado
-                    + "' where idTarjeta='" + idTarjeta + "'";
+            query = "";
 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -7706,7 +7704,7 @@ namespace BlockAndPass.AdminWeb
                 if (modulo != string.Empty)
                 {
 
-                    query = "insert into t_transacciones values ('" + anho + mes + dia + hora + min + seg + modulo + idEstacionamiento + "','" + 99 + "','" + carril + "','" + idEstacionamiento + "','" + idTarjeta + "','" + placa.ToUpper() + "'," + "convert(datetime,'" + fecha + "',103),'1900-01-01 00:00:00.000',NULL,NULL,NULL,'" + tipov + "',NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', 'false', 'false')";
+                    query = "insert into t_transacciones values ('" + anho + mes + dia + hora + min + seg + modulo + idEstacionamiento + "','" + 99 + "','" + carril + "','" + idEstacionamiento + "','" + placa.ToUpper() + "'," + "convert(datetime,'" + fecha + "',103),'1900-01-01 00:00:00.000',NULL,NULL,NULL,'" + tipov + "',NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', 'false', 'false')";
 
 
 
@@ -7969,7 +7967,7 @@ namespace BlockAndPass.AdminWeb
             string estado = HttpContext.Current.Request.Params["estado"];
             string idAutorizacion = HttpContext.Current.Request.Params["idAutorizacion"];
             string idEStacionamiento = HttpContext.Current.Request.Params["idEStacionamiento"];
-            string idTarjeta = HttpContext.Current.Request.Params["idTarjeta"];
+            //string idTarjeta = HttpContext.Current.Request.Params["idTarjeta"];
             string NombreEmpresa = HttpContext.Current.Request.Params["NombreEmpresa"];
             string Nit = HttpContext.Current.Request.Params["Nit"];
             string telefono = HttpContext.Current.Request.Params["telefono"];
@@ -7992,7 +7990,7 @@ namespace BlockAndPass.AdminWeb
             string DocumentoCons = string.Empty;
             string IdTarjetaCons = string.Empty;
 
-            query = "SELECT Documento,IdTarjeta FROM T_PersonasAutorizadas where Documento='" + documento + "' OR IdTarjeta='" + idTarjeta + "'";
+            query = "SELECT Documento FROM T_PersonasAutorizadas where Documento='" + documento + "'";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -8008,17 +8006,17 @@ namespace BlockAndPass.AdminWeb
                             while (reader.Read())
                             {
                                 DocumentoCons = reader["Documento"].ToString();
-                                IdTarjetaCons = reader["IdTarjeta"].ToString();
+                                //IdTarjetaCons = reader["IdTarjeta"].ToString();
                             }
                         }
                     }
                 }
             }
 
-            if (documento == string.Empty || idTarjeta == "null")
+            if (documento == string.Empty)
             {
                 oDataBaseResponse.Exito = false;
-                oDataBaseResponse.ErrorMessage = "No fue posible crear el registro por NO detectar Tarjeta";
+                oDataBaseResponse.ErrorMessage = "No fue posible crear el registro por NO detectar documento";
             }
             else if (DocumentoCons!=string.Empty || IdTarjetaCons!=string.Empty)
             {
@@ -8028,7 +8026,7 @@ namespace BlockAndPass.AdminWeb
             else
             {
             //    query = "insert into T_PersonasAutorizadas values ('" + documento + "','" + idAutorizacion + "','" + idEStacionamiento + "','" + nombre + "','" + idTarjeta + "',GETDATE(),'" + user + "','" + estado + "','False',NULL,NULL, '" + telefono + "', '" + email + "','" + placa1 + "','" + placa2 + "','" + placa3 + "','" + placa4 + "','" + placa5 + "','" + valorBolsa + "')";
-                query = "insert into T_PersonasAutorizadas values ('" + documento + "','" + idAutorizacion + "','" + idEStacionamiento + "','" + nombre + "','" + idTarjeta + "','" + NombreEmpresa + "','" + Nit + "',GETDATE(),'" + user + "','" + estado + "','False',NULL,NULL, '" + telefono + "', '" + email + "','" + placa1 + "','" + placa2 + "','" + placa3 + "','" + placa4 + "','" + placa5 + "','" + valorBolsa + "')";
+                query = "insert into T_PersonasAutorizadas values ('" + documento + "','" + idAutorizacion + "','" + idEStacionamiento + "','" + nombre + "','" + NombreEmpresa + "','" + Nit + "',GETDATE(),'" + user + "','" + estado + "','False',NULL,NULL, '" + telefono + "', '" + email + "','" + placa1 + "','" + placa2 + "','" + placa3 + "','" + placa4 + "','" + placa5 + "','" + valorBolsa + "')";
 
                 using (SqlConnection connection = new SqlConnection(connectionString))
                 {
@@ -8060,68 +8058,69 @@ namespace BlockAndPass.AdminWeb
         [ScriptMethod(UseHttpGet = true)]
         public string ReponerAutorizado()
         {
-            string idTarjetaOld = HttpContext.Current.Request.Params["idTarjetaOld"];
-            string idAuthorizado = HttpContext.Current.Request.Params["idAuthorizado"];
-            string idTarjetaNew = HttpContext.Current.Request.Params["idTarjetaNew"];
-            string idEstacionamiento = HttpContext.Current.Request.Params["idEstacionamiento"];
-
             string response = string.Empty;
-            DataBaseResponse oDataBaseResponse = new DataBaseResponse();
-            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            //string idTarjetaOld = HttpContext.Current.Request.Params["idTarjetaOld"];
+            //string idAuthorizado = HttpContext.Current.Request.Params["idAuthorizado"];
+            //string idTarjetaNew = HttpContext.Current.Request.Params["idTarjetaNew"];
+            //string idEstacionamiento = HttpContext.Current.Request.Params["idEstacionamiento"];
 
-            string user = HttpContext.Current.User.Identity.Name.ToString();
+            //string response = string.Empty;
+            //DataBaseResponse oDataBaseResponse = new DataBaseResponse();
+            //var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
 
-            string query = string.Empty;
+            //string user = HttpContext.Current.User.Identity.Name.ToString();
 
-            query = "update T_PersonasAutorizadas set idtarjeta='"+idTarjetaNew+"' where documento='"+idAuthorizado+"'";
+            //string query = string.Empty;
 
-
-            using (SqlConnection connection = new SqlConnection(connectionString))
-            {
-                using (SqlCommand cmd = new SqlCommand(query, connection))
-                {
-                    connection.Open();
-                    int respuesta = cmd.ExecuteNonQuery();
-
-                    if (respuesta <= 0)
-                    {
-                        oDataBaseResponse.Exito = false;
-                        oDataBaseResponse.ErrorMessage = "No fue posible actualizar el registro.";
-                    }
-                    else
-                    {
-                        RegistrarAuditoria(TipoAccion.update, "t_personasautorizadas", query);
-                    }
-                }
-            }
+            //query = "update T_PersonasAutorizadas set idtarjeta='"+idTarjetaNew+"' where documento='"+idAuthorizado+"'";
 
 
-            if (oDataBaseResponse.Exito)
-            {
-                query = "update T_Tarjetas set estado='false' where idtarjeta='" + idTarjetaOld + "'";
+            //using (SqlConnection connection = new SqlConnection(connectionString))
+            //{
+            //    using (SqlCommand cmd = new SqlCommand(query, connection))
+            //    {
+            //        connection.Open();
+            //        int respuesta = cmd.ExecuteNonQuery();
 
-                using (SqlConnection connection = new SqlConnection(connectionString))
-                {
-                    using (SqlCommand cmd = new SqlCommand(query, connection))
-                    {
-                        connection.Open();
-                        int respuesta = cmd.ExecuteNonQuery();
+            //        if (respuesta <= 0)
+            //        {
+            //            oDataBaseResponse.Exito = false;
+            //            oDataBaseResponse.ErrorMessage = "No fue posible actualizar el registro.";
+            //        }
+            //        else
+            //        {
+            //            RegistrarAuditoria(TipoAccion.update, "t_personasautorizadas", query);
+            //        }
+            //    }
+            //}
 
-                        if (respuesta <= 0)
-                        {
-                            oDataBaseResponse.Exito = false;
-                            oDataBaseResponse.ErrorMessage = "No fue posible actualizar el registro.";
-                        }
-                        else
-                        {
-                            RegistrarAuditoria(TipoAccion.update, "t_tarjetas", query);
-                        }
-                    }
-                }
-            }
 
-            var javaScriptSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
-            response = javaScriptSerializer.Serialize(oDataBaseResponse);
+            //if (oDataBaseResponse.Exito)
+            //{
+            //    query = "update T_Tarjetas set estado='false' where idtarjeta='" + idTarjetaOld + "'";
+
+            //    using (SqlConnection connection = new SqlConnection(connectionString))
+            //    {
+            //        using (SqlCommand cmd = new SqlCommand(query, connection))
+            //        {
+            //            connection.Open();
+            //            int respuesta = cmd.ExecuteNonQuery();
+
+            //            if (respuesta <= 0)
+            //            {
+            //                oDataBaseResponse.Exito = false;
+            //                oDataBaseResponse.ErrorMessage = "No fue posible actualizar el registro.";
+            //            }
+            //            else
+            //            {
+            //                RegistrarAuditoria(TipoAccion.update, "t_tarjetas", query);
+            //            }
+            //        }
+            //    }
+            //}
+
+            //var javaScriptSerializer = new System.Web.Script.Serialization.JavaScriptSerializer();
+            //response = javaScriptSerializer.Serialize(oDataBaseResponse);
 
             return response;
         }

@@ -35,6 +35,10 @@
               <xs:element name="VigenciaFactura" msprop:Generator_ColumnVarNameInTable="columnVigenciaFactura" msprop:Generator_ColumnPropNameInRow="VigenciaFactura" msprop:Generator_ColumnPropNameInTable="VigenciaFacturaColumn" msprop:Generator_UserColumnName="VigenciaFactura" type="xs:string" minOccurs="0" />
               <xs:element name="Nit" msprop:Generator_ColumnVarNameInTable="columnNit" msprop:Generator_ColumnPropNameInRow="Nit" msprop:Generator_ColumnPropNameInTable="NitColumn" msprop:Generator_UserColumnName="Nit" type="xs:string" minOccurs="0" />
               <xs:element name="NombreEmpresa" msprop:Generator_ColumnVarNameInTable="columnNombreEmpresa" msprop:Generator_ColumnPropNameInRow="NombreEmpresa" msprop:Generator_ColumnPropNameInTable="NombreEmpresaColumn" msprop:Generator_UserColumnName="NombreEmpresa" type="xs:string" minOccurs="0" />
+              <xs:element name="DocumentoUsuario" msprop:Generator_ColumnVarNameInTable="columnDocumentoUsuario" msprop:Generator_ColumnPropNameInRow="DocumentoUsuario" msprop:Generator_ColumnPropNameInTable="DocumentoUsuarioColumn" msprop:Generator_UserColumnName="DocumentoUsuario" type="xs:string" minOccurs="0" />
+              <xs:element name="NombreUsuario" msprop:Generator_ColumnVarNameInTable="columnNombreUsuario" msprop:Generator_ColumnPropNameInRow="NombreUsuario" msprop:Generator_ColumnPropNameInTable="NombreUsuarioColumn" msprop:Generator_UserColumnName="NombreUsuario" type="xs:string" minOccurs="0" />
+              <xs:element name="NombreApellidos" msprop:Generator_ColumnVarNameInTable="columnNombreApellidos" msprop:Generator_ColumnPropNameInRow="NombreApellidos" msprop:Generator_ColumnPropNameInTable="NombreApellidosColumn" msprop:Generator_UserColumnName="NombreApellidos" type="xs:string" minOccurs="0" />
+              <xs:element name="Placa1" msprop:Generator_ColumnVarNameInTable="columnPlaca1" msprop:Generator_ColumnPropNameInRow="Placa1" msprop:Generator_ColumnPropNameInTable="Placa1Column" msprop:Generator_UserColumnName="Placa1" type="xs:string" minOccurs="0" />
             </xs:sequence>
           </xs:complexType>
         </xs:element>

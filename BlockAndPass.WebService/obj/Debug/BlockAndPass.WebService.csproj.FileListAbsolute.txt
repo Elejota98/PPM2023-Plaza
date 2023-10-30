@@ -77,4 +77,28 @@ D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csprojResolveAssemblyReference.cache
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csproj.AssemblyReference.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll.config
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb

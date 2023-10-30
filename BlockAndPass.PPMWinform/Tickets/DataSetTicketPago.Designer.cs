@@ -321,6 +321,10 @@ namespace BlockAndPass.PPMWinform.Tickets {
             
             private global::System.Data.DataColumn columnVigenciaFactura;
             
+            private global::System.Data.DataColumn columnDocumentoUsuario;
+            
+            private global::System.Data.DataColumn columnNombreUsuario;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public TablaTicketPagoDataTable() {
@@ -524,6 +528,22 @@ namespace BlockAndPass.PPMWinform.Tickets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn DocumentoUsuarioColumn {
+                get {
+                    return this.columnDocumentoUsuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreUsuarioColumn {
+                get {
+                    return this.columnNombreUsuario;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -580,7 +600,9 @@ namespace BlockAndPass.PPMWinform.Tickets {
                         double TotalFinal, 
                         string Fecha2, 
                         string Vehiculo, 
-                        string VigenciaFactura) {
+                        string VigenciaFactura, 
+                        string DocumentoUsuario, 
+                        string NombreUsuario) {
                 TablaTicketPagoRow rowTablaTicketPagoRow = ((TablaTicketPagoRow)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Telefono,
@@ -603,7 +625,9 @@ namespace BlockAndPass.PPMWinform.Tickets {
                         TotalFinal,
                         Fecha2,
                         Vehiculo,
-                        VigenciaFactura};
+                        VigenciaFactura,
+                        DocumentoUsuario,
+                        NombreUsuario};
                 rowTablaTicketPagoRow.ItemArray = columnValuesArray;
                 this.Rows.Add(rowTablaTicketPagoRow);
                 return rowTablaTicketPagoRow;
@@ -647,6 +671,8 @@ namespace BlockAndPass.PPMWinform.Tickets {
                 this.columnFecha2 = base.Columns["Fecha2"];
                 this.columnVehiculo = base.Columns["Vehiculo"];
                 this.columnVigenciaFactura = base.Columns["VigenciaFactura"];
+                this.columnDocumentoUsuario = base.Columns["DocumentoUsuario"];
+                this.columnNombreUsuario = base.Columns["NombreUsuario"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -694,6 +720,10 @@ namespace BlockAndPass.PPMWinform.Tickets {
                 base.Columns.Add(this.columnVehiculo);
                 this.columnVigenciaFactura = new global::System.Data.DataColumn("VigenciaFactura", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnVigenciaFactura);
+                this.columnDocumentoUsuario = new global::System.Data.DataColumn("DocumentoUsuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnDocumentoUsuario);
+                this.columnNombreUsuario = new global::System.Data.DataColumn("NombreUsuario", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreUsuario);
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1173,6 +1203,39 @@ namespace BlockAndPass.PPMWinform.Tickets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string DocumentoUsuario {
+                get {
+                    try {
+                        return ((string)(this[this.tableTablaTicketPago.DocumentoUsuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'DocumentoUsuario\' de la tabla \'TablaTicketPago\' es DBNull" +
+                                ".", e);
+                    }
+                }
+                set {
+                    this[this.tableTablaTicketPago.DocumentoUsuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreUsuario {
+                get {
+                    try {
+                        return ((string)(this[this.tableTablaTicketPago.NombreUsuarioColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreUsuario\' de la tabla \'TablaTicketPago\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableTablaTicketPago.NombreUsuarioColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTelefonoNull() {
                 return this.IsNull(this.tableTablaTicketPago.TelefonoColumn);
             }
@@ -1421,6 +1484,30 @@ namespace BlockAndPass.PPMWinform.Tickets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetVigenciaFacturaNull() {
                 this[this.tableTablaTicketPago.VigenciaFacturaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsDocumentoUsuarioNull() {
+                return this.IsNull(this.tableTablaTicketPago.DocumentoUsuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetDocumentoUsuarioNull() {
+                this[this.tableTablaTicketPago.DocumentoUsuarioColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreUsuarioNull() {
+                return this.IsNull(this.tableTablaTicketPago.NombreUsuarioColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreUsuarioNull() {
+                this[this.tableTablaTicketPago.NombreUsuarioColumn] = global::System.Convert.DBNull;
             }
         }
         

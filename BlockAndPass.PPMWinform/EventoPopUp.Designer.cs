@@ -29,38 +29,12 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(EventoPopUp));
-            this.btn_Ok = new System.Windows.Forms.Button();
-            this.btn_Cancel = new System.Windows.Forms.Button();
             this.cbEvento = new System.Windows.Forms.ComboBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
+            this.btn_Cancel = new FontAwesome.Sharp.IconButton();
+            this.btn_Ok = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
-            // 
-            // btn_Ok
-            // 
-            this.btn_Ok.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Ok.BackgroundImage")));
-            this.btn_Ok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_Ok.FlatAppearance.BorderSize = 0;
-            this.btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Ok.Location = new System.Drawing.Point(414, 136);
-            this.btn_Ok.Name = "btn_Ok";
-            this.btn_Ok.Size = new System.Drawing.Size(76, 61);
-            this.btn_Ok.TabIndex = 1;
-            this.btn_Ok.UseVisualStyleBackColor = true;
-            this.btn_Ok.Click += new System.EventHandler(this.btn_Ok_Click);
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.BackgroundImage = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.BackgroundImage")));
-            this.btn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Zoom;
-            this.btn_Cancel.FlatAppearance.BorderSize = 0;
-            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cancel.Location = new System.Drawing.Point(311, 136);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(76, 61);
-            this.btn_Cancel.TabIndex = 2;
-            this.btn_Cancel.UseVisualStyleBackColor = true;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
             // cbEvento
             // 
@@ -92,18 +66,60 @@
             this.label2.TabIndex = 6;
             this.label2.Text = "Nombre";
             // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(64)))), ((int)(((byte)(97)))));
+            this.btn_Cancel.FlatAppearance.BorderSize = 0;
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.ForeColor = System.Drawing.Color.White;
+            this.btn_Cancel.Icon = FontAwesome.Sharp.IconChar.Times;
+            this.btn_Cancel.IconColor = System.Drawing.Color.White;
+            this.btn_Cancel.IconSize = 20;
+            this.btn_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.Image")));
+            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Cancel.Location = new System.Drawing.Point(266, 162);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(90, 35);
+            this.btn_Cancel.TabIndex = 49;
+            this.btn_Cancel.Text = "Cerrar";
+            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Cancel.UseVisualStyleBackColor = false;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click_1);
+            // 
+            // btn_Ok
+            // 
+            this.btn_Ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(165)))), ((int)(((byte)(64)))));
+            this.btn_Ok.FlatAppearance.BorderSize = 0;
+            this.btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Ok.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Ok.ForeColor = System.Drawing.Color.White;
+            this.btn_Ok.Icon = FontAwesome.Sharp.IconChar.Check;
+            this.btn_Ok.IconColor = System.Drawing.Color.White;
+            this.btn_Ok.IconSize = 20;
+            this.btn_Ok.Image = ((System.Drawing.Image)(resources.GetObject("btn_Ok.Image")));
+            this.btn_Ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Ok.Location = new System.Drawing.Point(393, 162);
+            this.btn_Ok.Name = "btn_Ok";
+            this.btn_Ok.Size = new System.Drawing.Size(102, 35);
+            this.btn_Ok.TabIndex = 48;
+            this.btn_Ok.Text = "Confirmar";
+            this.btn_Ok.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Ok.UseVisualStyleBackColor = false;
+            this.btn_Ok.Click += new System.EventHandler(this.btn_Ok_Click_1);
+            // 
             // EventoPopUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.SystemColors.ActiveCaption;
+            this.BackColor = System.Drawing.Color.LightGray;
             this.ClientSize = new System.Drawing.Size(515, 218);
             this.ControlBox = false;
+            this.Controls.Add(this.btn_Cancel);
+            this.Controls.Add(this.btn_Ok);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.cbEvento);
-            this.Controls.Add(this.btn_Cancel);
-            this.Controls.Add(this.btn_Ok);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedToolWindow;
             this.Name = "EventoPopUp";
             this.ResumeLayout(false);
@@ -113,10 +129,10 @@
 
         #endregion
 
-        private System.Windows.Forms.Button btn_Ok;
-        private System.Windows.Forms.Button btn_Cancel;
         private System.Windows.Forms.ComboBox cbEvento;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
+        private FontAwesome.Sharp.IconButton btn_Cancel;
+        private FontAwesome.Sharp.IconButton btn_Ok;
     }
 }

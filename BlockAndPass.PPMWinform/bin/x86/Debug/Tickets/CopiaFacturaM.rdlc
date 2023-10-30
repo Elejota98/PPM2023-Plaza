@@ -3,8 +3,8 @@
   <Body>
     <ReportItems>
       <Line Name="Line2">
-        <Top>8.95441cm</Top>
-        <Left>0.05078cm</Left>
+        <Top>10.49071cm</Top>
+        <Left>0.08136cm</Left>
         <Height>0cm</Height>
         <Width>6.40292cm</Width>
         <Style>
@@ -30,8 +30,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>8.29267cm</Top>
-        <Left>0.3069cm</Left>
+        <Top>9.82897cm</Top>
+        <Left>0.33748cm</Left>
         <Height>0.52063cm</Height>
         <Width>2.89688cm</Width>
         <ZIndex>1</ZIndex>
@@ -66,8 +66,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>8.27655cm</Top>
-        <Left>3.25461cm</Left>
+        <Top>9.81285cm</Top>
+        <Left>3.28519cm</Left>
         <Height>0.53675cm</Height>
         <Width>2.83104cm</Width>
         <ZIndex>2</ZIndex>
@@ -83,8 +83,8 @@
         </Style>
       </Textbox>
       <Line Name="Line3">
-        <Top>8.10016cm</Top>
-        <Left>0.05078cm</Left>
+        <Top>9.63646cm</Top>
+        <Left>0.08136cm</Left>
         <Height>0cm</Height>
         <Width>6.40292cm</Width>
         <ZIndex>3</ZIndex>
@@ -157,8 +157,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Resolucion</rd:DefaultName>
-        <Top>9.07904cm</Top>
-        <Left>0.3069cm</Left>
+        <Top>10.61534cm</Top>
+        <Left>0.33748cm</Left>
         <Height>0.6cm</Height>
         <Width>5.72792cm</Width>
         <ZIndex>5</ZIndex>
@@ -233,8 +233,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>5.89799cm</Top>
-        <Left>0.35771cm</Left>
+        <Top>7.43429cm</Top>
+        <Left>0.38829cm</Left>
         <Height>0.6cm</Height>
         <Width>5.7279cm</Width>
         <ZIndex>7</ZIndex>
@@ -307,8 +307,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>9.85543cm</Top>
-        <Left>0.3577cm</Left>
+        <Top>11.39173cm</Top>
+        <Left>0.38828cm</Left>
         <Height>0.6cm</Height>
         <Width>5.67712cm</Width>
         <ZIndex>9</ZIndex>
@@ -353,7 +353,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>NIT 900554696-8</Value>
+                <Value>NIT 800064936 - 5</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -439,8 +439,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>6.67438cm</Top>
-        <Left>0.3577cm</Left>
+        <Top>8.21068cm</Top>
+        <Left>0.38828cm</Left>
         <Height>0.6247cm</Height>
         <Width>1.86498cm</Width>
         <ZIndex>11</ZIndex>
@@ -473,8 +473,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>6.67438cm</Top>
-        <Left>2.24983cm</Left>
+        <Top>8.21068cm</Top>
+        <Left>2.28041cm</Left>
         <Height>0.6247cm</Height>
         <Width>1.5957cm</Width>
         <ZIndex>12</ZIndex>
@@ -507,8 +507,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>6.67438cm</Top>
-        <Left>3.83001cm</Left>
+        <Top>8.21068cm</Top>
+        <Left>3.86059cm</Left>
         <Height>0.6247cm</Height>
         <Width>2.25564cm</Width>
         <ZIndex>13</ZIndex>
@@ -542,8 +542,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>7.30966cm</Top>
-        <Left>0.3577cm</Left>
+        <Top>8.84596cm</Top>
+        <Left>0.38828cm</Left>
         <Height>0.6247cm</Height>
         <Width>1.86498cm</Width>
         <ZIndex>14</ZIndex>
@@ -578,8 +578,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>7.33435cm</Top>
-        <Left>2.28041cm</Left>
+        <Top>8.87065cm</Top>
+        <Left>2.31099cm</Left>
         <Height>0.60001cm</Height>
         <Width>1.56512cm</Width>
         <ZIndex>15</ZIndex>
@@ -614,8 +614,8 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>7.33435cm</Top>
-        <Left>3.85051cm</Left>
+        <Top>8.87065cm</Top>
+        <Left>3.88109cm</Left>
         <Height>0.60001cm</Height>
         <Width>2.2351cm</Width>
         <ZIndex>16</ZIndex>
@@ -706,8 +706,84 @@
           <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
+      <Textbox Name="Textbox17">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Nombres : </Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!NombreApellidos.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>5.88151cm</Top>
+        <Left>0.33748cm</Left>
+        <Height>0.6cm</Height>
+        <Width>5.7279cm</Width>
+        <ZIndex>19</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
+      <Textbox Name="Textbox18">
+        <CanGrow>true</CanGrow>
+        <KeepTogether>true</KeepTogether>
+        <Paragraphs>
+          <Paragraph>
+            <TextRuns>
+              <TextRun>
+                <Value>Placa : </Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+              <TextRun>
+                <Value>=First(Fields!Placa1.Value, "DataSet1")</Value>
+                <Style>
+                  <FontSize>9pt</FontSize>
+                </Style>
+              </TextRun>
+            </TextRuns>
+            <Style />
+          </Paragraph>
+        </Paragraphs>
+        <rd:DefaultName>Textbox2</rd:DefaultName>
+        <Top>6.6579cm</Top>
+        <Left>0.33748cm</Left>
+        <Height>0.6cm</Height>
+        <Width>5.7279cm</Width>
+        <ZIndex>20</ZIndex>
+        <Style>
+          <Border>
+            <Style>None</Style>
+          </Border>
+          <PaddingLeft>2pt</PaddingLeft>
+          <PaddingRight>2pt</PaddingRight>
+          <PaddingTop>2pt</PaddingTop>
+          <PaddingBottom>2pt</PaddingBottom>
+        </Style>
+      </Textbox>
     </ReportItems>
-    <Height>4.26401in</Height>
+    <Height>4.85776in</Height>
     <Style />
   </Body>
   <Width>2.57932in</Width>
@@ -802,10 +878,22 @@
           <DataField>NombreEmpresa</DataField>
           <rd:TypeName>System.String</rd:TypeName>
         </Field>
+        <Field Name="Nombres">
+          <DataField>Nombres</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="Placa1">
+          <DataField>Placa1</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
+        <Field Name="NombreApellidos">
+          <DataField>NombreApellidos</DataField>
+          <rd:TypeName>System.String</rd:TypeName>
+        </Field>
       </Fields>
       <rd:DataSetInfo>
         <rd:DataSetName>DataSetCopia</rd:DataSetName>
-        <rd:SchemaPath>C:\Users\Administrador\Documents\MejorasSoftParking\VERSIONESTANDARAdminParquearse\BlockAndPass.PPMWinform\Tickets\DataSetCopia.xsd</rd:SchemaPath>
+        <rd:SchemaPath>C:\Users\Administrador\Documents\Parquearse Install\ADMIN&amp;PPM VSinTarjeta\BlockAndPass.PPMWinform\Tickets\DataSetCopia.xsd</rd:SchemaPath>
         <rd:TableName>DataTable2</rd:TableName>
         <rd:TableAdapterFillMethod>Fill</rd:TableAdapterFillMethod>
         <rd:TableAdapterGetDataMethod>GetData</rd:TableAdapterGetDataMethod>

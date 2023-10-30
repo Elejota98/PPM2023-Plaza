@@ -280,8 +280,92 @@ D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLoca
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.dll
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.xml
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.Helpers.resources.dll
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.dll
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.pdb
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.cache
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.compiled
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.pdb
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketPagoM.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketCarga.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketArqueo.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketPago.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.pdb
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCard.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCardFeeders.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCardReaders.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.Tools.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.xml
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.Helpers.resources.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.cache
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.compiled
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.cache
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.compiled
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketPagoM.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketCarga.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketArqueo.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketPago.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCard.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCardFeeders.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCardReaders.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.Tools.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.xml
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.Helpers.resources.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.cache
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.compiled
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketPagoM.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketCarga.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketArqueo.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketPago.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCard.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCardFeeders.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCardReaders.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.Tools.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.Helpers.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.compiled
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csprojResolveAssemblyReference.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketPagoM.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketCarga.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketArqueo.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\Tickets\ticketPago.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCard.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCardFeeders.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.SmartCardReaders.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\EGlobalT.Device.Tools.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.Helpers.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.Helpers.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.dll.config
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.WebPages.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\Microsoft.Web.Infrastructure.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.Razor.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.WebPages.Deployment.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.WebPages.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\Microsoft.Web.Infrastructure.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.Razor.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.WebPages.Deployment.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.WebPages.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.Razor.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csproj.AssemblyReference.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csproj.CopyComplete

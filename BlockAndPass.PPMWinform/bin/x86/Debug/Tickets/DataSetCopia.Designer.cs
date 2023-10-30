@@ -800,6 +800,12 @@ namespace BlockAndPass.PPMWinform.Tickets {
             
             private global::System.Data.DataColumn columnNombreEmpresa;
             
+            private global::System.Data.DataColumn columnNombres;
+            
+            private global::System.Data.DataColumn columnPlaca1;
+            
+            private global::System.Data.DataColumn columnNombreApellidos;
+            
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public DataTable2DataTable() {
@@ -963,6 +969,30 @@ namespace BlockAndPass.PPMWinform.Tickets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombresColumn {
+                get {
+                    return this.columnNombres;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn Placa1Column {
+                get {
+                    return this.columnPlaca1;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public global::System.Data.DataColumn NombreApellidosColumn {
+                get {
+                    return this.columnNombreApellidos;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             [global::System.ComponentModel.Browsable(false)]
             public int Count {
                 get {
@@ -1014,7 +1044,10 @@ namespace BlockAndPass.PPMWinform.Tickets {
                         string FechaFinResolucion, 
                         string NombreAutorizacion, 
                         string Nit1, 
-                        string NombreEmpresa) {
+                        string NombreEmpresa, 
+                        string Nombres, 
+                        string Placa1, 
+                        string NombreApellidos) {
                 DataTable2Row rowDataTable2Row = ((DataTable2Row)(this.NewRow()));
                 object[] columnValuesArray = new object[] {
                         Nombre,
@@ -1032,7 +1065,10 @@ namespace BlockAndPass.PPMWinform.Tickets {
                         FechaFinResolucion,
                         NombreAutorizacion,
                         Nit1,
-                        NombreEmpresa};
+                        NombreEmpresa,
+                        Nombres,
+                        Placa1,
+                        NombreApellidos};
                 rowDataTable2Row.ItemArray = columnValuesArray;
                 this.Rows.Add(rowDataTable2Row);
                 return rowDataTable2Row;
@@ -1071,6 +1107,9 @@ namespace BlockAndPass.PPMWinform.Tickets {
                 this.columnNombreAutorizacion = base.Columns["NombreAutorizacion"];
                 this.columnNit1 = base.Columns["Nit1"];
                 this.columnNombreEmpresa = base.Columns["NombreEmpresa"];
+                this.columnNombres = base.Columns["Nombres"];
+                this.columnPlaca1 = base.Columns["Placa1"];
+                this.columnNombreApellidos = base.Columns["NombreApellidos"];
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1108,6 +1147,12 @@ namespace BlockAndPass.PPMWinform.Tickets {
                 base.Columns.Add(this.columnNit1);
                 this.columnNombreEmpresa = new global::System.Data.DataColumn("NombreEmpresa", typeof(string), null, global::System.Data.MappingType.Element);
                 base.Columns.Add(this.columnNombreEmpresa);
+                this.columnNombres = new global::System.Data.DataColumn("Nombres", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombres);
+                this.columnPlaca1 = new global::System.Data.DataColumn("Placa1", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnPlaca1);
+                this.columnNombreApellidos = new global::System.Data.DataColumn("NombreApellidos", typeof(string), null, global::System.Data.MappingType.Element);
+                base.Columns.Add(this.columnNombreApellidos);
                 this.columnNombre.AllowDBNull = false;
                 this.columnNombre.MaxLength = 100;
                 this.columnDireccion.AllowDBNull = false;
@@ -1121,6 +1166,7 @@ namespace BlockAndPass.PPMWinform.Tickets {
                 this.columnNombreAutorizacion.MaxLength = 50;
                 this.columnNit1.MaxLength = 50;
                 this.columnNombreEmpresa.MaxLength = 100;
+                this.columnNombreApellidos.MaxLength = 100;
             }
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
@@ -1910,6 +1956,54 @@ namespace BlockAndPass.PPMWinform.Tickets {
             
             [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Nombres {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable2.NombresColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Nombres\' de la tabla \'DataTable2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable2.NombresColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string Placa1 {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable2.Placa1Column]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'Placa1\' de la tabla \'DataTable2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable2.Placa1Column] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public string NombreApellidos {
+                get {
+                    try {
+                        return ((string)(this[this.tableDataTable2.NombreApellidosColumn]));
+                    }
+                    catch (global::System.InvalidCastException e) {
+                        throw new global::System.Data.StrongTypingException("El valor de la columna \'NombreApellidos\' de la tabla \'DataTable2\' es DBNull.", e);
+                    }
+                }
+                set {
+                    this[this.tableDataTable2.NombreApellidosColumn] = value;
+                }
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public bool IsTelefonoContactoNull() {
                 return this.IsNull(this.tableDataTable2.TelefonoContactoColumn);
             }
@@ -2074,6 +2168,42 @@ namespace BlockAndPass.PPMWinform.Tickets {
             [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
             public void SetNombreEmpresaNull() {
                 this[this.tableDataTable2.NombreEmpresaColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombresNull() {
+                return this.IsNull(this.tableDataTable2.NombresColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombresNull() {
+                this[this.tableDataTable2.NombresColumn] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsPlaca1Null() {
+                return this.IsNull(this.tableDataTable2.Placa1Column);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetPlaca1Null() {
+                this[this.tableDataTable2.Placa1Column] = global::System.Convert.DBNull;
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public bool IsNombreApellidosNull() {
+                return this.IsNull(this.tableDataTable2.NombreApellidosColumn);
+            }
+            
+            [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
+            [global::System.CodeDom.Compiler.GeneratedCodeAttribute("System.Data.Design.TypedDataSetGenerator", "4.0.0.0")]
+            public void SetNombreApellidosNull() {
+                this[this.tableDataTable2.NombreApellidosColumn] = global::System.Convert.DBNull;
             }
         }
         
@@ -2500,6 +2630,8 @@ WHERE  dbo.T_Pagos.NUMEROFACTURA = @NUMEROFACTURA AND dbo.T_Pagos.IdModulo=@IdMo
             tableMapping.ColumnMappings.Add("NombreAutorizacion", "NombreAutorizacion");
             tableMapping.ColumnMappings.Add("Nit1", "Nit1");
             tableMapping.ColumnMappings.Add("NombreEmpresa", "NombreEmpresa");
+            tableMapping.ColumnMappings.Add("NombreApellidos", "NombreApellidos");
+            tableMapping.ColumnMappings.Add("Placa1", "Placa1");
             this._adapter.TableMappings.Add(tableMapping);
         }
         
@@ -2519,7 +2651,7 @@ WHERE  dbo.T_Pagos.NUMEROFACTURA = @NUMEROFACTURA AND dbo.T_Pagos.IdModulo=@IdMo
             this._commandCollection[0].CommandText = @"SELECT        dbo.T_Estacionamientos.Nombre, dbo.T_Estacionamientos.Direccion, dbo.T_Estacionamientos.TelefonoContacto, dbo.T_Estacionamientos.Email AS NIT, dbo.T_Pagos.NumeroFactura, 
                          dbo.T_Pagos.IdTransaccion, dbo.T_Pagos.FechaPago, dbo.T_Pagos.IdTipoPago, dbo.T_Pagos.Subtotal, dbo.T_Pagos.Iva, dbo.T_Pagos.Total, dbo.T_Facturacion.NumeroResolucion, 
                          dbo.T_Facturacion.FechaFinResolucion, dbo.T_Autorizaciones.NombreAutorizacion,
-dbo.T_PersonasAutorizadas.Nit, dbo.T_PersonasAutorizadas.NombreEmpresa
+dbo.T_PersonasAutorizadas.Nit, dbo.T_PersonasAutorizadas.NombreEmpresa, dbo.T_PersonasAutorizadas.NombreApellidos, dbo.T_PersonasAutorizadas.Placa1
 FROM            dbo.T_Autorizaciones INNER JOIN
                          dbo.T_PersonasAutorizadas ON dbo.T_Autorizaciones.IdAutorizacion = dbo.T_PersonasAutorizadas.IdAutorizacion RIGHT OUTER JOIN
                          dbo.T_Pagos INNER JOIN

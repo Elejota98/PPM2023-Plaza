@@ -1,0 +1,5 @@
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.IView\bin\Debug\BlockAndPass.IView.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.IView\bin\Debug\BlockAndPass.IView.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.IView\obj\Debug\BlockAndPass.IView.csprojResolveAssemblyReference.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.IView\obj\Debug\BlockAndPass.IView.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.IView\obj\Debug\BlockAndPass.IView.pdb

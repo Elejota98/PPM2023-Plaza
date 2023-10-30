@@ -56,8 +56,7 @@ namespace BlockAndPass.PPMWinform
                 this.cbMotivo.ValueMember = "Value";
             }
         }
-
-        private void btn_Ok_Click(object sender, EventArgs e)
+        private void btn_Ok_Click_1(object sender, EventArgs e)
         {
             this.Motivo = Convert.ToInt32(cbMotivo.SelectedValue);
             this.Observacion = tbObservacion.Text;
@@ -65,7 +64,7 @@ namespace BlockAndPass.PPMWinform
             this.Close();
         }
 
-        private void btn_Cancel_Click(object sender, EventArgs e)
+        private void btn_Cancel_Click_1(object sender, EventArgs e)
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();

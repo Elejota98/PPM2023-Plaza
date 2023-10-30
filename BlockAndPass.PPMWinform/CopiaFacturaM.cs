@@ -43,5 +43,21 @@ namespace BlockAndPass.PPMWinform
         {
             tbnumerofactura.Text = _NumFact;
         }
+
+        private void btn_Ok_Click_1(object sender, EventArgs e)
+        {
+            string NUMFACT = tbnumerofactura.Text;
+            string IDMODULO = cboIdModulo.SelectedItem.ToString();
+            this.dataTable2TableAdapter1.Fill(this.dataSetCopia.DataTable2, NUMFACT, IDMODULO);
+            //this.DATA
+
+            this.reportViewer1.RefreshReport();
+        }
+
+        private void btn_Cancel_Click_1(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

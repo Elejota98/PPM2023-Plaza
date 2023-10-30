@@ -14,16 +14,16 @@
 #pragma warning disable 1591
 
 namespace BlockAndPass.PPMWinform.ByPServices {
-    using System;
-    using System.Web.Services;
     using System.Diagnostics;
-    using System.Web.Services.Protocols;
+    using System;
     using System.Xml.Serialization;
     using System.ComponentModel;
+    using System.Web.Services.Protocols;
+    using System.Web.Services;
     
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Web.Services.WebServiceBindingAttribute(Name="ServicesByPSoap", Namespace="http://tempuri.org/")]
@@ -38,6 +38,10 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         private System.Threading.SendOrPostCallback ObtenerValorParametroxNombreOperationCompleted;
         
         private System.Threading.SendOrPostCallback ConsultarInfoTransaccionOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ConsultarInfoTransaccionPorPlacaOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ConsultarInfoTransaccionPorIdTransaccionOperationCompleted;
         
         private System.Threading.SendOrPostCallback ConsultarCascosxIdOperationCompleted;
         
@@ -58,6 +62,8 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         private System.Threading.SendOrPostCallback AplicarEtiquetaMotoOperationCompleted;
         
         private System.Threading.SendOrPostCallback AplicarConveniosOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback AplicarCotesiaTransaccionOperationCompleted;
         
         private System.Threading.SendOrPostCallback RegistrarConvenioAplicaoOperationCompleted;
         
@@ -183,6 +189,12 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         public event ConsultarInfoTransaccionCompletedEventHandler ConsultarInfoTransaccionCompleted;
         
         /// <remarks/>
+        public event ConsultarInfoTransaccionPorPlacaCompletedEventHandler ConsultarInfoTransaccionPorPlacaCompleted;
+        
+        /// <remarks/>
+        public event ConsultarInfoTransaccionPorIdTransaccionCompletedEventHandler ConsultarInfoTransaccionPorIdTransaccionCompleted;
+        
+        /// <remarks/>
         public event ConsultarCascosxIdCompletedEventHandler ConsultarCascosxIdCompleted;
         
         /// <remarks/>
@@ -211,6 +223,9 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         public event AplicarConveniosCompletedEventHandler AplicarConveniosCompleted;
+        
+        /// <remarks/>
+        public event AplicarCotesiaTransaccionCompletedEventHandler AplicarCotesiaTransaccionCompleted;
         
         /// <remarks/>
         public event RegistrarConvenioAplicaoCompletedEventHandler RegistrarConvenioAplicaoCompleted;
@@ -469,6 +484,68 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ConsultarInfoTransaccionPorPlaca", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoTransaccionResponse ConsultarInfoTransaccionPorPlaca(string placaEntrada, string idEstacionamiento) {
+            object[] results = this.Invoke("ConsultarInfoTransaccionPorPlaca", new object[] {
+                        placaEntrada,
+                        idEstacionamiento});
+            return ((InfoTransaccionResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ConsultarInfoTransaccionPorPlacaAsync(string placaEntrada, string idEstacionamiento) {
+            this.ConsultarInfoTransaccionPorPlacaAsync(placaEntrada, idEstacionamiento, null);
+        }
+        
+        /// <remarks/>
+        public void ConsultarInfoTransaccionPorPlacaAsync(string placaEntrada, string idEstacionamiento, object userState) {
+            if ((this.ConsultarInfoTransaccionPorPlacaOperationCompleted == null)) {
+                this.ConsultarInfoTransaccionPorPlacaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultarInfoTransaccionPorPlacaOperationCompleted);
+            }
+            this.InvokeAsync("ConsultarInfoTransaccionPorPlaca", new object[] {
+                        placaEntrada,
+                        idEstacionamiento}, this.ConsultarInfoTransaccionPorPlacaOperationCompleted, userState);
+        }
+        
+        private void OnConsultarInfoTransaccionPorPlacaOperationCompleted(object arg) {
+            if ((this.ConsultarInfoTransaccionPorPlacaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ConsultarInfoTransaccionPorPlacaCompleted(this, new ConsultarInfoTransaccionPorPlacaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ConsultarInfoTransaccionPorIdTransaccion", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoTransaccionResponse ConsultarInfoTransaccionPorIdTransaccion(string idTransaccion, string idEstacionamiento) {
+            object[] results = this.Invoke("ConsultarInfoTransaccionPorIdTransaccion", new object[] {
+                        idTransaccion,
+                        idEstacionamiento});
+            return ((InfoTransaccionResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ConsultarInfoTransaccionPorIdTransaccionAsync(string idTransaccion, string idEstacionamiento) {
+            this.ConsultarInfoTransaccionPorIdTransaccionAsync(idTransaccion, idEstacionamiento, null);
+        }
+        
+        /// <remarks/>
+        public void ConsultarInfoTransaccionPorIdTransaccionAsync(string idTransaccion, string idEstacionamiento, object userState) {
+            if ((this.ConsultarInfoTransaccionPorIdTransaccionOperationCompleted == null)) {
+                this.ConsultarInfoTransaccionPorIdTransaccionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultarInfoTransaccionPorIdTransaccionOperationCompleted);
+            }
+            this.InvokeAsync("ConsultarInfoTransaccionPorIdTransaccion", new object[] {
+                        idTransaccion,
+                        idEstacionamiento}, this.ConsultarInfoTransaccionPorIdTransaccionOperationCompleted, userState);
+        }
+        
+        private void OnConsultarInfoTransaccionPorIdTransaccionOperationCompleted(object arg) {
+            if ((this.ConsultarInfoTransaccionPorIdTransaccionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ConsultarInfoTransaccionPorIdTransaccionCompleted(this, new ConsultarInfoTransaccionPorIdTransaccionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ConsultarCascosxId", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public InfoTransaccionService ConsultarCascosxId(string idTransaccion) {
             object[] results = this.Invoke("ConsultarCascosxId", new object[] {
@@ -528,23 +605,23 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ConsultarValorPagar", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public LiquidacionService ConsultarValorPagar(bool mensualidad, bool repo, int tipoVehiculo, string idTransaccion, string idTarjeta) {
+        public LiquidacionService ConsultarValorPagar(bool mensualidad, bool repo, int tipoVehiculo, string idTransaccion, string placa) {
             object[] results = this.Invoke("ConsultarValorPagar", new object[] {
                         mensualidad,
                         repo,
                         tipoVehiculo,
                         idTransaccion,
-                        idTarjeta});
+                        placa});
             return ((LiquidacionService)(results[0]));
         }
         
         /// <remarks/>
-        public void ConsultarValorPagarAsync(bool mensualidad, bool repo, int tipoVehiculo, string idTransaccion, string idTarjeta) {
-            this.ConsultarValorPagarAsync(mensualidad, repo, tipoVehiculo, idTransaccion, idTarjeta, null);
+        public void ConsultarValorPagarAsync(bool mensualidad, bool repo, int tipoVehiculo, string idTransaccion, string placa) {
+            this.ConsultarValorPagarAsync(mensualidad, repo, tipoVehiculo, idTransaccion, placa, null);
         }
         
         /// <remarks/>
-        public void ConsultarValorPagarAsync(bool mensualidad, bool repo, int tipoVehiculo, string idTransaccion, string idTarjeta, object userState) {
+        public void ConsultarValorPagarAsync(bool mensualidad, bool repo, int tipoVehiculo, string idTransaccion, string placa, object userState) {
             if ((this.ConsultarValorPagarOperationCompleted == null)) {
                 this.ConsultarValorPagarOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConsultarValorPagarOperationCompleted);
             }
@@ -553,7 +630,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
                         repo,
                         tipoVehiculo,
                         idTransaccion,
-                        idTarjeta}, this.ConsultarValorPagarOperationCompleted, userState);
+                        placa}, this.ConsultarValorPagarOperationCompleted, userState);
         }
         
         private void OnConsultarValorPagarOperationCompleted(object arg) {
@@ -565,24 +642,25 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PagarClienteParticular", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public InfoPagoNormalService PagarClienteParticular(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total) {
+        public InfoPagoNormalService PagarClienteParticular(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total, string documentoUsuario) {
             object[] results = this.Invoke("PagarClienteParticular", new object[] {
                         pagosstring,
                         idEstacionamiento,
                         idTransaccion,
                         idModulo,
                         fecha,
-                        total});
+                        total,
+                        documentoUsuario});
             return ((InfoPagoNormalService)(results[0]));
         }
         
         /// <remarks/>
-        public void PagarClienteParticularAsync(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total) {
-            this.PagarClienteParticularAsync(pagosstring, idEstacionamiento, idTransaccion, idModulo, fecha, total, null);
+        public void PagarClienteParticularAsync(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total, string documentoUsuario) {
+            this.PagarClienteParticularAsync(pagosstring, idEstacionamiento, idTransaccion, idModulo, fecha, total, documentoUsuario, null);
         }
         
         /// <remarks/>
-        public void PagarClienteParticularAsync(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total, object userState) {
+        public void PagarClienteParticularAsync(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total, string documentoUsuario, object userState) {
             if ((this.PagarClienteParticularOperationCompleted == null)) {
                 this.PagarClienteParticularOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPagarClienteParticularOperationCompleted);
             }
@@ -592,7 +670,8 @@ namespace BlockAndPass.PPMWinform.ByPServices {
                         idTransaccion,
                         idModulo,
                         fecha,
-                        total}, this.PagarClienteParticularOperationCompleted, userState);
+                        total,
+                        documentoUsuario}, this.PagarClienteParticularOperationCompleted, userState);
         }
         
         private void OnPagarClienteParticularOperationCompleted(object arg) {
@@ -633,22 +712,24 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerDatosFacturaEntrada", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public InfoEntradaResponse ObtenerDatosFacturaEntrada() {
-            object[] results = this.Invoke("ObtenerDatosFacturaEntrada", new object[0]);
+        public InfoEntradaResponse ObtenerDatosFacturaEntrada(string moduloEntrada) {
+            object[] results = this.Invoke("ObtenerDatosFacturaEntrada", new object[] {
+                        moduloEntrada});
             return ((InfoEntradaResponse)(results[0]));
         }
         
         /// <remarks/>
-        public void ObtenerDatosFacturaEntradaAsync() {
-            this.ObtenerDatosFacturaEntradaAsync(null);
+        public void ObtenerDatosFacturaEntradaAsync(string moduloEntrada) {
+            this.ObtenerDatosFacturaEntradaAsync(moduloEntrada, null);
         }
         
         /// <remarks/>
-        public void ObtenerDatosFacturaEntradaAsync(object userState) {
+        public void ObtenerDatosFacturaEntradaAsync(string moduloEntrada, object userState) {
             if ((this.ObtenerDatosFacturaEntradaOperationCompleted == null)) {
                 this.ObtenerDatosFacturaEntradaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerDatosFacturaEntradaOperationCompleted);
             }
-            this.InvokeAsync("ObtenerDatosFacturaEntrada", new object[0], this.ObtenerDatosFacturaEntradaOperationCompleted, userState);
+            this.InvokeAsync("ObtenerDatosFacturaEntrada", new object[] {
+                        moduloEntrada}, this.ObtenerDatosFacturaEntradaOperationCompleted, userState);
         }
         
         private void OnObtenerDatosFacturaEntradaOperationCompleted(object arg) {
@@ -660,24 +741,25 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PagarMensualidad", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public InfoPagoMensualidadService PagarMensualidad(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string idTarjeta) {
+        public InfoPagoMensualidadService PagarMensualidad(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string placa, string documentoUsuario) {
             object[] results = this.Invoke("PagarMensualidad", new object[] {
                         pagosstring,
                         idEstacionamiento,
                         idModulo,
                         fecha,
                         total,
-                        idTarjeta});
+                        placa,
+                        documentoUsuario});
             return ((InfoPagoMensualidadService)(results[0]));
         }
         
         /// <remarks/>
-        public void PagarMensualidadAsync(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string idTarjeta) {
-            this.PagarMensualidadAsync(pagosstring, idEstacionamiento, idModulo, fecha, total, idTarjeta, null);
+        public void PagarMensualidadAsync(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string placa, string documentoUsuario) {
+            this.PagarMensualidadAsync(pagosstring, idEstacionamiento, idModulo, fecha, total, placa, documentoUsuario, null);
         }
         
         /// <remarks/>
-        public void PagarMensualidadAsync(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string idTarjeta, object userState) {
+        public void PagarMensualidadAsync(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string placa, string documentoUsuario, object userState) {
             if ((this.PagarMensualidadOperationCompleted == null)) {
                 this.PagarMensualidadOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPagarMensualidadOperationCompleted);
             }
@@ -687,7 +769,8 @@ namespace BlockAndPass.PPMWinform.ByPServices {
                         idModulo,
                         fecha,
                         total,
-                        idTarjeta}, this.PagarMensualidadOperationCompleted, userState);
+                        placa,
+                        documentoUsuario}, this.PagarMensualidadOperationCompleted, userState);
         }
         
         private void OnPagarMensualidadOperationCompleted(object arg) {
@@ -793,6 +876,37 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             if ((this.AplicarConveniosCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AplicarConveniosCompleted(this, new AplicarConveniosCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AplicarCotesiaTransaccion", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public AplicarCortesiaTransaccionResponse AplicarCotesiaTransaccion(string idTransaccion, int idCortesia) {
+            object[] results = this.Invoke("AplicarCotesiaTransaccion", new object[] {
+                        idTransaccion,
+                        idCortesia});
+            return ((AplicarCortesiaTransaccionResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void AplicarCotesiaTransaccionAsync(string idTransaccion, int idCortesia) {
+            this.AplicarCotesiaTransaccionAsync(idTransaccion, idCortesia, null);
+        }
+        
+        /// <remarks/>
+        public void AplicarCotesiaTransaccionAsync(string idTransaccion, int idCortesia, object userState) {
+            if ((this.AplicarCotesiaTransaccionOperationCompleted == null)) {
+                this.AplicarCotesiaTransaccionOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAplicarCotesiaTransaccionOperationCompleted);
+            }
+            this.InvokeAsync("AplicarCotesiaTransaccion", new object[] {
+                        idTransaccion,
+                        idCortesia}, this.AplicarCotesiaTransaccionOperationCompleted, userState);
+        }
+        
+        private void OnAplicarCotesiaTransaccionOperationCompleted(object arg) {
+            if ((this.AplicarCotesiaTransaccionCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.AplicarCotesiaTransaccionCompleted(this, new AplicarCotesiaTransaccionCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -1401,26 +1515,28 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerListaCarrilEntradaxEstacionamiento", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CarrilEntradaXEntradaResponse ObtenerListaCarrilEntradaxEstacionamiento(int idSede, int idEstacionamiento) {
+        public CarrilEntradaXEntradaResponse ObtenerListaCarrilEntradaxEstacionamiento(int idSede, int idEstacionamiento, string idModulo) {
             object[] results = this.Invoke("ObtenerListaCarrilEntradaxEstacionamiento", new object[] {
                         idSede,
-                        idEstacionamiento});
+                        idEstacionamiento,
+                        idModulo});
             return ((CarrilEntradaXEntradaResponse)(results[0]));
         }
         
         /// <remarks/>
-        public void ObtenerListaCarrilEntradaxEstacionamientoAsync(int idSede, int idEstacionamiento) {
-            this.ObtenerListaCarrilEntradaxEstacionamientoAsync(idSede, idEstacionamiento, null);
+        public void ObtenerListaCarrilEntradaxEstacionamientoAsync(int idSede, int idEstacionamiento, string idModulo) {
+            this.ObtenerListaCarrilEntradaxEstacionamientoAsync(idSede, idEstacionamiento, idModulo, null);
         }
         
         /// <remarks/>
-        public void ObtenerListaCarrilEntradaxEstacionamientoAsync(int idSede, int idEstacionamiento, object userState) {
+        public void ObtenerListaCarrilEntradaxEstacionamientoAsync(int idSede, int idEstacionamiento, string idModulo, object userState) {
             if ((this.ObtenerListaCarrilEntradaxEstacionamientoOperationCompleted == null)) {
                 this.ObtenerListaCarrilEntradaxEstacionamientoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerListaCarrilEntradaxEstacionamientoOperationCompleted);
             }
             this.InvokeAsync("ObtenerListaCarrilEntradaxEstacionamiento", new object[] {
                         idSede,
-                        idEstacionamiento}, this.ObtenerListaCarrilEntradaxEstacionamientoOperationCompleted, userState);
+                        idEstacionamiento,
+                        idModulo}, this.ObtenerListaCarrilEntradaxEstacionamientoOperationCompleted, userState);
         }
         
         private void OnObtenerListaCarrilEntradaxEstacionamientoOperationCompleted(object arg) {
@@ -1432,10 +1548,9 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CrearEntrada", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CreaEntradaResponse CrearEntrada(string idEstacionamiento, string idTarjeta, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion) {
+        public CreaEntradaResponse CrearEntrada(string idEstacionamiento, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion) {
             object[] results = this.Invoke("CrearEntrada", new object[] {
                         idEstacionamiento,
-                        idTarjeta,
                         carril,
                         placa,
                         fecha,
@@ -1445,18 +1560,17 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
-        public void CrearEntradaAsync(string idEstacionamiento, string idTarjeta, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion) {
-            this.CrearEntradaAsync(idEstacionamiento, idTarjeta, carril, placa, fecha, tipov, _IdAutorizacion, null);
+        public void CrearEntradaAsync(string idEstacionamiento, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion) {
+            this.CrearEntradaAsync(idEstacionamiento, carril, placa, fecha, tipov, _IdAutorizacion, null);
         }
         
         /// <remarks/>
-        public void CrearEntradaAsync(string idEstacionamiento, string idTarjeta, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion, object userState) {
+        public void CrearEntradaAsync(string idEstacionamiento, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion, object userState) {
             if ((this.CrearEntradaOperationCompleted == null)) {
                 this.CrearEntradaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCrearEntradaOperationCompleted);
             }
             this.InvokeAsync("CrearEntrada", new object[] {
                         idEstacionamiento,
-                        idTarjeta,
                         carril,
                         placa,
                         fecha,
@@ -1933,7 +2047,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2014,7 +2128,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2059,7 +2173,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2092,7 +2206,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2125,7 +2239,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2170,7 +2284,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2203,7 +2317,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2248,7 +2362,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2341,7 +2455,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2386,7 +2500,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2419,7 +2533,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2452,7 +2566,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2485,7 +2599,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2542,7 +2656,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2575,7 +2689,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2608,7 +2722,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2641,7 +2755,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2686,7 +2800,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2719,7 +2833,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2764,7 +2878,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2881,7 +2995,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -2926,7 +3040,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3067,7 +3181,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3112,7 +3226,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3145,7 +3259,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3190,7 +3304,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3235,7 +3349,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3280,7 +3394,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3313,7 +3427,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3358,7 +3472,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3391,7 +3505,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3436,7 +3550,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3481,7 +3595,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3514,7 +3628,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3559,7 +3673,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3592,7 +3706,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3625,7 +3739,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3658,7 +3772,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3691,7 +3805,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3724,7 +3838,40 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class AplicarCortesiaTransaccionResponse {
+        
+        private bool exitoField;
+        
+        private string errorMessageField;
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorMessage {
+            get {
+                return this.errorMessageField;
+            }
+            set {
+                this.errorMessageField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3757,7 +3904,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3790,7 +3937,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3847,7 +3994,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3904,7 +4051,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3949,7 +4096,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -3987,6 +4134,10 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         private string nitField;
         
         private string nombreEmpresaField;
+        
+        private string nombreApellidosField;
+        
+        private string placa1Field;
         
         private string vigenciaField;
         
@@ -4151,6 +4302,26 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
+        public string NombreApellidos {
+            get {
+                return this.nombreApellidosField;
+            }
+            set {
+                this.nombreApellidosField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Placa1 {
+            get {
+                return this.placa1Field;
+            }
+            set {
+                this.placa1Field = value;
+            }
+        }
+        
+        /// <remarks/>
         public string Vigencia {
             get {
                 return this.vigenciaField;
@@ -4162,7 +4333,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4399,7 +4570,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4456,7 +4627,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4489,7 +4660,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4546,7 +4717,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4591,7 +4762,124 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class InfoTransaccionResponse {
+        
+        private bool exitoField;
+        
+        private string errorMessageField;
+        
+        private string idTransaccionField;
+        
+        private int carrilField;
+        
+        private string moduloEntradaField;
+        
+        private string idEstacionamientoField;
+        
+        private System.DateTime fechaEntradaField;
+        
+        private string tipoVehiculoField;
+        
+        private string placaEntradaField;
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorMessage {
+            get {
+                return this.errorMessageField;
+            }
+            set {
+                this.errorMessageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IdTransaccion {
+            get {
+                return this.idTransaccionField;
+            }
+            set {
+                this.idTransaccionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int Carril {
+            get {
+                return this.carrilField;
+            }
+            set {
+                this.carrilField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ModuloEntrada {
+            get {
+                return this.moduloEntradaField;
+            }
+            set {
+                this.moduloEntradaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IdEstacionamiento {
+            get {
+                return this.idEstacionamientoField;
+            }
+            set {
+                this.idEstacionamientoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime FechaEntrada {
+            get {
+                return this.fechaEntradaField;
+            }
+            set {
+                this.fechaEntradaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string TipoVehiculo {
+            get {
+                return this.tipoVehiculoField;
+            }
+            set {
+                this.tipoVehiculoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string PlacaEntrada {
+            get {
+                return this.placaEntradaField;
+            }
+            set {
+                this.placaEntradaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4612,7 +4900,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4693,7 +4981,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4786,7 +5074,7 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
     [System.SerializableAttribute()]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
@@ -4800,6 +5088,8 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         private string documentoField;
         
         private string claveField;
+        
+        private string cargoField;
         
         /// <remarks/>
         public bool Exito {
@@ -4840,14 +5130,24 @@ namespace BlockAndPass.PPMWinform.ByPServices {
                 this.claveField = value;
             }
         }
+        
+        /// <remarks/>
+        public string Cargo {
+            get {
+                return this.cargoField;
+            }
+            set {
+                this.cargoField = value;
+            }
+        }
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerInformacionUsuarioCompletedEventHandler(object sender, ObtenerInformacionUsuarioCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerInformacionUsuarioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4869,11 +5169,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void LoguearseCompletedEventHandler(object sender, LoguearseCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LoguearseCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4895,11 +5195,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerDatosPPMxMacCompletedEventHandler(object sender, ObtenerDatosPPMxMacCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerDatosPPMxMacCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4921,11 +5221,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerValorParametroxNombreCompletedEventHandler(object sender, ObtenerValorParametroxNombreCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerValorParametroxNombreCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4947,11 +5247,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ConsultarInfoTransaccionCompletedEventHandler(object sender, ConsultarInfoTransaccionCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConsultarInfoTransaccionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4973,11 +5273,63 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ConsultarInfoTransaccionPorPlacaCompletedEventHandler(object sender, ConsultarInfoTransaccionPorPlacaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ConsultarInfoTransaccionPorPlacaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ConsultarInfoTransaccionPorPlacaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoTransaccionResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoTransaccionResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ConsultarInfoTransaccionPorIdTransaccionCompletedEventHandler(object sender, ConsultarInfoTransaccionPorIdTransaccionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ConsultarInfoTransaccionPorIdTransaccionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ConsultarInfoTransaccionPorIdTransaccionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoTransaccionResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoTransaccionResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ConsultarCascosxIdCompletedEventHandler(object sender, ConsultarCascosxIdCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConsultarCascosxIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -4999,11 +5351,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ConsultarInfoTransaccionxIdCompletedEventHandler(object sender, ConsultarInfoTransaccionxIdCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConsultarInfoTransaccionxIdCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5025,11 +5377,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ConsultarValorPagarCompletedEventHandler(object sender, ConsultarValorPagarCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConsultarValorPagarCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5051,11 +5403,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void PagarClienteParticularCompletedEventHandler(object sender, PagarClienteParticularCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PagarClienteParticularCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5077,11 +5429,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerDatosFacturaCompletedEventHandler(object sender, ObtenerDatosFacturaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerDatosFacturaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5103,11 +5455,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerDatosFacturaEntradaCompletedEventHandler(object sender, ObtenerDatosFacturaEntradaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerDatosFacturaEntradaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5129,11 +5481,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void PagarMensualidadCompletedEventHandler(object sender, PagarMensualidadCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class PagarMensualidadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5155,11 +5507,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerDatosFacturaMensualidadCompletedEventHandler(object sender, ObtenerDatosFacturaMensualidadCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerDatosFacturaMensualidadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5181,11 +5533,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void AplicarEtiquetaMotoCompletedEventHandler(object sender, AplicarEtiquetaMotoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AplicarEtiquetaMotoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5207,11 +5559,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void AplicarConveniosCompletedEventHandler(object sender, AplicarConveniosCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AplicarConveniosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5233,11 +5585,37 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void AplicarCotesiaTransaccionCompletedEventHandler(object sender, AplicarCotesiaTransaccionCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class AplicarCotesiaTransaccionCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal AplicarCotesiaTransaccionCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public AplicarCortesiaTransaccionResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((AplicarCortesiaTransaccionResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void RegistrarConvenioAplicaoCompletedEventHandler(object sender, RegistrarConvenioAplicaoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RegistrarConvenioAplicaoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5259,11 +5637,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void AplicarCascoCompletedEventHandler(object sender, AplicarCascoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AplicarCascoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5285,11 +5663,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void SaveConvenioCompletedEventHandler(object sender, SaveConvenioCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class SaveConvenioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5311,11 +5689,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void LiberarCascoCompletedEventHandler(object sender, LiberarCascoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class LiberarCascoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5337,11 +5715,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerCasilleroCompletedEventHandler(object sender, ObtenerCasilleroCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerCasilleroCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5363,11 +5741,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void AplicarLaCortesiaCompletedEventHandler(object sender, AplicarLaCortesiaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AplicarLaCortesiaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5389,11 +5767,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void AplicarElEventoCompletedEventHandler(object sender, AplicarElEventoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class AplicarElEventoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5415,11 +5793,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerListaMotivosCortesiaXEstacionamientoCompletedEventHandler(object sender, ObtenerListaMotivosCortesiaXEstacionamientoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerListaMotivosCortesiaXEstacionamientoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5441,11 +5819,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerCarrilxIdModuloCompletedEventHandler(object sender, ObtenerCarrilxIdModuloCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerCarrilxIdModuloCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5467,11 +5845,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerListaConveniosXEstacionamientoXUsuarioCompletedEventHandler(object sender, ObtenerListaConveniosXEstacionamientoXUsuarioCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerListaConveniosXEstacionamientoXUsuarioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5493,11 +5871,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerListaEventosXEstacionamientoXUsuarioCompletedEventHandler(object sender, ObtenerListaEventosXEstacionamientoXUsuarioCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerListaEventosXEstacionamientoXUsuarioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5519,11 +5897,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ConsultarDescripcionConvenioCompletedEventHandler(object sender, ConsultarDescripcionConvenioCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConsultarDescripcionConvenioCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5545,11 +5923,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ConsultarIdTarjetaPorPlacaCompletedEventHandler(object sender, ConsultarIdTarjetaPorPlacaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConsultarIdTarjetaPorPlacaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5571,11 +5949,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void RegistrarElArqueoCompletedEventHandler(object sender, RegistrarElArqueoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RegistrarElArqueoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5597,11 +5975,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ConfirmarElArqueoCompletedEventHandler(object sender, ConfirmarElArqueoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConfirmarElArqueoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5623,11 +6001,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerDatosComprobanteArqueoCompletedEventHandler(object sender, ObtenerDatosComprobanteArqueoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerDatosComprobanteArqueoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5649,11 +6027,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerDatosComprobanteCargaCompletedEventHandler(object sender, ObtenerDatosComprobanteCargaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerDatosComprobanteCargaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5675,11 +6053,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void RegistrarLaCargaCompletedEventHandler(object sender, RegistrarLaCargaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RegistrarLaCargaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5701,11 +6079,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ConfirmarLaCargaCompletedEventHandler(object sender, ConfirmarLaCargaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ConfirmarLaCargaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5727,11 +6105,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerListaCarrilEntradaxEstacionamientoCompletedEventHandler(object sender, ObtenerListaCarrilEntradaxEstacionamientoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerListaCarrilEntradaxEstacionamientoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5753,11 +6131,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void CrearEntradaCompletedEventHandler(object sender, CrearEntradaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CrearEntradaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5779,11 +6157,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void CrearSalidaCompletedEventHandler(object sender, CrearSalidaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CrearSalidaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5805,11 +6183,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void CrearSalida2CompletedEventHandler(object sender, CrearSalida2CompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CrearSalida2CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5831,11 +6209,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void CrearSalida3CompletedEventHandler(object sender, CrearSalida3CompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class CrearSalida3CompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5857,11 +6235,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void BuscarAutorizadoxPlacaCompletedEventHandler(object sender, BuscarAutorizadoxPlacaCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class BuscarAutorizadoxPlacaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5883,11 +6261,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void VerificarTransaccionAbiertaAutorizadoCompletedEventHandler(object sender, VerificarTransaccionAbiertaAutorizadoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class VerificarTransaccionAbiertaAutorizadoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5909,11 +6287,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void VerificarVigenciaAutorizadoCompletedEventHandler(object sender, VerificarVigenciaAutorizadoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class VerificarVigenciaAutorizadoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5935,11 +6313,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ActualizarVigenciaAutorizadoCompletedEventHandler(object sender, ActualizarVigenciaAutorizadoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ActualizarVigenciaAutorizadoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5961,11 +6339,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerListaVehiculosEnValetCompletedEventHandler(object sender, ObtenerListaVehiculosEnValetCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerListaVehiculosEnValetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -5987,11 +6365,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerListaVehiculosSaliendoCompletedEventHandler(object sender, ObtenerListaVehiculosSaliendoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerListaVehiculosSaliendoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -6013,11 +6391,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void InsertarVehiculoValetCompletedEventHandler(object sender, InsertarVehiculoValetCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class InsertarVehiculoValetCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -6039,11 +6417,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerListaSedesCompletedEventHandler(object sender, ObtenerListaSedesCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerListaSedesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -6065,11 +6443,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerListaEstacionamientoXSedeCompletedEventHandler(object sender, ObtenerListaEstacionamientoXSedeCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ObtenerListaEstacionamientoXSedeCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -6091,11 +6469,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ValidarConveniosCompletedEventHandler(object sender, ValidarConveniosCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class ValidarConveniosCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
@@ -6117,11 +6495,11 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     }
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void RegistrarConvenioValidadoCompletedEventHandler(object sender, RegistrarConvenioValidadoCompletedEventArgs e);
     
     /// <remarks/>
-    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.4084.0")]
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     public partial class RegistrarConvenioValidadoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {

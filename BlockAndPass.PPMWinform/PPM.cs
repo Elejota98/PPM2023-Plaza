@@ -7,6 +7,7 @@ using Microsoft.Reporting.WinForms;
 using System;
 using System.Collections.Generic;
 using System.ComponentModel;
+using System.Configuration;
 using System.Data;
 using System.Data.SqlClient;
 using System.Drawing;
@@ -27,6 +28,7 @@ namespace BlockAndPass.PPMWinform
 {
     public partial class PPM : Form, IMessageFilter
     {
+        CardResponse oCardResponse = new CardResponse();
 
         #region MoveWindow
         public const int WM_NCLBUTTONDOWN = 0xA1;
@@ -57,11 +59,32 @@ namespace BlockAndPass.PPMWinform
             get { return _DocumentoUsuario; }
             set { _DocumentoUsuario = value; }
         }
+
+        private string _IdTransaccion = string.Empty;
+        public string IdTransaccion
+        {
+            get { return _IdTransaccion; }
+            set { _IdTransaccion = value; }
+        }
+
+        private string _CargoUsuario = string.Empty;
+        public string CargoUsuario
+        {
+            get { return _CargoUsuario; }
+            set { _CargoUsuario = value; }
+        }
+
+        string moduloEntrada = ConfigurationManager.AppSettings["IdModulo"].ToString();
+
+        string documentoUsuario = string.Empty;
+        string nombresUsuario = string.Empty;
         ServicesByP cliente = new ServicesByP();
         LiquidacionService liquidacion = new LiquidacionService();
         System.Windows.Forms.Timer tmrHora = new System.Windows.Forms.Timer();
+        System.Windows.Forms.Timer clickTimer = new System.Windows.Forms.Timer();
         System.Windows.Forms.Timer tmrTimeOutPago = new System.Windows.Forms.Timer();
         int cnt = 0;
+
         #endregion
 
         #region Eventos
@@ -78,14 +101,39 @@ namespace BlockAndPass.PPMWinform
                 tmrTimeOutPago.Stop();
                 RestablecerPPM();
                 panelPagar.Enabled = false;
+                btn_Copia.Enabled = true;
             }
         }
         void tmrHora_Tick(object sender, EventArgs e)
         {
             lblHoraPago.Text = "Hora Actual: " + GetTimestamp(DateTime.Now);
+            if (tbValorPagar.Text != "" || txtPlacaBuscar.Text != "" || tbCodigo.Text != "")
+            {
+                if (txtPlacaBuscar.Text != "" && tbCodigo.Text.Length < 17)
+                {
+                    txtPlacaBuscar.Focus();
+                }
+                else if (tbCodigo.Text.Length < 17)
+                {
+                    tbCodigo.Text = string.Empty;
+                    tbCodigo.Focus();
+                }
+                else
+                {
+                   
+                }
+            }
+            else
+            {
+                tbCodigo.Text = string.Empty;
+                tbCodigo.Focus();
+            }
         }
         private void tbRecibido_TextChanged(object sender, EventArgs e)
         {
+            tbRecibido.Focus();
+            tmrHora.Stop();
+            clickTimer.Start(); 
             //MessageBox.Show(tbCambio.Text);
             Int64 pagar = Convert.ToInt64(tbValorPagar.Text.Replace("$", "").Replace(".", ""));
             //Int64 recibido = Convert.ToInt64(tbRecibido.Text.Replace("$", ""));
@@ -139,44 +187,46 @@ namespace BlockAndPass.PPMWinform
                     #region Estacionamiento
                     if (chbEstacionamiento.Checked)
                     {
-                        CardResponse oCardResponse = new CardResponse();
-                        oCardResponse = PayCard(clave, tbIdTarjeta.Text, cbPPM.SelectedValue.ToString(), DateTime.ParseExact(tbHoraPago.Text, "dd'/'MM'/'yyyy HH':'mm':'ss", CultureInfo.CurrentCulture));
-                        if (!oCardResponse.error)
+                        //CardResponse oCardResponse = new CardResponse();
+                        //oCardResponse = PayCard(clave, tbIdTarjeta.Text, cbPPM.SelectedValue.ToString(), DateTime.ParseExact(tbHoraPago.Text, "dd'/'MM'/'yyyy HH':'mm':'ss", CultureInfo.CurrentCulture));
+                        //if (!oCardResponse.error)
+                        //{
+                        string pagosFinal = "";
+                        double sumTotalPagar = 0;
+                        foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
                         {
-                            string pagosFinal = "";
-                            double sumTotalPagar = 0;
-                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                            if (pagosFinal == string.Empty)
                             {
-                                if (pagosFinal==string.Empty)
-                                {
-                                }
-                                else
-                                {
-                                    pagosFinal += ',';
-                                }
-                                sumTotalPagar += item.Total;
-                                pagosFinal += item.Tipo + "-" + item.SubTotal + "-" + item.Iva + "-" + item.Total;
-                            }
-
-                            InfoPagoNormalService pagoNormal = cliente.PagarClienteParticular(pagosFinal, cbEstacionamiento.SelectedValue.ToString(), tbIdTransaccion.Text, cbPPM.SelectedValue.ToString(), oCardResponse.fechaPago, sumTotalPagar.ToString());
-
-                            if (pagoNormal.Exito)
-                            {
-                                ImprimirPagoNormal(tbIdTransaccion.Text);
                             }
                             else
                             {
-                                Cargando(false);
-                                MessageBox.Show(pagoNormal.ErrorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                pagosFinal += ',';
                             }
+                            sumTotalPagar += item.Total;
+                            pagosFinal += item.Tipo + "-" + item.SubTotal + "-" + item.Iva + "-" + item.Total;
+                        }
+                        string fechaPago = Convert.ToString(DateTime.Now);
+
+                        InfoPagoNormalService pagoNormal = cliente.PagarClienteParticular(pagosFinal, cbEstacionamiento.SelectedValue.ToString(), tbIdTransaccion.Text, cbPPM.SelectedValue.ToString(), fechaPago, sumTotalPagar.ToString(),documentoUsuario);
+
+                        if (pagoNormal.Exito)
+                        {
+                            ImprimirPagoNormal(tbIdTransaccion.Text);
                         }
                         else
                         {
                             Cargando(false);
-                            MessageBox.Show(oCardResponse.errorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(pagoNormal.ErrorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
+                        //}
+                        //else
+                        //{
+                        //    Cargando(false);
+                        //    MessageBox.Show(oCardResponse.errorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
                     }
                     #endregion
+
                     #region Mensualidad
                     else
                     {
@@ -189,7 +239,7 @@ namespace BlockAndPass.PPMWinform
                             pagosFinal += item.Tipo + "-" + item.SubTotal + "-" + item.Iva + "-" + item.Total;
                         }
 
-                        InfoPagoMensualidadService pagoNormal = cliente.PagarMensualidad(pagosFinal, cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), DateTime.Now.ToString(), sumTotalPagar.ToString(), tbIdTarjeta.Text);
+                        InfoPagoMensualidadService pagoNormal = cliente.PagarMensualidad(pagosFinal, cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), DateTime.Now.ToString(), sumTotalPagar.ToString(), tbIdTarjeta.Text, documentoUsuario);
 
                         if (pagoNormal.Exito)
                         {
@@ -199,8 +249,8 @@ namespace BlockAndPass.PPMWinform
                             {
                                 ImprimirPagoMensualidad(pagoNormal.IdTranaccion, pagoNormal.IdAutorizacion);
                             }
-                               
-                            else if (ckMensualidadDocumento.Checked==true && txtPlaca.Text!=null)
+
+                            else if (ckMensualidadDocumento.Checked == true && txtPlacaBuscar.Text != null)
                             {
 
                                 ImprimirPagoMensualidad(pagoNormal.IdTranaccion, pagoNormal.IdAutorizacion);
@@ -239,557 +289,13 @@ namespace BlockAndPass.PPMWinform
 
 
                 Cargando(false);
-                
+
                 RestablecerPPM();
             }
         }
-        private void btn_Cerrar_Click(object sender, EventArgs e)
-        {
-            this.Close();
-            Application.Exit();
-        }
         private void btn_Leer_Click(object sender, EventArgs e)
         {
-            //liquidacion = cliente.ConsultarValorPagar(true, true, 1, "0", "0EEEC6CB");
-            tbCodigo.Focus();
-
-            cnt = 0;
-            Cargando(true);
-            string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
-            if (clave != string.Empty)
-            {
-                CardResponse oCardResponse = GetCardInfo(clave);
-
-                if (!oCardResponse.error)
-                {
-                    bool bContinuarLiquidacion = true;
-
-                    #region Estacionamiento
-                    if (oCardResponse.cicloActivo)
-                    {
-                        if (oCardResponse.tipoTarjeta == "AUTHORIZED_PARKING")
-                        {
-                            DialogResult result3 = MessageBox.Show("¿Desea crear una salida de autorizado? \n PRESIONE NO PARA CONTINUAR CON LA LIQUIDACION.", "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                            if (result3 == DialogResult.Yes)
-                            {
-
-                                DialogResult result4 = MessageBox.Show("¿Esta seguro que desea crear la salida para la placa: " + oCardResponse.placa, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                if (result4 == DialogResult.Yes)
-                                {
-                                    bContinuarLiquidacion = false;
-                                    CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.moduloEntrada);
-                                    if (oCarrilxIdModuloResponse.Exito)
-                                    {
-                                        string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
-
-                                        CardResponse oCardResponseExit = new CardResponse();
-                                        oCardResponseExit = ExitCardAutho(clave, oCardResponse.idCard);
-                                        if (!oCardResponseExit.error)
-                                        {
-                                            CreaSalidaResponse resp = cliente.CrearSalida2(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.placa, sIdTransaccion, oCarrilxIdModuloResponse.Carril.ToString(), oCardResponse.moduloEntrada, oCardResponse.idCard);
-
-                                            if (resp.Exito)
-                                            {
-                                                MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            }
-                                            else
-                                            {
-                                                this.DialogResult = DialogResult.None;
-                                                MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            }
-                                        }
-                                        else
-                                        {
-                                            Cargando(false);
-                                            MessageBox.Show(oCardResponseExit.errorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        }
-
-                                    }
-                                    else
-                                    {
-                                        MessageBox.Show("No fue posible encontrar el carril asociado al modulo.", "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                }
-                            }
-                        }
-
-
-                        if (bContinuarLiquidacion)
-                        {
-                            CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.moduloEntrada);
-                            if (oCarrilxIdModuloResponse.Exito)
-                            {
-                                //yyyyMMddHHmmssce
-
-                                string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
-
-                                tbIdTarjeta.Text = oCardResponse.idCard;
-                                InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
-                                InfoTransaccionService lstInfo = cliente.ConsultarCascosxId(sIdTransaccion);
-
-                                //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
-                                if (oInfoTransaccionService.Exito)
-                                {
-                                    if (oInfoTransaccionService.IdTransaccion != string.Empty)
-                                    {
-                                        tbIdTransaccion.Text = oInfoTransaccionService.IdTransaccion;
-
-                                        tbPlaca.Text = oCardResponse.placa;
-
-                                        if (oCardResponse.codeAutorizacion1 != 0)
-                                        {
-                                            cliente.AplicarConvenios(oInfoTransaccionService.IdTransaccion, oCardResponse.codeAutorizacion1, oCardResponse.codeAutorizacion2, oCardResponse.codeAutorizacion3);
-                                        }
-
-                                        DateTime dtDespues = DateTime.Now;
-                                        DateTime dtAntes = new DateTime();
-
-                                        //MessageBox.Show(oInfoTransaccionService.HoraTransaccion);
-
-                                        oInfoTransaccionService.HoraTransaccion = oInfoTransaccionService.HoraTransaccion.Replace("a. m.", "a.m.");
-                                        oInfoTransaccionService.HoraTransaccion = oInfoTransaccionService.HoraTransaccion.Replace("p. m.", "p.m.");
-
-                                        //try
-                                        //{
-                                        //    if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy hh':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
-                                        //    {
-                                        //        if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "d'/'MM'/'yyyy hh':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
-                                        //        {
-                                        //            if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy h':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
-                                        //            {
-                                        //                if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "d'/'MM'/'yyyy h':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
-                                        //                {
-                                        //                    if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy H':'mm':'ss", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
-                                        //                    {
-                                        //                        dtAntes = DateTime.ParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy HH':'mm':'ss", CultureInfo.CurrentCulture);
-                                        //                    }
-                                        //                }
-                                        //            }
-                                        //        }
-                                        //    }
-                                        //}
-                                        //catch (Exception exe)
-                                        //{
-                                        //    MessageBox.Show("Tiempo de permanencia no disponible, continue con el pago e informe al desarrollador->" + exe.Message + " / " + oInfoTransaccionService.HoraTransaccion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        //}
-                                        DateTime? ntes = oCardResponse.fechEntrada;
-                                        dtAntes = Convert.ToDateTime(ntes);
-
-
-                                        tbHoraIngreso.Text = dtAntes.ToString("dd'/'MM'/'yyyy HH':'mm':'ss");
-                                        tbHoraPago.Text = dtDespues.ToString("dd'/'MM'/'yyyy HH':'mm':'ss");
-
-                                        if (lstInfo.LstTransac.Length == 1)
-                                        {
-                                            tbCasillero.Text = lstInfo.LstTransac[0].Casillero;
-                                        }
-                                        else if (lstInfo.LstTransac.Length == 2)
-                                        {
-                                            tbCasillero.Text = lstInfo.LstTransac[0].Casillero + " y " + lstInfo.LstTransac[1].Casillero;
-                                        }
-                                        else
-                                        {
-                                            tbCasillero.Text = string.Empty;
-                                        }
-
-                                        TimeSpan ts = dtDespues - dtAntes;
-                                        tbTiempo.Text = Convert.ToInt32(ts.TotalMinutes).ToString() + " minutos";
-
-                                        int tipoVehiculo = 0;
-                                        if (oCardResponse.tipoVehiculo == "AUTOMOBILE")
-                                        {
-                                            tipoVehiculo = 1;
-                                        }
-                                        else if (oCardResponse.tipoVehiculo == "MOTORCYCLE")
-                                        {
-                                            tipoVehiculo = 2;
-                                        }
-                                        else if (oCardResponse.tipoVehiculo == "BICYCLE")
-                                        {
-                                            tipoVehiculo = 3;
-                                        }
-
-                                        liquidacion = cliente.ConsultarValorPagar(false, oCardResponse.reposicion, tipoVehiculo, oInfoTransaccionService.IdTransaccion, oCardResponse.idCard);
-                                        double sumTotalPagar = 0;
-                                        #region Estacionamiento
-                                        if (liquidacion.Exito)
-                                        {
-                                            if (liquidacion.LstLiquidacion.Length > 0)
-                                            {
-                                                foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
-                                                {
-                                                    sumTotalPagar += item.Total;
-                                                }
-
-                                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
-                                                tbCambio.Text = "$0";
-                                                tbRecibido.Text = "0";
-
-
-                                                Cargando(false);
-                                                panelPagar.Enabled = true;
-                                                tmrTimeOutPago.Start();
-
-                                                chbEstacionamiento.Checked = true;
-                                                chbMensualidad.Checked = false;
-
-                                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
-
-                                            }
-                                            else
-                                            {
-                                                //MessageBox.Show("No obtiene valor a pagar idTransaccion = " + oInfoTransaccionService.IdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
-                                                sumTotalPagar = 0;
-                                                if (liquidacion.Exito)
-                                                {
-                                                    foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
-                                                    {
-                                                        sumTotalPagar += item.Total;
-                                                    }
-
-                                                    tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
-                                                    tbCambio.Text = "$0";
-                                                    tbRecibido.Text = "0";
-
-                                                    Cargando(false);
-                                                    panelPagar.Enabled = true;
-                                                    tmrTimeOutPago.Start();
-
-                                                    chbEstacionamiento.Checked = false;
-                                                    chbMensualidad.Checked = true;
-
-                                                    lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
-                                                }
-                                                else
-                                                {
-                                                    Cargando(false);
-                                                    MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                }
-                                            }
-                                        }
-                                        #endregion
-                                        #region Mensualidad
-                                        else
-                                        {
-                                            //MessageBox.Show("No obtiene valor a pagar idTransaccion = " + oInfoTransaccionService.IdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
-                                            sumTotalPagar = 0;
-                                            if (liquidacion.Exito)
-                                            {
-                                                foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
-                                                {
-                                                    sumTotalPagar += item.Total;
-                                                }
-
-                                                if (sumTotalPagar > 0)
-                                                {
-                                                    tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
-                                                    tbCambio.Text = "$0";
-                                                    tbRecibido.Text = "0";
-
-                                                    Cargando(false);
-                                                    panelPagar.Enabled = true;
-                                                    tmrTimeOutPago.Start();
-
-                                                    chbEstacionamiento.Checked = false;
-                                                    chbMensualidad.Checked = true;
-
-                                                    lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
-                                                }
-                                                else
-                                                {
-                                                    DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                                    if (result5 == DialogResult.Yes)
-                                                    {
-                                                        ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
-
-                                                        if (resp.Exito)
-                                                        {
-                                                            MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                        }
-                                                        else
-                                                        {
-                                                            this.DialogResult = DialogResult.None;
-                                                            MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                                        }
-                                                    }
-                                                    else
-                                                    {
-                                                        Cargando(false);
-                                                    }
-                                                    Cargando(false);
-                                                }
-                                            }
-                                            else
-                                            {
-                                                Cargando(false);
-                                                MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            }
-                                        }
-                                        #endregion
-                                    }
-                                    else
-                                    {
-                                        Cargando(false);
-                                        MessageBox.Show("No obtiene infromacion de la transaccion", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                }
-                                else
-                                {
-                                    Cargando(false);
-                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage + ": " + sIdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                            else
-                            {
-                                Cargando(false);
-                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            Cargando(false);
-                            //Camino de salida autorizado
-                        }
-                    }
-                    #endregion
-                    #region Mensualidad
-                    else
-                    {
-                        tbIdTarjeta.Text = oCardResponse.idCard;
-                        //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", "0EEEC6CB");
-                        //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
-                        liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, tbIdTarjeta.Text, oCardResponse.idCard);
-
-                        double sumTotalPagar = 0;
-                        if (liquidacion.Exito)
-                        {
-                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
-                            {
-                                sumTotalPagar += item.Total;
-                            }
-
-                            if (sumTotalPagar > 0)
-                            {
-                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
-                                tbCambio.Text = "$0";
-                                tbRecibido.Text = "0";
-
-                                Cargando(false);
-                                panelPagar.Enabled = true;
-                                tmrTimeOutPago.Start();
-
-                                chbEstacionamiento.Checked = false;
-                                chbMensualidad.Checked = true;
-
-                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
-                            }
-                            else
-                            {
-                                DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                if (result5 == DialogResult.Yes)
-                                {
-                                    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
-
-                                    if (resp.Exito)
-                                    {
-                                        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    }
-                                    else
-                                    {
-                                        this.DialogResult = DialogResult.None;
-                                        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
-                                    Cargando(false);
-                                }
-                                else
-                                {
-                                    Cargando(false);
-                                }
-                            }
-                        }
-                        else
-                        {
-                            Cargando(false);
-                            MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    #endregion
-                }
-                else
-                {
-                    if (ckMensualidadDocumento.Checked == true)
-                    {
-                        ConsultarIdTarjetaPlacaResponse IdTarjeta = cliente.ConsultarIdTarjetaPorPlaca(txtPlaca.Text);
-                        if (IdTarjeta.Exito)
-                        {
-                            tbIdTarjeta.Text = IdTarjeta.IdTarjetaDescripcion;
-                            oCardResponse.idCard = IdTarjeta.IdTarjetaDescripcion;
-                            liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, tbIdTarjeta.Text, oCardResponse.idCard);
-                            double sumTotalPagar = 0;
-                            if (liquidacion.Exito)
-                            {
-                                foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
-                                {
-                                    sumTotalPagar += item.Total;
-                                }
-
-                                if (sumTotalPagar > 0)
-                                {
-                                    tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
-                                    tbCambio.Text = "$0";
-                                    tbRecibido.Text = "0";
-
-                                    Cargando(false);
-                                    panelPagar.Enabled = true;
-                                    tmrTimeOutPago.Start();
-
-                                    chbEstacionamiento.Checked = false;
-                                    chbMensualidad.Checked = true;
-
-                                    lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
-                                }
-                                else
-                                {
-                                    //DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                    //if (result5 == DialogResult.Yes)
-                                    //{
-                                    //    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
-
-                                    //    if (resp.Exito)
-                                    //    {
-                                    //        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                    //    }
-                                    //    else
-                                    //    {
-                                    //        this.DialogResult = DialogResult.None;
-                                    //        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    //    }
-                                    //    Cargando(false);
-                                    //}
-                                    //else
-                                    //{
-                                    //    Cargando(false);
-                                    //}
-
-                                    Cargando(false);
-                                    MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                            else
-                            {
-                                Cargando(false);
-                                MessageBox.Show("No fue posible obtener el valor de la mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            Cargando(false);
-                            MessageBox.Show("La placa no pertenece a un autorizado", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-
-
-                    }
-                    else if (ckMensualidadDocumento.Checked == false)
-                    {
-                        tbIdTarjeta.Text = oCardResponse.idCard;
-                        //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", "0EEEC6CB");
-                        liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, tbIdTarjeta.Text, oCardResponse.idCard);
-                        double sumTotalPagar = 0;
-                        if (liquidacion.Exito)
-                        {
-                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
-                            {
-                                sumTotalPagar += item.Total;
-                            }
-
-                            if (sumTotalPagar > 0)
-                            {
-                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
-                                tbCambio.Text = "$0";
-                                tbRecibido.Text = "0";
-
-                                Cargando(false);
-                                panelPagar.Enabled = true;
-                                tmrTimeOutPago.Start();
-
-                                chbEstacionamiento.Checked = false;
-                                chbMensualidad.Checked = true;
-
-                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
-                            }
-                            else
-                            {
-                                //DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                                //if (result5 == DialogResult.Yes)
-                                //{
-                                //    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
-
-                                //    if (resp.Exito)
-                                //    {
-                                //        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                //    }
-                                //    else
-                                //    {
-                                //        this.DialogResult = DialogResult.None;
-                                //        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                //    }
-                                //    Cargando(false);
-                                //}
-                                //else
-                                //{
-                                //    Cargando(false);
-                                //}                                
-                                Cargando(false);
-                                MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            Cargando(false);
-                            MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                    else
-                    {
-                        DialogResult result3 = MessageBox.Show("No fue posible leer la tarjeta, ¿Desea registrar una salida SIN tarjeta?", "Leer PPM", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                        if (result3 == DialogResult.Yes)
-                        {
-                            CrearSalida popup = new CrearSalida(cbEstacionamiento.SelectedValue.ToString());
-                            popup.ShowDialog();
-                            if (popup.DialogResult == DialogResult.OK)
-                            {
-                                Cargando(false);
-                                MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
-                            {
-                                Cargando(false);
-                                MessageBox.Show("Operacion cancelada por el usuario", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                            }
-                            else
-                            {
-                                Cargando(false);
-                                MessageBox.Show("Error al procesar ventana crear salida", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-                        }
-                        else
-                        {
-                            Cargando(false);
-                            //MessageBox.Show(oCardResponse.errorMessage, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    }
-                }
-            }
-
-
-            else
-            {
-                Cargando(false);
-                MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
+            LeerInfo();
         }
         private void btn_Moto_Click(object sender, EventArgs e)
         {
@@ -830,7 +336,7 @@ namespace BlockAndPass.PPMWinform
         }
         private void btn_Convenio_Click(object sender, EventArgs e)
         {
-            ConvenioPopUp popup = new ConvenioPopUp(cbEstacionamiento.SelectedValue.ToString(),_DocumentoUsuario);
+            ConvenioPopUp popup = new ConvenioPopUp(cbEstacionamiento.SelectedValue.ToString(), _DocumentoUsuario);
             popup.ShowDialog();
             if (popup.DialogResult == DialogResult.OK)
             {
@@ -838,8 +344,10 @@ namespace BlockAndPass.PPMWinform
                 string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
                 if (clave != string.Empty)
                 {
-                    CardResponse oCardResponse = AplicarConvenio(clave,popup.Convenio.ToString());
-                    if (!oCardResponse.error)
+                    InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbCodigo.Text, cbEstacionamiento.SelectedValue.ToString());
+
+                    AplicarConvenioResponse oAplicarConvenioResponse = cliente.AplicarConvenios(tbIdTransaccion.Text, popup.Convenio, 0, 0);
+                    if (oAplicarConvenioResponse.Exito)
                     {
                         SaveConveniosResponse oInfo = new SaveConveniosResponse();
                         oInfo = cliente.SaveConvenio(cbEstacionamiento.SelectedValue.ToString(), Convert.ToInt64(popup.Convenio), popup.NameConvenio.ToString());
@@ -851,7 +359,7 @@ namespace BlockAndPass.PPMWinform
                     {
                         Cargando(false);
                         MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }       
+                    }
                 }
                 else
                 {
@@ -880,36 +388,67 @@ namespace BlockAndPass.PPMWinform
                 string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
                 if (clave != string.Empty)
                 {
-                    CardResponse oCardResponse = GetCardInfo(clave);
-                    if (!oCardResponse.error)
+                    //CardResponse oCardResponse = GetCardInfo(clave);
+                    //if (!oCardResponse.error)
+                    //{
+                    //if (oCardResponse.reposicion)
+                    //{
+                    //    Cargando(false);
+                    //    MessageBox.Show("NO se puede aplicar cortesía a una REPOSICION", "Error Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}                       
+                    InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbCodigo.Text, cbEstacionamiento.SelectedValue.ToString());
+                    if (informacionTransaccion.Exito)
                     {
-                        if (oCardResponse.reposicion)
+                        //yyyyMMddHHmmssce
+
+                        string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                        //tbIdTarjeta.Text = oCardResponse.idCard;
+                        InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+                        //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
+                        if (oInfoTransaccionService.Exito)
                         {
-                            Cargando(false);
-                            MessageBox.Show("NO se puede aplicar cortesía a una REPOSICION", "Error Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                        else
-                        {
-                            CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.moduloEntrada);
-                            if (oCarrilxIdModuloResponse.Exito)
+                            AplicarCortesiaResponse oAplicarCortesiaResponse = cliente.AplicarLaCortesia(cbEstacionamiento.SelectedValue.ToString(), popup.Observacion, popup.Motivo.ToString(), oInfoTransaccionService.IdTransaccion, _DocumentoUsuario);
+                            if (oAplicarCortesiaResponse.Exito)
                             {
-                                //yyyyMMddHHmmssce
-
-                                string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
-
-                                tbIdTarjeta.Text = oCardResponse.idCard;
-                                InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
-                                //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
-                                if (oInfoTransaccionService.Exito)
+                                AplicarCortesiaTransaccionResponse oAplicarCortesiaTransaccionResponse = cliente.AplicarCotesiaTransaccion(sIdTransaccion, Convert.ToInt32(popup.Motivo.ToString()));
+                                if (oAplicarCortesiaTransaccionResponse.Exito)
                                 {
-                                    AplicarCortesiaResponse oAplicarCortesiaResponse = cliente.AplicarLaCortesia(cbEstacionamiento.SelectedValue.ToString(), popup.Observacion, popup.Motivo.ToString(), oInfoTransaccionService.IdTransaccion, _DocumentoUsuario);
-                                    if (oAplicarCortesiaResponse.Exito)
+                                    //oCardResponse = AplicarCortesia(clave);
+                                    if (tbCasillero.Text != string.Empty)
                                     {
-                                        oCardResponse = AplicarCortesia(clave);
                                         AplicaCascoResponse oInfo = cliente.LiberarCasco(sIdTransaccion);
-                                        //if (oInfo.Exito)
-                                        //{
-                                        if (!oCardResponse.error)
+                                        if (oInfo.Exito)
+                                        {
+                                            if (oAplicarCortesiaResponse.Exito)
+                                            {
+
+                                                MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                Cargando(false);
+
+                                            }
+                                            else
+                                            {
+                                                Cargando(false);
+                                                MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                            //}
+                                            //else 
+                                            //{
+                                            //    Cargando(false);
+                                            //    MessageBox.Show(oCardResponse.errorMessage, "Error al liberar casillero PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            //}
+                                        }
+                                        else
+                                        {
+                                            Cargando(false);
+                                            MessageBox.Show(oAplicarCortesiaResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else
+                                    {
+
+                                        if (oAplicarCortesiaResponse.Exito)
                                         {
 
                                             MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -921,53 +460,51 @@ namespace BlockAndPass.PPMWinform
                                             Cargando(false);
                                             MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                         }
-                                        //}
-                                        //else 
-                                        //{
-                                        //    Cargando(false);
-                                        //    MessageBox.Show(oCardResponse.errorMessage, "Error al liberar casillero PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        //}
                                     }
-                                    else
-                                    {
-                                        Cargando(false);
-                                        MessageBox.Show(oAplicarCortesiaResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                    }
+
                                 }
                                 else
                                 {
                                     Cargando(false);
-                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(oAplicarCortesiaTransaccionResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
                             }
                             else
                             {
                                 Cargando(false);
-                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+
                         }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+
                     }
                     else
                     {
                         Cargando(false);
                         MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     }
+                    //}
+                    //else
+                    //{
+                    //    Cargando(false);
+                    //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
+                }
+                else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    Cargando(false);
+                    MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
                 else
                 {
                     Cargando(false);
-                    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al procesar ventana cortesia", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
-            }
-            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
-            {
-                Cargando(false);
-                MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                Cargando(false);
-                MessageBox.Show("Error al procesar ventana cortesia", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
         private void btn_Carga_Click(object sender, EventArgs e)
@@ -1005,45 +542,45 @@ namespace BlockAndPass.PPMWinform
         }
         private void btn_Arqueo_Click(object sender, EventArgs e)
         {
-             DialogResult oDialogResult = MessageBox.Show("¿Esta seguro que desea realizar el arqueo?", "Arqueo PPM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
-             if (oDialogResult == DialogResult.Yes)
-             {
-                 RegistrarArqueoResponse rgis = cliente.RegistrarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), _DocumentoUsuario);
-                 if (rgis.Exito)
-                 {
-                     ArqueoPopUp popup = new ArqueoPopUp(rgis.IdArqueo.ToString());
-                     popup.ShowDialog();
-                     if (popup.DialogResult == DialogResult.OK)
-                     {
-                         ConfirmarArqueoResponse confirmacionArqueo = cliente.ConfirmarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), rgis.IdArqueo.ToString(), popup.Valor.ToString());
-                         if (confirmacionArqueo.Exito)
-                         {
-                             ImprimirArqueo(rgis.IdArqueo.ToString());
-                         }
-                         else
-                         {
-                             MessageBox.Show(confirmacionArqueo.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            DialogResult oDialogResult = MessageBox.Show("¿Esta seguro que desea realizar el arqueo?", "Arqueo PPM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (oDialogResult == DialogResult.Yes)
+            {
+                RegistrarArqueoResponse rgis = cliente.RegistrarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), _DocumentoUsuario);
+                if (rgis.Exito)
+                {
+                    ArqueoPopUp popup = new ArqueoPopUp(rgis.IdArqueo.ToString());
+                    popup.ShowDialog();
+                    if (popup.DialogResult == DialogResult.OK)
+                    {
+                        ConfirmarArqueoResponse confirmacionArqueo = cliente.ConfirmarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), rgis.IdArqueo.ToString(), popup.Valor.ToString());
+                        if (confirmacionArqueo.Exito)
+                        {
+                            ImprimirArqueo(rgis.IdArqueo.ToString());
+                        }
+                        else
+                        {
+                            MessageBox.Show(confirmacionArqueo.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
 
-                             StringBuilder sb = new StringBuilder();
-                             sb.Append(confirmacionArqueo.ErrorMessage);
-                             File.AppendAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory,"log.txt"), sb.ToString());
-                             sb.Clear();
-                         }
-                     }
-                     else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
-                     {
-                         MessageBox.Show("Operacion cancelada por el usuario", "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                     }
-                     else
-                     {
-                         MessageBox.Show("Error al procesar ventana carga", "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                     }
-                 }
-                 else
-                 {
-                     MessageBox.Show(rgis.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                 }
-             }
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append(confirmacionArqueo.ErrorMessage);
+                            File.AppendAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt"), sb.ToString());
+                            sb.Clear();
+                        }
+                    }
+                    else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        MessageBox.Show("Operacion cancelada por el usuario", "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al procesar ventana carga", "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(rgis.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
         private void btn_Eventos_Click(object sender, EventArgs e)
         {
@@ -1055,21 +592,21 @@ namespace BlockAndPass.PPMWinform
                 string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
                 if (clave != string.Empty)
                 {
-                    CardResponse oCardResponse = GetCardInfo(clave);
-                    if (!oCardResponse.error)
+                    InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbCodigo.Text, cbEstacionamiento.SelectedValue.ToString());
+                    if (informacionTransaccion.Exito)
                     {
-                        CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.moduloEntrada);
+                        CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), informacionTransaccion.ModuloEntrada);
                         if (oCarrilxIdModuloResponse.Exito)
                         {
                             //yyyyMMddHHmmssce
 
-                            string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
+                            string sIdTransaccion = informacionTransaccion.IdTransaccion;
 
                             InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
 
                             if (oInfoTransaccionService.Exito)
                             {
-                                AplicarEventoResponse oAplicarEventoResponse = cliente.AplicarElEvento(cbEstacionamiento.SelectedValue.ToString(), sIdTransaccion, _DocumentoUsuario, oCardResponse.idCard, popup.Evento.ToString());
+                                AplicarEventoResponse oAplicarEventoResponse = cliente.AplicarElEvento(cbEstacionamiento.SelectedValue.ToString(), sIdTransaccion, _DocumentoUsuario, null, popup.Evento.ToString());
                                 if (oAplicarEventoResponse.Exito)
                                 {
                                     MessageBox.Show("Evento aplicado exitosamente", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1121,6 +658,7 @@ namespace BlockAndPass.PPMWinform
             Cargando(true);
             CrearIngreso popup = new CrearIngreso(cbSede.SelectedValue.ToString(), cbEstacionamiento.SelectedValue.ToString());
             popup.ShowDialog();
+
             if (popup.DialogResult == DialogResult.OK)
             {
                 Cargando(false);
@@ -1142,7 +680,7 @@ namespace BlockAndPass.PPMWinform
         private void btn_Casco_Click(object sender, EventArgs e)
         {
             Cargando(true);
-            CasilleroCasco popup = new CasilleroCasco(cbEstacionamiento.SelectedValue.ToString());
+            CasilleroCasco popup = new CasilleroCasco(cbEstacionamiento.SelectedValue.ToString(), tbIdTransaccion.Text);
             popup.ShowDialog();
             if (popup.DialogResult == DialogResult.OK)
             {
@@ -1159,9 +697,9 @@ namespace BlockAndPass.PPMWinform
                 Cargando(false);
                 MessageBox.Show("Error al procesar ventana crear tarifa", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
-            
-            
+
+
+
         }
         private void btn_Copia_Click(object sender, EventArgs e)
         {
@@ -1182,17 +720,18 @@ namespace BlockAndPass.PPMWinform
                 Cargando(false);
                 MessageBox.Show("Error al procesar ventana copia de factura", "Copia de factura PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            
+
         }
         #endregion
 
         #region Formulario
-        public PPM(string sDocumento, InfoPPMService oInfoPPMService)
+        public PPM(string sDocumento, string sCargo, InfoPPMService oInfoPPMService)
         {
             //ImprimirPagoNormal("2017051813485412");
-            
+
 
             _DocumentoUsuario = sDocumento;
+            _CargoUsuario = sCargo;
             Application.AddMessageFilter(this);
 
             controlsToMove.Add(this);
@@ -1205,16 +744,24 @@ namespace BlockAndPass.PPMWinform
             tmrHora.Interval = 1000;
             tmrHora.Tick += tmrHora_Tick;
             tmrHora.Start();
-            TmnCodigo.Start();
             panelPagar.Enabled = false;
+            btn_Copia.Enabled = true;
             panelTodo.Enabled = false;
             lblTiempoFuera.Text = string.Empty;
+
+            clickTimer = new System.Windows.Forms.Timer();
+            clickTimer.Interval = 5000; 
+            clickTimer.Tick += (s, e) =>
+            {
+                clickTimer.Stop(); 
+                tmrHora.Start(); 
+            };
 
             Cargando(true);
 
             CargarUsuario();
 
-            
+
             var dataSource = new List<Object>();
             dataSource.Add(new { Name = oInfoPPMService.Sede, Value = oInfoPPMService.IdSede });
 
@@ -1239,7 +786,8 @@ namespace BlockAndPass.PPMWinform
             this.cbPPM.DisplayMember = "Name";
             this.cbPPM.ValueMember = "Value";
             Cargando(false);
-            
+
+            tbCodigo.Focus();
 
         }
         private void Cargando(bool bCarga)
@@ -1253,6 +801,7 @@ namespace BlockAndPass.PPMWinform
             liquidacion = new LiquidacionService();
             tmrTimeOutPago.Stop();
             panelPagar.Enabled = false;
+            btn_Copia.Enabled = true;
             chbEstacionamiento.Checked = false;
             chbMensualidad.Checked = false;
             tbCambio.Text = "$0";
@@ -1266,6 +815,9 @@ namespace BlockAndPass.PPMWinform
             tbHoraPago.Text = string.Empty;
             tbCasillero.Text = string.Empty;
             tbCodigo.Text = string.Empty;
+            txtPlacaBuscar.Text = string.Empty;
+            ckMensualidadDocumento.Checked = false;
+            txtPlaca.Text = string.Empty;
         }
         private void CargarUsuario()
         {
@@ -1273,6 +825,8 @@ namespace BlockAndPass.PPMWinform
             if (response.Exito)
             {
                 tbUsuario.Text = response.Usuario;
+                documentoUsuario = response.Documento;
+                nombresUsuario = response.Nombres;
             }
             else
             {
@@ -1777,7 +1331,7 @@ namespace BlockAndPass.PPMWinform
 
         private void ImprimirTicketEntrada()
         {
-            InfoEntradaResponse oInfoFacturaEntradaResponse = cliente.ObtenerDatosFacturaEntrada();
+            InfoEntradaResponse oInfoFacturaEntradaResponse = cliente.ObtenerDatosFacturaEntrada(moduloEntrada);
             if (oInfoFacturaEntradaResponse.Exito)
             {
                 bool resultado = PrintTicketEntrada(oInfoFacturaEntradaResponse.LstItems.ToList());
@@ -1799,7 +1353,7 @@ namespace BlockAndPass.PPMWinform
 
         public bool PrintTicketEntrada(List<InfoItemsFacturaEntradaResponse> datos)
         {
-            
+
             bool bPrint = false;
 
             try
@@ -1967,7 +1521,7 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.Placa = item.Placa;
                 rowDatosFactura.Recibido = Convert.ToDouble(item.ValorRecibido);
                 rowDatosFactura.Resolucion = item.NumeroResolucion;
-                rowDatosFactura.Rut = "NIT 900.554.696 -8";
+                rowDatosFactura.Rut = "NIT 804003167 - 1";
                 rowDatosFactura.Telefono = item.Telefono;
                 rowDatosFactura.TotalFinal = total;
                 rowDatosFactura.Total = Convert.ToDouble(item.Total);
@@ -1977,6 +1531,7 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.Fecha2 = item.FechaEntrada;
                 rowDatosFactura.Vehiculo = item.TipoVehiculo;
                 rowDatosFactura.VigenciaFactura = item.Vigencia;
+                rowDatosFactura.NombreUsuario = nombresUsuario;
 
                 facturacion.TablaTicketPago.AddTablaTicketPagoRow(rowDatosFactura);
             }
@@ -2013,9 +1568,10 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.PlacaEntrada = item.PlacaEntrada;
                 rowDatosFactura.FechaEntrada = item.FechaEntrada;
                 rowDatosFactura.TipoVehiculo = item.TipoVehiculo;
-                rowDatosFactura.Rut = "NIT 900.554.696 -8";
-                rowDatosFactura.Nombre = "CENTRO COMERCIAL GRATAMIRA";
-                rowDatosFactura.Telefono = "6520587";
+                rowDatosFactura.Rut = "NIT 804003167 - 1";                
+                rowDatosFactura.Nombre = "EDIFICIO PLAZA CENTRAL PH";
+                rowDatosFactura.Telefono = "6700040";
+                rowDatosFactura.Direccion = "Cra 16 # 33-44 Edif. Plaza Central PH";
                 //rowDatosFactura.Informacion = "Esta infromacion esta quemada en el codigo, deberia obtenerse de algun lugar";
                 //rowDatosFactura.Modulo = item.Modulo;
                 //rowDatosFactura.Nombre = item.Nombre;
@@ -2116,7 +1672,7 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.Nombre = item.Nombre;
                 rowDatosFactura.NumeroFactura = item.NumeroFactura;
                 rowDatosFactura.Resolucion = item.NumeroResolucion;
-                rowDatosFactura.Rut = "NIT 900.554.696 -8"; 
+                rowDatosFactura.Rut = "NIT 800064936 - 5";
                 rowDatosFactura.Telefono = item.Telefono;
                 rowDatosFactura.TotalFinal = total;
                 rowDatosFactura.Total = Convert.ToDouble(item.Total);
@@ -2126,6 +1682,9 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.NombreAutorizacion = item.NombreAutorizacion;
                 rowDatosFactura.Documento = item.Documento;
                 rowDatosFactura.VigenciaFactura = item.Vigencia;
+                rowDatosFactura.NombreUsuario = nombresUsuario;
+                rowDatosFactura.NombreApellidos = item.NombreApellidos;
+                rowDatosFactura.Placa1 = item.Placa1;
 
                 //NEW FIELDS
                 rowDatosFactura.Nit = item.NombreEmpresa;
@@ -2287,15 +1846,1475 @@ namespace BlockAndPass.PPMWinform
         }
         #endregion
 
-        private void panelTodo_Paint(object sender, PaintEventArgs e)
+        #region Funciones
+        public void LeerInfo()
         {
+            //liquidacion = cliente.ConsultarValorPagar(true, true, 1, "0", "0EEEC6CB");
 
+            cnt = 0;
+            Cargando(true);
+            string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+            if (txtPlacaBuscar.Text != string.Empty)
+            {
+                CardResponse oCardResponse = GetCardInfo(clave);
+
+                InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorPlaca(txtPlacaBuscar.Text, cbEstacionamiento.SelectedValue.ToString());
+
+
+                //if (!oCardResponse.error)
+                //{
+                bool bContinuarLiquidacion = true;
+
+                #region Estacionamiento
+                if (informacionTransaccion.Exito)
+                {
+                    if (informacionTransaccion.IdTransaccion == string.Empty)
+                    {
+                        DialogResult result3 = MessageBox.Show("¿Desea crear una salida de autorizado? \n PRESIONE NO PARA CONTINUAR CON LA LIQUIDACION.", "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                        if (result3 == DialogResult.Yes)
+                        {
+
+                            DialogResult result4 = MessageBox.Show("¿Esta seguro que desea crear la salida para la placa: " + oCardResponse.placa, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if (result4 == DialogResult.Yes)
+                            {
+                                bContinuarLiquidacion = false;
+                                CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.moduloEntrada);
+                                if (oCarrilxIdModuloResponse.Exito)
+                                {
+                                    string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
+
+                                    CardResponse oCardResponseExit = new CardResponse();
+                                    oCardResponseExit = ExitCardAutho(clave, oCardResponse.idCard);
+                                    if (!oCardResponseExit.error)
+                                    {
+                                        CreaSalidaResponse resp = cliente.CrearSalida2(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.placa, sIdTransaccion, oCarrilxIdModuloResponse.Carril.ToString(), oCardResponse.moduloEntrada, oCardResponse.idCard);
+
+                                        if (resp.Exito)
+                                        {
+                                            MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            this.DialogResult = DialogResult.None;
+                                            MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Cargando(false);
+                                        MessageBox.Show(oCardResponseExit.errorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No fue posible encontrar el carril asociado al modulo.", "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+
+
+                    if (bContinuarLiquidacion)
+                    {
+                        CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), informacionTransaccion.ModuloEntrada.ToString());
+                        if (oCarrilxIdModuloResponse.Exito)
+                        {
+                            //yyyyMMddHHmmssce
+
+                            string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                            //tbIdTarjeta.Text = oCardResponse.idCard;
+                            InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+                            InfoTransaccionService lstInfo = cliente.ConsultarCascosxId(sIdTransaccion);
+
+                            //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
+                            if (oInfoTransaccionService.Exito)
+                            {
+                                if (oInfoTransaccionService.IdTransaccion != string.Empty)
+                                {
+                                    tbIdTransaccion.Text = oInfoTransaccionService.IdTransaccion;
+
+                                    tbPlaca.Text = informacionTransaccion.PlacaEntrada;
+
+                                    //if (oCardResponse.codeAutorizacion1 != 0)
+                                    //{
+                                    //    cliente.AplicarConvenios(oInfoTransaccionService.IdTransaccion, oCardResponse.codeAutorizacion1, oCardResponse.codeAutorizacion2, oCardResponse.codeAutorizacion3);
+                                    //}
+
+                                    DateTime dtDespues = DateTime.Now;
+                                    DateTime dtAntes = new DateTime();
+
+                                    //MessageBox.Show(oInfoTransaccionService.HoraTransaccion);
+
+                                    oInfoTransaccionService.HoraTransaccion = oInfoTransaccionService.HoraTransaccion.Replace("a. m.", "a.m.");
+                                    oInfoTransaccionService.HoraTransaccion = oInfoTransaccionService.HoraTransaccion.Replace("p. m.", "p.m.");
+
+                                    //try
+                                    //{
+                                    //    if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy hh':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //    {
+                                    //        if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "d'/'MM'/'yyyy hh':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //        {
+                                    //            if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy h':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //            {
+                                    //                if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "d'/'MM'/'yyyy h':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //                {
+                                    //                    if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy H':'mm':'ss", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //                    {
+                                    //                        dtAntes = DateTime.ParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy HH':'mm':'ss", CultureInfo.CurrentCulture);
+                                    //                    }
+                                    //                }
+                                    //            }
+                                    //        }
+                                    //    }
+                                    //}
+                                    //catch (Exception exe)
+                                    //{
+                                    //    MessageBox.Show("Tiempo de permanencia no disponible, continue con el pago e informe al desarrollador->" + exe.Message + " / " + oInfoTransaccionService.HoraTransaccion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //}
+                                    DateTime? ntes = Convert.ToDateTime(informacionTransaccion.FechaEntrada.ToString());
+                                    dtAntes = Convert.ToDateTime(ntes);
+
+
+                                    tbHoraIngreso.Text = dtAntes.ToString("dd'/'MM'/'yyyy HH':'mm':'ss");
+                                    tbHoraPago.Text = dtDespues.ToString("dd'/'MM'/'yyyy HH':'mm':'ss");
+
+                                    if (lstInfo.LstTransac.Length == 1)
+                                    {
+                                        tbCasillero.Text = lstInfo.LstTransac[0].Casillero;
+                                    }
+                                    else if (lstInfo.LstTransac.Length == 2)
+                                    {
+                                        tbCasillero.Text = lstInfo.LstTransac[0].Casillero + " y " + lstInfo.LstTransac[1].Casillero;
+                                    }
+                                    else
+                                    {
+                                        tbCasillero.Text = string.Empty;
+                                    }
+
+                                    TimeSpan ts = dtDespues - dtAntes;
+                                    tbTiempo.Text = Convert.ToInt32(ts.TotalMinutes).ToString() + " minutos";
+
+                                    //int tipoVehiculo = 0;
+                                    //if (oCardResponse.tipoVehiculo == "AUTOMOBILE")
+                                    //{
+                                    //    tipoVehiculo = 1;
+                                    //}
+                                    //else if (oCardResponse.tipoVehiculo == "MOTORCYCLE")
+                                    //{
+                                    //    tipoVehiculo = 2;
+                                    //}
+                                    //else if (oCardResponse.tipoVehiculo == "BICYCLE")
+                                    //{
+                                    //    tipoVehiculo = 3;
+                                    //}
+
+                                    liquidacion = cliente.ConsultarValorPagar(false, false, Convert.ToInt32(informacionTransaccion.TipoVehiculo), oInfoTransaccionService.IdTransaccion, null);
+                                    double sumTotalPagar = 0;
+                                    #region Estacionamiento
+                                    if (liquidacion.Exito)
+                                    {
+                                        if (liquidacion.LstLiquidacion.Length > 0)
+                                        {
+                                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                            {
+                                                sumTotalPagar += item.Total;
+                                            }
+
+                                            tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                            tbCambio.Text = "$0";
+                                            tbRecibido.Text = "0";
+
+
+                                            Cargando(false);
+                                            panelPagar.Enabled = true;
+                                            tmrTimeOutPago.Start();
+
+                                            chbEstacionamiento.Checked = true;
+                                            chbMensualidad.Checked = false;
+
+                                            lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+
+                                        }
+                                        else
+                                        {
+                                            //MessageBox.Show("No obtiene valor a pagar idTransaccion = " + oInfoTransaccionService.IdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            liquidacion = cliente.ConsultarValorPagar(true, false, 1, "0", null);
+                                            sumTotalPagar = 0;
+                                            if (liquidacion.Exito)
+                                            {
+                                                foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                                {
+                                                    sumTotalPagar += item.Total;
+                                                }
+
+                                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                                tbCambio.Text = "$0";
+                                                tbRecibido.Text = "0";
+
+                                                Cargando(false);
+                                                panelPagar.Enabled = true;
+                                                tmrTimeOutPago.Start();
+
+                                                chbEstacionamiento.Checked = false;
+                                                chbMensualidad.Checked = true;
+
+                                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                                            }
+                                            else
+                                            {
+                                                Cargando(false);
+                                                MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                    }
+                                    #endregion
+                                    #region Mensualidad
+                                    else
+                                    {
+                                        //MessageBox.Show("No obtiene valor a pagar idTransaccion = " + oInfoTransaccionService.IdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
+                                        sumTotalPagar = 0;
+                                        if (liquidacion.Exito)
+                                        {
+                                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                            {
+                                                sumTotalPagar += item.Total;
+                                            }
+
+                                            if (sumTotalPagar > 0)
+                                            {
+                                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                                tbCambio.Text = "$0";
+                                                tbRecibido.Text = "0";
+
+                                                Cargando(false);
+                                                panelPagar.Enabled = true;
+                                                tmrTimeOutPago.Start();
+
+                                                chbEstacionamiento.Checked = false;
+                                                chbMensualidad.Checked = true;
+
+                                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                                            }
+                                            else
+                                            {
+                                                DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                                if (result5 == DialogResult.Yes)
+                                                {
+                                                    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                                                    if (resp.Exito)
+                                                    {
+                                                        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    }
+                                                    else
+                                                    {
+                                                        this.DialogResult = DialogResult.None;
+                                                        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Cargando(false);
+                                                }
+                                                Cargando(false);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Cargando(false);
+                                            MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    #endregion
+                                }
+                                else
+                                {
+                                    Cargando(false);
+                                    MessageBox.Show("No obtiene infromacion de la transaccion", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                Cargando(false);
+                                MessageBox.Show(oInfoTransaccionService.ErrorMessage + ": " + sIdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        //Camino de salida autorizado
+                    }
+                }
+                #endregion
+
+
+                #region Mensualidad
+                else
+                {
+                    //tbIdTarjeta.Text = oCardResponse.idCard;
+                    //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", "0EEEC6CB");
+                    //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
+                    liquidacion = cliente.ConsultarValorPagar(true, false, 1, informacionTransaccion.IdTransaccion, tbPlaca.Text);
+
+                    double sumTotalPagar = 0;
+                    if (liquidacion.Exito)
+                    {
+                        foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                        {
+                            sumTotalPagar += item.Total;
+                        }
+
+                        if (sumTotalPagar > 0)
+                        {
+                            tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                            tbCambio.Text = "$0";
+                            tbRecibido.Text = "0";
+
+                            Cargando(false);
+                            panelPagar.Enabled = true;
+                            tmrTimeOutPago.Start();
+
+                            chbEstacionamiento.Checked = false;
+                            chbMensualidad.Checked = true;
+
+                            lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                        }
+                        else
+                        {
+                            DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if (result5 == DialogResult.Yes)
+                            {
+                                ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                                if (resp.Exito)
+                                {
+                                    MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    this.DialogResult = DialogResult.None;
+                                    MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                Cargando(false);
+                            }
+                            else
+                            {
+                                Cargando(false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                #endregion
+            }
+            else if (tbCodigo.Text != string.Empty && txtPlacaBuscar.Text == string.Empty)
+            {
+                CardResponse oCardResponse = GetCardInfo(clave);
+
+                InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbCodigo.Text, cbEstacionamiento.SelectedValue.ToString());
+
+
+                //if (!oCardResponse.error)
+                //{
+                bool bContinuarLiquidacion = true;
+
+                #region Estacionamiento
+                if (informacionTransaccion.Exito)
+                {
+                    if (informacionTransaccion.IdTransaccion == string.Empty)
+                    {
+                        DialogResult result3 = MessageBox.Show("¿Desea crear una salida de autorizado? \n PRESIONE NO PARA CONTINUAR CON LA LIQUIDACION.", "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                        if (result3 == DialogResult.Yes)
+                        {
+
+                            DialogResult result4 = MessageBox.Show("¿Esta seguro que desea crear la salida para la placa: " + oCardResponse.placa, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if (result4 == DialogResult.Yes)
+                            {
+                                bContinuarLiquidacion = false;
+                                CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.moduloEntrada);
+                                if (oCarrilxIdModuloResponse.Exito)
+                                {
+                                    string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
+
+                                    CardResponse oCardResponseExit = new CardResponse();
+                                    oCardResponseExit = ExitCardAutho(clave, oCardResponse.idCard);
+                                    if (!oCardResponseExit.error)
+                                    {
+                                        CreaSalidaResponse resp = cliente.CrearSalida2(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.placa, sIdTransaccion, oCarrilxIdModuloResponse.Carril.ToString(), oCardResponse.moduloEntrada, oCardResponse.idCard);
+
+                                        if (resp.Exito)
+                                        {
+                                            MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            this.DialogResult = DialogResult.None;
+                                            MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Cargando(false);
+                                        MessageBox.Show(oCardResponseExit.errorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No fue posible encontrar el carril asociado al modulo.", "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+
+
+                    if (bContinuarLiquidacion)
+                    {
+                        CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), informacionTransaccion.ModuloEntrada.ToString());
+                        if (oCarrilxIdModuloResponse.Exito)
+                        {
+                            //yyyyMMddHHmmssce
+
+                            string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                            //tbIdTarjeta.Text = oCardResponse.idCard;
+                            InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+                            InfoTransaccionService lstInfo = cliente.ConsultarCascosxId(sIdTransaccion);
+
+                            //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
+                            if (oInfoTransaccionService.Exito)
+                            {
+                                if (oInfoTransaccionService.IdTransaccion != string.Empty)
+                                {
+                                    tbIdTransaccion.Text = oInfoTransaccionService.IdTransaccion;
+
+                                    tbPlaca.Text = informacionTransaccion.PlacaEntrada;
+
+                                    //if (oCardResponse.codeAutorizacion1 != 0)
+                                    //{
+                                    //    cliente.AplicarConvenios(oInfoTransaccionService.IdTransaccion, oCardResponse.codeAutorizacion1, oCardResponse.codeAutorizacion2, oCardResponse.codeAutorizacion3);
+                                    //}
+
+                                    DateTime dtDespues = DateTime.Now;
+                                    DateTime dtAntes = new DateTime();
+
+                                    //MessageBox.Show(oInfoTransaccionService.HoraTransaccion);
+
+                                    oInfoTransaccionService.HoraTransaccion = oInfoTransaccionService.HoraTransaccion.Replace("a. m.", "a.m.");
+                                    oInfoTransaccionService.HoraTransaccion = oInfoTransaccionService.HoraTransaccion.Replace("p. m.", "p.m.");
+
+                                    //try
+                                    //{
+                                    //    if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy hh':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //    {
+                                    //        if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "d'/'MM'/'yyyy hh':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //        {
+                                    //            if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy h':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //            {
+                                    //                if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "d'/'MM'/'yyyy h':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //                {
+                                    //                    if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy H':'mm':'ss", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //                    {
+                                    //                        dtAntes = DateTime.ParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy HH':'mm':'ss", CultureInfo.CurrentCulture);
+                                    //                    }
+                                    //                }
+                                    //            }
+                                    //        }
+                                    //    }
+                                    //}
+                                    //catch (Exception exe)
+                                    //{
+                                    //    MessageBox.Show("Tiempo de permanencia no disponible, continue con el pago e informe al desarrollador->" + exe.Message + " / " + oInfoTransaccionService.HoraTransaccion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //}
+                                    DateTime? ntes = Convert.ToDateTime(informacionTransaccion.FechaEntrada.ToString());
+                                    dtAntes = Convert.ToDateTime(ntes);
+
+
+                                    tbHoraIngreso.Text = dtAntes.ToString("dd'/'MM'/'yyyy HH':'mm':'ss");
+                                    tbHoraPago.Text = dtDespues.ToString("dd'/'MM'/'yyyy HH':'mm':'ss");
+
+                                    if (lstInfo.LstTransac.Length == 1)
+                                    {
+                                        tbCasillero.Text = lstInfo.LstTransac[0].Casillero;
+                                    }
+                                    else if (lstInfo.LstTransac.Length == 2)
+                                    {
+                                        tbCasillero.Text = lstInfo.LstTransac[0].Casillero + " y " + lstInfo.LstTransac[1].Casillero;
+                                    }
+                                    else
+                                    {
+                                        tbCasillero.Text = string.Empty;
+                                    }
+
+                                    TimeSpan ts = dtDespues - dtAntes;
+                                    tbTiempo.Text = Convert.ToInt32(ts.TotalMinutes).ToString() + " minutos";
+
+                                    //int tipoVehiculo = 0;
+                                    //if (oCardResponse.tipoVehiculo == "AUTOMOBILE")
+                                    //{
+                                    //    tipoVehiculo = 1;
+                                    //}
+                                    //else if (oCardResponse.tipoVehiculo == "MOTORCYCLE")
+                                    //{
+                                    //    tipoVehiculo = 2;
+                                    //}
+                                    //else if (oCardResponse.tipoVehiculo == "BICYCLE")
+                                    //{
+                                    //    tipoVehiculo = 3;
+                                    //}
+
+                                    liquidacion = cliente.ConsultarValorPagar(false, false, Convert.ToInt32(informacionTransaccion.TipoVehiculo), oInfoTransaccionService.IdTransaccion, null);
+                                    double sumTotalPagar = 0;
+                                    #region Estacionamiento
+                                    if (liquidacion.Exito)
+                                    {
+                                        if (liquidacion.LstLiquidacion.Length > 0)
+                                        {
+                                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                            {
+                                                sumTotalPagar += item.Total;
+                                            }
+
+                                            tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                            tbCambio.Text = "$0";
+                                            tbRecibido.Text = "0";
+
+
+                                            Cargando(false);
+                                            panelPagar.Enabled = true;
+                                            tmrTimeOutPago.Start();
+
+                                            chbEstacionamiento.Checked = true;
+                                            chbMensualidad.Checked = false;
+
+                                            lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+
+                                        }
+                                        else
+                                        {
+                                            //MessageBox.Show("No obtiene valor a pagar idTransaccion = " + oInfoTransaccionService.IdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            liquidacion = cliente.ConsultarValorPagar(true, false, 1, "0", null);
+                                            sumTotalPagar = 0;
+                                            if (liquidacion.Exito)
+                                            {
+                                                foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                                {
+                                                    sumTotalPagar += item.Total;
+                                                }
+
+                                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                                tbCambio.Text = "$0";
+                                                tbRecibido.Text = "0";
+
+                                                Cargando(false);
+                                                panelPagar.Enabled = true;
+                                                tmrTimeOutPago.Start();
+
+                                                chbEstacionamiento.Checked = false;
+                                                chbMensualidad.Checked = true;
+
+                                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                                            }
+                                            else
+                                            {
+                                                Cargando(false);
+                                                MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                    }
+                                    #endregion
+                                    #region Mensualidad
+                                    else
+                                    {
+                                        //MessageBox.Show("No obtiene valor a pagar idTransaccion = " + oInfoTransaccionService.IdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
+                                        sumTotalPagar = 0;
+                                        if (liquidacion.Exito)
+                                        {
+                                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                            {
+                                                sumTotalPagar += item.Total;
+                                            }
+
+                                            if (sumTotalPagar > 0)
+                                            {
+                                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                                tbCambio.Text = "$0";
+                                                tbRecibido.Text = "0";
+
+                                                Cargando(false);
+                                                panelPagar.Enabled = true;
+                                                tmrTimeOutPago.Start();
+
+                                                chbEstacionamiento.Checked = false;
+                                                chbMensualidad.Checked = true;
+
+                                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                                            }
+                                            else
+                                            {
+                                                DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                                if (result5 == DialogResult.Yes)
+                                                {
+                                                    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                                                    if (resp.Exito)
+                                                    {
+                                                        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    }
+                                                    else
+                                                    {
+                                                        this.DialogResult = DialogResult.None;
+                                                        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Cargando(false);
+                                                }
+                                                Cargando(false);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Cargando(false);
+                                            MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    #endregion
+                                }
+                                else
+                                {
+                                    Cargando(false);
+                                    MessageBox.Show("No obtiene infromacion de la transaccion", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                Cargando(false);
+                                MessageBox.Show(oInfoTransaccionService.ErrorMessage + ": " + sIdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        //Camino de salida autorizado
+                    }
+                }
+                #endregion
+
+
+                #region Mensualidad
+                else
+                {
+                    //tbIdTarjeta.Text = oCardResponse.idCard;
+                    //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", "0EEEC6CB");
+                    //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
+                    liquidacion = cliente.ConsultarValorPagar(true, false, 1, informacionTransaccion.IdTransaccion, tbPlaca.Text);
+
+                    double sumTotalPagar = 0;
+                    if (liquidacion.Exito)
+                    {
+                        foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                        {
+                            sumTotalPagar += item.Total;
+                        }
+
+                        if (sumTotalPagar > 0)
+                        {
+                            tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                            tbCambio.Text = "$0";
+                            tbRecibido.Text = "0";
+
+                            Cargando(false);
+                            panelPagar.Enabled = true;
+                            tmrTimeOutPago.Start();
+
+                            chbEstacionamiento.Checked = false;
+                            chbMensualidad.Checked = true;
+
+                            lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                        }
+                        else
+                        {
+                            DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if (result5 == DialogResult.Yes)
+                            {
+                                ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                                if (resp.Exito)
+                                {
+                                    MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    this.DialogResult = DialogResult.None;
+                                    MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                Cargando(false);
+                            }
+                            else
+                            {
+                                Cargando(false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        tbCodigo.Text = "";
+                    }
+                }
+                #endregion
+
+            }
+            else
+            {
+                if (ckMensualidadDocumento.Checked == true)
+                {
+                    ConsultarIdTarjetaPlacaResponse Documento = cliente.ConsultarIdTarjetaPorPlaca(txtPlaca.Text);
+                    if (Documento.Exito)
+                    {
+                        string documentoAutorizado = Documento.IdTarjetaDescripcion;
+                        //tbIdTarjeta.Text = IdTarjeta.IdTarjetaDescripcion;
+                        //oCardResponse.idCard = IdTarjeta.IdTarjetaDescripcion;
+                        liquidacion = cliente.ConsultarValorPagar(true, false, 1, documentoAutorizado, txtPlaca.Text);
+                        double sumTotalPagar = 0;
+                        if (liquidacion.Exito)
+                        {
+                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                            {
+                                sumTotalPagar += item.Total;
+                            }
+
+                            if (sumTotalPagar > 0)
+                            {
+                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                tbCambio.Text = "$0";
+                                tbRecibido.Text = "0";
+
+                                Cargando(false);
+                                panelPagar.Enabled = true;
+                                tmrTimeOutPago.Start();
+
+                                chbEstacionamiento.Checked = false;
+                                chbMensualidad.Checked = true;
+
+                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                            }
+                            else
+                            {
+                                //DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                //if (result5 == DialogResult.Yes)
+                                //{
+                                //    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                                //    if (resp.Exito)
+                                //    {
+                                //        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //    }
+                                //    else
+                                //    {
+                                //        this.DialogResult = DialogResult.None;
+                                //        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //    }
+                                //    Cargando(false);
+                                //}
+                                //else
+                                //{
+                                //    Cargando(false);
+                                //}
+
+                                Cargando(false);
+                                MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("No fue posible obtener el valor de la mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show("La placa no pertenece a un autorizado", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+
+
+                }
+                else if (ckMensualidadDocumento.Checked == false && tbCodigo.Text != string.Empty)
+                {
+                    tbIdTarjeta.Text = oCardResponse.idCard;
+                    //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", "0EEEC6CB");
+                    liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, tbIdTarjeta.Text, oCardResponse.idCard);
+                    double sumTotalPagar = 0;
+                    if (liquidacion.Exito)
+                    {
+                        foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                        {
+                            sumTotalPagar += item.Total;
+                        }
+
+                        if (sumTotalPagar > 0)
+                        {
+                            tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                            tbCambio.Text = "$0";
+                            tbRecibido.Text = "0";
+
+                            Cargando(false);
+                            panelPagar.Enabled = true;
+                            tmrTimeOutPago.Start();
+
+                            chbEstacionamiento.Checked = false;
+                            chbMensualidad.Checked = true;
+
+                            lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                        }
+                        else
+                        {
+                            //DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            //if (result5 == DialogResult.Yes)
+                            //{
+                            //    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                            //    if (resp.Exito)
+                            //    {
+                            //        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //    }
+                            //    else
+                            //    {
+                            //        this.DialogResult = DialogResult.None;
+                            //        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //    }
+                            //    Cargando(false);
+                            //}
+                            //else
+                            //{
+                            //    Cargando(false);
+                            //}                                
+                            Cargando(false);
+                            MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    
+                    DialogResult result3 = MessageBox.Show("No fue posible leer la información, ¿Desea registrar una salida para un autorizado?", "Leer PPM", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    if (result3 == DialogResult.Yes)
+                    {
+                        CrearSalida popup = new CrearSalida(cbEstacionamiento.SelectedValue.ToString());
+                        popup.ShowDialog();
+                        if (popup.DialogResult == DialogResult.OK)
+                        {
+                            Cargando(false);
+                            MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                        {
+                            Cargando(false);
+                            MessageBox.Show("Operacion cancelada por el usuario", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("Error al procesar ventana crear salida", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        //MessageBox.Show(oCardResponse.errorMessage, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            //}
+
+
+            //else
+            //{
+            //    Cargando(false);
+            //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
 
-        private void tbIdTransaccion_TextChanged(object sender, EventArgs e)
+        public void LeerInfoPorPlaca()
         {
+            //liquidacion = cliente.ConsultarValorPagar(true, true, 1, "0", "0EEEC6CB");
 
+            cnt = 0;
+            Cargando(true);
+            string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+            if (txtPlacaBuscar.Text != string.Empty)
+            {
+                CardResponse oCardResponse = GetCardInfo(clave);
+
+                InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorPlaca(txtPlacaBuscar.Text, cbEstacionamiento.SelectedValue.ToString());
+
+
+                //if (!oCardResponse.error)
+                //{
+                bool bContinuarLiquidacion = true;
+
+                #region Estacionamiento
+                if (informacionTransaccion.Exito)
+                {
+                    if (informacionTransaccion.IdTransaccion == string.Empty)
+                    {
+                        DialogResult result3 = MessageBox.Show("¿Desea crear una salida de autorizado? \n PRESIONE NO PARA CONTINUAR CON LA LIQUIDACION.", "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                        if (result3 == DialogResult.Yes)
+                        {
+
+                            DialogResult result4 = MessageBox.Show("¿Esta seguro que desea crear la salida para la placa: " + oCardResponse.placa, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if (result4 == DialogResult.Yes)
+                            {
+                                bContinuarLiquidacion = false;
+                                CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.moduloEntrada);
+                                if (oCarrilxIdModuloResponse.Exito)
+                                {
+                                    string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
+
+                                    CardResponse oCardResponseExit = new CardResponse();
+                                    oCardResponseExit = ExitCardAutho(clave, oCardResponse.idCard);
+                                    if (!oCardResponseExit.error)
+                                    {
+                                        CreaSalidaResponse resp = cliente.CrearSalida2(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.placa, sIdTransaccion, oCarrilxIdModuloResponse.Carril.ToString(), oCardResponse.moduloEntrada, oCardResponse.idCard);
+
+                                        if (resp.Exito)
+                                        {
+                                            MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        }
+                                        else
+                                        {
+                                            this.DialogResult = DialogResult.None;
+                                            MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    else
+                                    {
+                                        Cargando(false);
+                                        MessageBox.Show(oCardResponseExit.errorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No fue posible encontrar el carril asociado al modulo.", "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                        }
+                    }
+
+
+                    if (bContinuarLiquidacion)
+                    {
+                        CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), informacionTransaccion.ModuloEntrada.ToString());
+                        if (oCarrilxIdModuloResponse.Exito)
+                        {
+                            //yyyyMMddHHmmssce
+
+                            string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                            //tbIdTarjeta.Text = oCardResponse.idCard;
+                            InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+                            InfoTransaccionService lstInfo = cliente.ConsultarCascosxId(sIdTransaccion);
+
+                            //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
+                            if (oInfoTransaccionService.Exito)
+                            {
+                                if (oInfoTransaccionService.IdTransaccion != string.Empty)
+                                {
+                                    tbIdTransaccion.Text = oInfoTransaccionService.IdTransaccion;
+
+                                    tbPlaca.Text = informacionTransaccion.PlacaEntrada;
+
+                                    //if (oCardResponse.codeAutorizacion1 != 0)
+                                    //{
+                                    //    cliente.AplicarConvenios(oInfoTransaccionService.IdTransaccion, oCardResponse.codeAutorizacion1, oCardResponse.codeAutorizacion2, oCardResponse.codeAutorizacion3);
+                                    //}
+
+                                    DateTime dtDespues = DateTime.Now;
+                                    DateTime dtAntes = new DateTime();
+
+                                    //MessageBox.Show(oInfoTransaccionService.HoraTransaccion);
+
+                                    oInfoTransaccionService.HoraTransaccion = oInfoTransaccionService.HoraTransaccion.Replace("a. m.", "a.m.");
+                                    oInfoTransaccionService.HoraTransaccion = oInfoTransaccionService.HoraTransaccion.Replace("p. m.", "p.m.");
+
+                                    //try
+                                    //{
+                                    //    if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy hh':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //    {
+                                    //        if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "d'/'MM'/'yyyy hh':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //        {
+                                    //            if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy h':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //            {
+                                    //                if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "d'/'MM'/'yyyy h':'mm':'ss tt", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //                {
+                                    //                    if (!DateTime.TryParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy H':'mm':'ss", CultureInfo.CurrentCulture, DateTimeStyles.None, out dtAntes))
+                                    //                    {
+                                    //                        dtAntes = DateTime.ParseExact(oInfoTransaccionService.HoraTransaccion, "dd'/'MM'/'yyyy HH':'mm':'ss", CultureInfo.CurrentCulture);
+                                    //                    }
+                                    //                }
+                                    //            }
+                                    //        }
+                                    //    }
+                                    //}
+                                    //catch (Exception exe)
+                                    //{
+                                    //    MessageBox.Show("Tiempo de permanencia no disponible, continue con el pago e informe al desarrollador->" + exe.Message + " / " + oInfoTransaccionService.HoraTransaccion, "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //}
+                                    DateTime? ntes = Convert.ToDateTime(informacionTransaccion.FechaEntrada.ToString());
+                                    dtAntes = Convert.ToDateTime(ntes);
+
+
+                                    tbHoraIngreso.Text = dtAntes.ToString("dd'/'MM'/'yyyy HH':'mm':'ss");
+                                    tbHoraPago.Text = dtDespues.ToString("dd'/'MM'/'yyyy HH':'mm':'ss");
+
+                                    if (lstInfo.LstTransac.Length == 1)
+                                    {
+                                        tbCasillero.Text = lstInfo.LstTransac[0].Casillero;
+                                    }
+                                    else if (lstInfo.LstTransac.Length == 2)
+                                    {
+                                        tbCasillero.Text = lstInfo.LstTransac[0].Casillero + " y " + lstInfo.LstTransac[1].Casillero;
+                                    }
+                                    else
+                                    {
+                                        tbCasillero.Text = string.Empty;
+                                    }
+
+                                    TimeSpan ts = dtDespues - dtAntes;
+                                    tbTiempo.Text = Convert.ToInt32(ts.TotalMinutes).ToString() + " minutos";
+
+                                    //int tipoVehiculo = 0;
+                                    //if (oCardResponse.tipoVehiculo == "AUTOMOBILE")
+                                    //{
+                                    //    tipoVehiculo = 1;
+                                    //}
+                                    //else if (oCardResponse.tipoVehiculo == "MOTORCYCLE")
+                                    //{
+                                    //    tipoVehiculo = 2;
+                                    //}
+                                    //else if (oCardResponse.tipoVehiculo == "BICYCLE")
+                                    //{
+                                    //    tipoVehiculo = 3;
+                                    //}
+
+                                    liquidacion = cliente.ConsultarValorPagar(false, false, Convert.ToInt32(informacionTransaccion.TipoVehiculo), oInfoTransaccionService.IdTransaccion, null);
+                                    double sumTotalPagar = 0;
+                                    #region Estacionamiento
+                                    if (liquidacion.Exito)
+                                    {
+                                        if (liquidacion.LstLiquidacion.Length > 0)
+                                        {
+                                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                            {
+                                                sumTotalPagar += item.Total;
+                                            }
+
+                                            tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                            tbCambio.Text = "$0";
+                                            tbRecibido.Text = "0";
+
+
+                                            Cargando(false);
+                                            panelPagar.Enabled = true;
+                                            tmrTimeOutPago.Start();
+
+                                            chbEstacionamiento.Checked = true;
+                                            chbMensualidad.Checked = false;
+
+                                            lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+
+                                        }
+                                        else
+                                        {
+                                            //MessageBox.Show("No obtiene valor a pagar idTransaccion = " + oInfoTransaccionService.IdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            liquidacion = cliente.ConsultarValorPagar(true, false, 1, "0", null);
+                                            sumTotalPagar = 0;
+                                            if (liquidacion.Exito)
+                                            {
+                                                foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                                {
+                                                    sumTotalPagar += item.Total;
+                                                }
+
+                                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                                tbCambio.Text = "$0";
+                                                tbRecibido.Text = "0";
+
+                                                Cargando(false);
+                                                panelPagar.Enabled = true;
+                                                tmrTimeOutPago.Start();
+
+                                                chbEstacionamiento.Checked = false;
+                                                chbMensualidad.Checked = true;
+
+                                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                                            }
+                                            else
+                                            {
+                                                Cargando(false);
+                                                MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                tbCodigo.Text = "";
+                                            }
+                                        }
+                                    }
+                                    #endregion
+                                    #region Mensualidad
+                                    else
+                                    {
+                                        //MessageBox.Show("No obtiene valor a pagar idTransaccion = " + oInfoTransaccionService.IdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
+                                        sumTotalPagar = 0;
+                                        if (liquidacion.Exito)
+                                        {
+                                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                                            {
+                                                sumTotalPagar += item.Total;
+                                            }
+
+                                            if (sumTotalPagar > 0)
+                                            {
+                                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                                tbCambio.Text = "$0";
+                                                tbRecibido.Text = "0";
+
+                                                Cargando(false);
+                                                panelPagar.Enabled = true;
+                                                tmrTimeOutPago.Start();
+
+                                                chbEstacionamiento.Checked = false;
+                                                chbMensualidad.Checked = true;
+
+                                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                                            }
+                                            else
+                                            {
+                                                DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                                if (result5 == DialogResult.Yes)
+                                                {
+                                                    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                                                    if (resp.Exito)
+                                                    {
+                                                        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    }
+                                                    else
+                                                    {
+                                                        this.DialogResult = DialogResult.None;
+                                                        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    }
+                                                }
+                                                else
+                                                {
+                                                    Cargando(false);
+                                                }
+                                                Cargando(false);
+                                            }
+                                        }
+                                        else
+                                        {
+                                            Cargando(false);
+                                            MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    }
+                                    #endregion
+                                }
+                                else
+                                {
+                                    Cargando(false);
+                                    MessageBox.Show("No obtiene infromacion de la transaccion", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                Cargando(false);
+                                MessageBox.Show(oInfoTransaccionService.ErrorMessage + ": " + sIdTransaccion, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        //Camino de salida autorizado
+                    }
+                }
+                #endregion
+
+
+                #region Mensualidad
+                else
+                {
+                    //tbIdTarjeta.Text = oCardResponse.idCard;
+                    //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", "0EEEC6CB");
+                    //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", oCardResponse.idCard);
+                    liquidacion = cliente.ConsultarValorPagar(true, false, 1, informacionTransaccion.IdTransaccion, tbPlaca.Text);
+
+                    double sumTotalPagar = 0;
+                    if (liquidacion.Exito)
+                    {
+                        foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                        {
+                            sumTotalPagar += item.Total;
+                        }
+
+                        if (sumTotalPagar > 0)
+                        {
+                            tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                            tbCambio.Text = "$0";
+                            tbRecibido.Text = "0";
+
+                            Cargando(false);
+                            panelPagar.Enabled = true;
+                            tmrTimeOutPago.Start();
+
+                            chbEstacionamiento.Checked = false;
+                            chbMensualidad.Checked = true;
+
+                            lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                        }
+                        else
+                        {
+                            DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if (result5 == DialogResult.Yes)
+                            {
+                                ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                                if (resp.Exito)
+                                {
+                                    MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                }
+                                else
+                                {
+                                    this.DialogResult = DialogResult.None;
+                                    MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                                Cargando(false);
+                            }
+                            else
+                            {
+                                Cargando(false);
+                            }
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show("No obtiene valor a pagar mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                #endregion
+            }
+            else
+            {
+                if (ckMensualidadDocumento.Checked == true)
+                {
+                    ConsultarIdTarjetaPlacaResponse Documento = cliente.ConsultarIdTarjetaPorPlaca(txtPlaca.Text);
+                    if (Documento.Exito)
+                    {
+                        string documentoAutorizado = Documento.IdTarjetaDescripcion;
+                        //tbIdTarjeta.Text = IdTarjeta.IdTarjetaDescripcion;
+                        //oCardResponse.idCard = IdTarjeta.IdTarjetaDescripcion;
+                        liquidacion = cliente.ConsultarValorPagar(true, false, 1, documentoAutorizado, txtPlaca.Text);
+                        double sumTotalPagar = 0;
+                        if (liquidacion.Exito)
+                        {
+                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                            {
+                                sumTotalPagar += item.Total;
+                            }
+
+                            if (sumTotalPagar > 0)
+                            {
+                                tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                                tbCambio.Text = "$0";
+                                tbRecibido.Text = "0";
+
+                                Cargando(false);
+                                panelPagar.Enabled = true;
+                                tmrTimeOutPago.Start();
+
+                                chbEstacionamiento.Checked = false;
+                                chbMensualidad.Checked = true;
+
+                                lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                            }
+                            else
+                            {
+                                //DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                //if (result5 == DialogResult.Yes)
+                                //{
+                                //    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                                //    if (resp.Exito)
+                                //    {
+                                //        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                //    }
+                                //    else
+                                //    {
+                                //        this.DialogResult = DialogResult.None;
+                                //        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                //    }
+                                //    Cargando(false);
+                                //}
+                                //else
+                                //{
+                                //    Cargando(false);
+                                //}
+
+                                Cargando(false);
+                                MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("No fue posible obtener el valor de la mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show("La placa no pertenece a un autorizado", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+
+
+
+                }
+                else if (ckMensualidadDocumento.Checked == false && tbCodigo.Text != string.Empty)
+                {
+                    tbIdTarjeta.Text = oCardResponse.idCard;
+                    //liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, "0", "0EEEC6CB");
+                    liquidacion = cliente.ConsultarValorPagar(true, oCardResponse.reposicion, 1, tbIdTarjeta.Text, oCardResponse.idCard);
+                    double sumTotalPagar = 0;
+                    if (liquidacion.Exito)
+                    {
+                        foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                        {
+                            sumTotalPagar += item.Total;
+                        }
+
+                        if (sumTotalPagar > 0)
+                        {
+                            tbValorPagar.Text = "$" + string.Format("{0:#,##0.##}", sumTotalPagar);
+                            tbCambio.Text = "$0";
+                            tbRecibido.Text = "0";
+
+                            Cargando(false);
+                            panelPagar.Enabled = true;
+                            tmrTimeOutPago.Start();
+
+                            chbEstacionamiento.Checked = false;
+                            chbMensualidad.Checked = true;
+
+                            lblTiempoFuera.Text = "Usted dispone de 40 segundos para pagar.";
+                        }
+                        else
+                        {
+                            //DialogResult result5 = MessageBox.Show("¿El valor a pagar es = $0, desea renovar la mensualidad?", "Renovar Mensualidad", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            //if (result5 == DialogResult.Yes)
+                            //{
+                            //    ActualizaVigenciaAutorizadoResponse resp = cliente.ActualizarVigenciaAutorizado(oCardResponse.idCard);
+
+                            //    if (resp.Exito)
+                            //    {
+                            //        MessageBox.Show("Renovacion exitosa.", "Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //    }
+                            //    else
+                            //    {
+                            //        this.DialogResult = DialogResult.None;
+                            //        MessageBox.Show(resp.ErrorMessage, "Error Renovar Mensualidad", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //    }
+                            //    Cargando(false);
+                            //}
+                            //else
+                            //{
+                            //    Cargando(false);
+                            //}                                
+                            Cargando(false);
+                            MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show("Consulte vencimiento de mensualidad", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    DialogResult result3 = MessageBox.Show("No fue posible leer la tarjeta, ¿Desea registrar una salida SIN tarjeta?", "Leer PPM", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    if (result3 == DialogResult.Yes)
+                    {
+                        CrearSalida popup = new CrearSalida(cbEstacionamiento.SelectedValue.ToString());
+                        popup.ShowDialog();
+                        if (popup.DialogResult == DialogResult.OK)
+                        {
+                            Cargando(false);
+                            MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                        {
+                            Cargando(false);
+                            MessageBox.Show("Operacion cancelada por el usuario", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show("Error al procesar ventana crear salida", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        //MessageBox.Show(oCardResponse.errorMessage, "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+            }
+            //}
+
+
+            //else
+            //{
+            //    Cargando(false);
+            //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            //}
         }
+        #endregion
 
         private void label1_Click(object sender, EventArgs e)
         {
@@ -2304,171 +3323,973 @@ namespace BlockAndPass.PPMWinform
 
         private void tbCodigo_KeyPress(object sender, KeyPressEventArgs e)
         {
-            
+
             if (e.KeyChar == (char)13)
             {
-                CardResponse oCardResponse = new CardResponse();
-                #region Lector Codigo Barras
-                //tbCodigo.Text = "87203063242302140034";
-                if (tbCodigo.Text != string.Empty)
+
+                if (tbCodigo.Text != string.Empty && tbCodigo.Text.Length <= 17)
                 {
-                    if (tbCodigo.Text != string.Empty)
-                    {                       
-                        ValidarConvenioResponse oValidarConvenio = cliente.ValidarConvenios(tbCodigo.Text.ToString());
 
-                        if (!oValidarConvenio.Exito)
+                    #region Old
+                    //CardResponse oCardResponse = new CardResponse();
+
+                    //#region Lector Codigo Barras
+                    ////tbCodigo.Text = "87203063242302140034";
+                    //if (tbCodigo.Text != string.Empty)
+                    //{
+                    //    if (tbCodigo.Text != string.Empty)
+                    //    {                       
+                    //        ValidarConvenioResponse oValidarConvenio = cliente.ValidarConvenios(tbCodigo.Text.ToString());
+
+                    //        if (!oValidarConvenio.Exito)
+                    //        {
+                    //            if (tbCodigo.Text.Length >= 20)
+                    //            {
+                    //                int codigoBarras = 0;
+                    //                int consecutivo = 0;
+                    //                int numTienda = 0;
+                    //                codigoBarras = Convert.ToInt32(tbCodigo.Text.Substring(16, 4));
+                    //                consecutivo = Convert.ToInt32(tbCodigo.Text.Substring(5, 5));
+                    //                numTienda = Convert.ToInt32(tbCodigo.Text.Substring(0, 3));
+
+                    //                string añoFecha = tbCodigo.Text.Substring(10, 2);
+                    //                string mesFecha = tbCodigo.Text.Substring(12, 2);
+                    //                string diaFecha = tbCodigo.Text.Substring(14, 2);
+
+                    //                string fechaCodigo = "20" + añoFecha + "/" + mesFecha + "/" + diaFecha;
+
+                    //                // Se arma la fechaActual
+
+                    //                string añoAct = DateTime.Now.Year.ToString();
+
+                    //                string mesAct = DateTime.Now.Month.ToString();
+                    //                mesAct = mesAct.PadLeft(2, '0');
+                    //                string diaAct = DateTime.Now.Day.ToString();
+                    //                diaAct = diaAct.PadLeft(2, '0');
+
+                    //                string fechaAct = "20"+ añoFecha + "/" + mesAct + "/" + diaAct;
+                    //                if (numTienda == 872)
+                    //                {
+                    //                    if (fechaCodigo == fechaAct)
+                    //                    {
+                    //                        if (codigoBarras >= 30) //Valido el total de la compra que en este caso es 30.000
+                    //                        {
+                    //                            string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+
+                    //                            if (clave != string.Empty)
+                    //                            {
+                    //                                oCardResponse = GetCardInfo(clave);
+
+                    //                                int IdConvenio1 = 0;
+
+                    //                                if (oCardResponse.tipoVehiculo == "AUTOMOBILE")
+                    //                                {
+                    //                                    IdConvenio1 = 3;
+                    //                                }
+                    //                                else if (oCardResponse.tipoVehiculo == "MOTORCYCLE")
+                    //                                {
+                    //                                    IdConvenio1 = 4;
+                    //                                }
+
+                    //                                oCardResponse = AplicarConvenio(clave, IdConvenio1.ToString());
+                    //                                if (!oCardResponse.error)
+                    //                                {
+                    //                                    // registrar convenio 
+                    //                                    RegistrarConvenioResponse oRegistraConvenio = new RegistrarConvenioResponse();
+                    //                                    oRegistraConvenio = cliente.RegistrarConvenioValidado(tbCodigo.Text.ToString(), consecutivo.ToString(), cbPPM.SelectedValue.ToString());
+                    //                                    cliente.RegistrarConvenioAplicao(tbIdTransaccion.Text, IdConvenio1);
+                    //                                    cliente.AplicarConvenios(tbIdTransaccion.Text, IdConvenio1, oCardResponse.codeAutorizacion2, oCardResponse.codeAutorizacion3);
+
+
+                    //                                    MessageBox.Show("Convenio aplicado exitosamente", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    //                                    Cargando(false);
+                    //                                }
+                    //                                else
+                    //                                {
+                    //                                    Cargando(false);
+                    //                                    MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //                                }
+                    //                            }
+                    //                            else
+                    //                            {
+                    //                                Cargando(false);
+                    //                                MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //                            }
+
+
+                    //                        }
+                    //                        else
+                    //                        {
+                    //                            Cargando(false);
+                    //                            MessageBox.Show("El total de la factura no es valida para aplicar el convenio", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //                        }
+
+                    //                    }
+                    //                    else
+                    //                    {
+                    //                        Cargando(false);
+                    //                        MessageBox.Show("La fecha de la factura no es valida", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //                    }
+
+                    //                }
+                    //                else
+                    //                {
+                    //                    Cargando(false);
+                    //                    MessageBox.Show("El numero de la tienda no es valido", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //                }
+                    //            }
+                    //            else
+                    //            {
+                    //                Cargando(false);
+                    //                MessageBox.Show("Factura no valida", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //            }
+
+                    //        }
+                    //        else
+                    //        {
+                    //            Cargando(false);
+                    //            MessageBox.Show("Esta factura ya fue validada", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //        }
+
+
+                    //    }
+
+                    //}
+
+                    //#endregion
+
+                    #endregion
+                    LeerInfo();
+                    //_IdTransaccion = tbCodigo.Text;
+                }
+                else
+                {
+                    tbCodigo.Text = string.Empty;
+                    LeerInfo();
+                }
+            }
+
+
+        }
+
+        private void PPM_Load(object sender, EventArgs e)
+        {
+            tbCodigo.Focus();
+            if (_CargoUsuario == "AUXILIAR DE SERVICIOS")
+            {
+                btn_Convenio.Enabled = false;
+                btn_Cortesia.Enabled = false;
+                //btn_Eventos.Enabled = false;
+                btn_Mensualidad.Enabled = false;
+            }
+
+        }
+
+        private void btn_Leer_Click_1(object sender, EventArgs e)
+        {
+            LeerInfoPorPlaca();
+            tbRecibido.Focus();
+        }
+
+        private void iconButton1_Click(object sender, EventArgs e)
+        {
+            Cargando(true);
+            CrearIngreso popup = new CrearIngreso(cbSede.SelectedValue.ToString(), cbEstacionamiento.SelectedValue.ToString());
+            popup.ShowDialog();
+
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                Cargando(false);
+
+                MessageBox.Show("Entrada creada con EXITO", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ImprimirTicketEntrada();
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Cargando(false);
+                MessageBox.Show("Error al procesar ventana crear entrada", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void iconButton1_Click_1(object sender, EventArgs e)
+        {
+            ConvenioPopUp popup = new ConvenioPopUp(cbEstacionamiento.SelectedValue.ToString(), _DocumentoUsuario);
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                Cargando(true);
+                string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+                if (clave != string.Empty)
+                {
+                    InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbCodigo.Text, cbEstacionamiento.SelectedValue.ToString());
+
+                    AplicarConvenioResponse oAplicarConvenioResponse = cliente.AplicarConvenios(tbIdTransaccion.Text, popup.Convenio, 0, 0);
+                    if (oAplicarConvenioResponse.Exito)
+                    {
+                        SaveConveniosResponse oInfo = new SaveConveniosResponse();
+                        oInfo = cliente.SaveConvenio(cbEstacionamiento.SelectedValue.ToString(), Convert.ToInt64(popup.Convenio), popup.NameConvenio.ToString());
+
+                        MessageBox.Show("Convenio aplicado exitosamente", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        Cargando(false);
+                        LeerInfo();
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    Cargando(false);
+                    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Cargando(false);
+                MessageBox.Show("Error al procesar ventana convenio", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void iconButton1_Click_2(object sender, EventArgs e)
+        {
+            CortesiaPopUp popup = new CortesiaPopUp(cbEstacionamiento.SelectedValue.ToString());
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                Cargando(true);
+                string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+                if (clave != string.Empty)
+                {
+                    //CardResponse oCardResponse = GetCardInfo(clave);
+                    //if (!oCardResponse.error)
+                    //{
+                    //if (oCardResponse.reposicion)
+                    //{
+                    //    Cargando(false);
+                    //    MessageBox.Show("NO se puede aplicar cortesía a una REPOSICION", "Error Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}  
+                    if (txtPlacaBuscar.Text != string.Empty)
+                    {
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorPlaca(txtPlacaBuscar.Text, cbEstacionamiento.SelectedValue.ToString());
+                        if (informacionTransaccion.Exito)
                         {
-                            if (tbCodigo.Text.Length >= 20)
+                            //yyyyMMddHHmmssce
+
+                            string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                            //tbIdTarjeta.Text = oCardResponse.idCard;
+                            InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+                            //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
+                            if (oInfoTransaccionService.Exito)
                             {
-                                int codigoBarras = 0;
-                                int consecutivo = 0;
-                                int numTienda = 0;
-                                codigoBarras = Convert.ToInt32(tbCodigo.Text.Substring(16, 4));
-                                consecutivo = Convert.ToInt32(tbCodigo.Text.Substring(5, 5));
-                                numTienda = Convert.ToInt32(tbCodigo.Text.Substring(0, 3));
-
-                                string añoFecha = tbCodigo.Text.Substring(10, 2);
-                                string mesFecha = tbCodigo.Text.Substring(12, 2);
-                                string diaFecha = tbCodigo.Text.Substring(14, 2);
-
-                                string fechaCodigo = "20" + añoFecha + "/" + mesFecha + "/" + diaFecha;
-
-                                // Se arma la fechaActual
-
-                                string añoAct = DateTime.Now.Year.ToString();
-
-                                string mesAct = DateTime.Now.Month.ToString();
-                                mesAct = mesAct.PadLeft(2, '0');
-                                string diaAct = DateTime.Now.Day.ToString();
-                                diaAct = diaAct.PadLeft(2, '0');
-
-                                string fechaAct = "20"+ añoFecha + "/" + mesAct + "/" + diaAct;
-                                if (numTienda == 872)
+                                AplicarCortesiaResponse oAplicarCortesiaResponse = cliente.AplicarLaCortesia(cbEstacionamiento.SelectedValue.ToString(), popup.Observacion, popup.Motivo.ToString(), oInfoTransaccionService.IdTransaccion, _DocumentoUsuario);
+                                if (oAplicarCortesiaResponse.Exito)
                                 {
-                                    if (fechaCodigo == fechaAct)
+                                    AplicarCortesiaTransaccionResponse oAplicarCortesiaTransaccionResponse = cliente.AplicarCotesiaTransaccion(sIdTransaccion, Convert.ToInt32(popup.Motivo.ToString()));
+                                    if (oAplicarCortesiaTransaccionResponse.Exito)
                                     {
-                                        if (codigoBarras >= 30) //Valido el total de la compra que en este caso es 30.000
+                                        //oCardResponse = AplicarCortesia(clave);
+                                        if (tbCasillero.Text != string.Empty)
                                         {
-                                            string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
-
-                                            if (clave != string.Empty)
+                                            AplicaCascoResponse oInfo = cliente.LiberarCasco(sIdTransaccion);
+                                            if (oInfo.Exito)
                                             {
-                                                oCardResponse = GetCardInfo(clave);
-
-                                                int IdConvenio1 = 0;
-
-                                                if (oCardResponse.tipoVehiculo == "AUTOMOBILE")
+                                                if (oAplicarCortesiaResponse.Exito)
                                                 {
-                                                    IdConvenio1 = 3;
-                                                }
-                                                else if (oCardResponse.tipoVehiculo == "MOTORCYCLE")
-                                                {
-                                                    IdConvenio1 = 4;
-                                                }
 
-                                                oCardResponse = AplicarConvenio(clave, IdConvenio1.ToString());
-                                                if (!oCardResponse.error)
-                                                {
-                                                    // registrar convenio 
-                                                    RegistrarConvenioResponse oRegistraConvenio = new RegistrarConvenioResponse();
-                                                    oRegistraConvenio = cliente.RegistrarConvenioValidado(tbCodigo.Text.ToString(), consecutivo.ToString(), cbPPM.SelectedValue.ToString());
-                                                    cliente.RegistrarConvenioAplicao(tbIdTransaccion.Text, IdConvenio1);
-                                                    cliente.AplicarConvenios(tbIdTransaccion.Text, IdConvenio1, oCardResponse.codeAutorizacion2, oCardResponse.codeAutorizacion3);
-
-
-                                                    MessageBox.Show("Convenio aplicado exitosamente", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                                                     Cargando(false);
+                                                    LeerInfo();
+
                                                 }
                                                 else
                                                 {
                                                     Cargando(false);
-                                                    MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                    MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                                 }
+                                                //}
+                                                //else 
+                                                //{
+                                                //    Cargando(false);
+                                                //    MessageBox.Show(oCardResponse.errorMessage, "Error al liberar casillero PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //}
                                             }
                                             else
                                             {
                                                 Cargando(false);
-                                                MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                MessageBox.Show(oAplicarCortesiaResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             }
-
-
                                         }
                                         else
                                         {
-                                            Cargando(false);
-                                            MessageBox.Show("El total de la factura no es valida para aplicar el convenio", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                            if (oAplicarCortesiaResponse.Exito)
+                                            {
+
+                                                MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                Cargando(false);
+                                                LeerInfo();
+
+                                            }
+                                            else
+                                            {
+                                                Cargando(false);
+                                                MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
                                         }
 
                                     }
                                     else
                                     {
                                         Cargando(false);
-                                        MessageBox.Show("La fecha de la factura no es valida", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        MessageBox.Show(oAplicarCortesiaTransaccionResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
-
                                 }
                                 else
                                 {
                                     Cargando(false);
-                                    MessageBox.Show("El numero de la tienda no es valido", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
+
+
                             }
                             else
                             {
                                 Cargando(false);
-                                MessageBox.Show("Factura no valida", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
+
 
                         }
                         else
                         {
                             Cargando(false);
-                            MessageBox.Show("Esta factura ya fue validada", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        //}
+                        //else
+                        //{
+                        //    Cargando(false);
+                        //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
+                    }
+                    else if (tbIdTransaccion.Text != string.Empty && txtPlacaBuscar.Text == string.Empty)
+                    {
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbIdTransaccion.Text, cbEstacionamiento.SelectedValue.ToString());
+                        if (informacionTransaccion.Exito)
+                        {
+                            //yyyyMMddHHmmssce
+
+                            string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                            //tbIdTarjeta.Text = oCardResponse.idCard;
+                            InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+                            //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
+                            if (oInfoTransaccionService.Exito)
+                            {
+                                AplicarCortesiaResponse oAplicarCortesiaResponse = cliente.AplicarLaCortesia(cbEstacionamiento.SelectedValue.ToString(), popup.Observacion, popup.Motivo.ToString(), oInfoTransaccionService.IdTransaccion, _DocumentoUsuario);
+                                if (oAplicarCortesiaResponse.Exito)
+                                {
+                                    AplicarCortesiaTransaccionResponse oAplicarCortesiaTransaccionResponse = cliente.AplicarCotesiaTransaccion(sIdTransaccion, Convert.ToInt32(popup.Motivo.ToString()));
+                                    if (oAplicarCortesiaTransaccionResponse.Exito)
+                                    {
+                                        //oCardResponse = AplicarCortesia(clave);
+                                        if (tbCasillero.Text != string.Empty)
+                                        {
+                                            AplicaCascoResponse oInfo = cliente.LiberarCasco(sIdTransaccion);
+                                            if (oInfo.Exito)
+                                            {
+                                                if (oAplicarCortesiaResponse.Exito)
+                                                {
+
+                                                    MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    Cargando(false);
+                                                    LeerInfo();
+
+                                                }
+                                                else
+                                                {
+                                                    Cargando(false);
+                                                    MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
+                                                //}
+                                                //else 
+                                                //{
+                                                //    Cargando(false);
+                                                //    MessageBox.Show(oCardResponse.errorMessage, "Error al liberar casillero PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //}
+                                            }
+                                            else
+                                            {
+                                                Cargando(false);
+                                                MessageBox.Show(oAplicarCortesiaResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                            if (oAplicarCortesiaResponse.Exito)
+                                            {
+
+                                                MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                Cargando(false);
+
+                                            }
+                                            else
+                                            {
+                                                Cargando(false);
+                                                MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        Cargando(false);
+                                        MessageBox.Show(oAplicarCortesiaTransaccionResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    Cargando(false);
+                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+
+
+                            }
+                            else
+                            {
+                                Cargando(false);
+                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        //}
+                        //else
+                        //{
+                        //    Cargando(false);
+                        //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
+                    }
+                    else
+                    {
+                        Cargando(false);
+                        MessageBox.Show("Error al procesar ventana cortesia", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                {
+                    Cargando(false);
+                    MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                }
+                else
+                {
+                    Cargando(false);
+                    MessageBox.Show("Error al procesar ventana cortesia", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btn_Pagar_Click_1(object sender, EventArgs e)
+        {
+            tmrHora.Stop();
+            clickTimer.Start(); 
+            if (Convert.ToInt64(tbValorPagar.Text.Replace("$", "").Replace(".", "")) > 0)
+            {
+                cnt = 0;
+                tmrTimeOutPago.Stop();
+                Cargando(true);
+                string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+                if (clave != string.Empty)
+                {
+                    #region Estacionamiento
+                    if (chbEstacionamiento.Checked)
+                    {
+                        //CardResponse oCardResponse = new CardResponse();
+                        //oCardResponse = PayCard(clave, tbIdTarjeta.Text, cbPPM.SelectedValue.ToString(), DateTime.ParseExact(tbHoraPago.Text, "dd'/'MM'/'yyyy HH':'mm':'ss", CultureInfo.CurrentCulture));
+                        //if (!oCardResponse.error)
+                        //{
+                        string pagosFinal = "";
+                        double sumTotalPagar = 0;
+                        foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                        {
+                            if (pagosFinal == string.Empty)
+                            {
+                            }
+                            else
+                            {
+                                pagosFinal += ',';
+                            }
+                            sumTotalPagar += item.Total;
+                            pagosFinal += item.Tipo + "-" + item.SubTotal + "-" + item.Iva + "-" + item.Total;
+                        }
+                        string fechaPago = Convert.ToString(DateTime.Now);
+
+                        InfoPagoNormalService pagoNormal = cliente.PagarClienteParticular(pagosFinal, cbEstacionamiento.SelectedValue.ToString(), tbIdTransaccion.Text, cbPPM.SelectedValue.ToString(), fechaPago, sumTotalPagar.ToString(), documentoUsuario);
+
+                        if (pagoNormal.Exito)
+                        {
+                            ImprimirPagoNormal(tbIdTransaccion.Text);
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show(pagoNormal.ErrorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        //}
+                        //else
+                        //{
+                        //    Cargando(false);
+                        //    MessageBox.Show(oCardResponse.errorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
+                    }
+                    #endregion
+                    #region Mensualidad
+                    else
+                    {
+                        //Mensualidad
+                        string pagosFinal = "";
+                        double sumTotalPagar = 0;
+                        foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                        {
+                            sumTotalPagar += item.Total;
+                            pagosFinal += item.Tipo + "-" + item.SubTotal + "-" + item.Iva + "-" + item.Total;
                         }
 
+                        InfoPagoMensualidadService pagoNormal = cliente.PagarMensualidad(pagosFinal, cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), DateTime.Now.ToString(), sumTotalPagar.ToString(), txtPlaca.Text, documentoUsuario);
 
+                        if (pagoNormal.Exito)
+                        {
+                            CardResponse oCardResponse = new CardResponse();
+                            oCardResponse = LimpiarReposicion(clave);
+                            if (!oCardResponse.error)
+                            {
+                                ImprimirPagoMensualidad(pagoNormal.IdTranaccion, pagoNormal.IdAutorizacion);
+                            }
+
+                            else if (ckMensualidadDocumento.Checked == true && txtPlacaBuscar.Text != null)
+                            {
+
+                                ImprimirPagoMensualidad(pagoNormal.IdTranaccion, pagoNormal.IdAutorizacion);
+                            }
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show(pagoNormal.ErrorMessage, "Error Pagar Mensualidad PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
                     }
+                    #endregion
+                }
+            }
+            else
+            {
 
+                DialogResult result3 = MessageBox.Show("Valor a pagar = 0 ¿Desea crear la salida para la transaccion: " + tbIdTransaccion.Text, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (result3 == DialogResult.Yes)
+                {
+                    CreaSalidaResponse resp = cliente.CrearSalida3(cbEstacionamiento.SelectedValue.ToString(), tbIdTransaccion.Text, cbPPM.SelectedValue.ToString());
+
+                    if (resp.Exito)
+                    {
+                        MessageBox.Show("Salida registrada exitosamente.", "Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Valor a Pagar = 0, no se registro la salida", "Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
 
-                #endregion
-            }
 
+                Cargando(false);
+
+                RestablecerPPM();
+            }
+        }
+
+        private void btn_Limpiar_Click_1(object sender, EventArgs e)
+        {
+            tmrTimeOutPago.Stop();
+            RestablecerPPM();
+            tmrHora.Start();
 
         }
 
-        private void TmnCodigo_Tick(object sender, EventArgs e)
+        private void btn_Eventos_Click_1(object sender, EventArgs e)
+        {
+            EventoPopUp popup = new EventoPopUp(cbEstacionamiento.SelectedValue.ToString(), _DocumentoUsuario);
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                Cargando(true);
+                string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+                if (clave != string.Empty)
+                {
+                    if (txtPlacaBuscar.Text != string.Empty)
+                    {
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorPlaca(txtPlacaBuscar.Text, cbEstacionamiento.SelectedValue.ToString());
+
+
+                        if (informacionTransaccion.Exito)
+                        {
+                            CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), informacionTransaccion.ModuloEntrada);
+                            if (oCarrilxIdModuloResponse.Exito)
+                            {
+                                //yyyyMMddHHmmssce
+
+                                string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                                InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+
+                                if (oInfoTransaccionService.Exito)
+                                {
+                                    AplicarEventoResponse oAplicarEventoResponse = cliente.AplicarElEvento(cbEstacionamiento.SelectedValue.ToString(), sIdTransaccion, _DocumentoUsuario, null, popup.Evento.ToString());
+                                    if (oAplicarEventoResponse.Exito)
+                                    {
+                                        MessageBox.Show("Evento aplicado exitosamente", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        Cargando(false);
+                                        LeerInfo();
+                                    }
+                                    else
+                                    {
+                                        Cargando(false);
+                                        MessageBox.Show(oAplicarEventoResponse.ErrorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    Cargando(false);
+                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                Cargando(false);
+                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbCodigo.Text, cbEstacionamiento.SelectedValue.ToString());
+
+
+                        if (informacionTransaccion.Exito)
+                        {
+                            CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), informacionTransaccion.ModuloEntrada);
+                            if (oCarrilxIdModuloResponse.Exito)
+                            {
+                                //yyyyMMddHHmmssce
+
+                                string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                                InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+
+                                if (oInfoTransaccionService.Exito)
+                                {
+                                    AplicarEventoResponse oAplicarEventoResponse = cliente.AplicarElEvento(cbEstacionamiento.SelectedValue.ToString(), sIdTransaccion, _DocumentoUsuario, null, popup.Evento.ToString());
+                                    if (oAplicarEventoResponse.Exito)
+                                    {
+                                        MessageBox.Show("Evento aplicado exitosamente", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        Cargando(false);
+                                    }
+                                    else
+                                    {
+                                        Cargando(false);
+                                        MessageBox.Show(oAplicarEventoResponse.ErrorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    Cargando(false);
+                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                Cargando(false);
+                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            Cargando(false);
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                }
+                else
+                {
+                    Cargando(false);
+                    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Cargando(false);
+                MessageBox.Show("Error al procesar ventana convenio", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_Arqueo_Click_1(object sender, EventArgs e)
+        {
+            DialogResult oDialogResult = MessageBox.Show("¿Esta seguro que desea realizar el arqueo?", "Arqueo PPM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (oDialogResult == DialogResult.Yes)
+            {
+                RegistrarArqueoResponse rgis = cliente.RegistrarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), _DocumentoUsuario);
+                if (rgis.Exito)
+                {
+                    ArqueoPopUp popup = new ArqueoPopUp(rgis.IdArqueo.ToString());
+                    popup.ShowDialog();
+                    if (popup.DialogResult == DialogResult.OK)
+                    {
+                        ConfirmarArqueoResponse confirmacionArqueo = cliente.ConfirmarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), rgis.IdArqueo.ToString(), popup.Valor.ToString());
+                        if (confirmacionArqueo.Exito)
+                        {
+                            ImprimirArqueo(rgis.IdArqueo.ToString());
+                        }
+                        else
+                        {
+                            MessageBox.Show(confirmacionArqueo.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append(confirmacionArqueo.ErrorMessage);
+                            File.AppendAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt"), sb.ToString());
+                            sb.Clear();
+                        }
+                    }
+                    else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        MessageBox.Show("Operacion cancelada por el usuario", "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al procesar ventana carga", "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(rgis.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+        }
+
+        private void btn_Entrada_Click_1(object sender, EventArgs e)
+        {
+            Cargando(true);
+            CrearIngreso popup = new CrearIngreso(cbSede.SelectedValue.ToString(), cbEstacionamiento.SelectedValue.ToString());
+            popup.ShowDialog();
+
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                Cargando(false);
+                int idAutorizacion = 0;
+                idAutorizacion =  Convert.ToInt32(popup.IdAutorizacion.ToString());
+                if (popup.IdAutorizacion == 0)
+                {
+                    idAutorizacion = 0;
+                }
+                else
+                {
+                    idAutorizacion = Convert.ToInt32(popup.IdAutorizacion);
+                }
+
+                if (Convert.ToInt32(idAutorizacion) > 0)
+                {
+                    MessageBox.Show("Entrada creada con EXITO", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    ckMensualidadDocumento.Checked = false;
+                }
+                else
+                {
+                    MessageBox.Show("Entrada creada con EXITO", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                    ImprimirTicketEntrada();
+                }
+
+
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Cargando(false);
+                MessageBox.Show("Error al procesar ventana crear entrada", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void btn_Copia_Click_1(object sender, EventArgs e)
+        {
+            Cargando(true);
+            CopiaFactura popup = new CopiaFactura();
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                Cargando(false);
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Copia de factura PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Cargando(false);
+                MessageBox.Show("Error al procesar ventana copia de factura", "Copia de factura PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            //tbCodigo.Focus();
+        }
+
+        private void btn_Cerrar_Click(object sender, EventArgs e)
+        {
+
+            Close();
+            Application.Exit();
+        }
+
+        private void btn_Mensualidad_Click(object sender, EventArgs e)
+        {
+            CobroMensualidadPopUp popup = new CobroMensualidadPopUp();
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                ckMensualidadDocumento.Checked = true;
+                txtPlaca.Text = popup.Placa;
+                LeerInfo();
+
+
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                RestablecerPPM();
+            }
+        }
+
+        #region ClasesAuxiliares
+        public class CardResponse
+        {
+            public bool error { set; get; }
+            public string errorMessage { set; get; }
+            public string idCard { set; get; }
+
+            public bool cicloActivo { get; set; }
+            public bool cortesia { get; set; }
+            public bool reposicion { get; set; }
+            public bool valet { get; set; }
+
+            public int codeAutorizacion1 { get; set; }
+            public int codeAutorizacion2 { get; set; }
+            public int codeAutorizacion3 { get; set; }
+
+            public DateTime? fechEntrada { get; set; }
+            public string fechaPago { get; set; }
+
+            public string moduloEntrada { get; set; }
+            public string moduloPago { get; set; }
+            public string placa { get; set; }
+            public string tipoTarjeta { get; set; }
+            public string tipoVehiculo { set; get; }
+        }
+        #endregion
+
+        private void btn_Casco_Click_1(object sender, EventArgs e)
+        {
+            Cargando(true);
+            CasilleroCasco popup = new CasilleroCasco(cbEstacionamiento.SelectedValue.ToString(), tbIdTransaccion.Text);
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                Cargando(false);
+                MessageBox.Show("Tarifa casco creada con EXITO", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                Cargando(false);
+                MessageBox.Show("Error al procesar ventana crear tarifa", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+
+        private void txtPlacaBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                LeerInfoPorPlaca();
+                tbRecibido.Focus();
+            }
+        }
+
+        private void txtPlacaBuscar_TextChanged(object sender, EventArgs e)
+        {
+            tmrHora.Stop(); 
+            clickTimer.Start(); 
+        }
+
+        private void txtPlacaBuscar_MouseClick(object sender, MouseEventArgs e)
+        {
+            tmrHora.Stop(); 
+            clickTimer.Start(); 
+        }
+
+        private void tbRecibido_MouseDoubleClick(object sender, MouseEventArgs e)
+        {
+            tmrHora.Stop();
+            clickTimer.Start(); 
+        }
+
+        private void tbRecibido_MouseClick(object sender, MouseEventArgs e)
+        {
+            tmrHora.Stop();
+            clickTimer.Start();
+        }
+
+        private void timer1_Tick_1(object sender, EventArgs e)
         {
 
         }
-
     }
-
-    #region ClasesAuxiliares
-    public class CardResponse
-    {
-        public bool error { set; get; }
-        public string errorMessage { set; get; }
-        public string idCard { set; get; }
-
-        public bool cicloActivo { get; set; }
-        public bool cortesia { get; set; }
-        public bool reposicion { get; set; }
-        public bool valet { get; set; }
-
-        public int codeAutorizacion1 { get; set; }
-        public int codeAutorizacion2 { get; set; }
-        public int codeAutorizacion3 { get; set; }
-
-        public DateTime? fechEntrada { get; set; }
-        public string fechaPago { get; set; }
-
-        public string moduloEntrada { get; set; }
-        public string moduloPago { get; set; }
-        public string placa { get; set; }
-        public string tipoTarjeta { get; set; }
-        public string tipoVehiculo { set; get; }
-    }
-    #endregion
-
 }

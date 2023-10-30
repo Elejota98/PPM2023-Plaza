@@ -1194,10 +1194,10 @@
                                                             <th>IdConvenio3</th>
                                                             <th>IdTipoVehiculo</th>
                                                             <th>IdEstacionamiento</th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
+                                                            <%--<th></th>--%>
+                                                            <%--<th></th>--%>
+                                                            <%--<th></th>
+                                                            <th></th>--%>
                                                         </tr>
                                                     </thead>
                                                     <tbody>
@@ -1217,10 +1217,10 @@
                                                             <th>IdConvenio3</th>
                                                             <th>IdTipoVehiculo</th>
                                                             <th>IdEstacionamiento</th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
-                                                            <th></th>
+                                                            <%--<th></th>--%>
+                                                            <%--<th></th>--%>
+                                                          <%--  <th></th>
+                                                            <th></th>--%>
                                                         </tr>
                                                     </tfoot>
                                                 </table>

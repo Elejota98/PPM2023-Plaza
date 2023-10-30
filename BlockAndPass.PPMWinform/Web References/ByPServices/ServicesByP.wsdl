@@ -1,5 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-<wsdl:definitions xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:tns="http://tempuri.org/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
+<wsdl:definitions xmlns:soap12="http://schemas.xmlsoap.org/wsdl/soap12/" xmlns:s="http://www.w3.org/2001/XMLSchema" xmlns:tm="http://microsoft.com/wsdl/mime/textMatching/" xmlns:soapenc="http://schemas.xmlsoap.org/soap/encoding/" xmlns:http="http://schemas.xmlsoap.org/wsdl/http/" xmlns:tns="http://tempuri.org/" xmlns:mime="http://schemas.xmlsoap.org/wsdl/mime/" xmlns:soap="http://schemas.xmlsoap.org/wsdl/soap/" targetNamespace="http://tempuri.org/" xmlns:wsdl="http://schemas.xmlsoap.org/wsdl/">
   <wsdl:types>
     <s:schema elementFormDefault="qualified" targetNamespace="http://tempuri.org/">
       <s:element name="ObtenerInformacionUsuario">
@@ -46,6 +46,7 @@
           <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Clave" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Cargo" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="ObtenerDatosPPMxMac">
@@ -124,6 +125,49 @@
           <s:element minOccurs="0" maxOccurs="1" name="Casillero" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ConsultarInfoTransaccionPorPlaca">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="placaEntrada" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idEstacionamiento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarInfoTransaccionPorPlacaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarInfoTransaccionPorPlacaResult" type="tns:InfoTransaccionResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoTransaccionResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdTransaccion" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="Carril" type="s:int" />
+          <s:element minOccurs="0" maxOccurs="1" name="ModuloEntrada" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdEstacionamiento" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaEntrada" type="s:dateTime" />
+          <s:element minOccurs="0" maxOccurs="1" name="TipoVehiculo" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="PlacaEntrada" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ConsultarInfoTransaccionPorIdTransaccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idTransaccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idEstacionamiento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ConsultarInfoTransaccionPorIdTransaccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ConsultarInfoTransaccionPorIdTransaccionResult" type="tns:InfoTransaccionResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
       <s:element name="ConsultarCascosxId">
         <s:complexType>
           <s:sequence>
@@ -159,7 +203,7 @@
             <s:element minOccurs="1" maxOccurs="1" name="repo" type="s:boolean" />
             <s:element minOccurs="1" maxOccurs="1" name="tipoVehiculo" type="s:int" />
             <s:element minOccurs="0" maxOccurs="1" name="idTransaccion" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="idTarjeta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -199,6 +243,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="idModulo" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="total" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentoUsuario" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -288,11 +333,17 @@
           <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Nit" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="NombreEmpresa" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreApellidos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Placa1" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="Vigencia" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="ObtenerDatosFacturaEntrada">
-        <s:complexType />
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="moduloEntrada" type="s:string" />
+          </s:sequence>
+        </s:complexType>
       </s:element>
       <s:element name="ObtenerDatosFacturaEntradaResponse">
         <s:complexType>
@@ -329,7 +380,8 @@
             <s:element minOccurs="0" maxOccurs="1" name="idModulo" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="total" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="idTarjeta" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentoUsuario" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -403,6 +455,27 @@
         </s:complexType>
       </s:element>
       <s:complexType name="AplicarConvenioResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="AplicarCotesiaTransaccion">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idTransaccion" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="idCortesia" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="AplicarCotesiaTransaccionResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="AplicarCotesiaTransaccionResult" type="tns:AplicarCortesiaTransaccionResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="AplicarCortesiaTransaccionResponse">
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
@@ -888,6 +961,7 @@
           <s:sequence>
             <s:element minOccurs="1" maxOccurs="1" name="idSede" type="s:int" />
             <s:element minOccurs="1" maxOccurs="1" name="idEstacionamiento" type="s:int" />
+            <s:element minOccurs="0" maxOccurs="1" name="idModulo" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -920,7 +994,6 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="idEstacionamiento" type="s:string" />
-            <s:element minOccurs="0" maxOccurs="1" name="idTarjeta" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="carril" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="fecha" type="s:dateTime" />
@@ -1292,6 +1365,18 @@
   <wsdl:message name="ConsultarInfoTransaccionSoapOut">
     <wsdl:part name="parameters" element="tns:ConsultarInfoTransaccionResponse" />
   </wsdl:message>
+  <wsdl:message name="ConsultarInfoTransaccionPorPlacaSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarInfoTransaccionPorPlaca" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarInfoTransaccionPorPlacaSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarInfoTransaccionPorPlacaResponse" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarInfoTransaccionPorIdTransaccionSoapIn">
+    <wsdl:part name="parameters" element="tns:ConsultarInfoTransaccionPorIdTransaccion" />
+  </wsdl:message>
+  <wsdl:message name="ConsultarInfoTransaccionPorIdTransaccionSoapOut">
+    <wsdl:part name="parameters" element="tns:ConsultarInfoTransaccionPorIdTransaccionResponse" />
+  </wsdl:message>
   <wsdl:message name="ConsultarCascosxIdSoapIn">
     <wsdl:part name="parameters" element="tns:ConsultarCascosxId" />
   </wsdl:message>
@@ -1351,6 +1436,12 @@
   </wsdl:message>
   <wsdl:message name="AplicarConveniosSoapOut">
     <wsdl:part name="parameters" element="tns:AplicarConveniosResponse" />
+  </wsdl:message>
+  <wsdl:message name="AplicarCotesiaTransaccionSoapIn">
+    <wsdl:part name="parameters" element="tns:AplicarCotesiaTransaccion" />
+  </wsdl:message>
+  <wsdl:message name="AplicarCotesiaTransaccionSoapOut">
+    <wsdl:part name="parameters" element="tns:AplicarCotesiaTransaccionResponse" />
   </wsdl:message>
   <wsdl:message name="RegistrarConvenioAplicaoSoapIn">
     <wsdl:part name="parameters" element="tns:RegistrarConvenioAplicao" />
@@ -1583,6 +1674,14 @@
       <wsdl:input message="tns:ConsultarInfoTransaccionSoapIn" />
       <wsdl:output message="tns:ConsultarInfoTransaccionSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ConsultarInfoTransaccionPorPlaca">
+      <wsdl:input message="tns:ConsultarInfoTransaccionPorPlacaSoapIn" />
+      <wsdl:output message="tns:ConsultarInfoTransaccionPorPlacaSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarInfoTransaccionPorIdTransaccion">
+      <wsdl:input message="tns:ConsultarInfoTransaccionPorIdTransaccionSoapIn" />
+      <wsdl:output message="tns:ConsultarInfoTransaccionPorIdTransaccionSoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ConsultarCascosxId">
       <wsdl:input message="tns:ConsultarCascosxIdSoapIn" />
       <wsdl:output message="tns:ConsultarCascosxIdSoapOut" />
@@ -1622,6 +1721,10 @@
     <wsdl:operation name="AplicarConvenios">
       <wsdl:input message="tns:AplicarConveniosSoapIn" />
       <wsdl:output message="tns:AplicarConveniosSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="AplicarCotesiaTransaccion">
+      <wsdl:input message="tns:AplicarCotesiaTransaccionSoapIn" />
+      <wsdl:output message="tns:AplicarCotesiaTransaccionSoapOut" />
     </wsdl:operation>
     <wsdl:operation name="RegistrarConvenioAplicao">
       <wsdl:input message="tns:RegistrarConvenioAplicaoSoapIn" />
@@ -1811,6 +1914,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ConsultarInfoTransaccionPorPlaca">
+      <soap:operation soapAction="http://tempuri.org/ConsultarInfoTransaccionPorPlaca" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarInfoTransaccionPorIdTransaccion">
+      <soap:operation soapAction="http://tempuri.org/ConsultarInfoTransaccionPorIdTransaccion" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ConsultarCascosxId">
       <soap:operation soapAction="http://tempuri.org/ConsultarCascosxId" style="document" />
       <wsdl:input>
@@ -1894,6 +2015,15 @@
     </wsdl:operation>
     <wsdl:operation name="AplicarConvenios">
       <soap:operation soapAction="http://tempuri.org/AplicarConvenios" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AplicarCotesiaTransaccion">
+      <soap:operation soapAction="http://tempuri.org/AplicarCotesiaTransaccion" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2264,6 +2394,24 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ConsultarInfoTransaccionPorPlaca">
+      <soap12:operation soapAction="http://tempuri.org/ConsultarInfoTransaccionPorPlaca" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ConsultarInfoTransaccionPorIdTransaccion">
+      <soap12:operation soapAction="http://tempuri.org/ConsultarInfoTransaccionPorIdTransaccion" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ConsultarCascosxId">
       <soap12:operation soapAction="http://tempuri.org/ConsultarCascosxId" style="document" />
       <wsdl:input>
@@ -2347,6 +2495,15 @@
     </wsdl:operation>
     <wsdl:operation name="AplicarConvenios">
       <soap12:operation soapAction="http://tempuri.org/AplicarConvenios" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="AplicarCotesiaTransaccion">
+      <soap12:operation soapAction="http://tempuri.org/AplicarCotesiaTransaccion" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

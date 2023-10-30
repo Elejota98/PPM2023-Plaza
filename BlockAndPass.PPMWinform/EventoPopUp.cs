@@ -61,5 +61,18 @@ namespace BlockAndPass.PPMWinform
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
+
+        private void btn_Ok_Click_1(object sender, EventArgs e)
+        {
+            this.Evento = Convert.ToInt32(cbEvento.SelectedValue);
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btn_Cancel_Click_1(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

@@ -93,5 +93,21 @@ namespace BlockAndPass.PPMWinform
                 tbDescripcion.Text = oDes.ErrorMessage;
             }
         }
+
+        private void btn_Ok_Click_1(object sender, EventArgs e)
+        {
+            this.Convenio = Convert.ToInt32(cbConvenio.SelectedValue);
+
+            string GG = cbConvenio.Text;
+            this.NameConvenio = GG;
+            this.DialogResult = DialogResult.OK;
+            this.Close();
+        }
+
+        private void btn_Cancel_Click_1(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

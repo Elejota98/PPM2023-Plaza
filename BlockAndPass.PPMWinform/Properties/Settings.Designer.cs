@@ -36,8 +36,8 @@ namespace BlockAndPass.PPMWinform.Properties {
         [global::System.Configuration.ApplicationScopedSettingAttribute()]
         [global::System.Diagnostics.DebuggerNonUserCodeAttribute()]
         [global::System.Configuration.SpecialSettingAttribute(global::System.Configuration.SpecialSetting.ConnectionString)]
-        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=169.47.207.158;Initial Catalog=Parking;User ID=AdminParkingUser;Passw" +
-            "ord=P4rqu1ng+")]
+        [global::System.Configuration.DefaultSettingValueAttribute("Data Source=DESKTOP-3LMNP9J;Initial Catalog=Parking;User ID=sa;Password=P4rquears" +
+            "e123")]
         public string ParkingConnectionString {
             get {
                 return ((string)(this["ParkingConnectionString"]));

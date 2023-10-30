@@ -795,9 +795,25 @@ D:\PROYECTOS\PARQUEARSE\NEOMUNDO\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMW
 D:\PROYECTOS\PARQUEARSE\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe.config
 D:\PROYECTOS\PARQUEARSE\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
 D:\PROYECTOS\PARQUEARSE\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csprojResolveAssemblyReference.cache
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CasilleroCasco.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CobroMensualidadPopUp.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ConvenioPopUp.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CargaPopUp.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ArqueoPopUp.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFacturaM.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFactura.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearSalida.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearIngreso.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.EventoPopUp.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CortesiaPopUp.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Login.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.PPM.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Properties.Resources.resources
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.Cache
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.cache
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.compiled
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe.config
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoM.rdlc
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketCarga.rdlc
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketArqueo.rdlc
@@ -831,21 +847,278 @@ D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardFeeders.dll
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardReaders.dll
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.Tools.dll
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\FontAwesome.Sharp.dll
 D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.pdb
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CasilleroCasco.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ConvenioPopUp.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CargaPopUp.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ArqueoPopUp.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFacturaM.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFactura.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearSalida.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearIngreso.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.EventoPopUp.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CortesiaPopUp.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Login.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.PPM.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Properties.Resources.resources
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.Cache
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csprojResolveAssemblyReference.cache
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.cache
-D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.compiled
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
+D:\PROYECTOS\GRATAMIRA\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe.config
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoM.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketCarga.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketArqueo.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPago.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\bnCard.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnBag.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCalendar.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCard.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnClean.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnClose.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCourtesy.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnDownArrow.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnEntry.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnFav.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnFuel.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnHelmet.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnMoto.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnPay.png
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\CopiaFactura.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoSimplificado.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoMSimplificado.rdlc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.Designer.cs
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xsc
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xsd
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xss
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.pdb
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BarcodeLib.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCard.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardFeeders.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardReaders.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.Tools.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\FontAwesome.Sharp.dll
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.pdb
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csprojResolveAssemblyReference.cache
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CasilleroCasco.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CobroMensualidadPopUp.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ConvenioPopUp.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CargaPopUp.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ArqueoPopUp.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFacturaM.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFactura.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearSalida.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearIngreso.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.EventoPopUp.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CortesiaPopUp.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Login.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.PPM.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Properties.Resources.resources
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.Cache
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.cache
+C:\Users\Administrador\Documents\Parquearse Install\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.compiled
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CasilleroCasco.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CobroMensualidadPopUp.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ConvenioPopUp.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CargaPopUp.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ArqueoPopUp.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFacturaM.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFactura.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearSalida.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearIngreso.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.EventoPopUp.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CortesiaPopUp.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Login.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.PPM.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Properties.Resources.resources
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.Cache
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.cache
+D:\PROYECTOS\PARQUEARSE\Gratamira\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.compiled
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe.config
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csprojResolveAssemblyReference.cache
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CasilleroCasco.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CobroMensualidadPopUp.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ConvenioPopUp.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CargaPopUp.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ArqueoPopUp.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFacturaM.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFactura.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearSalida.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearIngreso.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.EventoPopUp.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CortesiaPopUp.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Login.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.PPM.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Properties.Resources.resources
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.Cache
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.cache
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.compiled
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoM.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketCarga.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketArqueo.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPago.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\bnCard.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnBag.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCalendar.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCard.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnClean.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnClose.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCourtesy.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnDownArrow.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnEntry.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnFav.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnFuel.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnHelmet.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnMoto.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnPay.png
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\CopiaFactura.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoSimplificado.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoMSimplificado.rdlc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.Designer.cs
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xsc
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xsd
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xss
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.pdb
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BarcodeLib.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCard.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardFeeders.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardReaders.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.Tools.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\FontAwesome.Sharp.dll
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
+D:\PROYECTOS\PARQUEARSE\GratamiraoLD\Codigo\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe.config
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoM.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketCarga.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketArqueo.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPago.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\bnCard.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnBag.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCalendar.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCard.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnClean.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnClose.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCourtesy.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnDownArrow.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnEntry.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnFav.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnFuel.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnHelmet.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnMoto.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnPay.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\CopiaFactura.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoSimplificado.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoMSimplificado.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.Designer.cs
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xsc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xsd
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xss
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BarcodeLib.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCard.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardFeeders.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardReaders.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.Tools.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\FontAwesome.Sharp.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csprojResolveAssemblyReference.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CasilleroCasco.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CobroMensualidadPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ConvenioPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CargaPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ArqueoPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFacturaM.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFactura.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearSalida.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearIngreso.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.EventoPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CortesiaPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Login.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.PPM.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Properties.Resources.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.Cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.compiled
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.AssemblyReference.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CasilleroCasco.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CobroMensualidadPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ConvenioPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CargaPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ArqueoPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFacturaM.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CopiaFactura.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearSalida.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CrearIngreso.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.EventoPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CortesiaPopUp.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Login.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.PPM.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Properties.Resources.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe.config
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoM.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketCarga.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketArqueo.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPago.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\bnCard.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnBag.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCalendar.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCard.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnClean.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnClose.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnCourtesy.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnDownArrow.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnEntry.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnFav.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnFuel.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnHelmet.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnMoto.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Media\Png\btnPay.png
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\CopiaFactura.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoSimplificado.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\ticketPagoMSimplificado.rdlc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.Designer.cs
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xsc
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xsd
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Tickets\DataSetCopia.xss
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BarcodeLib.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCard.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardFeeders.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardReaders.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.Tools.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\FontAwesome.Sharp.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Helpers.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.Web.Infrastructure.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Razor.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.Deployment.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.dll.config
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Helpers.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.Web.Infrastructure.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Razor.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.Deployment.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.Helpers.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.WebPages.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.Razor.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.WebPages.Deployment.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.CopyComplete
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Menu.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebService.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebService.dll.config

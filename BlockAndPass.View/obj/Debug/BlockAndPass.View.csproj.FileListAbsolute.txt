@@ -1,0 +1,5 @@
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.View\bin\Debug\BlockAndPass.View.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.View\bin\Debug\BlockAndPass.View.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.View\obj\Debug\BlockAndPass.View.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.View\obj\Debug\BlockAndPass.View.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.View\obj\Debug\BlockAndPass.View.csprojResolveAssemblyReference.cache

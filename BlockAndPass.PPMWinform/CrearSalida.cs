@@ -101,5 +101,53 @@ namespace BlockAndPass.PPMWinform
 
             return bResultado;
         }
+
+        private void btn_Ok_Click_1(object sender, EventArgs e)
+        {
+            if (tbPlaca.Text != string.Empty)
+            {
+                if (EsAutorizado(tbPlaca.Text))
+                {
+                    DialogResult result3 = MessageBox.Show("¿Esta seguro que desea crear la salida para la placa: " + tbPlaca.Text, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    if (result3 == DialogResult.Yes)
+                    {
+                        CreaSalidaResponse resp = cliente.CrearSalida(_IdEstacionamiento.ToString(), tbPlaca.Text);
+
+                        if (resp.Exito)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                            this.Close();
+                        }
+                        else
+                        {
+                            this.DialogResult = DialogResult.None;
+                            MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            this.Close();
+                        }
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.Cancel;
+                        this.Close();
+                    }
+                }
+                else
+                {
+                    MessageBox.Show("Solo es posible Crear Salida sin tarjeta de Autorizados", "Error Crear Salida", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+                }
+            }
+            else
+            {
+                MessageBox.Show("Debe escribir una placa valida.", "Error Crear Salida", MessageBoxButtons.OK, MessageBoxIcon.Error, MessageBoxDefaultButton.Button1);
+            }
+
+            //this.Close();
+        }
+
+        private void btn_Cancel_Click_1(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
     }
 }

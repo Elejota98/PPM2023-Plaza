@@ -12,6 +12,7 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Text.RegularExpressions;
+using System.Configuration;
 
 namespace BlockAndPass.PPMWinform
 {
@@ -31,7 +32,23 @@ namespace BlockAndPass.PPMWinform
         }
 
         private string _IdTarjeta = string.Empty;
-        private string _IdAutorizacion = string.Empty;
+
+        private int _IdAutorizacion = 0;
+        public int IdAutorizacion
+        {
+            get { return _IdAutorizacion; }
+            set { _IdAutorizacion = value; }
+        }
+
+        private string _IdModuloEntrada = string.Empty;
+        public string IdModuloEntrada
+        {
+            get { return _IdModuloEntrada; }
+            set { _IdModuloEntrada = value; }
+        }
+
+        
+
 
         ServicesByP cliente = new ServicesByP();
 
@@ -41,8 +58,8 @@ namespace BlockAndPass.PPMWinform
 
             _IdSede = Convert.ToInt32(iIdSede);
             _IdEstacionamiento = Convert.ToInt32(iIdEstacionamiento);
-
-            CarrilEntradaXEntradaResponse oInfo = cliente.ObtenerListaCarrilEntradaxEstacionamiento(IdSede, _IdEstacionamiento);
+            _IdModuloEntrada = ConfigurationManager.AppSettings["IdModulo"].ToString();
+            CarrilEntradaXEntradaResponse oInfo = cliente.ObtenerListaCarrilEntradaxEstacionamiento(IdSede, _IdEstacionamiento, _IdModuloEntrada);
             if (!oInfo.Exito)
             {
                 this.DialogResult = DialogResult.None;
@@ -64,11 +81,19 @@ namespace BlockAndPass.PPMWinform
             }
 
             List<KeyValuePair<int, string>> miLista = new List<KeyValuePair<int, string>>();
+            //miLista.Add(new KeyValuePair<int, string>(7, "Zorra 2 Llantas"));
+            //miLista.Add(new KeyValuePair<int, string>(8, "Zorra 4 Llantas"));
+            //miLista.Add(new KeyValuePair<int, string>(9, "Zorras Grandes"));
+            //miLista.Add(new KeyValuePair<int, string>(16, "Moto Carga"));
+            //miLista.Add(new KeyValuePair<int, string>(10, "Autos-Luv"));
+            //miLista.Add(new KeyValuePair<int, string>(11, "Camioneta"));
+            //miLista.Add(new KeyValuePair<int, string>(12, "NHR Sencilla"));
+            //miLista.Add(new KeyValuePair<int, string>(13, "NHR-2"));
+            //miLista.Add(new KeyValuePair<int, string>(14, "NPR-NQR-NHR-3"));
+            //miLista.Add(new KeyValuePair<int, string>(15, "Remision Transcarnes"));
             miLista.Add(new KeyValuePair<int, string>(1, "Carro"));
             miLista.Add(new KeyValuePair<int, string>(2, "Moto"));
-            
-            
-            
+            miLista.Add(new KeyValuePair<int, string>(3, "Bicicleta"));
            
             
 
@@ -87,7 +112,17 @@ namespace BlockAndPass.PPMWinform
         {
             if (e.KeyChar == (char)13)
             {
-                btn_Continuar_Click(btn_Continuar, EventArgs.Empty);
+                if (tbPlaca.Text != string.Empty)
+                {
+                    btn_Continuar_Click(btn_Continuar, EventArgs.Empty);
+                }
+                else
+                {
+                    this.DialogResult = DialogResult.None;
+                    MessageBox.Show("Error Crear Entrada PPM", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
+               
             }
         }
 
@@ -126,6 +161,8 @@ namespace BlockAndPass.PPMWinform
                             {
                                 chbAutorizado.Checked = true;
                                 chbAutorizado.Visible = true;
+                                chbAutorizado.Enabled = false;
+                                tbPlaca.Enabled = false;
                             }
                         }
                     }
@@ -150,7 +187,7 @@ namespace BlockAndPass.PPMWinform
             if (resp.Exito)
             {
                 _IdTarjeta = resp.IdTarjeta;
-                _IdAutorizacion = resp.IdAutorizacion;
+                _IdAutorizacion = Convert.ToInt32(resp.IdAutorizacion);
                 bResultado = true;
             }
 
@@ -190,7 +227,7 @@ namespace BlockAndPass.PPMWinform
                 DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION","Crear Entrada", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (result3 == DialogResult.Yes)
                 {
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdAutorizacion);
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(),  cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(),Convert.ToInt32( _IdAutorizacion).ToString());
 
                     if (oInfo.Exito)
                     {
@@ -211,7 +248,7 @@ namespace BlockAndPass.PPMWinform
                     //CardResponse oCardResponse = CreateAuthEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdTarjeta);
                     //if (!oCardResponse.error)
                     //{
-                        CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdAutorizacion);
+                        CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(),Convert.ToInt32( _IdAutorizacion).ToString());
 
                         if (oInfo.Exito)
                         {
@@ -239,8 +276,8 @@ namespace BlockAndPass.PPMWinform
                 //CardResponse oCardResponse = CreateEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString());
                 //if (!oCardResponse.error)
                 //{
-                string idTarjeta="";
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), idTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), string.Empty);
+               
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(),  cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), string.Empty);
 
                     if (oInfo.Exito)
                     {
@@ -441,24 +478,99 @@ namespace BlockAndPass.PPMWinform
         //    return oCardResponse;
         //}
 
-        private void dtpFechaIngreso_ValueChanged(object sender, EventArgs e)
+        private void btn_Ok_Click_1(object sender, EventArgs e)
         {
+            if (tbPlaca.Text!=string.Empty)
+            {
+            if (chbAutorizado.Checked)
+            {
+                DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION","Crear Entrada", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                if (result3 == DialogResult.Yes)
+                {
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(),  cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), Convert.ToInt32( _IdAutorizacion).ToString());
+
+                    if (oInfo.Exito)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.None;
+                        MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+
+                    //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
+
+                    //CardResponse oCardResponse = CreateAuthEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdTarjeta);
+                    //if (!oCardResponse.error)
+                    //{
+                        CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(),Convert.ToInt32( _IdAutorizacion).ToString());
+
+                        if (oInfo.Exito)
+                        {
+                            this.DialogResult = DialogResult.OK;
+                        }
+                        else
+                        {
+                            this.DialogResult = DialogResult.None;
+                            MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM Clienete Normal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    //}
+                    //else
+                    //{
+                    //    this.DialogResult = DialogResult.None;
+                    //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}
+                }
+            }
+            else
+            {
+                //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+
+                //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
+
+                //CardResponse oCardResponse = CreateEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString());
+                //if (!oCardResponse.error)
+                //{
+               
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(),  cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), string.Empty);
+
+                    if (oInfo.Exito)
+                    {
+                        this.DialogResult = DialogResult.OK;
+                    }
+                    else
+                    {
+                        this.DialogResult = DialogResult.None;
+                        MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                //}
+                //else
+                //{
+                //    this.DialogResult = DialogResult.None;
+                //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                //}
+            }
+
+            }
+            else
+            {
+                this.DialogResult = DialogResult.None;
+                MessageBox.Show("Error Crear Entrada PPM", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+
+            this.Close();
 
         }
 
-        private void cbTipoVehiculo_SelectedIndexChanged(object sender, EventArgs e)
+        private void btn_Cancel_Click_1(object sender, EventArgs e)
         {
-
-        }
-
-        private void chbAutorizado_CheckedChanged(object sender, EventArgs e)
-        {
-
-        }
-
-        private void tbPlaca_TextChanged(object sender, EventArgs e)
-        {
-
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
         }
 
     }
