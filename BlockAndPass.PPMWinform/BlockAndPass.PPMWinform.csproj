@@ -523,6 +523,7 @@
     <Folder Include="Media\Jpg\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Resources\Principal.png" />
     <None Include="bin\x86\Debug\Media\Png\ImagenFondoLogin.png" />
     <Content Include="Media\Ico\favicon.ico" />
     <Content Include="Media\Png\bnCard.png">

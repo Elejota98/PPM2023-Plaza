@@ -102,3 +102,10 @@ D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\obj\Deb
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll.config
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll.config
+D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.dll
+D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebService\bin\BlockAndPass.WebService.pdb
+D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csproj.AssemblyReference.cache
+D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.dll
+D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebService\obj\Debug\BlockAndPass.WebService.pdb
