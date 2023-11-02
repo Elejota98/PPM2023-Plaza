@@ -394,7 +394,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>Regimen Comun - Fact. Ventas P.O.S.</Value>
+                <Value>Responsable de IVA.</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -461,7 +461,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>IVA</Value>
+                <Value>IVA 19%</Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>

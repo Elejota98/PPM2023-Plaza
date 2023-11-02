@@ -43,7 +43,7 @@
             this.cbConvenio.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.cbConvenio.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cbConvenio.FormattingEnabled = true;
-            this.cbConvenio.Location = new System.Drawing.Point(18, 84);
+            this.cbConvenio.Location = new System.Drawing.Point(17, 94);
             this.cbConvenio.Name = "cbConvenio";
             this.cbConvenio.Size = new System.Drawing.Size(474, 32);
             this.cbConvenio.TabIndex = 3;
@@ -52,7 +52,7 @@
             // tbDescripcion
             // 
             this.tbDescripcion.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbDescripcion.Location = new System.Drawing.Point(18, 159);
+            this.tbDescripcion.Location = new System.Drawing.Point(17, 169);
             this.tbDescripcion.Multiline = true;
             this.tbDescripcion.Name = "tbDescripcion";
             this.tbDescripcion.ReadOnly = true;
@@ -63,7 +63,7 @@
             // 
             this.label1.AutoSize = true;
             this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label1.Location = new System.Drawing.Point(13, 13);
+            this.label1.Location = new System.Drawing.Point(12, 23);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(138, 33);
             this.label1.TabIndex = 5;
@@ -73,7 +73,7 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(15, 63);
+            this.label2.Location = new System.Drawing.Point(14, 73);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(75, 20);
             this.label2.TabIndex = 6;
@@ -83,7 +83,7 @@
             // 
             this.label3.AutoSize = true;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label3.Location = new System.Drawing.Point(15, 136);
+            this.label3.Location = new System.Drawing.Point(14, 146);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(92, 20);
             this.label3.TabIndex = 7;
@@ -101,7 +101,7 @@
             this.btn_Cancel.IconSize = 20;
             this.btn_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.Image")));
             this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Cancel.Location = new System.Drawing.Point(272, 274);
+            this.btn_Cancel.Location = new System.Drawing.Point(271, 284);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(90, 35);
             this.btn_Cancel.TabIndex = 49;
@@ -122,7 +122,7 @@
             this.btn_Ok.IconSize = 20;
             this.btn_Ok.Image = ((System.Drawing.Image)(resources.GetObject("btn_Ok.Image")));
             this.btn_Ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Ok.Location = new System.Drawing.Point(390, 274);
+            this.btn_Ok.Location = new System.Drawing.Point(389, 284);
             this.btn_Ok.Name = "btn_Ok";
             this.btn_Ok.Size = new System.Drawing.Size(102, 35);
             this.btn_Ok.TabIndex = 48;

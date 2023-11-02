@@ -1328,7 +1328,6 @@ namespace BlockAndPass.PPMWinform
                 MessageBox.Show(oInfoFacturaResponse.ErrorMessage, "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
-
         private void ImprimirTicketEntrada()
         {
             InfoEntradaResponse oInfoFacturaEntradaResponse = cliente.ObtenerDatosFacturaEntrada(moduloEntrada);

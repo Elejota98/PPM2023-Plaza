@@ -131,6 +131,7 @@
             this.cbEntrada.Name = "cbEntrada";
             this.cbEntrada.Size = new System.Drawing.Size(144, 21);
             this.cbEntrada.TabIndex = 4;
+            this.cbEntrada.SelectedIndexChanged += new System.EventHandler(this.btn_Cancel_Click_1);
             // 
             // label4
             // 

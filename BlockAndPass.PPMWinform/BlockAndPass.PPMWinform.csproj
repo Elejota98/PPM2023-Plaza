@@ -96,8 +96,20 @@
     <Reference Include="System.Windows.Forms" />
     <Reference Include="System.Xml" />
     <Reference Include="WindowsBase" />
+    <Reference Include="zxing, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net45\zxing.dll</HintPath>
+    </Reference>
+    <Reference Include="zxing.presentation, Version=0.16.9.0, Culture=neutral, PublicKeyToken=4e88037ac681fe60, processorArchitecture=MSIL">
+      <HintPath>..\packages\ZXing.Net.0.16.9\lib\net45\zxing.presentation.dll</HintPath>
+    </Reference>
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="CascosPoUp.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="CascosPoUp.Designer.cs">
+      <DependentUpon>CascosPoUp.cs</DependentUpon>
+    </Compile>
     <Compile Include="CasilleroCasco.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -224,11 +236,20 @@
     <Compile Include="Tickets\ReportPrintDocument.cs">
       <SubType>Component</SubType>
     </Compile>
+    <Compile Include="TipoVehiculosOtros.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="TipoVehiculosOtros.Designer.cs">
+      <DependentUpon>TipoVehiculosOtros.cs</DependentUpon>
+    </Compile>
     <Compile Include="Web References\ByPServices\Reference.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
       <DependentUpon>Reference.map</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="CascosPoUp.resx">
+      <DependentUpon>CascosPoUp.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="CasilleroCasco.resx">
       <DependentUpon>CasilleroCasco.cs</DependentUpon>
     </EmbeddedResource>
@@ -304,6 +325,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Tickets\ticketPagoM.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+    </EmbeddedResource>
+    <EmbeddedResource Include="TipoVehiculosOtros.resx">
+      <DependentUpon>TipoVehiculosOtros.cs</DependentUpon>
     </EmbeddedResource>
     <None Include="app.config">
       <SubType>Designer</SubType>
@@ -447,6 +471,12 @@
     <None Include="Web References\ByPServices\InfoArqueoResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\ByPServices\InfoCantidadMotosActualesResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
+    <None Include="Web References\ByPServices\InfoCantidadVehiculosActualesResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\ByPServices\InfoCargaResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
@@ -523,8 +553,13 @@
     <Folder Include="Media\Jpg\" />
   </ItemGroup>
   <ItemGroup>
+    <None Include="Media\Png\Principal.png" />
     <None Include="Resources\Principal.png" />
     <None Include="bin\x86\Debug\Media\Png\ImagenFondoLogin.png" />
+    <None Include="bin\x86\Debug\Media\Png\LogoUsario.png" />
+    <None Include="bin\x86\Debug\Media\Png\Principal.png" />
+    <None Include="bin\x86\Debug\Media\Png\ImagenFondoIngreso.png" />
+    <None Include="bin\x86\Debug\Media\Png\ImagenFondoCobrar.png" />
     <Content Include="Media\Ico\favicon.ico" />
     <Content Include="Media\Png\bnCard.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>

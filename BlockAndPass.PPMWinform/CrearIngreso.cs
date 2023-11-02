@@ -220,85 +220,6 @@ namespace BlockAndPass.PPMWinform
             return bResultado;
         }
 
-        private void btn_Ok_Click(object sender, EventArgs e)
-        {
-            if (chbAutorizado.Checked)
-            {
-                DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION","Crear Entrada", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                if (result3 == DialogResult.Yes)
-                {
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(),  cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(),Convert.ToInt32( _IdAutorizacion).ToString());
-
-                    if (oInfo.Exito)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        this.DialogResult = DialogResult.None;
-                        MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                }
-                else
-                {
-                    //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-
-                    //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
-
-                    //CardResponse oCardResponse = CreateAuthEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdTarjeta);
-                    //if (!oCardResponse.error)
-                    //{
-                        CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(),Convert.ToInt32( _IdAutorizacion).ToString());
-
-                        if (oInfo.Exito)
-                        {
-                            this.DialogResult = DialogResult.OK;
-                        }
-                        else
-                        {
-                            this.DialogResult = DialogResult.None;
-                            MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM Clienete Normal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-                    //}
-                    //else
-                    //{
-                    //    this.DialogResult = DialogResult.None;
-                    //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
-                }
-            }
-            else
-            {
-                //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-
-                //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
-
-                //CardResponse oCardResponse = CreateEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString());
-                //if (!oCardResponse.error)
-                //{
-               
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(),  cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), string.Empty);
-
-                    if (oInfo.Exito)
-                    {
-                        this.DialogResult = DialogResult.OK;
-                    }
-                    else
-                    {
-                        this.DialogResult = DialogResult.None;
-                        MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                //}
-                //else
-                //{
-                //    this.DialogResult = DialogResult.None;
-                //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}
-            }
-
-            this.Close();
-        }
-
         //public CardResponse CreateEntry(string password, string plate, string modulo, DateTime dtFecha, string tipov)
         //{
         //    dtFecha = new DateTime(dtFecha.Year, dtFecha.Month, dtFecha.Day, dtFecha.Hour, dtFecha.Minute, dtFecha.Second);
@@ -487,7 +408,7 @@ namespace BlockAndPass.PPMWinform
                 DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION","Crear Entrada", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (result3 == DialogResult.Yes)
                 {
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(),  cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), Convert.ToInt32( _IdAutorizacion).ToString());
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), Convert.ToInt32( _IdAutorizacion).ToString());
 
                     if (oInfo.Exito)
                     {
@@ -508,7 +429,7 @@ namespace BlockAndPass.PPMWinform
                     //CardResponse oCardResponse = CreateAuthEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdTarjeta);
                     //if (!oCardResponse.error)
                     //{
-                        CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(),Convert.ToInt32( _IdAutorizacion).ToString());
+                        CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(),Convert.ToInt32( _IdAutorizacion).ToString());
 
                         if (oInfo.Exito)
                         {
@@ -537,7 +458,7 @@ namespace BlockAndPass.PPMWinform
                 //if (!oCardResponse.error)
                 //{
                
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(),  cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), string.Empty);
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), string.Empty);
 
                     if (oInfo.Exito)
                     {
@@ -572,6 +493,5 @@ namespace BlockAndPass.PPMWinform
             this.DialogResult = DialogResult.Cancel;
             this.Close();
         }
-
     }
 }

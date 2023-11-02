@@ -87,7 +87,7 @@ namespace BlockAndPass.WebService
             LoginResponse response = new LoginResponse();
             string query = string.Empty;
 
-            query = "select documento, contraseña, cargo from t_usuarios where usuario='" + a + "' and Estado = 'true'";
+            query = "select documento, contraseña, usuario, cargo from t_usuarios where usuario='" + a + "' and Estado = 'true'";
 
             string documento = string.Empty;
             string clave = string.Empty;
@@ -254,7 +254,11 @@ namespace BlockAndPass.WebService
 
             string query = string.Empty;
 
-            query = "select top(1) * from T_Transacciones where PlacaEntrada='"+placaEntrada+"' and IdEstacionamiento="+idEstacionamiento+" and FechaSalida is null and ModuloSalida is null ORDER BY FechaEntrada DESC ";
+            query = "SELECT  dbo.T_Transacciones.IdTransaccion, dbo.T_Transacciones.CarrilEntrada, dbo.T_Transacciones.ModuloEntrada, dbo.T_Transacciones.IdEstacionamiento, dbo.T_Transacciones.IdTarjeta, dbo.T_Transacciones.PlacaEntrada," +
+                " dbo.T_Transacciones.FechaEntrada, dbo.T_Transacciones.FechaSalida, dbo.T_Transacciones.ModuloSalida, dbo.T_Transacciones.CarrilSalida, dbo.T_Transacciones.PlacaSalida, dbo.T_Transacciones.IdTipoVehiculo, dbo.T_TipoVehiculo.TipoVehiculo, " +
+                "dbo.T_Transacciones.IdCortesia, dbo.T_Transacciones.IdAutorizado, dbo.T_Transacciones.IdConvenio1, dbo.T_Transacciones.IdConvenio2, dbo.T_Transacciones.IdConvenio3, dbo.T_Transacciones.ValorRecibido, " +
+                " dbo.T_Transacciones.Cambio, dbo.T_Transacciones.Sincronizacion, dbo.T_Transacciones.SincronizacionPago, dbo.T_Transacciones.SincronizacionSalida FROM  dbo.T_Transacciones INNER JOIN" +
+                " dbo.T_TipoVehiculo ON dbo.T_Transacciones.IdTipoVehiculo = dbo.T_TipoVehiculo.IdTipoVehiculo where PlacaEntrada='" + placaEntrada+"' and IdEstacionamiento="+idEstacionamiento+ " and FechaSalida= '1900-01-01 00:00:00.000' and ModuloSalida is null  ORDER BY FechaEntrada DESC ";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -273,9 +277,10 @@ namespace BlockAndPass.WebService
                                 oInfoTransaccionResponse.Carril = Convert.ToInt32(reader[1].ToString());
                                 oInfoTransaccionResponse.ModuloEntrada = reader[2].ToString();
                                 oInfoTransaccionResponse.IdEstacionamiento = reader[3].ToString();
-                                oInfoTransaccionResponse.PlacaEntrada = reader[4].ToString();
-                                oInfoTransaccionResponse.FechaEntrada = Convert.ToDateTime( reader[5].ToString());
-                                oInfoTransaccionResponse.TipoVehiculo = reader[10].ToString();
+                                oInfoTransaccionResponse.PlacaEntrada = reader[5].ToString();
+                                oInfoTransaccionResponse.FechaEntrada = Convert.ToDateTime( reader[6].ToString());
+                                oInfoTransaccionResponse.IdTipoVehiculo = Convert.ToInt32(reader[11]);
+                                oInfoTransaccionResponse.TipoVehiculo = reader[12].ToString();
 
                             }
                         }
@@ -299,7 +304,11 @@ namespace BlockAndPass.WebService
 
             string query = string.Empty;
 
-            query = "select top(1) * from T_Transacciones where IdTransaccion='" + idTransaccion + "' and IdEstacionamiento=" + idEstacionamiento + " and FechaSalida='1900-01-01 00:00:00.000' and ModuloSalida is null ORDER BY FechaEntrada DESC ";
+            query = "SELECT  dbo.T_Transacciones.IdTransaccion, dbo.T_Transacciones.CarrilEntrada, dbo.T_Transacciones.ModuloEntrada, dbo.T_Transacciones.IdEstacionamiento, dbo.T_Transacciones.IdTarjeta, dbo.T_Transacciones.PlacaEntrada," +
+                " dbo.T_Transacciones.FechaEntrada, dbo.T_Transacciones.FechaSalida, dbo.T_Transacciones.ModuloSalida, dbo.T_Transacciones.CarrilSalida, dbo.T_Transacciones.PlacaSalida, dbo.T_Transacciones.IdTipoVehiculo, dbo.T_TipoVehiculo.TipoVehiculo, " +
+                "dbo.T_Transacciones.IdCortesia, dbo.T_Transacciones.IdAutorizado, dbo.T_Transacciones.IdConvenio1, dbo.T_Transacciones.IdConvenio2, dbo.T_Transacciones.IdConvenio3, dbo.T_Transacciones.ValorRecibido, " +
+                " dbo.T_Transacciones.Cambio, dbo.T_Transacciones.Sincronizacion, dbo.T_Transacciones.SincronizacionPago, dbo.T_Transacciones.SincronizacionSalida FROM  dbo.T_Transacciones INNER JOIN" +
+                " dbo.T_TipoVehiculo ON dbo.T_Transacciones.IdTipoVehiculo = dbo.T_TipoVehiculo.IdTipoVehiculo where dbo.T_Transacciones.IdTransaccion='" + idTransaccion + "' and IdEstacionamiento=" + idEstacionamiento + " and FechaSalida= '1900-01-01 00:00:00.000' and ModuloSalida is null  ORDER BY FechaEntrada DESC ";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -317,11 +326,12 @@ namespace BlockAndPass.WebService
                                 oInfoTransaccionResponse.IdTransaccion = reader[0].ToString();
                                 oInfoTransaccionResponse.Carril = Convert.ToInt32(reader[1].ToString());
                                 oInfoTransaccionResponse.ModuloEntrada = reader[2].ToString();
-                                oInfoTransaccionResponse.IdEstacionamiento = reader[4].ToString();
+                                oInfoTransaccionResponse.IdEstacionamiento = reader[3].ToString();
                                 oInfoTransaccionResponse.PlacaEntrada = reader[5].ToString();
                                 oInfoTransaccionResponse.FechaEntrada = Convert.ToDateTime(reader[6].ToString());
-                                oInfoTransaccionResponse.TipoVehiculo = reader[11].ToString();
-                                
+                                oInfoTransaccionResponse.IdTipoVehiculo = Convert.ToInt32(reader[11]);
+                                oInfoTransaccionResponse.TipoVehiculo = reader[12].ToString();
+
 
                             }
                         }
@@ -1644,10 +1654,12 @@ namespace BlockAndPass.WebService
         {
             ConsultarIdTarjetaPlacaResponse oIdTarjetaResponse = new ConsultarIdTarjetaPlacaResponse();
             string valor = string.Empty;
+            string valor2 = string.Empty;
+            string valor3 = string.Empty;
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
             string query = string.Empty;
 
-            query = "select Documento from T_PersonasAutorizadas  where Placa1='" + placa + "' or Placa2='" + placa + "' or Placa3='" + placa + "' or Placa4='" + placa + "' or Placa5='" + placa + "'";
+            query = "select IdTarjeta,Documento,NombreApellidos from T_PersonasAutorizadas  where Placa1='" + placa + "' or Placa2='" + placa + "' or Placa3='" + placa + "' or Placa4='" + placa + "' or Placa5='" + placa + "'";
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 using (SqlCommand cmd = new SqlCommand(query, connection))
@@ -1662,6 +1674,8 @@ namespace BlockAndPass.WebService
                             while (reader.Read())
                             {
                                 valor = reader[0].ToString();
+                                valor2 = reader[1].ToString();
+                                valor3 = reader[2].ToString();
                             }
                         }
                     }
@@ -1672,6 +1686,8 @@ namespace BlockAndPass.WebService
             {
                 oIdTarjetaResponse.Exito = true;
                 oIdTarjetaResponse.IdTarjetaDescripcion = valor;
+                oIdTarjetaResponse.Documento = valor2;
+                oIdTarjetaResponse.NombreApellidos = valor3;
             }
             else
             {
@@ -2072,7 +2088,7 @@ namespace BlockAndPass.WebService
             }
             else
             {
-                query = "select IdModulo, Carril from T_Configuracion where IdTipoModulo=1 and  IdModulo='" + idModulo + "' and IdEstacionamiento = " + idEstacionamiento;
+                query = "select IdModulo, Carril from T_Configuracion where IdTipoModulo=3 and  IdModulo='" + idModulo + "' and IdEstacionamiento = " + idEstacionamiento;
             }
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -2113,7 +2129,7 @@ namespace BlockAndPass.WebService
         }
 
         [WebMethod]
-        public CreaEntradaResponse CrearEntrada(string idEstacionamiento,  string carril, string placa, DateTime fecha, string tipov, string _IdAutorizacion)
+        public CreaEntradaResponse CrearEntrada(string idEstacionamiento,string idTarjeta,  string carril, string placa, DateTime fecha, string tipov, string _IdAutorizacion)
         {
             string modulo = string.Empty;
 
@@ -2189,11 +2205,11 @@ namespace BlockAndPass.WebService
                 {
                     if (_IdAutorizacion != string.Empty)
                     {
-                        query = "insert into t_transacciones values ('" + anho + mes + dia + hora + min + seg + modulo + idEstacionamiento + "','" + modulo + "','" + carril + "','" + idEstacionamiento + "','" + placa.ToUpper() + "'," + "convert(datetime,'" + fecha.ToString("dd/MM/yyyy HH:mm:ss") + "',103),NULL,NULL,NULL,NULL,'" + tipov + "',NULL, " + _IdAutorizacion + ", NULL, NULL, NULL, NULL, NULL, 'false', 'false', 'false')";
+                        query = "insert into t_transacciones values ('" + anho + mes + dia + hora + min + seg + modulo + idEstacionamiento + "','" + modulo + "','" + carril + "','" + idEstacionamiento + "', '" + idTarjeta + "','" + placa.ToUpper() + "'," + "convert(datetime,'" + fecha.ToString("dd/MM/yyyy HH:mm:ss") + "',103), convert(datetime, '1900-01-01 00:00:00.000',103),NULL,NULL,NULL,'" + tipov + "',NULL, " + _IdAutorizacion + ", NULL, NULL, NULL, NULL, NULL, 'false', 'false', 'false')";
                     }
                     else
                     {
-                        query = "insert into t_transacciones values ('" + anho + mes + dia + hora + min + seg + modulo + idEstacionamiento + "','" + modulo + "','" + carril + "','" + idEstacionamiento + "','" + placa.ToUpper() + "'," + "convert(datetime,'" + fecha.ToString("dd/MM/yyyy HH:mm:ss") + "',103),NULL,NULL,NULL,NULL,'" + tipov + "',NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', 'false', 'false')";
+                        query = "insert into t_transacciones values ('" + anho + mes + dia + hora + min + seg + modulo + idEstacionamiento + "','" + modulo + "','" + carril + "','" + idEstacionamiento + "', NULL,'" + placa.ToUpper() + "'," + "convert(datetime,'" + fecha.ToString("dd/MM/yyyy HH:mm:ss") + "',103),convert(datetime, '1900-01-01 00:00:00.000',103),NULL,NULL,NULL,'" + tipov + "',NULL, NULL, NULL, NULL, NULL, NULL, NULL, 'false', 'false', 'false')";
                     }
 
 
@@ -2507,9 +2523,9 @@ namespace BlockAndPass.WebService
             string query = string.Empty;
             string valor = string.Empty;
             string valor2 = string.Empty;
+            string valor3 = string.Empty;
 
-
-            query = "select documento, idAutorizacion, IdEstacionamiento from T_PersonasAutorizadas where Placa1 = '" + sPlaca + "' or Placa2 = '" + sPlaca + "' or Placa3 = '" + sPlaca + "' or Placa4 = '" + sPlaca + "' or Placa5 = '" + sPlaca + "'";
+            query = "select documento, IdTarjeta, NombreApellidos, idAutorizacion, IdEstacionamiento from T_PersonasAutorizadas where Placa1 = '" + sPlaca + "' or Placa2 = '" + sPlaca + "' or Placa3 = '" + sPlaca + "' or Placa4 = '" + sPlaca + "' or Placa5 = '" + sPlaca + "'";
 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -2526,8 +2542,9 @@ namespace BlockAndPass.WebService
                             while (reader.Read())
                             {
 
-                                valor = reader["Documento"].ToString();
+                                valor = reader["IdTarjeta"].ToString();
                                 valor2 = reader["idAutorizacion"].ToString();
+                                valor3 = reader["NombreApellidos"].ToString();
                                 
                             }
                         }
@@ -2540,6 +2557,7 @@ namespace BlockAndPass.WebService
                 array.Exito = true;
                 array.IdTarjeta = valor;
                 array.IdAutorizacion = valor2;
+                array.NombreApellidos = valor3;
             }
             else
             {
@@ -2562,7 +2580,7 @@ namespace BlockAndPass.WebService
             string valor = string.Empty;
 
 
-            query = "select * from T_Transacciones where PlacaEntrada = '" + idTarjeta + "' and FechaSalida is Null";
+            query = "select * from T_Transacciones where IdTarjeta = '" + idTarjeta + "' and ModuloSalida is Null and FechaSalida='1900-01-01 00:00:00.000'";
 
 
             using (SqlConnection connection = new SqlConnection(connectionString))
@@ -2612,10 +2630,10 @@ namespace BlockAndPass.WebService
 
             query = "if GETDATE() between (select FechaInicio " +
                     "from T_PersonasAutorizadas " +
-                    "where Documento = '"+idTarjeta+"') " +
+                    "where IdTarjeta = '"+idTarjeta+"') " +
                     "and (select FechaFin " +
                     "from T_PersonasAutorizadas " +
-                    "where Documento = '"+idTarjeta+"') " +
+                    "where IdTarjeta = '" + idTarjeta+"') " +
                     "begin " +
                     "select 'OK' " +
                     "end " +
@@ -3035,6 +3053,161 @@ namespace BlockAndPass.WebService
             return oRegistrarConvenioValidadoResponse;
         }
 
+        [WebMethod]
+        public InfoCantidadVehiculosActualesResponse ObtenerCantidadVehiculosActuales()
+        {
+
+            InfoCantidadVehiculosActualesResponse array = new InfoCantidadVehiculosActualesResponse();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+            int valor = 0;
+
+
+            query = "SELECT COUNT(IdTransaccion) AS Cantidad FROM T_Transacciones WHERE IdTipoVehiculo = 1 AND FechaEntrada BETWEEN CAST(CONVERT(DATE, GETDATE()) AS DATETIME) AND DATEADD(SECOND, -1, DATEADD(DAY, 1, CAST(CONVERT(DATE, GETDATE()) AS DATETIME))) AND ModuloSalida IS NULL; ";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+
+                                valor = Convert.ToInt32( reader["Cantidad"]);
+
+                            }
+                        }
+                    }
+                }
+            }
+            array.Cantidad = valor;
+
+            return array;
+        }
+
+        [WebMethod]
+        public InfoCantidadMotosActualesResponse ObtenerCantidadMotosActuales()
+        {
+
+            InfoCantidadMotosActualesResponse array = new InfoCantidadMotosActualesResponse();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+            int valor = 0;
+
+
+            query = "SELECT COUNT(IdTransaccion) AS Cantidad FROM T_Transacciones WHERE IdTipoVehiculo = 2 AND FechaEntrada BETWEEN CAST(CONVERT(DATE, GETDATE()) AS DATETIME) AND DATEADD(SECOND, -1, DATEADD(DAY, 1, CAST(CONVERT(DATE, GETDATE()) AS DATETIME))) AND ModuloSalida IS NULL; ";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+
+                                valor = Convert.ToInt32(reader["Cantidad"]);
+
+                            }
+                        }
+                    }
+                }
+            }
+            array.Cantidad = valor;
+
+            return array;
+        }
+
+        [WebMethod]
+        public string ObtenerRutaCodigoBarras( string sIdEstacionamiento)
+        {
+            string valor = string.Empty;
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = string.Empty;
+
+            query = "select valor from T_Parametros where Codigo='CodigoBarras' and idEstacionamiento='" + sIdEstacionamiento + "'";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+                                valor = reader[0].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+
+            return valor;
+        }
+
+
+    }
+
+    public class InfoCantidadVehiculosActualesResponse
+    {
+        private int _Cantidad = 0;
+
+        public int Cantidad
+        {
+            get { return _Cantidad; }
+            set { _Cantidad = value; }
+        }
+
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+    }
+
+    public class InfoCantidadMotosActualesResponse
+    {
+        private int _Cantidad = 0;
+
+        public int Cantidad
+        {
+            get { return _Cantidad; }
+            set { _Cantidad = value; }
+        }
+
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
     }
 
     public class EstacionamientosResponse
@@ -3300,6 +3473,14 @@ namespace BlockAndPass.WebService
         {
             get { return _ErrorMessage; }
             set { _ErrorMessage = value; }
+        }
+
+        private string _NombreApellidos = string.Empty;
+
+        public string NombreApellidos
+        {
+            get { return _NombreApellidos; }
+            set { _NombreApellidos = value; }
         }
 
         private string _IdTarjeta = string.Empty;
@@ -3735,6 +3916,24 @@ namespace BlockAndPass.WebService
             get { return _IdTarjetaDescripcion; }
             set { _IdTarjetaDescripcion = value; }
         }
+
+        private string _Documento = string.Empty;
+
+        public string Documento
+        {
+            get { return _Documento; }
+            set { _Documento = value; }
+        }
+
+
+        private string _NombreApellidos = string.Empty;
+
+        public string NombreApellidos
+        {
+            get { return _NombreApellidos; }
+            set { _NombreApellidos = value; }
+        }
+
     }
 
     public class InfoUsuarioResponse
@@ -4782,6 +4981,14 @@ namespace BlockAndPass.WebService
         {
             get { return _PlacaEntrada; }
             set { _PlacaEntrada = value; }
+        }
+
+        private int _IdTipoVehiculo = 0;
+
+        public int IdTipoVehiculo
+        {
+            get { return _IdTipoVehiculo; }
+            set { _IdTipoVehiculo = value; }
         }
 
 

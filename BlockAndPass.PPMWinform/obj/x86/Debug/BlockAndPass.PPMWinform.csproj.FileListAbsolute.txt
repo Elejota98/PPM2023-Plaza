@@ -1036,7 +1036,6 @@ D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.Cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPM VSinTarjeta\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.compiled
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.AssemblyReference.cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CasilleroCasco.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CobroMensualidadPopUp.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.ConvenioPopUp.resources
@@ -1052,7 +1051,6 @@ D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.PPM.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Properties.Resources.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.cache
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.CoreCompileInputs.cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe.config
@@ -1090,38 +1088,10 @@ D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.SmartCardReaders.dll
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\EGlobalT.Device.Tools.dll
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\FontAwesome.Sharp.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.ReportViewer.WinForms.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Helpers.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.Web.Infrastructure.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Razor.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.Deployment.dll
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.pdb
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.dll.config
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Helpers.xml
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.xml
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.Web.Infrastructure.xml
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Razor.xml
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.Deployment.xml
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.Helpers.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.WebPages.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.Razor.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.WebPages.Deployment.resources.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.CopyComplete
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.Menu.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebService.dll
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebService.pdb
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebService.dll.config
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.PPMWinform.exe.config
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.exe
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.pdb
@@ -1208,3 +1178,39 @@ D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.GenerateResource.cache
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.CoreCompileInputs.cache
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.CopyComplete
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.TipoVehiculosOtros.resources
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.ReportViewer.WinForms.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Helpers.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zxing.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zxing.presentation.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.Web.Infrastructure.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Razor.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.Deployment.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebServiceLocalReader.dll.config
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Helpers.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zxing.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zxing.presentation.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\Microsoft.Web.Infrastructure.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.Razor.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\System.Web.WebPages.Deployment.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\de\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\fr\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\it\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ja\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ko\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\pt\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\ru\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zh-CHS\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\zh-CHT\Microsoft.ReportViewer.WinForms.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.Helpers.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.WebPages.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.Razor.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\es\System.Web.WebPages.Deployment.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.AssemblyReference.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csproj.CopyComplete
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86\Debug\BlockAndPass.WebService.dll.config
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.CascosPoUp.resources

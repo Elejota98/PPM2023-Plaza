@@ -29,76 +29,14 @@
         private void InitializeComponent()
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
-            this.tbUser = new System.Windows.Forms.TextBox();
-            this.tbClave = new System.Windows.Forms.TextBox();
-            this.btn_Ok = new FontAwesome.Sharp.IconButton();
-            this.btn_Cancel = new FontAwesome.Sharp.IconButton();
             this.Imgen_FondoLogin = new System.Windows.Forms.Panel();
             this.lblFooter = new System.Windows.Forms.Label();
+            this.btn_Cancel = new FontAwesome.Sharp.IconButton();
+            this.btn_Ok = new FontAwesome.Sharp.IconButton();
+            this.tbUser = new System.Windows.Forms.TextBox();
+            this.tbClave = new System.Windows.Forms.TextBox();
             this.Imgen_FondoLogin.SuspendLayout();
             this.SuspendLayout();
-            // 
-            // tbUser
-            // 
-            this.tbUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUser.Location = new System.Drawing.Point(90, 224);
-            this.tbUser.Name = "tbUser";
-            this.tbUser.Size = new System.Drawing.Size(203, 22);
-            this.tbUser.TabIndex = 7;
-            // 
-            // tbClave
-            // 
-            this.tbClave.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbClave.Location = new System.Drawing.Point(89, 323);
-            this.tbClave.Name = "tbClave";
-            this.tbClave.PasswordChar = '*';
-            this.tbClave.Size = new System.Drawing.Size(203, 22);
-            this.tbClave.TabIndex = 8;
-            this.tbClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbClave_KeyPress);
-            // 
-            // btn_Ok
-            // 
-            this.btn_Ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(197)))), ((int)(((byte)(76)))));
-            this.btn_Ok.FlatAppearance.BorderSize = 0;
-            this.btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Ok.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Ok.ForeColor = System.Drawing.Color.White;
-            this.btn_Ok.Icon = FontAwesome.Sharp.IconChar.Check;
-            this.btn_Ok.IconColor = System.Drawing.Color.White;
-            this.btn_Ok.IconSize = 20;
-            this.btn_Ok.Image = ((System.Drawing.Image)(resources.GetObject("btn_Ok.Image")));
-            this.btn_Ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Ok.Location = new System.Drawing.Point(224, 380);
-            this.btn_Ok.Name = "btn_Ok";
-            this.btn_Ok.Size = new System.Drawing.Size(90, 35);
-            this.btn_Ok.TabIndex = 44;
-            this.btn_Ok.Text = "Ingresar";
-            this.btn_Ok.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_Ok.UseVisualStyleBackColor = false;
-            this.btn_Ok.Click += new System.EventHandler(this.btn_Ok_Click_1);
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(64)))), ((int)(((byte)(97)))));
-            this.btn_Cancel.FlatAppearance.BorderSize = 0;
-            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Cancel.ForeColor = System.Drawing.Color.White;
-            this.btn_Cancel.Icon = FontAwesome.Sharp.IconChar.Times;
-            this.btn_Cancel.IconColor = System.Drawing.Color.White;
-            this.btn_Cancel.IconSize = 20;
-            this.btn_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.Image")));
-            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Cancel.Location = new System.Drawing.Point(90, 380);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(90, 35);
-            this.btn_Cancel.TabIndex = 45;
-            this.btn_Cancel.Text = "Cerrar";
-            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_Cancel.UseVisualStyleBackColor = false;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click_1);
             // 
             // Imgen_FondoLogin
             // 
@@ -124,6 +62,68 @@
             this.lblFooter.Size = new System.Drawing.Size(65, 16);
             this.lblFooter.TabIndex = 46;
             this.lblFooter.Text = "copyright ";
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(64)))), ((int)(((byte)(97)))));
+            this.btn_Cancel.FlatAppearance.BorderSize = 0;
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.ForeColor = System.Drawing.Color.White;
+            this.btn_Cancel.Icon = FontAwesome.Sharp.IconChar.Times;
+            this.btn_Cancel.IconColor = System.Drawing.Color.White;
+            this.btn_Cancel.IconSize = 20;
+            this.btn_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.Image")));
+            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Cancel.Location = new System.Drawing.Point(90, 380);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(90, 35);
+            this.btn_Cancel.TabIndex = 45;
+            this.btn_Cancel.Text = "Cerrar";
+            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Cancel.UseVisualStyleBackColor = false;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click_1);
+            // 
+            // btn_Ok
+            // 
+            this.btn_Ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(159)))), ((int)(((byte)(197)))), ((int)(((byte)(76)))));
+            this.btn_Ok.FlatAppearance.BorderSize = 0;
+            this.btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Ok.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Ok.ForeColor = System.Drawing.Color.White;
+            this.btn_Ok.Icon = FontAwesome.Sharp.IconChar.Check;
+            this.btn_Ok.IconColor = System.Drawing.Color.White;
+            this.btn_Ok.IconSize = 20;
+            this.btn_Ok.Image = ((System.Drawing.Image)(resources.GetObject("btn_Ok.Image")));
+            this.btn_Ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Ok.Location = new System.Drawing.Point(224, 380);
+            this.btn_Ok.Name = "btn_Ok";
+            this.btn_Ok.Size = new System.Drawing.Size(90, 35);
+            this.btn_Ok.TabIndex = 44;
+            this.btn_Ok.Text = "Ingresar";
+            this.btn_Ok.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Ok.UseVisualStyleBackColor = false;
+            this.btn_Ok.Click += new System.EventHandler(this.btn_Ok_Click_1);
+            // 
+            // tbUser
+            // 
+            this.tbUser.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbUser.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbUser.Location = new System.Drawing.Point(90, 224);
+            this.tbUser.Name = "tbUser";
+            this.tbUser.Size = new System.Drawing.Size(258, 22);
+            this.tbUser.TabIndex = 7;
+            // 
+            // tbClave
+            // 
+            this.tbClave.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbClave.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbClave.Location = new System.Drawing.Point(89, 323);
+            this.tbClave.Name = "tbClave";
+            this.tbClave.PasswordChar = '*';
+            this.tbClave.Size = new System.Drawing.Size(259, 22);
+            this.tbClave.TabIndex = 8;
+            this.tbClave.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbClave_KeyPress);
             // 
             // Login
             // 

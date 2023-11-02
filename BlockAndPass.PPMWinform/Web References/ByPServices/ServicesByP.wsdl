@@ -151,6 +151,7 @@
           <s:element minOccurs="1" maxOccurs="1" name="FechaEntrada" type="s:dateTime" />
           <s:element minOccurs="0" maxOccurs="1" name="TipoVehiculo" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="PlacaEntrada" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="IdTipoVehiculo" type="s:int" />
         </s:sequence>
       </s:complexType>
       <s:element name="ConsultarInfoTransaccionPorIdTransaccion">
@@ -782,6 +783,8 @@
           <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="IdTarjetaDescripcion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreApellidos" type="s:string" />
         </s:sequence>
       </s:complexType>
       <s:element name="RegistrarElArqueo">
@@ -994,6 +997,7 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="idEstacionamiento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idTarjeta" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="carril" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
             <s:element minOccurs="1" maxOccurs="1" name="fecha" type="s:dateTime" />
@@ -1089,6 +1093,7 @@
         <s:sequence>
           <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
           <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreApellidos" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="IdTarjeta" type="s:string" />
           <s:element minOccurs="0" maxOccurs="1" name="IdAutorizacion" type="s:string" />
         </s:sequence>
@@ -1333,6 +1338,52 @@
           <s:element minOccurs="1" maxOccurs="1" name="IdConsecutivo" type="s:int" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ObtenerCantidadVehiculosActuales">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObtenerCantidadVehiculosActualesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerCantidadVehiculosActualesResult" type="tns:InfoCantidadVehiculosActualesResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoCantidadVehiculosActualesResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ObtenerCantidadMotosActuales">
+        <s:complexType />
+      </s:element>
+      <s:element name="ObtenerCantidadMotosActualesResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerCantidadMotosActualesResult" type="tns:InfoCantidadMotosActualesResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoCantidadMotosActualesResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Cantidad" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ObtenerRutaCodigoBarras">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="sIdEstacionamiento" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerRutaCodigoBarrasResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerRutaCodigoBarrasResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="ObtenerInformacionUsuarioSoapIn">
@@ -1653,6 +1704,24 @@
   <wsdl:message name="RegistrarConvenioValidadoSoapOut">
     <wsdl:part name="parameters" element="tns:RegistrarConvenioValidadoResponse" />
   </wsdl:message>
+  <wsdl:message name="ObtenerCantidadVehiculosActualesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerCantidadVehiculosActuales" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerCantidadVehiculosActualesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerCantidadVehiculosActualesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerCantidadMotosActualesSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerCantidadMotosActuales" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerCantidadMotosActualesSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerCantidadMotosActualesResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerRutaCodigoBarrasSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerRutaCodigoBarras" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerRutaCodigoBarrasSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerRutaCodigoBarrasResponse" />
+  </wsdl:message>
   <wsdl:portType name="ServicesByPSoap">
     <wsdl:operation name="ObtenerInformacionUsuario">
       <wsdl:input message="tns:ObtenerInformacionUsuarioSoapIn" />
@@ -1865,6 +1934,18 @@
     <wsdl:operation name="RegistrarConvenioValidado">
       <wsdl:input message="tns:RegistrarConvenioValidadoSoapIn" />
       <wsdl:output message="tns:RegistrarConvenioValidadoSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCantidadVehiculosActuales">
+      <wsdl:input message="tns:ObtenerCantidadVehiculosActualesSoapIn" />
+      <wsdl:output message="tns:ObtenerCantidadVehiculosActualesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCantidadMotosActuales">
+      <wsdl:input message="tns:ObtenerCantidadMotosActualesSoapIn" />
+      <wsdl:output message="tns:ObtenerCantidadMotosActualesSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRutaCodigoBarras">
+      <wsdl:input message="tns:ObtenerRutaCodigoBarrasSoapIn" />
+      <wsdl:output message="tns:ObtenerRutaCodigoBarrasSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServicesByPSoap" type="tns:ServicesByPSoap">
@@ -2346,6 +2427,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerCantidadVehiculosActuales">
+      <soap:operation soapAction="http://tempuri.org/ObtenerCantidadVehiculosActuales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCantidadMotosActuales">
+      <soap:operation soapAction="http://tempuri.org/ObtenerCantidadMotosActuales" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRutaCodigoBarras">
+      <soap:operation soapAction="http://tempuri.org/ObtenerRutaCodigoBarras" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ServicesByPSoap12" type="tns:ServicesByPSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2819,6 +2927,33 @@
     </wsdl:operation>
     <wsdl:operation name="RegistrarConvenioValidado">
       <soap12:operation soapAction="http://tempuri.org/RegistrarConvenioValidado" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCantidadVehiculosActuales">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerCantidadVehiculosActuales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerCantidadMotosActuales">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerCantidadMotosActuales" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerRutaCodigoBarras">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerRutaCodigoBarras" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

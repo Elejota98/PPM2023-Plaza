@@ -135,6 +135,12 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         private System.Threading.SendOrPostCallback RegistrarConvenioValidadoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ObtenerCantidadVehiculosActualesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ObtenerCantidadMotosActualesOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ObtenerRutaCodigoBarrasOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -331,6 +337,15 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         public event RegistrarConvenioValidadoCompletedEventHandler RegistrarConvenioValidadoCompleted;
+        
+        /// <remarks/>
+        public event ObtenerCantidadVehiculosActualesCompletedEventHandler ObtenerCantidadVehiculosActualesCompleted;
+        
+        /// <remarks/>
+        public event ObtenerCantidadMotosActualesCompletedEventHandler ObtenerCantidadMotosActualesCompleted;
+        
+        /// <remarks/>
+        public event ObtenerRutaCodigoBarrasCompletedEventHandler ObtenerRutaCodigoBarrasCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerInformacionUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -1548,9 +1563,10 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/CrearEntrada", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public CreaEntradaResponse CrearEntrada(string idEstacionamiento, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion) {
+        public CreaEntradaResponse CrearEntrada(string idEstacionamiento, string idTarjeta, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion) {
             object[] results = this.Invoke("CrearEntrada", new object[] {
                         idEstacionamiento,
+                        idTarjeta,
                         carril,
                         placa,
                         fecha,
@@ -1560,17 +1576,18 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
-        public void CrearEntradaAsync(string idEstacionamiento, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion) {
-            this.CrearEntradaAsync(idEstacionamiento, carril, placa, fecha, tipov, _IdAutorizacion, null);
+        public void CrearEntradaAsync(string idEstacionamiento, string idTarjeta, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion) {
+            this.CrearEntradaAsync(idEstacionamiento, idTarjeta, carril, placa, fecha, tipov, _IdAutorizacion, null);
         }
         
         /// <remarks/>
-        public void CrearEntradaAsync(string idEstacionamiento, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion, object userState) {
+        public void CrearEntradaAsync(string idEstacionamiento, string idTarjeta, string carril, string placa, System.DateTime fecha, string tipov, string _IdAutorizacion, object userState) {
             if ((this.CrearEntradaOperationCompleted == null)) {
                 this.CrearEntradaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnCrearEntradaOperationCompleted);
             }
             this.InvokeAsync("CrearEntrada", new object[] {
                         idEstacionamiento,
+                        idTarjeta,
                         carril,
                         placa,
                         fecha,
@@ -2028,6 +2045,89 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerCantidadVehiculosActuales", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoCantidadVehiculosActualesResponse ObtenerCantidadVehiculosActuales() {
+            object[] results = this.Invoke("ObtenerCantidadVehiculosActuales", new object[0]);
+            return ((InfoCantidadVehiculosActualesResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ObtenerCantidadVehiculosActualesAsync() {
+            this.ObtenerCantidadVehiculosActualesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void ObtenerCantidadVehiculosActualesAsync(object userState) {
+            if ((this.ObtenerCantidadVehiculosActualesOperationCompleted == null)) {
+                this.ObtenerCantidadVehiculosActualesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerCantidadVehiculosActualesOperationCompleted);
+            }
+            this.InvokeAsync("ObtenerCantidadVehiculosActuales", new object[0], this.ObtenerCantidadVehiculosActualesOperationCompleted, userState);
+        }
+        
+        private void OnObtenerCantidadVehiculosActualesOperationCompleted(object arg) {
+            if ((this.ObtenerCantidadVehiculosActualesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ObtenerCantidadVehiculosActualesCompleted(this, new ObtenerCantidadVehiculosActualesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerCantidadMotosActuales", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoCantidadMotosActualesResponse ObtenerCantidadMotosActuales() {
+            object[] results = this.Invoke("ObtenerCantidadMotosActuales", new object[0]);
+            return ((InfoCantidadMotosActualesResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ObtenerCantidadMotosActualesAsync() {
+            this.ObtenerCantidadMotosActualesAsync(null);
+        }
+        
+        /// <remarks/>
+        public void ObtenerCantidadMotosActualesAsync(object userState) {
+            if ((this.ObtenerCantidadMotosActualesOperationCompleted == null)) {
+                this.ObtenerCantidadMotosActualesOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerCantidadMotosActualesOperationCompleted);
+            }
+            this.InvokeAsync("ObtenerCantidadMotosActuales", new object[0], this.ObtenerCantidadMotosActualesOperationCompleted, userState);
+        }
+        
+        private void OnObtenerCantidadMotosActualesOperationCompleted(object arg) {
+            if ((this.ObtenerCantidadMotosActualesCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ObtenerCantidadMotosActualesCompleted(this, new ObtenerCantidadMotosActualesCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerRutaCodigoBarras", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string ObtenerRutaCodigoBarras(string sIdEstacionamiento) {
+            object[] results = this.Invoke("ObtenerRutaCodigoBarras", new object[] {
+                        sIdEstacionamiento});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ObtenerRutaCodigoBarrasAsync(string sIdEstacionamiento) {
+            this.ObtenerRutaCodigoBarrasAsync(sIdEstacionamiento, null);
+        }
+        
+        /// <remarks/>
+        public void ObtenerRutaCodigoBarrasAsync(string sIdEstacionamiento, object userState) {
+            if ((this.ObtenerRutaCodigoBarrasOperationCompleted == null)) {
+                this.ObtenerRutaCodigoBarrasOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerRutaCodigoBarrasOperationCompleted);
+            }
+            this.InvokeAsync("ObtenerRutaCodigoBarras", new object[] {
+                        sIdEstacionamiento}, this.ObtenerRutaCodigoBarrasOperationCompleted, userState);
+        }
+        
+        private void OnObtenerRutaCodigoBarrasOperationCompleted(object arg) {
+            if ((this.ObtenerRutaCodigoBarrasCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ObtenerRutaCodigoBarrasCompleted(this, new ObtenerRutaCodigoBarrasCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -2123,6 +2223,72 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             }
             set {
                 this.cargoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class InfoCantidadMotosActualesResponse {
+        
+        private int cantidadField;
+        
+        private bool exitoField;
+        
+        /// <remarks/>
+        public int Cantidad {
+            get {
+                return this.cantidadField;
+            }
+            set {
+                this.cantidadField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class InfoCantidadVehiculosActualesResponse {
+        
+        private int cantidadField;
+        
+        private bool exitoField;
+        
+        /// <remarks/>
+        public int Cantidad {
+            get {
+                return this.cantidadField;
+            }
+            set {
+                this.cantidadField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
             }
         }
     }
@@ -2610,6 +2776,8 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         private string errorMessageField;
         
+        private string nombreApellidosField;
+        
         private string idTarjetaField;
         
         private string idAutorizacionField;
@@ -2631,6 +2799,16 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             }
             set {
                 this.errorMessageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NombreApellidos {
+            get {
+                return this.nombreApellidosField;
+            }
+            set {
+                this.nombreApellidosField = value;
             }
         }
         
@@ -3317,6 +3495,10 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         private string idTarjetaDescripcionField;
         
+        private string documentoField;
+        
+        private string nombreApellidosField;
+        
         /// <remarks/>
         public bool Exito {
             get {
@@ -3344,6 +3526,26 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             }
             set {
                 this.idTarjetaDescripcionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Documento {
+            get {
+                return this.documentoField;
+            }
+            set {
+                this.documentoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NombreApellidos {
+            get {
+                return this.nombreApellidosField;
+            }
+            set {
+                this.nombreApellidosField = value;
             }
         }
     }
@@ -4787,6 +4989,8 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         private string placaEntradaField;
         
+        private int idTipoVehiculoField;
+        
         /// <remarks/>
         public bool Exito {
             get {
@@ -4874,6 +5078,16 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             }
             set {
                 this.placaEntradaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public int IdTipoVehiculo {
+            get {
+                return this.idTipoVehiculoField;
+            }
+            set {
+                this.idTipoVehiculoField = value;
             }
         }
     }
@@ -6516,6 +6730,84 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((RegistrarConvenioResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ObtenerCantidadVehiculosActualesCompletedEventHandler(object sender, ObtenerCantidadVehiculosActualesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ObtenerCantidadVehiculosActualesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ObtenerCantidadVehiculosActualesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoCantidadVehiculosActualesResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoCantidadVehiculosActualesResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ObtenerCantidadMotosActualesCompletedEventHandler(object sender, ObtenerCantidadMotosActualesCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ObtenerCantidadMotosActualesCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ObtenerCantidadMotosActualesCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoCantidadMotosActualesResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoCantidadMotosActualesResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ObtenerRutaCodigoBarrasCompletedEventHandler(object sender, ObtenerRutaCodigoBarrasCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ObtenerRutaCodigoBarrasCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ObtenerRutaCodigoBarrasCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
             }
         }
     }
