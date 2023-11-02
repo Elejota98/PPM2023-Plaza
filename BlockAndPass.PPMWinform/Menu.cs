@@ -184,6 +184,23 @@ namespace BlockAndPass.PPMWinform
             }
         }
 
+        void tmrTimeOutPago_Tick(object sender, EventArgs e)
+        {
+            cnt++;
+
+            //int valorfinal = Convert.toInlblTiempoFuera.Text.Replace("Usted dispone de ","").Replace(" segundos para pagar.","");
+
+            //lblTiempoFuera.Text = "Usted dispone de " + (15 - cnt) + " segundos para pagar.";
+
+            if (cnt >= 15)
+            {
+                tmrTimeOutPago.Stop();
+                RestablecerPPM();
+                //panelPagar.Enabled = false;
+                //btn_Copia.Enabled = true;
+            }
+        }
+
         private void tbPlaca_TextChanged(object sender, EventArgs e)
         {
             string texto = tbPlaca.Text;
@@ -242,17 +259,18 @@ namespace BlockAndPass.PPMWinform
             //panelPagar.Enabled = false;
             //btn_Copia.Enabled = true;
             //chbEstacionamiento.Checked = false;
-            //chbMensualidad.Checked = false;
-            //tbCambio.Text = "$0";
+            ckMensualidadDocumento.Checked = false;
+            tbCambioCobrar.Text = "$0";
             //tbIdTarjeta.Text = string.Empty;
             //tbIdTransaccion.Text = string.Empty;
-            //tbPlaca.Text = string.Empty;
-            //tbRecibido.Text = "0";
-            //tbValorPagar.Text = string.Empty;
+            tbPlaca.Text = string.Empty;
+            txtPlacaBuscar.Text = string.Empty;
+            tbRecibidoCobrar.Text = "0";
+            tbValorAPagarCobrar.Text = string.Empty;
             //lblTiempoFuera.Text = string.Empty;
-            //tbTiempo.Text = string.Empty;
+            tbTiempoCobrar.Text = string.Empty;
             //tbHoraPago.Text = string.Empty;
-            //tbCasillero.Text = string.Empty;
+            tbCasilleroCobrar.Text = string.Empty;
             tbCodigo.Text = string.Empty;
             txtPlacaBuscar.Text = string.Empty;
             ckMensualidadDocumento.Checked = false;
@@ -375,6 +393,13 @@ namespace BlockAndPass.PPMWinform
 
 
         }
+
+        public void ReestablecerBotonInferior()
+        {
+            btn_Cerrar.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cerrar.png");
+            btn_Cerrar.Text = "";
+            btn_Cerrar.BackgroundImageLayout = ImageLayout.Stretch;
+        }
         #endregion
 
         #region Botones 
@@ -433,6 +458,46 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralDerechoPrincipal();
             btn_Arqueo.BackgroundImage = Image.FromFile(@"Media\Png\btn_ArqueoPresionado.png");
             //tabPrincipal.SelectedTab = tabArqueo;
+
+            DialogResult oDialogResult = MessageBox.Show("¿Esta seguro que desea realizar el arqueo?", "Arqueo PPM", MessageBoxButtons.YesNo, MessageBoxIcon.Question);
+            if (oDialogResult == DialogResult.Yes)
+            {
+                RegistrarArqueoResponse rgis = cliente.RegistrarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), _DocumentoUsuario);
+                if (rgis.Exito)
+                {
+                    ArqueoPopUp popup = new ArqueoPopUp(rgis.IdArqueo.ToString());
+                    popup.ShowDialog();
+                    if (popup.DialogResult == DialogResult.OK)
+                    {
+                        ConfirmarArqueoResponse confirmacionArqueo = cliente.ConfirmarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), rgis.IdArqueo.ToString(), popup.Valor.ToString(), _DocumentoUsuario);
+                        if (confirmacionArqueo.Exito)
+                        {
+                            ImprimirArqueo(rgis.IdArqueo.ToString());
+                        }
+                        else
+                        {
+                            MessageBox.Show(confirmacionArqueo.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            StringBuilder sb = new StringBuilder();
+                            sb.Append(confirmacionArqueo.ErrorMessage);
+                            File.AppendAllText(Path.Combine(AppDomain.CurrentDomain.BaseDirectory, "log.txt"), sb.ToString());
+                            sb.Clear();
+                        }
+                    }
+                    else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+                    {
+                        MessageBox.Show("Operacion cancelada por el usuario", "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+                    else
+                    {
+                        MessageBox.Show("Error al procesar ventana carga", "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    MessageBox.Show(rgis.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
         }
 
         private void btn_SaldoEnLinea_Click(object sender, EventArgs e)
@@ -623,7 +688,32 @@ namespace BlockAndPass.PPMWinform
             //tabPrincipal.SelectedTab = tabReportePatios;
         }
 
+        private void btn_Cascos_Click(object sender, EventArgs e)
+        {
+            ReestablecerBotonesLateralDerechoEntradas();
+            btn_Cascos.BackgroundImage = Image.FromFile(@"Media\Png\btn_CascosPresionado.png");
+            //tabPrincipal.SelectedTab = tabReportePatios;
 
+            CascosPoUp popup = new CascosPoUp(cbEstacionamiento.SelectedValue.ToString(), _IdTransaccion);
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                MessageBox.Show("Tarifa casco creada con EXITO", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                MessageBox.Show("Operacion cancelada por el usuario", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error al procesar ventana crear tarifa", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
+        private void btn_Cerrar_Click(object sender, EventArgs e)
+        {
+            Close();
+            Application.Exit();
+        }
 
         private void btn_Cortesia_Click(object sender, EventArgs e)
         {
@@ -1014,10 +1104,52 @@ namespace BlockAndPass.PPMWinform
                         {
                             if (TieneTransaccionAbierta(tbPlaca.Text))
                             {
-                                MessageBox.Show("El autorizado tiene una transaccion pendiente de salida.", "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                LimpiarDatosEntrada();
-                                tbPlaca.Focus();
-                                tbPlaca.Enabled = true;
+                                //MessageBox.Show("El autorizado tiene una transaccion pendiente de salida.", "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                                DialogResult result4 = MessageBox.Show("¿El autorizado tiene una salida pendiente, ¿Desea registrar la salida? " + oCardResponse.placa, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                if (result4 == DialogResult.Yes)
+                                {
+                                    //bContinuarLiquidacion = false;
+                                    CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), tbModuloIngreso.Text);
+                                    if (oCarrilxIdModuloResponse.Exito)
+                                    {
+                                        //string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
+
+                                        //CardResponse oCardResponseExit = new CardResponse();
+                                        //oCardResponseExit = ExitCardAutho(clave, oCardResponse.idCard);
+                                        //if (!oCardResponseExit.error)
+                                        //{
+                                            CreaSalidaResponse resp = cliente.CrearSalida2(cbEstacionamiento.SelectedValue.ToString(), tbPlaca.Text, _IdTransaccion, oCarrilxIdModuloResponse.Carril.ToString(), tbModuloIngreso.Text, _IdTarjeta);
+
+                                            if (resp.Exito)
+                                            {
+                                                MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                            LimpiarDatosEntrada();
+                                            tbPlaca.Focus();
+                                            tbPlaca.Enabled = true;
+                                        }
+                                            else
+                                            {
+                                                this.DialogResult = DialogResult.None;
+                                                MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            LimpiarDatosEntrada();
+                                            tbPlaca.Focus();
+                                            tbPlaca.Enabled = true;
+                                        }
+                                        //}
+                                        //else
+                                        //{
+                                        //    Cargando(false);
+                                        //    MessageBox.Show(oCardResponseExit.errorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        //}
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show("No fue posible encontrar el carril asociado al modulo.", "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                               
                             }
                             else
                             {
@@ -1131,6 +1263,7 @@ namespace BlockAndPass.PPMWinform
                         if (pagoNormal.Exito)
                         {
                             ImprimirPagoNormal(_IdTransaccion);
+                            LimpiarDatosCobrar();
                         }
                         else
                         {
@@ -1166,12 +1299,14 @@ namespace BlockAndPass.PPMWinform
                             if (!oCardResponse.error)
                             {
                                 ImprimirPagoMensualidad(pagoNormal.IdTranaccion, pagoNormal.IdAutorizacion);
+                                LimpiarDatosCobrar();
                             }
 
                             else if (ckMensualidadDocumento.Checked == true && txtPlacaBuscar.Text != null)
                             {
 
                                 ImprimirPagoMensualidad(pagoNormal.IdTranaccion, pagoNormal.IdAutorizacion);
+                                LimpiarDatosCobrar();
                             }
                         }
                         else
@@ -1209,6 +1344,78 @@ namespace BlockAndPass.PPMWinform
                 //Cargando(false);
 
                 RestablecerPPM();
+            }
+        }
+
+        private void txtPlacaBuscar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                LeerInfoPorPlaca();
+            }
+        }
+
+        private void tbCodigo_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+
+                if (tbCodigo.Text != string.Empty && tbCodigo.Text.Length <= 17)
+                {
+                    LeerInfoPorPlaca();
+                    //_IdTransaccion = tbCodigo.Text;
+                }
+                else
+                {
+                    tbCodigo.Text = string.Empty;
+                    LeerInfoPorPlaca();
+
+                }
+            }
+        }
+
+        private void txtPlacaBuscar_MouseClick(object sender, MouseEventArgs e)
+        {
+            tmrHora.Stop();
+            clickTimer.Start();
+        }
+
+        private void txtPlacaBuscar_TextChanged(object sender, EventArgs e)
+        {
+            string texto = txtPlacaBuscar.Text;
+
+            try
+            {
+                if (texto.Length == 0)
+                {
+
+                    LimpiarDatosCobrar();
+
+                }
+            }
+            catch (Exception ex)
+            {
+                LimpiarDatosCobrar();
+            }
+        }
+
+
+
+        private void tbRecibidoCobrar_KeyPress(object sender, KeyPressEventArgs e)
+        {
+            if (e.KeyChar == (char)13)
+            {
+                if (tbCodigo.Text != string.Empty || txtPlacaBuscar.Text != "")
+                {
+                    btn_ConfirmarCobro_Click(btn_ConfirmarCobro, EventArgs.Empty);
+                }
+                else
+                {
+                    this.DialogResult = DialogResult.None;
+                    MessageBox.Show("Error Crear Entrada PPM", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    this.Close();
+                }
+
             }
         }
 
@@ -1515,7 +1722,7 @@ namespace BlockAndPass.PPMWinform
 
                                                 //Cargando(false);
                                                 //panelPagar.Enabled = true;
-                                                //tmrTimeOutPago.Start();
+                                                tmrTimeOutPago.Start();
 
                                                 //chbEstacionamiento.Checked = false;
                                                 //chbMensualidad.Checked = true;
@@ -1552,7 +1759,7 @@ namespace BlockAndPass.PPMWinform
 
                                                 //Cargando(false);
                                                 //panelPagar.Enabled = true;
-                                                //tmrTimeOutPago.Start();
+                                                tmrTimeOutPago.Start();
 
                                                 //chbEstacionamiento.Checked = false;
                                                 //chbMensualidad.Checked = true;
@@ -1643,7 +1850,7 @@ namespace BlockAndPass.PPMWinform
 
                             //Cargando(false);
                             //panelPagar.Enabled = true;
-                            //tmrTimeOutPago.Start();
+                            tmrTimeOutPago.Start();
 
                             //chbEstacionamiento.Checked = false;
                             //chbMensualidad.Checked = true;
@@ -2249,6 +2456,7 @@ namespace BlockAndPass.PPMWinform
             tbRecibidoCobrar.Text = "";
             tbCambioCobrar.Text = "$0";
             ckMensualidadDocumento.Checked = false;
+            tbCodigo.Text = "";            
             tbCodigo.Focus();
         }
 
@@ -3346,7 +3554,7 @@ namespace BlockAndPass.PPMWinform
             Application.AddMessageFilter(this);
 
             controlsToMove.Add(this);
-            //tmrTimeOutPago.Start();
+            tmrTimeOutPago.Start();
             tmrHora.Start();
             tmrHora.Interval = 1000;
             tmrHora.Tick += tmrHora_Tick;
@@ -3354,6 +3562,7 @@ namespace BlockAndPass.PPMWinform
             CargaImagenes();
             ReestablecerBotonesLateralDerechoPrincipal();
             ReestablecerBotonesLateralIzquierdo();
+            ReestablecerBotonInferior();
 
             //Funcion ClickPlacaBuscar 
 
@@ -3405,96 +3614,8 @@ namespace BlockAndPass.PPMWinform
 
         }
 
-        private void txtPlacaBuscar_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                LeerInfoPorPlaca();
-            }
-        }
 
-        private void tbCodigo_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
 
-                if (tbCodigo.Text != string.Empty && tbCodigo.Text.Length <= 17)
-                {
-                    LeerInfoPorPlaca();
-                    //_IdTransaccion = tbCodigo.Text;
-                }
-                else
-                {
-                tbCodigo.Text = string.Empty;
-                LeerInfoPorPlaca();
 
-                }
-            }
-        }
-
-        private void txtPlacaBuscar_MouseClick(object sender, MouseEventArgs e)
-        {
-            tmrHora.Stop();
-            clickTimer.Start();
-        }
-
-        private void txtPlacaBuscar_TextChanged(object sender, EventArgs e)
-        {
-            string texto = txtPlacaBuscar.Text;
-
-            try
-            {
-                if (texto.Length == 0)
-                {
-
-                    LimpiarDatosCobrar();
-                    
-                }
-            }
-            catch (Exception ex)
-            {
-                LimpiarDatosCobrar();
-            }
-        }
-
-        private void btn_Cascos_Click(object sender, EventArgs e)
-        {
-            ReestablecerBotonesLateralDerechoEntradas();
-            btn_Cascos.BackgroundImage = Image.FromFile(@"Media\Png\btn_CascosPresionado.png");
-            //tabPrincipal.SelectedTab = tabReportePatios;
-
-            CascosPoUp popup = new CascosPoUp(cbEstacionamiento.SelectedValue.ToString(), _IdTransaccion);
-            popup.ShowDialog();
-            if (popup.DialogResult == DialogResult.OK)
-            {
-                MessageBox.Show("Tarifa casco creada con EXITO", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
-            {
-                MessageBox.Show("Operacion cancelada por el usuario", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Error al procesar ventana crear tarifa", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        }
-
-        private void tbRecibidoCobrar_KeyPress(object sender, KeyPressEventArgs e)
-        {
-            if (e.KeyChar == (char)13)
-            {
-                if (tbCodigo.Text != string.Empty || txtPlacaBuscar.Text!="")
-                {
-                    btn_ConfirmarCobro_Click(btn_ConfirmarCobro, EventArgs.Empty);
-                }
-                else
-                {
-                    this.DialogResult = DialogResult.None;
-                    MessageBox.Show("Error Crear Entrada PPM", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    this.Close();
-                }
-
-            }
-        }
     }
 }

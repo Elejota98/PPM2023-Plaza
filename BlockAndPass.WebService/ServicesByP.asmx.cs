@@ -615,7 +615,7 @@ namespace BlockAndPass.WebService
                         command.ExecuteNonQuery();
 
                         command.CommandText =
-                            "update T_Partes set DineroActual=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM')+" + total + ", sincronizacion = 0 where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM'";
+                            "update T_Partes set DineroActual=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='"+documentoUsuario+"')+" + total + ", sincronizacion = 0 where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='"+documentoUsuario+"'";
                         command.ExecuteNonQuery();
 
                         command.CommandText =
@@ -1738,7 +1738,7 @@ namespace BlockAndPass.WebService
         }
 
         [WebMethod]
-        public ConfirmarArqueoResponse ConfirmarElArqueo(string idEstacionamiento, string idModulo, string idArqueo, string manual)
+        public ConfirmarArqueoResponse ConfirmarElArqueo(string idEstacionamiento, string idModulo, string idArqueo, string manual, string documentoUsuario)
         {
             ConfirmarArqueoResponse oConfirmarArqueoResponse = new ConfirmarArqueoResponse();
             var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
@@ -1750,7 +1750,7 @@ namespace BlockAndPass.WebService
 
             query = "select max(FechaFin),getdate() " +
                     "from T_Arqueos " +
-                    "where  IdModulo = '" + idModulo + "' and Valor != 0 and IdEstacionamiento='" + idEstacionamiento + "'";
+                    "where  IdModulo = '" + idModulo + "' and Valor != 0 and IdEstacionamiento='" + idEstacionamiento + "' and IdUsuario='"+documentoUsuario+"'";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -1775,13 +1775,13 @@ namespace BlockAndPass.WebService
 
             string queryCantidad = "(select (case when COUNT(IdTipoPago) is null then 0 else COUNT(IdTipoPago) end) " +
                                   "from T_Pagos as P inner join T_Transacciones as T on CAST(T.IdTransaccion as varchar) = P.IdTransaccion " +
-                                  "where  P.IdModulo = '" + idModulo + "' and T.IdEstacionamiento='" + idEstacionamiento + "'" +
-                                  "and P.FechaPago between (select max(FechaFin) from T_Arqueos where  IdModulo = '" + idModulo + "' and Valor != 0 and IdEstacionamiento='" + idEstacionamiento + "') and getdate())";
+                                  "where  P.IdModulo = '" + idModulo + "' and T.IdEstacionamiento='" + idEstacionamiento + "' and P.DocumentoUsuario='"+documentoUsuario+"' " +
+                                  "and P.FechaPago between (select max(FechaFin) from T_Arqueos where  IdModulo = '" + idModulo + "' and Valor != 0 and IdEstacionamiento='" + idEstacionamiento + "' and IdUsuario='"+documentoUsuario+"') and getdate())";
 
             string queryValor = "(select (case when SUM(P.Total) is null then 0 else SUM(P.Total) end)  " +
                                   "from T_Pagos as P inner join T_Transacciones as T on CAST(T.IdTransaccion as varchar) = P.IdTransaccion " +
-                                  "where  P.IdModulo = '" + idModulo + "' and T.IdEstacionamiento='" + idEstacionamiento + "'" +
-                                  "and P.FechaPago between (select max(FechaFin) from T_Arqueos where  IdModulo = '" + idModulo + "' and Valor != 0 and IdEstacionamiento='" + idEstacionamiento + "') and getdate())";
+                                  "where  P.IdModulo = '" + idModulo + "' and T.IdEstacionamiento='" + idEstacionamiento + "' and P.DocumentoUsuario='"+documentoUsuario+"'" +
+                                  "and P.FechaPago between (select max(FechaFin) from T_Arqueos where  IdModulo = '" + idModulo + "' and Valor != 0 and IdEstacionamiento='" + idEstacionamiento + "' and IdUsuario='"+documentoUsuario+"') and getdate())";
 
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
@@ -1802,15 +1802,15 @@ namespace BlockAndPass.WebService
                 {
                     command.CommandText =
                             "Insert into T_Movimientos (IdArqueo, IdEstacionamiento, IdModulo, Parte, Accion, Denominacion, Cantidad, Valor, FechaMovimiento) VALUES "
-                            + "('" + idArqueo + "','" + idEstacionamiento + "','" + idModulo + "','CM','Salida',1,'1',(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM'),GETDATE())";
+                            + "('" + idArqueo + "','" + idEstacionamiento + "','" + idModulo + "','CM','Salida',1,'1',(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='"+documentoUsuario+"'),GETDATE())";
                     command.ExecuteNonQuery();
 
                     command.CommandText =
-                            "update T_Arqueos set FechaFin=GetDate(), Valor=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM'), CantTransacciones=" + queryCantidad + " , Producido=" + queryValor + ", Conteo = " + manual + ", Sincronizacion = 'false' where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and idArqueo=" + idArqueo;
+                            "update T_Arqueos set FechaFin=GetDate(), Valor=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='"+documentoUsuario+"'), CantTransacciones=" + queryCantidad + " , Producido=" + queryValor + ", Conteo = " + manual + ", Sincronizacion = 'false' where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and idArqueo=" + idArqueo;
                     command.ExecuteNonQuery();
 
                     command.CommandText =
-                            "update T_Partes set DineroActual=0 , sincronizacion = 0 where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM'";
+                            "update T_Partes set DineroActual=0 , sincronizacion = 0 where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='"+documentoUsuario+"'";
                     command.ExecuteNonQuery();
 
 

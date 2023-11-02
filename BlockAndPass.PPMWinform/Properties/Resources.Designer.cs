@@ -63,6 +63,16 @@ namespace BlockAndPass.PPMWinform.Properties {
         /// <summary>
         ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap btn_Cancelar {
+            get {
+                object obj = ResourceManager.GetObject("btn_Cancelar", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Busca un recurso adaptado de tipo System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap ImagenFondoCobrar {
             get {
                 object obj = ResourceManager.GetObject("ImagenFondoCobrar", resourceCulture);

@@ -164,6 +164,9 @@ namespace BlockAndPass.PPMWinform
         {
             this.Close();
             Application.Exit();
+            btn_Cancel.BackgroundImage = Image.FromFile(@"Media\Png\btn_CancelarPresionado.png");
+            btn_Ok.Text = "";
+            btn_Ok.BackgroundImageLayout = ImageLayout.Stretch;
         }
 
         private void Login_Load(object sender, EventArgs e)
@@ -175,6 +178,39 @@ namespace BlockAndPass.PPMWinform
             //Copyright
 
             lblFooter.Text = "© " + DateTime.Now.Year + " - Parquearse Tecnología";
+
+            ReestablecerBotones();
+        }
+
+        public void ReestablecerBotones()
+        {
+            btn_Ok.BackgroundImage = Image.FromFile(@"Media\Png\btn_Confirmar.png");
+            btn_Ok.Text = "";
+            btn_Ok.BackgroundImageLayout = ImageLayout.Stretch;
+
+            btn_Cancel.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cancelar.png");
+            btn_Cancel.Text = "";
+            btn_Cancel.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void btn_Ok_MouseClick(object sender, MouseEventArgs e)
+        {
+            btn_Ok.BackgroundImage = Image.FromFile(@"Media\Png\btn_ConfirmarPresionado.png");
+            btn_Ok.Text = "";
+            btn_Ok.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+
+        private void btn_Cancel_Move(object sender, EventArgs e)
+        {
+            btn_Ok.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cancelar.png");
+            btn_Ok.Text = "";
+            btn_Ok.BackgroundImageLayout = ImageLayout.Stretch;
+        }
+        private void btn_Cancel_MouseMove(object sender, MouseEventArgs e)
+        {
+            btn_Cancel.BackgroundImage = Image.FromFile(@"Media\Png\btn_CancelarPresionado.png");
+            btn_Cancel.Text = "";
+            btn_Cancel.BackgroundImageLayout = ImageLayout.Stretch;
         }
     }
 }

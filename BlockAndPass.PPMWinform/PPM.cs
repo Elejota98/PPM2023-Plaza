@@ -552,7 +552,7 @@ namespace BlockAndPass.PPMWinform
                     popup.ShowDialog();
                     if (popup.DialogResult == DialogResult.OK)
                     {
-                        ConfirmarArqueoResponse confirmacionArqueo = cliente.ConfirmarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), rgis.IdArqueo.ToString(), popup.Valor.ToString());
+                        ConfirmarArqueoResponse confirmacionArqueo = cliente.ConfirmarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), rgis.IdArqueo.ToString(), popup.Valor.ToString(),_DocumentoUsuario);
                         if (confirmacionArqueo.Exito)
                         {
                             ImprimirArqueo(rgis.IdArqueo.ToString());
@@ -4074,7 +4074,7 @@ namespace BlockAndPass.PPMWinform
                     popup.ShowDialog();
                     if (popup.DialogResult == DialogResult.OK)
                     {
-                        ConfirmarArqueoResponse confirmacionArqueo = cliente.ConfirmarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), rgis.IdArqueo.ToString(), popup.Valor.ToString());
+                        ConfirmarArqueoResponse confirmacionArqueo = cliente.ConfirmarElArqueo(cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), rgis.IdArqueo.ToString(), popup.Valor.ToString(), _DocumentoUsuario);
                         if (confirmacionArqueo.Exito)
                         {
                             ImprimirArqueo(rgis.IdArqueo.ToString());

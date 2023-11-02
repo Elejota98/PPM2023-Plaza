@@ -1369,22 +1369,23 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ConfirmarElArqueo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public ConfirmarArqueoResponse ConfirmarElArqueo(string idEstacionamiento, string idModulo, string idArqueo, string manual) {
+        public ConfirmarArqueoResponse ConfirmarElArqueo(string idEstacionamiento, string idModulo, string idArqueo, string manual, string documentoUsuario) {
             object[] results = this.Invoke("ConfirmarElArqueo", new object[] {
                         idEstacionamiento,
                         idModulo,
                         idArqueo,
-                        manual});
+                        manual,
+                        documentoUsuario});
             return ((ConfirmarArqueoResponse)(results[0]));
         }
         
         /// <remarks/>
-        public void ConfirmarElArqueoAsync(string idEstacionamiento, string idModulo, string idArqueo, string manual) {
-            this.ConfirmarElArqueoAsync(idEstacionamiento, idModulo, idArqueo, manual, null);
+        public void ConfirmarElArqueoAsync(string idEstacionamiento, string idModulo, string idArqueo, string manual, string documentoUsuario) {
+            this.ConfirmarElArqueoAsync(idEstacionamiento, idModulo, idArqueo, manual, documentoUsuario, null);
         }
         
         /// <remarks/>
-        public void ConfirmarElArqueoAsync(string idEstacionamiento, string idModulo, string idArqueo, string manual, object userState) {
+        public void ConfirmarElArqueoAsync(string idEstacionamiento, string idModulo, string idArqueo, string manual, string documentoUsuario, object userState) {
             if ((this.ConfirmarElArqueoOperationCompleted == null)) {
                 this.ConfirmarElArqueoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnConfirmarElArqueoOperationCompleted);
             }
@@ -1392,7 +1393,8 @@ namespace BlockAndPass.PPMWinform.ByPServices {
                         idEstacionamiento,
                         idModulo,
                         idArqueo,
-                        manual}, this.ConfirmarElArqueoOperationCompleted, userState);
+                        manual,
+                        documentoUsuario}, this.ConfirmarElArqueoOperationCompleted, userState);
         }
         
         private void OnConfirmarElArqueoOperationCompleted(object arg) {

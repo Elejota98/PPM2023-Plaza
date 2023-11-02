@@ -33,12 +33,14 @@
             this.lblSede = new System.Windows.Forms.Label();
             this.cbSede = new System.Windows.Forms.ComboBox();
             this.cbPPM = new System.Windows.Forms.ComboBox();
+            this.Imagen_Logo = new System.Windows.Forms.PictureBox();
             this.cbEstacionamiento = new System.Windows.Forms.ComboBox();
             this.pnlBarraLateralIzquierda = new System.Windows.Forms.Panel();
             this.btn_Cobrar = new System.Windows.Forms.Button();
             this.btn_Entrada = new System.Windows.Forms.Button();
             this.btn_Principal = new System.Windows.Forms.Button();
             this.pnl_InfoUsuario = new System.Windows.Forms.Panel();
+            this.LogoUsuario = new System.Windows.Forms.PictureBox();
             this.tbUsuario = new System.Windows.Forms.Label();
             this.tbNombreUsuario = new System.Windows.Forms.Label();
             this.tabPrincipal = new System.Windows.Forms.TabControl();
@@ -55,19 +57,6 @@
             this.btn_SaldoEnLinea = new System.Windows.Forms.Button();
             this.btn_Arqueo = new System.Windows.Forms.Button();
             this.tabEntrada = new System.Windows.Forms.TabPage();
-            this.pnl_LateralDerechaEntrada = new System.Windows.Forms.Panel();
-            this.btn_Otros = new System.Windows.Forms.Button();
-            this.btn_Motos = new System.Windows.Forms.Button();
-            this.btn_Carro = new System.Windows.Forms.Button();
-            this.tabCobrar = new System.Windows.Forms.TabPage();
-            this.pnl_LateralDerechaCobrar = new System.Windows.Forms.Panel();
-            this.btn_Cascos = new System.Windows.Forms.Button();
-            this.btn_Reposicion = new System.Windows.Forms.Button();
-            this.btn_FacturaElectronica = new System.Windows.Forms.Button();
-            this.btn_Convenios = new System.Windows.Forms.Button();
-            this.btn_TarifasEspeciales = new System.Windows.Forms.Button();
-            this.btn_Cortesia = new System.Windows.Forms.Button();
-            this.tabArqueo = new System.Windows.Forms.TabPage();
             this.Imagen_FondoEntrada = new System.Windows.Forms.Panel();
             this.btnConfirmaIngreso = new System.Windows.Forms.Button();
             this.cbEntrada = new System.Windows.Forms.ComboBox();
@@ -77,6 +66,11 @@
             this.tbNombreAutortizado = new System.Windows.Forms.TextBox();
             this.tbTipoVehiculo = new System.Windows.Forms.TextBox();
             this.tbPlaca = new System.Windows.Forms.TextBox();
+            this.pnl_LateralDerechaEntrada = new System.Windows.Forms.Panel();
+            this.btn_Otros = new System.Windows.Forms.Button();
+            this.btn_Motos = new System.Windows.Forms.Button();
+            this.btn_Carro = new System.Windows.Forms.Button();
+            this.tabCobrar = new System.Windows.Forms.TabPage();
             this.Imagen_FondoCobrar = new System.Windows.Forms.Panel();
             this.btn_ConfirmarCobro = new System.Windows.Forms.Button();
             this.ckMensualidadDocumento = new System.Windows.Forms.CheckBox();
@@ -92,23 +86,32 @@
             this.tbNombreAutorizadoCobrar = new System.Windows.Forms.TextBox();
             this.tbTipoVehiculoCobrar = new System.Windows.Forms.TextBox();
             this.txtPlacaBuscar = new System.Windows.Forms.TextBox();
-            this.LogoUsuario = new System.Windows.Forms.PictureBox();
-            this.Imagen_Logo = new System.Windows.Forms.PictureBox();
+            this.pnl_LateralDerechaCobrar = new System.Windows.Forms.Panel();
+            this.btn_Cascos = new System.Windows.Forms.Button();
+            this.btn_Reposicion = new System.Windows.Forms.Button();
+            this.btn_FacturaElectronica = new System.Windows.Forms.Button();
+            this.btn_Convenios = new System.Windows.Forms.Button();
+            this.btn_TarifasEspeciales = new System.Windows.Forms.Button();
+            this.btn_Cortesia = new System.Windows.Forms.Button();
+            this.tabArqueo = new System.Windows.Forms.TabPage();
+            this.pnl_Inferior = new System.Windows.Forms.Panel();
+            this.btn_Cerrar = new System.Windows.Forms.Button();
             this.pnlEnecabezado.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).BeginInit();
             this.pnlBarraLateralIzquierda.SuspendLayout();
             this.pnl_InfoUsuario.SuspendLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoUsuario)).BeginInit();
             this.tabPrincipal.SuspendLayout();
             this.tabMenuPrincipal.SuspendLayout();
             this.Imagen_Principal.SuspendLayout();
             this.pnl_LateralDerecha_Principal.SuspendLayout();
             this.tabEntrada.SuspendLayout();
+            this.Imagen_FondoEntrada.SuspendLayout();
             this.pnl_LateralDerechaEntrada.SuspendLayout();
             this.tabCobrar.SuspendLayout();
-            this.pnl_LateralDerechaCobrar.SuspendLayout();
-            this.Imagen_FondoEntrada.SuspendLayout();
             this.Imagen_FondoCobrar.SuspendLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoUsuario)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).BeginInit();
+            this.pnl_LateralDerechaCobrar.SuspendLayout();
+            this.pnl_Inferior.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEnecabezado
@@ -166,6 +169,15 @@
             this.cbPPM.Name = "cbPPM";
             this.cbPPM.Size = new System.Drawing.Size(116, 33);
             this.cbPPM.TabIndex = 3;
+            // 
+            // Imagen_Logo
+            // 
+            this.Imagen_Logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Imagen_Logo.Location = new System.Drawing.Point(433, 11);
+            this.Imagen_Logo.Name = "Imagen_Logo";
+            this.Imagen_Logo.Size = new System.Drawing.Size(194, 62);
+            this.Imagen_Logo.TabIndex = 0;
+            this.Imagen_Logo.TabStop = false;
             // 
             // cbEstacionamiento
             // 
@@ -238,16 +250,26 @@
             this.pnl_InfoUsuario.Controls.Add(this.tbUsuario);
             this.pnl_InfoUsuario.Controls.Add(this.tbNombreUsuario);
             this.pnl_InfoUsuario.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_InfoUsuario.Location = new System.Drawing.Point(0, 539);
+            this.pnl_InfoUsuario.Location = new System.Drawing.Point(0, 553);
             this.pnl_InfoUsuario.Name = "pnl_InfoUsuario";
-            this.pnl_InfoUsuario.Size = new System.Drawing.Size(189, 81);
+            this.pnl_InfoUsuario.Size = new System.Drawing.Size(189, 67);
             this.pnl_InfoUsuario.TabIndex = 2;
+            // 
+            // LogoUsuario
+            // 
+            this.LogoUsuario.BackgroundImage = global::BlockAndPass.PPMWinform.Properties.Resources.LogoUsario;
+            this.LogoUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.LogoUsuario.Location = new System.Drawing.Point(15, 9);
+            this.LogoUsuario.Name = "LogoUsuario";
+            this.LogoUsuario.Size = new System.Drawing.Size(36, 39);
+            this.LogoUsuario.TabIndex = 4;
+            this.LogoUsuario.TabStop = false;
             // 
             // tbUsuario
             // 
             this.tbUsuario.AutoSize = true;
             this.tbUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbUsuario.Location = new System.Drawing.Point(72, 55);
+            this.tbUsuario.Location = new System.Drawing.Point(84, 48);
             this.tbUsuario.Name = "tbUsuario";
             this.tbUsuario.Size = new System.Drawing.Size(52, 13);
             this.tbUsuario.TabIndex = 3;
@@ -255,10 +277,10 @@
             // 
             // tbNombreUsuario
             // 
-            this.tbNombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNombreUsuario.Location = new System.Drawing.Point(45, 10);
+            this.tbNombreUsuario.Font = new System.Drawing.Font("Microsoft Sans Serif", 9F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNombreUsuario.Location = new System.Drawing.Point(57, 3);
             this.tbNombreUsuario.Name = "tbNombreUsuario";
-            this.tbNombreUsuario.Size = new System.Drawing.Size(106, 48);
+            this.tbNombreUsuario.Size = new System.Drawing.Size(106, 45);
             this.tbNombreUsuario.TabIndex = 2;
             this.tbNombreUsuario.Text = "Usuario que ingresa al sistema";
             this.tbNombreUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -445,183 +467,6 @@
             this.tabEntrada.Text = "Entrada";
             this.tabEntrada.UseVisualStyleBackColor = true;
             // 
-            // pnl_LateralDerechaEntrada
-            // 
-            this.pnl_LateralDerechaEntrada.BackColor = System.Drawing.Color.White;
-            this.pnl_LateralDerechaEntrada.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
-            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Otros);
-            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Motos);
-            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Carro);
-            this.pnl_LateralDerechaEntrada.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_LateralDerechaEntrada.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnl_LateralDerechaEntrada.Location = new System.Drawing.Point(625, 3);
-            this.pnl_LateralDerechaEntrada.Name = "pnl_LateralDerechaEntrada";
-            this.pnl_LateralDerechaEntrada.Size = new System.Drawing.Size(189, 588);
-            this.pnl_LateralDerechaEntrada.TabIndex = 3;
-            // 
-            // btn_Otros
-            // 
-            this.btn_Otros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Otros.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Otros.FlatAppearance.BorderSize = 0;
-            this.btn_Otros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Otros.Location = new System.Drawing.Point(0, 126);
-            this.btn_Otros.Name = "btn_Otros";
-            this.btn_Otros.Size = new System.Drawing.Size(187, 63);
-            this.btn_Otros.TabIndex = 6;
-            this.btn_Otros.Text = "Otros";
-            this.btn_Otros.UseVisualStyleBackColor = true;
-            this.btn_Otros.Click += new System.EventHandler(this.btn_Otros_Click);
-            // 
-            // btn_Motos
-            // 
-            this.btn_Motos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Motos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Motos.FlatAppearance.BorderSize = 0;
-            this.btn_Motos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Motos.Location = new System.Drawing.Point(0, 63);
-            this.btn_Motos.Name = "btn_Motos";
-            this.btn_Motos.Size = new System.Drawing.Size(187, 63);
-            this.btn_Motos.TabIndex = 5;
-            this.btn_Motos.Text = "Motos";
-            this.btn_Motos.UseVisualStyleBackColor = true;
-            this.btn_Motos.Click += new System.EventHandler(this.btn_Motos_Click);
-            // 
-            // btn_Carro
-            // 
-            this.btn_Carro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Carro.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Carro.FlatAppearance.BorderSize = 0;
-            this.btn_Carro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Carro.Location = new System.Drawing.Point(0, 0);
-            this.btn_Carro.Name = "btn_Carro";
-            this.btn_Carro.Size = new System.Drawing.Size(187, 63);
-            this.btn_Carro.TabIndex = 4;
-            this.btn_Carro.Text = "Carros";
-            this.btn_Carro.UseVisualStyleBackColor = true;
-            this.btn_Carro.Click += new System.EventHandler(this.btn_Carro_Click);
-            // 
-            // tabCobrar
-            // 
-            this.tabCobrar.Controls.Add(this.Imagen_FondoCobrar);
-            this.tabCobrar.Controls.Add(this.pnl_LateralDerechaCobrar);
-            this.tabCobrar.Location = new System.Drawing.Point(4, 22);
-            this.tabCobrar.Name = "tabCobrar";
-            this.tabCobrar.Padding = new System.Windows.Forms.Padding(3);
-            this.tabCobrar.Size = new System.Drawing.Size(817, 594);
-            this.tabCobrar.TabIndex = 1;
-            this.tabCobrar.Text = "Cobrar";
-            this.tabCobrar.UseVisualStyleBackColor = true;
-            // 
-            // pnl_LateralDerechaCobrar
-            // 
-            this.pnl_LateralDerechaCobrar.BackColor = System.Drawing.SystemColors.Control;
-            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Cascos);
-            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Reposicion);
-            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_FacturaElectronica);
-            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Convenios);
-            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_TarifasEspeciales);
-            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Cortesia);
-            this.pnl_LateralDerechaCobrar.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_LateralDerechaCobrar.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnl_LateralDerechaCobrar.Location = new System.Drawing.Point(625, 3);
-            this.pnl_LateralDerechaCobrar.Name = "pnl_LateralDerechaCobrar";
-            this.pnl_LateralDerechaCobrar.Size = new System.Drawing.Size(189, 588);
-            this.pnl_LateralDerechaCobrar.TabIndex = 3;
-            // 
-            // btn_Cascos
-            // 
-            this.btn_Cascos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Cascos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Cascos.FlatAppearance.BorderSize = 0;
-            this.btn_Cascos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cascos.Location = new System.Drawing.Point(0, 315);
-            this.btn_Cascos.Name = "btn_Cascos";
-            this.btn_Cascos.Size = new System.Drawing.Size(189, 63);
-            this.btn_Cascos.TabIndex = 11;
-            this.btn_Cascos.Text = "Cascos";
-            this.btn_Cascos.UseVisualStyleBackColor = true;
-            this.btn_Cascos.Click += new System.EventHandler(this.btn_Cascos_Click);
-            // 
-            // btn_Reposicion
-            // 
-            this.btn_Reposicion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Reposicion.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Reposicion.FlatAppearance.BorderSize = 0;
-            this.btn_Reposicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Reposicion.Location = new System.Drawing.Point(0, 252);
-            this.btn_Reposicion.Name = "btn_Reposicion";
-            this.btn_Reposicion.Size = new System.Drawing.Size(189, 63);
-            this.btn_Reposicion.TabIndex = 10;
-            this.btn_Reposicion.Text = "Reposición";
-            this.btn_Reposicion.UseVisualStyleBackColor = true;
-            this.btn_Reposicion.Click += new System.EventHandler(this.btn_Reposicion_Click);
-            // 
-            // btn_FacturaElectronica
-            // 
-            this.btn_FacturaElectronica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_FacturaElectronica.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_FacturaElectronica.FlatAppearance.BorderSize = 0;
-            this.btn_FacturaElectronica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_FacturaElectronica.Location = new System.Drawing.Point(0, 189);
-            this.btn_FacturaElectronica.Name = "btn_FacturaElectronica";
-            this.btn_FacturaElectronica.Size = new System.Drawing.Size(189, 63);
-            this.btn_FacturaElectronica.TabIndex = 9;
-            this.btn_FacturaElectronica.Text = "FacturaElectronica";
-            this.btn_FacturaElectronica.UseVisualStyleBackColor = true;
-            this.btn_FacturaElectronica.Click += new System.EventHandler(this.btn_FacturaElectronica_Click);
-            // 
-            // btn_Convenios
-            // 
-            this.btn_Convenios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Convenios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Convenios.FlatAppearance.BorderSize = 0;
-            this.btn_Convenios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Convenios.Location = new System.Drawing.Point(0, 126);
-            this.btn_Convenios.Name = "btn_Convenios";
-            this.btn_Convenios.Size = new System.Drawing.Size(189, 63);
-            this.btn_Convenios.TabIndex = 8;
-            this.btn_Convenios.Text = "Convenios";
-            this.btn_Convenios.UseVisualStyleBackColor = true;
-            this.btn_Convenios.Click += new System.EventHandler(this.btn_Convenios_Click);
-            // 
-            // btn_TarifasEspeciales
-            // 
-            this.btn_TarifasEspeciales.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_TarifasEspeciales.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_TarifasEspeciales.FlatAppearance.BorderSize = 0;
-            this.btn_TarifasEspeciales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_TarifasEspeciales.Location = new System.Drawing.Point(0, 63);
-            this.btn_TarifasEspeciales.Name = "btn_TarifasEspeciales";
-            this.btn_TarifasEspeciales.Size = new System.Drawing.Size(189, 63);
-            this.btn_TarifasEspeciales.TabIndex = 7;
-            this.btn_TarifasEspeciales.Text = "Tarifas Especiales";
-            this.btn_TarifasEspeciales.UseVisualStyleBackColor = true;
-            this.btn_TarifasEspeciales.Click += new System.EventHandler(this.btn_TarifasEspeciales_Click);
-            // 
-            // btn_Cortesia
-            // 
-            this.btn_Cortesia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Cortesia.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Cortesia.FlatAppearance.BorderSize = 0;
-            this.btn_Cortesia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cortesia.Location = new System.Drawing.Point(0, 0);
-            this.btn_Cortesia.Name = "btn_Cortesia";
-            this.btn_Cortesia.Size = new System.Drawing.Size(189, 63);
-            this.btn_Cortesia.TabIndex = 6;
-            this.btn_Cortesia.Text = "Cortesia";
-            this.btn_Cortesia.UseVisualStyleBackColor = true;
-            this.btn_Cortesia.Click += new System.EventHandler(this.btn_Cortesia_Click);
-            // 
-            // tabArqueo
-            // 
-            this.tabArqueo.Location = new System.Drawing.Point(4, 22);
-            this.tabArqueo.Name = "tabArqueo";
-            this.tabArqueo.Size = new System.Drawing.Size(817, 594);
-            this.tabArqueo.TabIndex = 3;
-            this.tabArqueo.Text = "Arqueo";
-            this.tabArqueo.UseVisualStyleBackColor = true;
-            // 
             // Imagen_FondoEntrada
             // 
             this.Imagen_FondoEntrada.BackgroundImage = global::BlockAndPass.PPMWinform.Properties.Resources.ImagenFondoIngreso;
@@ -733,6 +578,74 @@
             this.tbPlaca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.tbPlaca.TextChanged += new System.EventHandler(this.tbPlaca_TextChanged);
             this.tbPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPlaca_KeyPress);
+            // 
+            // pnl_LateralDerechaEntrada
+            // 
+            this.pnl_LateralDerechaEntrada.BackColor = System.Drawing.Color.White;
+            this.pnl_LateralDerechaEntrada.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Otros);
+            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Motos);
+            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Carro);
+            this.pnl_LateralDerechaEntrada.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnl_LateralDerechaEntrada.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnl_LateralDerechaEntrada.Location = new System.Drawing.Point(625, 3);
+            this.pnl_LateralDerechaEntrada.Name = "pnl_LateralDerechaEntrada";
+            this.pnl_LateralDerechaEntrada.Size = new System.Drawing.Size(189, 588);
+            this.pnl_LateralDerechaEntrada.TabIndex = 3;
+            // 
+            // btn_Otros
+            // 
+            this.btn_Otros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Otros.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Otros.FlatAppearance.BorderSize = 0;
+            this.btn_Otros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Otros.Location = new System.Drawing.Point(0, 126);
+            this.btn_Otros.Name = "btn_Otros";
+            this.btn_Otros.Size = new System.Drawing.Size(187, 63);
+            this.btn_Otros.TabIndex = 6;
+            this.btn_Otros.Text = "Otros";
+            this.btn_Otros.UseVisualStyleBackColor = true;
+            this.btn_Otros.Click += new System.EventHandler(this.btn_Otros_Click);
+            // 
+            // btn_Motos
+            // 
+            this.btn_Motos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Motos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Motos.FlatAppearance.BorderSize = 0;
+            this.btn_Motos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Motos.Location = new System.Drawing.Point(0, 63);
+            this.btn_Motos.Name = "btn_Motos";
+            this.btn_Motos.Size = new System.Drawing.Size(187, 63);
+            this.btn_Motos.TabIndex = 5;
+            this.btn_Motos.Text = "Motos";
+            this.btn_Motos.UseVisualStyleBackColor = true;
+            this.btn_Motos.Click += new System.EventHandler(this.btn_Motos_Click);
+            // 
+            // btn_Carro
+            // 
+            this.btn_Carro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Carro.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Carro.FlatAppearance.BorderSize = 0;
+            this.btn_Carro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Carro.Location = new System.Drawing.Point(0, 0);
+            this.btn_Carro.Name = "btn_Carro";
+            this.btn_Carro.Size = new System.Drawing.Size(187, 63);
+            this.btn_Carro.TabIndex = 4;
+            this.btn_Carro.Text = "Carros";
+            this.btn_Carro.UseVisualStyleBackColor = true;
+            this.btn_Carro.Click += new System.EventHandler(this.btn_Carro_Click);
+            // 
+            // tabCobrar
+            // 
+            this.tabCobrar.Controls.Add(this.Imagen_FondoCobrar);
+            this.tabCobrar.Controls.Add(this.pnl_LateralDerechaCobrar);
+            this.tabCobrar.Location = new System.Drawing.Point(4, 22);
+            this.tabCobrar.Name = "tabCobrar";
+            this.tabCobrar.Padding = new System.Windows.Forms.Padding(3);
+            this.tabCobrar.Size = new System.Drawing.Size(817, 594);
+            this.tabCobrar.TabIndex = 1;
+            this.tabCobrar.Text = "Cobrar";
+            this.tabCobrar.UseVisualStyleBackColor = true;
             // 
             // Imagen_FondoCobrar
             // 
@@ -913,7 +826,7 @@
             this.txtPlacaBuscar.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(222)))), ((int)(((byte)(98)))));
             this.txtPlacaBuscar.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.txtPlacaBuscar.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.txtPlacaBuscar.Location = new System.Drawing.Point(186, 52);
+            this.txtPlacaBuscar.Location = new System.Drawing.Point(186, 42);
             this.txtPlacaBuscar.Name = "txtPlacaBuscar";
             this.txtPlacaBuscar.Size = new System.Drawing.Size(252, 55);
             this.txtPlacaBuscar.TabIndex = 33;
@@ -922,30 +835,144 @@
             this.txtPlacaBuscar.TextChanged += new System.EventHandler(this.txtPlacaBuscar_TextChanged);
             this.txtPlacaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlacaBuscar_KeyPress);
             // 
-            // LogoUsuario
+            // pnl_LateralDerechaCobrar
             // 
-            this.LogoUsuario.BackgroundImage = global::BlockAndPass.PPMWinform.Properties.Resources.LogoUsario;
-            this.LogoUsuario.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.LogoUsuario.Location = new System.Drawing.Point(-1, 23);
-            this.LogoUsuario.Name = "LogoUsuario";
-            this.LogoUsuario.Size = new System.Drawing.Size(36, 45);
-            this.LogoUsuario.TabIndex = 4;
-            this.LogoUsuario.TabStop = false;
+            this.pnl_LateralDerechaCobrar.BackColor = System.Drawing.SystemColors.Control;
+            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Cascos);
+            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Reposicion);
+            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_FacturaElectronica);
+            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Convenios);
+            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_TarifasEspeciales);
+            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Cortesia);
+            this.pnl_LateralDerechaCobrar.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnl_LateralDerechaCobrar.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnl_LateralDerechaCobrar.Location = new System.Drawing.Point(625, 3);
+            this.pnl_LateralDerechaCobrar.Name = "pnl_LateralDerechaCobrar";
+            this.pnl_LateralDerechaCobrar.Size = new System.Drawing.Size(189, 588);
+            this.pnl_LateralDerechaCobrar.TabIndex = 3;
             // 
-            // Imagen_Logo
+            // btn_Cascos
             // 
-            this.Imagen_Logo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Imagen_Logo.Location = new System.Drawing.Point(433, 11);
-            this.Imagen_Logo.Name = "Imagen_Logo";
-            this.Imagen_Logo.Size = new System.Drawing.Size(194, 62);
-            this.Imagen_Logo.TabIndex = 0;
-            this.Imagen_Logo.TabStop = false;
+            this.btn_Cascos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Cascos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Cascos.FlatAppearance.BorderSize = 0;
+            this.btn_Cascos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cascos.Location = new System.Drawing.Point(0, 315);
+            this.btn_Cascos.Name = "btn_Cascos";
+            this.btn_Cascos.Size = new System.Drawing.Size(189, 63);
+            this.btn_Cascos.TabIndex = 11;
+            this.btn_Cascos.Text = "Cascos";
+            this.btn_Cascos.UseVisualStyleBackColor = true;
+            this.btn_Cascos.Click += new System.EventHandler(this.btn_Cascos_Click);
+            // 
+            // btn_Reposicion
+            // 
+            this.btn_Reposicion.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Reposicion.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Reposicion.FlatAppearance.BorderSize = 0;
+            this.btn_Reposicion.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Reposicion.Location = new System.Drawing.Point(0, 252);
+            this.btn_Reposicion.Name = "btn_Reposicion";
+            this.btn_Reposicion.Size = new System.Drawing.Size(189, 63);
+            this.btn_Reposicion.TabIndex = 10;
+            this.btn_Reposicion.Text = "Reposición";
+            this.btn_Reposicion.UseVisualStyleBackColor = true;
+            this.btn_Reposicion.Click += new System.EventHandler(this.btn_Reposicion_Click);
+            // 
+            // btn_FacturaElectronica
+            // 
+            this.btn_FacturaElectronica.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_FacturaElectronica.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_FacturaElectronica.FlatAppearance.BorderSize = 0;
+            this.btn_FacturaElectronica.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_FacturaElectronica.Location = new System.Drawing.Point(0, 189);
+            this.btn_FacturaElectronica.Name = "btn_FacturaElectronica";
+            this.btn_FacturaElectronica.Size = new System.Drawing.Size(189, 63);
+            this.btn_FacturaElectronica.TabIndex = 9;
+            this.btn_FacturaElectronica.Text = "FacturaElectronica";
+            this.btn_FacturaElectronica.UseVisualStyleBackColor = true;
+            this.btn_FacturaElectronica.Click += new System.EventHandler(this.btn_FacturaElectronica_Click);
+            // 
+            // btn_Convenios
+            // 
+            this.btn_Convenios.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Convenios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Convenios.FlatAppearance.BorderSize = 0;
+            this.btn_Convenios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Convenios.Location = new System.Drawing.Point(0, 126);
+            this.btn_Convenios.Name = "btn_Convenios";
+            this.btn_Convenios.Size = new System.Drawing.Size(189, 63);
+            this.btn_Convenios.TabIndex = 8;
+            this.btn_Convenios.Text = "Convenios";
+            this.btn_Convenios.UseVisualStyleBackColor = true;
+            this.btn_Convenios.Click += new System.EventHandler(this.btn_Convenios_Click);
+            // 
+            // btn_TarifasEspeciales
+            // 
+            this.btn_TarifasEspeciales.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_TarifasEspeciales.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_TarifasEspeciales.FlatAppearance.BorderSize = 0;
+            this.btn_TarifasEspeciales.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_TarifasEspeciales.Location = new System.Drawing.Point(0, 63);
+            this.btn_TarifasEspeciales.Name = "btn_TarifasEspeciales";
+            this.btn_TarifasEspeciales.Size = new System.Drawing.Size(189, 63);
+            this.btn_TarifasEspeciales.TabIndex = 7;
+            this.btn_TarifasEspeciales.Text = "Tarifas Especiales";
+            this.btn_TarifasEspeciales.UseVisualStyleBackColor = true;
+            this.btn_TarifasEspeciales.Click += new System.EventHandler(this.btn_TarifasEspeciales_Click);
+            // 
+            // btn_Cortesia
+            // 
+            this.btn_Cortesia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Cortesia.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Cortesia.FlatAppearance.BorderSize = 0;
+            this.btn_Cortesia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cortesia.Location = new System.Drawing.Point(0, 0);
+            this.btn_Cortesia.Name = "btn_Cortesia";
+            this.btn_Cortesia.Size = new System.Drawing.Size(189, 63);
+            this.btn_Cortesia.TabIndex = 6;
+            this.btn_Cortesia.Text = "Cortesia";
+            this.btn_Cortesia.UseVisualStyleBackColor = true;
+            this.btn_Cortesia.Click += new System.EventHandler(this.btn_Cortesia_Click);
+            // 
+            // tabArqueo
+            // 
+            this.tabArqueo.Location = new System.Drawing.Point(4, 22);
+            this.tabArqueo.Name = "tabArqueo";
+            this.tabArqueo.Size = new System.Drawing.Size(817, 594);
+            this.tabArqueo.TabIndex = 3;
+            this.tabArqueo.Text = "Arqueo";
+            this.tabArqueo.UseVisualStyleBackColor = true;
+            // 
+            // pnl_Inferior
+            // 
+            this.pnl_Inferior.BackColor = System.Drawing.Color.White;
+            this.pnl_Inferior.Controls.Add(this.btn_Cerrar);
+            this.pnl_Inferior.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.pnl_Inferior.Location = new System.Drawing.Point(189, 633);
+            this.pnl_Inferior.Name = "pnl_Inferior";
+            this.pnl_Inferior.Size = new System.Drawing.Size(825, 67);
+            this.pnl_Inferior.TabIndex = 4;
+            // 
+            // btn_Cerrar
+            // 
+            this.btn_Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Cerrar.FlatAppearance.BorderSize = 0;
+            this.btn_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cerrar.Location = new System.Drawing.Point(681, 10);
+            this.btn_Cerrar.Name = "btn_Cerrar";
+            this.btn_Cerrar.Size = new System.Drawing.Size(132, 39);
+            this.btn_Cerrar.TabIndex = 0;
+            this.btn_Cerrar.Text = "button1";
+            this.btn_Cerrar.UseVisualStyleBackColor = true;
+            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 700);
+            this.Controls.Add(this.pnl_Inferior);
             this.Controls.Add(this.tabPrincipal);
             this.Controls.Add(this.pnlBarraLateralIzquierda);
             this.Controls.Add(this.pnlEnecabezado);
@@ -955,23 +982,24 @@
             this.Text = "Menu";
             this.Load += new System.EventHandler(this.Menu_Load);
             this.pnlEnecabezado.ResumeLayout(false);
+            ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).EndInit();
             this.pnlBarraLateralIzquierda.ResumeLayout(false);
             this.pnl_InfoUsuario.ResumeLayout(false);
             this.pnl_InfoUsuario.PerformLayout();
+            ((System.ComponentModel.ISupportInitialize)(this.LogoUsuario)).EndInit();
             this.tabPrincipal.ResumeLayout(false);
             this.tabMenuPrincipal.ResumeLayout(false);
             this.Imagen_Principal.ResumeLayout(false);
             this.pnl_LateralDerecha_Principal.ResumeLayout(false);
             this.tabEntrada.ResumeLayout(false);
-            this.pnl_LateralDerechaEntrada.ResumeLayout(false);
-            this.tabCobrar.ResumeLayout(false);
-            this.pnl_LateralDerechaCobrar.ResumeLayout(false);
             this.Imagen_FondoEntrada.ResumeLayout(false);
             this.Imagen_FondoEntrada.PerformLayout();
+            this.pnl_LateralDerechaEntrada.ResumeLayout(false);
+            this.tabCobrar.ResumeLayout(false);
             this.Imagen_FondoCobrar.ResumeLayout(false);
             this.Imagen_FondoCobrar.PerformLayout();
-            ((System.ComponentModel.ISupportInitialize)(this.LogoUsuario)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).EndInit();
+            this.pnl_LateralDerechaCobrar.ResumeLayout(false);
+            this.pnl_Inferior.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1044,5 +1072,7 @@
         private System.Windows.Forms.CheckBox ckMensualidadDocumento;
         private System.Windows.Forms.Button btn_ConfirmarCobro;
         private System.Windows.Forms.Button btn_Cascos;
+        private System.Windows.Forms.Panel pnl_Inferior;
+        private System.Windows.Forms.Button btn_Cerrar;
     }
 }

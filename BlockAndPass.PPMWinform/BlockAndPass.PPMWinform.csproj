@@ -560,6 +560,7 @@
     <None Include="bin\x86\Debug\Media\Png\Principal.png" />
     <None Include="bin\x86\Debug\Media\Png\ImagenFondoIngreso.png" />
     <None Include="bin\x86\Debug\Media\Png\ImagenFondoCobrar.png" />
+    <None Include="bin\x86\Debug\Media\Png\btn_Cancelar.png" />
     <Content Include="Media\Ico\favicon.ico" />
     <Content Include="Media\Png\bnCard.png">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
