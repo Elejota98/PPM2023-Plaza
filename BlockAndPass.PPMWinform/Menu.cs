@@ -317,6 +317,9 @@ namespace BlockAndPass.PPMWinform
             btn_Cobrar.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cobrar.png");
             btn_Cobrar.Text = "";
             btn_Cobrar.BackgroundImageLayout = ImageLayout.Stretch;
+
+
+
         }
 
         public void ReestablecerBotonesLateralDerechoPrincipal()
@@ -399,14 +402,39 @@ namespace BlockAndPass.PPMWinform
             btn_Cerrar.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cerrar.png");
             btn_Cerrar.Text = "";
             btn_Cerrar.BackgroundImageLayout = ImageLayout.Stretch;
+
+            btn_CerrarPrincipal.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cerrar.png");
+            btn_CerrarPrincipal.Text = "";
+            btn_CerrarPrincipal.BackgroundImageLayout = ImageLayout.Stretch;
+
+            btn_CerrarCobrar.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cerrar.png");
+            btn_CerrarCobrar.Text = "";
+            btn_CerrarCobrar.BackgroundImageLayout = ImageLayout.Stretch;
         }
         #endregion
 
         #region Botones 
+        private void button1_Click(object sender, EventArgs e)
+        {
+            Close();
+            Application.Exit();
+        }
 
+        private void btn_Cerrar_Click_1(object sender, EventArgs e)
+        {
+            Close();
+            Application.Exit();
+        }
+
+        private void button2_Click(object sender, EventArgs e)
+        {
+            Close();
+            Application.Exit();
+        }
         private void btnPrincipal_Click(object sender, EventArgs e)
         {
             ReestablecerBotonesLateralIzquierdo();
+            ReestablecerBotonesLateralDerechoPrincipal();
             btn_Principal.BackgroundImage = Image.FromFile(@"Media\Png\btn_PrincipalPresionado.png");
             tabPrincipal.SelectedTab = tabMenuPrincipal;
         }
@@ -415,6 +443,8 @@ namespace BlockAndPass.PPMWinform
         {
             string rta = "";
             LimpiarDatosEntrada();
+            ReestablecerBotonInferior();
+
             ReestablecerBotonesLateralIzquierdo();
             ReestablecerBotonesLateralDerechoEntradas();
             btn_Entrada.BackgroundImage = Image.FromFile(@"Media\Png\btn_EntradaPresionado.png");
@@ -439,6 +469,8 @@ namespace BlockAndPass.PPMWinform
         private void btn_Cobrar_Click(object sender, EventArgs e)
         {
             ReestablecerBotonesLateralIzquierdo();
+            ReestablecerBotonInferior();
+
             ReestablecerBotonesLateralDerechoCobro();
             btn_Cobrar.BackgroundImage = Image.FromFile(@"Media\Png\btn_CobrarPresionado.png");
             tabPrincipal.SelectedTab = tabCobrar;
@@ -829,7 +861,7 @@ namespace BlockAndPass.PPMWinform
                     //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //}
                 }
-               else if (txtPlacaBuscar.Text != string.Empty || txtPlacaBuscar.Text!= "------")
+               else if (txtPlacaBuscar.Text != string.Empty && txtPlacaBuscar.Text!= "------" && txtPlacaBuscar.Text!="")
                 {
                     InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorPlaca(txtPlacaBuscar.Text, cbEstacionamiento.SelectedValue.ToString());
                     if (informacionTransaccion.Exito)
@@ -929,6 +961,7 @@ namespace BlockAndPass.PPMWinform
                 else
                 {
                     MessageBox.Show("Error al procesar ventana cortesia", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    ReestablecerBotonesLateralDerechoCobro();
                 }
             }
             else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
@@ -947,6 +980,131 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralDerechoCobro();
             btn_TarifasEspeciales.BackgroundImage = Image.FromFile(@"Media\Png\btn_TarifasEspecialesPresionado.png");
             //tabPrincipal.SelectedTab = tabReportePatios;
+
+            EventoPopUp popup = new EventoPopUp(cbEstacionamiento.SelectedValue.ToString(), _DocumentoUsuario);
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                //Cargando(true);
+                string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+                if (clave != string.Empty)
+                {
+                    if (txtPlacaBuscar.Text != string.Empty)
+                    {
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorPlaca(txtPlacaBuscar.Text, cbEstacionamiento.SelectedValue.ToString());
+
+
+                        if (informacionTransaccion.Exito)
+                        {
+                            CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), informacionTransaccion.ModuloEntrada);
+                            if (oCarrilxIdModuloResponse.Exito)
+                            {
+                                //yyyyMMddHHmmssce
+
+                                string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                                InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+
+                                if (oInfoTransaccionService.Exito)
+                                {
+                                    AplicarEventoResponse oAplicarEventoResponse = cliente.AplicarElEvento(cbEstacionamiento.SelectedValue.ToString(), sIdTransaccion, _DocumentoUsuario, null, popup.Evento.ToString());
+                                    if (oAplicarEventoResponse.Exito)
+                                    {
+                                        MessageBox.Show("Evento aplicado exitosamente", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        //Cargando(false);
+                                        LeerInfoPorPlaca();
+                                    }
+                                    else
+                                    {
+                                        //Cargando(false);
+                                        MessageBox.Show(oAplicarEventoResponse.ErrorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    //Cargando(false);
+                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                //Cargando(false);
+                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            //Cargando(false);
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbCodigo.Text, cbEstacionamiento.SelectedValue.ToString());
+
+
+                        if (informacionTransaccion.Exito)
+                        {
+                            CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), informacionTransaccion.ModuloEntrada);
+                            if (oCarrilxIdModuloResponse.Exito)
+                            {
+                                //yyyyMMddHHmmssce
+
+                                string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                                InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+
+                                if (oInfoTransaccionService.Exito)
+                                {
+                                    AplicarEventoResponse oAplicarEventoResponse = cliente.AplicarElEvento(cbEstacionamiento.SelectedValue.ToString(), sIdTransaccion, _DocumentoUsuario, null, popup.Evento.ToString());
+                                    if (oAplicarEventoResponse.Exito)
+                                    {
+                                        MessageBox.Show("Evento aplicado exitosamente", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        //Cargando(false);
+                                    }
+                                    else
+                                    {
+                                        //Cargando(false);
+                                        MessageBox.Show(oAplicarEventoResponse.ErrorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    //Cargando(false);
+                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                //Cargando(false);
+                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+                        }
+                        else
+                        {
+                            //Cargando(false);
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            ReestablecerBotonesLateralDerechoCobro();
+                        }
+                    }
+                }
+                else
+                {
+                    //Cargando(false);
+                    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                //Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                //Cargando(false);
+                MessageBox.Show("Error al procesar ventana convenio", "Aplicar Evento PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                ReestablecerBotonesLateralDerechoCobro();
+            }
         }
 
         private void btn_Convenios_Click(object sender, EventArgs e)
@@ -954,6 +1112,59 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralDerechoCobro();
             btn_Convenios.BackgroundImage = Image.FromFile(@"Media\Png\btn_ConveniosPresionado.png");
             //tabPrincipal.SelectedTab = tabReportePatios;
+
+            ConvenioPopUp popup = new ConvenioPopUp(cbEstacionamiento.SelectedValue.ToString(), _DocumentoUsuario);
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+                if (_IdTransaccion != string.Empty && tbCodigo.Text != "")
+                {
+                    //Cargando(true);
+                    string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+                    if (clave != string.Empty)
+                    {
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(tbCodigo.Text, cbEstacionamiento.SelectedValue.ToString());
+
+                        AplicarConvenioResponse oAplicarConvenioResponse = cliente.AplicarConvenios(_IdTransaccion, popup.Convenio, 0, 0);
+                        if (oAplicarConvenioResponse.Exito)
+                        {
+                            SaveConveniosResponse oInfo = new SaveConveniosResponse();
+                            oInfo = cliente.SaveConvenio(cbEstacionamiento.SelectedValue.ToString(), Convert.ToInt64(popup.Convenio), popup.NameConvenio.ToString());
+
+                            MessageBox.Show("Convenio aplicado exitosamente", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                            //Cargando(false);
+                            LeerInfoPorPlaca();
+                        }
+                        else
+                        {
+                            //Cargando(false);
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                    }
+                    else
+                    {
+                        //Cargando(false);
+                        MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    }
+                }
+                else
+                {
+                    //Cargando(false);
+                    MessageBox.Show("Error al procesar ventana convenio", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                //Cargando(false);
+                MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                //Cargando(false);
+                MessageBox.Show("Error al procesar ventana convenio", "Aplicar Convenio PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
         }
 
         private void btn_FacturaElectronica_Click(object sender, EventArgs e)
@@ -3563,7 +3774,6 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralDerechoPrincipal();
             ReestablecerBotonesLateralIzquierdo();
             ReestablecerBotonInferior();
-
             //Funcion ClickPlacaBuscar 
 
             clickTimer = new System.Windows.Forms.Timer();
@@ -3611,10 +3821,19 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralIzquierdo();
             btn_Principal.BackgroundImage = Image.FromFile(@"Media\Png\btn_PrincipalPresionado.png");
 
+            if(_CargoUsuario== "AUXILIAR DE SERVICIOS")
+            {
+                btn_SaldoEnLinea.Visible = false;
+                btn_ReportePatios.Visible = false;
+                btn_Mensualidades.Visible = false;
+            }
+            else if(_CargoUsuario=="CONTROL INTERNO")
+            {
+
+            }
+
 
         }
-
-
 
 
     }

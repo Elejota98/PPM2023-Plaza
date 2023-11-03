@@ -30,9 +30,9 @@
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Login));
             this.Imgen_FondoLogin = new System.Windows.Forms.Panel();
-            this.lblFooter = new System.Windows.Forms.Label();
             this.btn_Cancel = new FontAwesome.Sharp.IconButton();
             this.btn_Ok = new FontAwesome.Sharp.IconButton();
+            this.lblFooter = new System.Windows.Forms.Label();
             this.tbUser = new System.Windows.Forms.TextBox();
             this.tbClave = new System.Windows.Forms.TextBox();
             this.Imgen_FondoLogin.SuspendLayout();
@@ -41,9 +41,9 @@
             // Imgen_FondoLogin
             // 
             this.Imgen_FondoLogin.BackgroundImage = global::BlockAndPass.PPMWinform.Properties.Resources.ImagenFondoLogin1;
-            this.Imgen_FondoLogin.Controls.Add(this.lblFooter);
             this.Imgen_FondoLogin.Controls.Add(this.btn_Cancel);
             this.Imgen_FondoLogin.Controls.Add(this.btn_Ok);
+            this.Imgen_FondoLogin.Controls.Add(this.lblFooter);
             this.Imgen_FondoLogin.Controls.Add(this.tbUser);
             this.Imgen_FondoLogin.Controls.Add(this.tbClave);
             this.Imgen_FondoLogin.Dock = System.Windows.Forms.DockStyle.Fill;
@@ -51,6 +51,50 @@
             this.Imgen_FondoLogin.Name = "Imgen_FondoLogin";
             this.Imgen_FondoLogin.Size = new System.Drawing.Size(450, 488);
             this.Imgen_FondoLogin.TabIndex = 46;
+            // 
+            // btn_Cancel
+            // 
+            this.btn_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(64)))), ((int)(((byte)(97)))));
+            this.btn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Cancel.FlatAppearance.BorderSize = 0;
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.ForeColor = System.Drawing.Color.White;
+            this.btn_Cancel.Icon = FontAwesome.Sharp.IconChar.Times;
+            this.btn_Cancel.IconColor = System.Drawing.Color.White;
+            this.btn_Cancel.IconSize = 20;
+            this.btn_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.Image")));
+            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Cancel.Location = new System.Drawing.Point(89, 394);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(90, 35);
+            this.btn_Cancel.TabIndex = 45;
+            this.btn_Cancel.Text = "Cerrar";
+            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Cancel.UseVisualStyleBackColor = false;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click_1);
+            // 
+            // btn_Ok
+            // 
+            this.btn_Ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(165)))), ((int)(((byte)(64)))));
+            this.btn_Ok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Ok.FlatAppearance.BorderSize = 0;
+            this.btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Ok.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Ok.ForeColor = System.Drawing.Color.White;
+            this.btn_Ok.Icon = FontAwesome.Sharp.IconChar.Check;
+            this.btn_Ok.IconColor = System.Drawing.Color.White;
+            this.btn_Ok.IconSize = 20;
+            this.btn_Ok.Image = ((System.Drawing.Image)(resources.GetObject("btn_Ok.Image")));
+            this.btn_Ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Ok.Location = new System.Drawing.Point(223, 394);
+            this.btn_Ok.Name = "btn_Ok";
+            this.btn_Ok.Size = new System.Drawing.Size(90, 35);
+            this.btn_Ok.TabIndex = 44;
+            this.btn_Ok.Text = "Ingresar";
+            this.btn_Ok.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Ok.UseVisualStyleBackColor = false;
+            this.btn_Ok.Click += new System.EventHandler(this.btn_Ok_Click_1);
             // 
             // lblFooter
             // 
@@ -62,52 +106,6 @@
             this.lblFooter.Size = new System.Drawing.Size(65, 16);
             this.lblFooter.TabIndex = 46;
             this.lblFooter.Text = "copyright ";
-            // 
-            // btn_Cancel
-            // 
-            this.btn_Cancel.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Cancel.FlatAppearance.BorderSize = 0;
-            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Cancel.ForeColor = System.Drawing.Color.White;
-            this.btn_Cancel.Icon = FontAwesome.Sharp.IconChar.Times;
-            this.btn_Cancel.IconColor = System.Drawing.Color.White;
-            this.btn_Cancel.IconSize = 20;
-            this.btn_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.Image")));
-            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Cancel.Location = new System.Drawing.Point(90, 380);
-            this.btn_Cancel.Name = "btn_Cancel";
-            this.btn_Cancel.Size = new System.Drawing.Size(113, 47);
-            this.btn_Cancel.TabIndex = 45;
-            this.btn_Cancel.Text = "Cerrar";
-            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_Cancel.UseVisualStyleBackColor = false;
-            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click_1);
-            this.btn_Cancel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.btn_Cancel_MouseMove);
-            // 
-            // btn_Ok
-            // 
-            this.btn_Ok.BackColor = System.Drawing.Color.Transparent;
-            this.btn_Ok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Ok.FlatAppearance.BorderSize = 0;
-            this.btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Ok.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.btn_Ok.ForeColor = System.Drawing.Color.White;
-            this.btn_Ok.Icon = FontAwesome.Sharp.IconChar.Check;
-            this.btn_Ok.IconColor = System.Drawing.Color.White;
-            this.btn_Ok.IconSize = 20;
-            this.btn_Ok.Image = ((System.Drawing.Image)(resources.GetObject("btn_Ok.Image")));
-            this.btn_Ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Ok.Location = new System.Drawing.Point(224, 380);
-            this.btn_Ok.Name = "btn_Ok";
-            this.btn_Ok.Size = new System.Drawing.Size(115, 47);
-            this.btn_Ok.TabIndex = 44;
-            this.btn_Ok.Text = "Ingresar";
-            this.btn_Ok.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
-            this.btn_Ok.UseVisualStyleBackColor = false;
-            this.btn_Ok.Click += new System.EventHandler(this.btn_Ok_Click_1);
-            this.btn_Ok.MouseClick += new System.Windows.Forms.MouseEventHandler(this.btn_Ok_MouseClick);
             // 
             // tbUser
             // 

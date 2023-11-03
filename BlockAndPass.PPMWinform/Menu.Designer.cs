@@ -94,8 +94,9 @@
             this.btn_TarifasEspeciales = new System.Windows.Forms.Button();
             this.btn_Cortesia = new System.Windows.Forms.Button();
             this.tabArqueo = new System.Windows.Forms.TabPage();
-            this.pnl_Inferior = new System.Windows.Forms.Panel();
             this.btn_Cerrar = new System.Windows.Forms.Button();
+            this.btn_CerrarPrincipal = new System.Windows.Forms.Button();
+            this.btn_CerrarCobrar = new System.Windows.Forms.Button();
             this.pnlEnecabezado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).BeginInit();
             this.pnlBarraLateralIzquierda.SuspendLayout();
@@ -111,7 +112,6 @@
             this.tabCobrar.SuspendLayout();
             this.Imagen_FondoCobrar.SuspendLayout();
             this.pnl_LateralDerechaCobrar.SuspendLayout();
-            this.pnl_Inferior.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEnecabezado
@@ -374,6 +374,7 @@
             // pnl_LateralDerecha_Principal
             // 
             this.pnl_LateralDerecha_Principal.BackColor = System.Drawing.Color.White;
+            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_CerrarPrincipal);
             this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_ReportePatios);
             this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_Mensualidades);
             this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_FacturaContingencia);
@@ -490,7 +491,7 @@
             this.btnConfirmaIngreso.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
             this.btnConfirmaIngreso.FlatAppearance.BorderSize = 0;
             this.btnConfirmaIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmaIngreso.Location = new System.Drawing.Point(134, 507);
+            this.btnConfirmaIngreso.Location = new System.Drawing.Point(238, 499);
             this.btnConfirmaIngreso.Name = "btnConfirmaIngreso";
             this.btnConfirmaIngreso.Size = new System.Drawing.Size(147, 63);
             this.btnConfirmaIngreso.TabIndex = 8;
@@ -582,7 +583,7 @@
             // pnl_LateralDerechaEntrada
             // 
             this.pnl_LateralDerechaEntrada.BackColor = System.Drawing.Color.White;
-            this.pnl_LateralDerechaEntrada.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Cerrar);
             this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Otros);
             this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Motos);
             this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Carro);
@@ -601,7 +602,7 @@
             this.btn_Otros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Otros.Location = new System.Drawing.Point(0, 126);
             this.btn_Otros.Name = "btn_Otros";
-            this.btn_Otros.Size = new System.Drawing.Size(187, 63);
+            this.btn_Otros.Size = new System.Drawing.Size(189, 63);
             this.btn_Otros.TabIndex = 6;
             this.btn_Otros.Text = "Otros";
             this.btn_Otros.UseVisualStyleBackColor = true;
@@ -615,7 +616,7 @@
             this.btn_Motos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Motos.Location = new System.Drawing.Point(0, 63);
             this.btn_Motos.Name = "btn_Motos";
-            this.btn_Motos.Size = new System.Drawing.Size(187, 63);
+            this.btn_Motos.Size = new System.Drawing.Size(189, 63);
             this.btn_Motos.TabIndex = 5;
             this.btn_Motos.Text = "Motos";
             this.btn_Motos.UseVisualStyleBackColor = true;
@@ -629,7 +630,7 @@
             this.btn_Carro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
             this.btn_Carro.Location = new System.Drawing.Point(0, 0);
             this.btn_Carro.Name = "btn_Carro";
-            this.btn_Carro.Size = new System.Drawing.Size(187, 63);
+            this.btn_Carro.Size = new System.Drawing.Size(189, 63);
             this.btn_Carro.TabIndex = 4;
             this.btn_Carro.Text = "Carros";
             this.btn_Carro.UseVisualStyleBackColor = true;
@@ -838,6 +839,7 @@
             // pnl_LateralDerechaCobrar
             // 
             this.pnl_LateralDerechaCobrar.BackColor = System.Drawing.SystemColors.Control;
+            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_CerrarCobrar);
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Cascos);
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Reposicion);
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_FacturaElectronica);
@@ -944,35 +946,53 @@
             this.tabArqueo.Text = "Arqueo";
             this.tabArqueo.UseVisualStyleBackColor = true;
             // 
-            // pnl_Inferior
-            // 
-            this.pnl_Inferior.BackColor = System.Drawing.Color.White;
-            this.pnl_Inferior.Controls.Add(this.btn_Cerrar);
-            this.pnl_Inferior.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.pnl_Inferior.Location = new System.Drawing.Point(189, 633);
-            this.pnl_Inferior.Name = "pnl_Inferior";
-            this.pnl_Inferior.Size = new System.Drawing.Size(825, 67);
-            this.pnl_Inferior.TabIndex = 4;
-            // 
             // btn_Cerrar
             // 
             this.btn_Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Cerrar.Dock = System.Windows.Forms.DockStyle.Bottom;
             this.btn_Cerrar.FlatAppearance.BorderSize = 0;
             this.btn_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cerrar.Location = new System.Drawing.Point(681, 10);
+            this.btn_Cerrar.Location = new System.Drawing.Point(0, 529);
             this.btn_Cerrar.Name = "btn_Cerrar";
-            this.btn_Cerrar.Size = new System.Drawing.Size(132, 39);
-            this.btn_Cerrar.TabIndex = 0;
+            this.btn_Cerrar.Size = new System.Drawing.Size(189, 59);
+            this.btn_Cerrar.TabIndex = 7;
             this.btn_Cerrar.Text = "button1";
             this.btn_Cerrar.UseVisualStyleBackColor = true;
-            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click);
+            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click_1);
+            // 
+            // btn_CerrarPrincipal
+            // 
+            this.btn_CerrarPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_CerrarPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_CerrarPrincipal.FlatAppearance.BorderSize = 0;
+            this.btn_CerrarPrincipal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CerrarPrincipal.Location = new System.Drawing.Point(0, 535);
+            this.btn_CerrarPrincipal.Name = "btn_CerrarPrincipal";
+            this.btn_CerrarPrincipal.Size = new System.Drawing.Size(189, 59);
+            this.btn_CerrarPrincipal.TabIndex = 15;
+            this.btn_CerrarPrincipal.Text = "button1";
+            this.btn_CerrarPrincipal.UseVisualStyleBackColor = true;
+            this.btn_CerrarPrincipal.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btn_CerrarCobrar
+            // 
+            this.btn_CerrarCobrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_CerrarCobrar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_CerrarCobrar.FlatAppearance.BorderSize = 0;
+            this.btn_CerrarCobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CerrarCobrar.Location = new System.Drawing.Point(0, 529);
+            this.btn_CerrarCobrar.Name = "btn_CerrarCobrar";
+            this.btn_CerrarCobrar.Size = new System.Drawing.Size(189, 59);
+            this.btn_CerrarCobrar.TabIndex = 12;
+            this.btn_CerrarCobrar.Text = "button1";
+            this.btn_CerrarCobrar.UseVisualStyleBackColor = true;
+            this.btn_CerrarCobrar.Click += new System.EventHandler(this.button2_Click);
             // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1014, 700);
-            this.Controls.Add(this.pnl_Inferior);
             this.Controls.Add(this.tabPrincipal);
             this.Controls.Add(this.pnlBarraLateralIzquierda);
             this.Controls.Add(this.pnlEnecabezado);
@@ -999,7 +1019,6 @@
             this.Imagen_FondoCobrar.ResumeLayout(false);
             this.Imagen_FondoCobrar.PerformLayout();
             this.pnl_LateralDerechaCobrar.ResumeLayout(false);
-            this.pnl_Inferior.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1072,7 +1091,8 @@
         private System.Windows.Forms.CheckBox ckMensualidadDocumento;
         private System.Windows.Forms.Button btn_ConfirmarCobro;
         private System.Windows.Forms.Button btn_Cascos;
-        private System.Windows.Forms.Panel pnl_Inferior;
         private System.Windows.Forms.Button btn_Cerrar;
+        private System.Windows.Forms.Button btn_CerrarPrincipal;
+        private System.Windows.Forms.Button btn_CerrarCobrar;
     }
 }

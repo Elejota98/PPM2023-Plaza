@@ -50,8 +50,18 @@ namespace BlockAndPass.PPMWinform
 
         private void btn_Confirmar_Click(object sender, EventArgs e)
         {
+           
+        }
+
+        private void btn_Ok_Click(object sender, EventArgs e)
+        {
             _IdTipoVehiculo = Convert.ToInt32(cboTipoVehiculo.SelectedValue.ToString());
-            this.DialogResult =DialogResult.OK;
+            this.DialogResult = DialogResult.OK;
+        }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
         }
     }
 }

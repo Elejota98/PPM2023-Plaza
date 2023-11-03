@@ -28,11 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(TipoVehiculosOtros));
             this.pnl_LogoTipoVehiculosOtros = new System.Windows.Forms.Panel();
             this.cboTipoVehiculo = new System.Windows.Forms.ComboBox();
             this.lblTipovehiculo = new System.Windows.Forms.Label();
-            this.btn_Confirmar = new System.Windows.Forms.Button();
-            this.btn_Cancelar = new System.Windows.Forms.Button();
+            this.btn_Cancel = new FontAwesome.Sharp.IconButton();
+            this.btn_Ok = new FontAwesome.Sharp.IconButton();
             this.SuspendLayout();
             // 
             // pnl_LogoTipoVehiculosOtros
@@ -41,59 +42,79 @@
             this.pnl_LogoTipoVehiculosOtros.Dock = System.Windows.Forms.DockStyle.Top;
             this.pnl_LogoTipoVehiculosOtros.Location = new System.Drawing.Point(0, 0);
             this.pnl_LogoTipoVehiculosOtros.Name = "pnl_LogoTipoVehiculosOtros";
-            this.pnl_LogoTipoVehiculosOtros.Size = new System.Drawing.Size(632, 81);
+            this.pnl_LogoTipoVehiculosOtros.Size = new System.Drawing.Size(567, 81);
             this.pnl_LogoTipoVehiculosOtros.TabIndex = 0;
             // 
             // cboTipoVehiculo
             // 
-            this.cboTipoVehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.cboTipoVehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.cboTipoVehiculo.FormattingEnabled = true;
-            this.cboTipoVehiculo.Location = new System.Drawing.Point(223, 167);
+            this.cboTipoVehiculo.Location = new System.Drawing.Point(197, 157);
             this.cboTipoVehiculo.Name = "cboTipoVehiculo";
-            this.cboTipoVehiculo.Size = new System.Drawing.Size(232, 28);
+            this.cboTipoVehiculo.Size = new System.Drawing.Size(354, 37);
             this.cboTipoVehiculo.TabIndex = 1;
             // 
             // lblTipovehiculo
             // 
             this.lblTipovehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblTipovehiculo.ForeColor = System.Drawing.Color.Gray;
-            this.lblTipovehiculo.Location = new System.Drawing.Point(25, 160);
+            this.lblTipovehiculo.Location = new System.Drawing.Point(12, 157);
             this.lblTipovehiculo.Name = "lblTipovehiculo";
             this.lblTipovehiculo.Size = new System.Drawing.Size(179, 39);
             this.lblTipovehiculo.TabIndex = 6;
             this.lblTipovehiculo.Text = "Tipo Vehiculo";
             // 
-            // btn_Confirmar
+            // btn_Cancel
             // 
-            this.btn_Confirmar.FlatAppearance.BorderSize = 0;
-            this.btn_Confirmar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Confirmar.Location = new System.Drawing.Point(323, 260);
-            this.btn_Confirmar.Name = "btn_Confirmar";
-            this.btn_Confirmar.Size = new System.Drawing.Size(120, 53);
-            this.btn_Confirmar.TabIndex = 7;
-            this.btn_Confirmar.Text = "Confirmar";
-            this.btn_Confirmar.UseVisualStyleBackColor = true;
-            this.btn_Confirmar.Click += new System.EventHandler(this.btn_Confirmar_Click);
+            this.btn_Cancel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(228)))), ((int)(((byte)(64)))), ((int)(((byte)(97)))));
+            this.btn_Cancel.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Cancel.FlatAppearance.BorderSize = 0;
+            this.btn_Cancel.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cancel.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Cancel.ForeColor = System.Drawing.Color.White;
+            this.btn_Cancel.Icon = FontAwesome.Sharp.IconChar.Times;
+            this.btn_Cancel.IconColor = System.Drawing.Color.White;
+            this.btn_Cancel.IconSize = 20;
+            this.btn_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.Image")));
+            this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Cancel.Location = new System.Drawing.Point(230, 265);
+            this.btn_Cancel.Name = "btn_Cancel";
+            this.btn_Cancel.Size = new System.Drawing.Size(90, 35);
+            this.btn_Cancel.TabIndex = 47;
+            this.btn_Cancel.Text = "Cerrar";
+            this.btn_Cancel.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Cancel.UseVisualStyleBackColor = false;
+            this.btn_Cancel.Click += new System.EventHandler(this.btn_Cancel_Click);
             // 
-            // btn_Cancelar
+            // btn_Ok
             // 
-            this.btn_Cancelar.FlatAppearance.BorderSize = 0;
-            this.btn_Cancelar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cancelar.Location = new System.Drawing.Point(141, 260);
-            this.btn_Cancelar.Name = "btn_Cancelar";
-            this.btn_Cancelar.Size = new System.Drawing.Size(120, 53);
-            this.btn_Cancelar.TabIndex = 8;
-            this.btn_Cancelar.Text = "Cancelar";
-            this.btn_Cancelar.UseVisualStyleBackColor = true;
-            this.btn_Cancelar.Click += new System.EventHandler(this.btn_Cancelar_Click);
+            this.btn_Ok.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(134)))), ((int)(((byte)(165)))), ((int)(((byte)(64)))));
+            this.btn_Ok.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Ok.FlatAppearance.BorderSize = 0;
+            this.btn_Ok.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Ok.Font = new System.Drawing.Font("Arial Rounded MT Bold", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.btn_Ok.ForeColor = System.Drawing.Color.White;
+            this.btn_Ok.Icon = FontAwesome.Sharp.IconChar.Check;
+            this.btn_Ok.IconColor = System.Drawing.Color.White;
+            this.btn_Ok.IconSize = 20;
+            this.btn_Ok.Image = ((System.Drawing.Image)(resources.GetObject("btn_Ok.Image")));
+            this.btn_Ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.btn_Ok.Location = new System.Drawing.Point(341, 265);
+            this.btn_Ok.Name = "btn_Ok";
+            this.btn_Ok.Size = new System.Drawing.Size(90, 35);
+            this.btn_Ok.TabIndex = 46;
+            this.btn_Ok.Text = "Ingresar";
+            this.btn_Ok.TextImageRelation = System.Windows.Forms.TextImageRelation.ImageBeforeText;
+            this.btn_Ok.UseVisualStyleBackColor = false;
+            this.btn_Ok.Click += new System.EventHandler(this.btn_Ok_Click);
             // 
             // TipoVehiculosOtros
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(632, 325);
-            this.Controls.Add(this.btn_Cancelar);
-            this.Controls.Add(this.btn_Confirmar);
+            this.ClientSize = new System.Drawing.Size(567, 325);
+            this.Controls.Add(this.btn_Cancel);
+            this.Controls.Add(this.btn_Ok);
             this.Controls.Add(this.lblTipovehiculo);
             this.Controls.Add(this.cboTipoVehiculo);
             this.Controls.Add(this.pnl_LogoTipoVehiculosOtros);
@@ -109,7 +130,7 @@
         private System.Windows.Forms.Panel pnl_LogoTipoVehiculosOtros;
         private System.Windows.Forms.ComboBox cboTipoVehiculo;
         private System.Windows.Forms.Label lblTipovehiculo;
-        private System.Windows.Forms.Button btn_Confirmar;
-        private System.Windows.Forms.Button btn_Cancelar;
+        private FontAwesome.Sharp.IconButton btn_Cancel;
+        private FontAwesome.Sharp.IconButton btn_Ok;
     }
 }
