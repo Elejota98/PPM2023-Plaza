@@ -196,6 +196,7 @@ namespace BlockAndPass.PPMWinform
             {
                 tmrTimeOutPago.Stop();
                 RestablecerPPM();
+                LimpiarDatosCobrar();
                 //panelPagar.Enabled = false;
                 //btn_Copia.Enabled = true;
             }
@@ -1391,14 +1392,15 @@ namespace BlockAndPass.PPMWinform
             tbRecibidoCobrar.Focus();
             tmrHora.Stop();
             clickTimer.Start();
-            //MessageBox.Show(tbCambio.Text);
-            Int64 pagar = Convert.ToInt64(tbValorAPagarCobrar.Text.Replace("$", "").Replace(".", ""));
-            //Int64 recibido = Convert.ToInt64(tbRecibido.Text.Replace("$", ""));
-            Int64 cambio = Convert.ToInt64(tbCambioCobrar.Text.Replace("$", "").Replace(".", ""));
 
-            Int64 recibido = 0;
             try
             {
+                //MessageBox.Show(tbCambio.Text);
+                Int64 pagar = Convert.ToInt64(tbValorAPagarCobrar.Text.Replace("$", "").Replace(".", ""));
+                //Int64 recibido = Convert.ToInt64(tbRecibido.Text.Replace("$", ""));
+                Int64 cambio = Convert.ToInt64(tbCambioCobrar.Text.Replace("$", "").Replace(".", ""));
+
+                Int64 recibido = 0;
                 if (Int64.TryParse(tbRecibidoCobrar.Text.Replace("$", "").Replace(".", ""), out recibido))
                 {
                     tbRecibidoCobrar.Text = "$" + string.Format("{0:#,##0.##}", recibido);
@@ -1723,6 +1725,7 @@ namespace BlockAndPass.PPMWinform
             //liquidacion = cliente.ConsultarValorPagar(true, true, 1, "0", "0EEEC6CB");
 
             cnt = 0;
+            tmrTimeOutPago.Start();
             //Cargando(true);
             string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
             if (txtPlacaBuscar.Text != string.Empty && !ckMensualidadDocumento.Checked)
@@ -2655,6 +2658,7 @@ namespace BlockAndPass.PPMWinform
 
         public void LimpiarDatosCobrar()
         {
+            btn_Cobrar.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cobrar.png");
             txtPlacaBuscar.Text = "";
             tbTipoVehiculoCobrar.Text = "";
             tbNombreAutorizadoCobrar.Text = "";
@@ -3765,7 +3769,9 @@ namespace BlockAndPass.PPMWinform
             Application.AddMessageFilter(this);
 
             controlsToMove.Add(this);
-            tmrTimeOutPago.Start();
+            tmrTimeOutPago.Interval = 1000;
+            tmrTimeOutPago.Tick += tmrTimeOutPago_Tick;
+            //tmrTimeOutPago.Start();
             tmrHora.Start();
             tmrHora.Interval = 1000;
             tmrHora.Tick += tmrHora_Tick;
@@ -3826,6 +3832,8 @@ namespace BlockAndPass.PPMWinform
                 btn_SaldoEnLinea.Visible = false;
                 btn_ReportePatios.Visible = false;
                 btn_Mensualidades.Visible = false;
+                btn_Cortesia.Visible = false;
+
             }
             else if(_CargoUsuario=="CONTROL INTERNO")
             {

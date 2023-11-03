@@ -51,6 +51,7 @@
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblHora = new System.Windows.Forms.Label();
             this.pnl_LateralDerecha_Principal = new System.Windows.Forms.Panel();
+            this.btn_CerrarPrincipal = new System.Windows.Forms.Button();
             this.btn_ReportePatios = new System.Windows.Forms.Button();
             this.btn_Mensualidades = new System.Windows.Forms.Button();
             this.btn_FacturaContingencia = new System.Windows.Forms.Button();
@@ -67,6 +68,7 @@
             this.tbTipoVehiculo = new System.Windows.Forms.TextBox();
             this.tbPlaca = new System.Windows.Forms.TextBox();
             this.pnl_LateralDerechaEntrada = new System.Windows.Forms.Panel();
+            this.btn_Cerrar = new System.Windows.Forms.Button();
             this.btn_Otros = new System.Windows.Forms.Button();
             this.btn_Motos = new System.Windows.Forms.Button();
             this.btn_Carro = new System.Windows.Forms.Button();
@@ -87,6 +89,7 @@
             this.tbTipoVehiculoCobrar = new System.Windows.Forms.TextBox();
             this.txtPlacaBuscar = new System.Windows.Forms.TextBox();
             this.pnl_LateralDerechaCobrar = new System.Windows.Forms.Panel();
+            this.btn_CerrarCobrar = new System.Windows.Forms.Button();
             this.btn_Cascos = new System.Windows.Forms.Button();
             this.btn_Reposicion = new System.Windows.Forms.Button();
             this.btn_FacturaElectronica = new System.Windows.Forms.Button();
@@ -94,9 +97,6 @@
             this.btn_TarifasEspeciales = new System.Windows.Forms.Button();
             this.btn_Cortesia = new System.Windows.Forms.Button();
             this.tabArqueo = new System.Windows.Forms.TabPage();
-            this.btn_Cerrar = new System.Windows.Forms.Button();
-            this.btn_CerrarPrincipal = new System.Windows.Forms.Button();
-            this.btn_CerrarCobrar = new System.Windows.Forms.Button();
             this.pnlEnecabezado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).BeginInit();
             this.pnlBarraLateralIzquierda.SuspendLayout();
@@ -387,6 +387,20 @@
             this.pnl_LateralDerecha_Principal.Size = new System.Drawing.Size(189, 594);
             this.pnl_LateralDerecha_Principal.TabIndex = 2;
             // 
+            // btn_CerrarPrincipal
+            // 
+            this.btn_CerrarPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_CerrarPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_CerrarPrincipal.FlatAppearance.BorderSize = 0;
+            this.btn_CerrarPrincipal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CerrarPrincipal.Location = new System.Drawing.Point(0, 535);
+            this.btn_CerrarPrincipal.Name = "btn_CerrarPrincipal";
+            this.btn_CerrarPrincipal.Size = new System.Drawing.Size(189, 59);
+            this.btn_CerrarPrincipal.TabIndex = 15;
+            this.btn_CerrarPrincipal.Text = "button1";
+            this.btn_CerrarPrincipal.UseVisualStyleBackColor = true;
+            this.btn_CerrarPrincipal.Click += new System.EventHandler(this.button1_Click);
+            // 
             // btn_ReportePatios
             // 
             this.btn_ReportePatios.Dock = System.Windows.Forms.DockStyle.Top;
@@ -593,6 +607,20 @@
             this.pnl_LateralDerechaEntrada.Name = "pnl_LateralDerechaEntrada";
             this.pnl_LateralDerechaEntrada.Size = new System.Drawing.Size(189, 588);
             this.pnl_LateralDerechaEntrada.TabIndex = 3;
+            // 
+            // btn_Cerrar
+            // 
+            this.btn_Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Cerrar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_Cerrar.FlatAppearance.BorderSize = 0;
+            this.btn_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cerrar.Location = new System.Drawing.Point(0, 529);
+            this.btn_Cerrar.Name = "btn_Cerrar";
+            this.btn_Cerrar.Size = new System.Drawing.Size(189, 59);
+            this.btn_Cerrar.TabIndex = 7;
+            this.btn_Cerrar.Text = "button1";
+            this.btn_Cerrar.UseVisualStyleBackColor = true;
+            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click_1);
             // 
             // btn_Otros
             // 
@@ -832,7 +860,6 @@
             this.txtPlacaBuscar.Size = new System.Drawing.Size(252, 55);
             this.txtPlacaBuscar.TabIndex = 33;
             this.txtPlacaBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.txtPlacaBuscar.MouseClick += new System.Windows.Forms.MouseEventHandler(this.txtPlacaBuscar_MouseClick);
             this.txtPlacaBuscar.TextChanged += new System.EventHandler(this.txtPlacaBuscar_TextChanged);
             this.txtPlacaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlacaBuscar_KeyPress);
             // 
@@ -852,6 +879,20 @@
             this.pnl_LateralDerechaCobrar.Name = "pnl_LateralDerechaCobrar";
             this.pnl_LateralDerechaCobrar.Size = new System.Drawing.Size(189, 588);
             this.pnl_LateralDerechaCobrar.TabIndex = 3;
+            // 
+            // btn_CerrarCobrar
+            // 
+            this.btn_CerrarCobrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_CerrarCobrar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_CerrarCobrar.FlatAppearance.BorderSize = 0;
+            this.btn_CerrarCobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CerrarCobrar.Location = new System.Drawing.Point(0, 529);
+            this.btn_CerrarCobrar.Name = "btn_CerrarCobrar";
+            this.btn_CerrarCobrar.Size = new System.Drawing.Size(189, 59);
+            this.btn_CerrarCobrar.TabIndex = 12;
+            this.btn_CerrarCobrar.Text = "button1";
+            this.btn_CerrarCobrar.UseVisualStyleBackColor = true;
+            this.btn_CerrarCobrar.Click += new System.EventHandler(this.button2_Click);
             // 
             // btn_Cascos
             // 
@@ -879,6 +920,7 @@
             this.btn_Reposicion.TabIndex = 10;
             this.btn_Reposicion.Text = "Reposición";
             this.btn_Reposicion.UseVisualStyleBackColor = true;
+            this.btn_Reposicion.Visible = false;
             this.btn_Reposicion.Click += new System.EventHandler(this.btn_Reposicion_Click);
             // 
             // btn_FacturaElectronica
@@ -945,48 +987,6 @@
             this.tabArqueo.TabIndex = 3;
             this.tabArqueo.Text = "Arqueo";
             this.tabArqueo.UseVisualStyleBackColor = true;
-            // 
-            // btn_Cerrar
-            // 
-            this.btn_Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Cerrar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_Cerrar.FlatAppearance.BorderSize = 0;
-            this.btn_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cerrar.Location = new System.Drawing.Point(0, 529);
-            this.btn_Cerrar.Name = "btn_Cerrar";
-            this.btn_Cerrar.Size = new System.Drawing.Size(189, 59);
-            this.btn_Cerrar.TabIndex = 7;
-            this.btn_Cerrar.Text = "button1";
-            this.btn_Cerrar.UseVisualStyleBackColor = true;
-            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click_1);
-            // 
-            // btn_CerrarPrincipal
-            // 
-            this.btn_CerrarPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_CerrarPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_CerrarPrincipal.FlatAppearance.BorderSize = 0;
-            this.btn_CerrarPrincipal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CerrarPrincipal.Location = new System.Drawing.Point(0, 535);
-            this.btn_CerrarPrincipal.Name = "btn_CerrarPrincipal";
-            this.btn_CerrarPrincipal.Size = new System.Drawing.Size(189, 59);
-            this.btn_CerrarPrincipal.TabIndex = 15;
-            this.btn_CerrarPrincipal.Text = "button1";
-            this.btn_CerrarPrincipal.UseVisualStyleBackColor = true;
-            this.btn_CerrarPrincipal.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btn_CerrarCobrar
-            // 
-            this.btn_CerrarCobrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_CerrarCobrar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_CerrarCobrar.FlatAppearance.BorderSize = 0;
-            this.btn_CerrarCobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CerrarCobrar.Location = new System.Drawing.Point(0, 529);
-            this.btn_CerrarCobrar.Name = "btn_CerrarCobrar";
-            this.btn_CerrarCobrar.Size = new System.Drawing.Size(189, 59);
-            this.btn_CerrarCobrar.TabIndex = 12;
-            this.btn_CerrarCobrar.Text = "button1";
-            this.btn_CerrarCobrar.UseVisualStyleBackColor = true;
-            this.btn_CerrarCobrar.Click += new System.EventHandler(this.button2_Click);
             // 
             // Menu
             // 
