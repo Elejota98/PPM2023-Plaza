@@ -43,35 +43,6 @@
             this.LogoUsuario = new System.Windows.Forms.PictureBox();
             this.tbUsuario = new System.Windows.Forms.Label();
             this.tbNombreUsuario = new System.Windows.Forms.Label();
-            this.tabPrincipal = new System.Windows.Forms.TabControl();
-            this.tabMenuPrincipal = new System.Windows.Forms.TabPage();
-            this.Imagen_Principal = new System.Windows.Forms.Panel();
-            this.lblTotalMotosPrincipal = new System.Windows.Forms.Label();
-            this.lblTotalCarrosPrincipal = new System.Windows.Forms.Label();
-            this.lblFecha = new System.Windows.Forms.Label();
-            this.lblHora = new System.Windows.Forms.Label();
-            this.pnl_LateralDerecha_Principal = new System.Windows.Forms.Panel();
-            this.btn_CerrarPrincipal = new System.Windows.Forms.Button();
-            this.btn_ReportePatios = new System.Windows.Forms.Button();
-            this.btn_Mensualidades = new System.Windows.Forms.Button();
-            this.btn_FacturaContingencia = new System.Windows.Forms.Button();
-            this.btn_SaldoEnLinea = new System.Windows.Forms.Button();
-            this.btn_Arqueo = new System.Windows.Forms.Button();
-            this.tabEntrada = new System.Windows.Forms.TabPage();
-            this.Imagen_FondoEntrada = new System.Windows.Forms.Panel();
-            this.btnConfirmaIngreso = new System.Windows.Forms.Button();
-            this.cbEntrada = new System.Windows.Forms.ComboBox();
-            this.chbAutorizado = new System.Windows.Forms.CheckBox();
-            this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
-            this.tbModuloIngreso = new System.Windows.Forms.TextBox();
-            this.tbNombreAutortizado = new System.Windows.Forms.TextBox();
-            this.tbTipoVehiculo = new System.Windows.Forms.TextBox();
-            this.tbPlaca = new System.Windows.Forms.TextBox();
-            this.pnl_LateralDerechaEntrada = new System.Windows.Forms.Panel();
-            this.btn_Cerrar = new System.Windows.Forms.Button();
-            this.btn_Otros = new System.Windows.Forms.Button();
-            this.btn_Motos = new System.Windows.Forms.Button();
-            this.btn_Carro = new System.Windows.Forms.Button();
             this.tabCobrar = new System.Windows.Forms.TabPage();
             this.Imagen_FondoCobrar = new System.Windows.Forms.Panel();
             this.btn_ConfirmarCobro = new System.Windows.Forms.Button();
@@ -96,22 +67,50 @@
             this.btn_Convenios = new System.Windows.Forms.Button();
             this.btn_TarifasEspeciales = new System.Windows.Forms.Button();
             this.btn_Cortesia = new System.Windows.Forms.Button();
-            this.tabArqueo = new System.Windows.Forms.TabPage();
+            this.tabEntrada = new System.Windows.Forms.TabPage();
+            this.Imagen_FondoEntrada = new System.Windows.Forms.Panel();
+            this.btnConfirmaIngreso = new System.Windows.Forms.Button();
+            this.cbEntrada = new System.Windows.Forms.ComboBox();
+            this.chbAutorizado = new System.Windows.Forms.CheckBox();
+            this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
+            this.tbModuloIngreso = new System.Windows.Forms.TextBox();
+            this.tbNombreAutortizado = new System.Windows.Forms.TextBox();
+            this.tbTipoVehiculo = new System.Windows.Forms.TextBox();
+            this.tbPlaca = new System.Windows.Forms.TextBox();
+            this.pnl_LateralDerechaEntrada = new System.Windows.Forms.Panel();
+            this.btn_Cerrar = new System.Windows.Forms.Button();
+            this.btn_Otros = new System.Windows.Forms.Button();
+            this.btn_Motos = new System.Windows.Forms.Button();
+            this.btn_Carro = new System.Windows.Forms.Button();
+            this.tabMenuPrincipal = new System.Windows.Forms.TabPage();
+            this.Imagen_Principal = new System.Windows.Forms.Panel();
+            this.lblTotalMotosPrincipal = new System.Windows.Forms.Label();
+            this.lblTotalCarrosPrincipal = new System.Windows.Forms.Label();
+            this.lblFecha = new System.Windows.Forms.Label();
+            this.lblHora = new System.Windows.Forms.Label();
+            this.pnl_LateralDerecha_Principal = new System.Windows.Forms.Panel();
+            this.btn_CerrarPrincipal = new System.Windows.Forms.Button();
+            this.btn_ReportePatios = new System.Windows.Forms.Button();
+            this.btn_Mensualidades = new System.Windows.Forms.Button();
+            this.btn_FacturaContingencia = new System.Windows.Forms.Button();
+            this.btn_SaldoEnLinea = new System.Windows.Forms.Button();
+            this.btn_Arqueo = new System.Windows.Forms.Button();
+            this.tabPrincipal = new System.Windows.Forms.TabControl();
             this.pnlEnecabezado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).BeginInit();
             this.pnlBarraLateralIzquierda.SuspendLayout();
             this.pnl_InfoUsuario.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoUsuario)).BeginInit();
-            this.tabPrincipal.SuspendLayout();
-            this.tabMenuPrincipal.SuspendLayout();
-            this.Imagen_Principal.SuspendLayout();
-            this.pnl_LateralDerecha_Principal.SuspendLayout();
-            this.tabEntrada.SuspendLayout();
-            this.Imagen_FondoEntrada.SuspendLayout();
-            this.pnl_LateralDerechaEntrada.SuspendLayout();
             this.tabCobrar.SuspendLayout();
             this.Imagen_FondoCobrar.SuspendLayout();
             this.pnl_LateralDerechaCobrar.SuspendLayout();
+            this.tabEntrada.SuspendLayout();
+            this.Imagen_FondoEntrada.SuspendLayout();
+            this.pnl_LateralDerechaEntrada.SuspendLayout();
+            this.tabMenuPrincipal.SuspendLayout();
+            this.Imagen_Principal.SuspendLayout();
+            this.pnl_LateralDerecha_Principal.SuspendLayout();
+            this.tabPrincipal.SuspendLayout();
             this.SuspendLayout();
             // 
             // pnlEnecabezado
@@ -284,385 +283,6 @@
             this.tbNombreUsuario.TabIndex = 2;
             this.tbNombreUsuario.Text = "Usuario que ingresa al sistema";
             this.tbNombreUsuario.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // tabPrincipal
-            // 
-            this.tabPrincipal.Controls.Add(this.tabMenuPrincipal);
-            this.tabPrincipal.Controls.Add(this.tabEntrada);
-            this.tabPrincipal.Controls.Add(this.tabCobrar);
-            this.tabPrincipal.Controls.Add(this.tabArqueo);
-            this.tabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.tabPrincipal.Location = new System.Drawing.Point(189, 80);
-            this.tabPrincipal.Name = "tabPrincipal";
-            this.tabPrincipal.SelectedIndex = 0;
-            this.tabPrincipal.Size = new System.Drawing.Size(825, 620);
-            this.tabPrincipal.TabIndex = 3;
-            // 
-            // tabMenuPrincipal
-            // 
-            this.tabMenuPrincipal.Controls.Add(this.Imagen_Principal);
-            this.tabMenuPrincipal.Controls.Add(this.pnl_LateralDerecha_Principal);
-            this.tabMenuPrincipal.Location = new System.Drawing.Point(4, 22);
-            this.tabMenuPrincipal.Name = "tabMenuPrincipal";
-            this.tabMenuPrincipal.Size = new System.Drawing.Size(817, 594);
-            this.tabMenuPrincipal.TabIndex = 2;
-            this.tabMenuPrincipal.Text = "Principal";
-            this.tabMenuPrincipal.UseVisualStyleBackColor = true;
-            // 
-            // Imagen_Principal
-            // 
-            this.Imagen_Principal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Imagen_Principal.Controls.Add(this.lblTotalMotosPrincipal);
-            this.Imagen_Principal.Controls.Add(this.lblTotalCarrosPrincipal);
-            this.Imagen_Principal.Controls.Add(this.lblFecha);
-            this.Imagen_Principal.Controls.Add(this.lblHora);
-            this.Imagen_Principal.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Imagen_Principal.Location = new System.Drawing.Point(0, 0);
-            this.Imagen_Principal.Name = "Imagen_Principal";
-            this.Imagen_Principal.Size = new System.Drawing.Size(628, 594);
-            this.Imagen_Principal.TabIndex = 3;
-            // 
-            // lblTotalMotosPrincipal
-            // 
-            this.lblTotalMotosPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(188)))), ((int)(((byte)(177)))));
-            this.lblTotalMotosPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalMotosPrincipal.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalMotosPrincipal.Location = new System.Drawing.Point(272, 459);
-            this.lblTotalMotosPrincipal.Name = "lblTotalMotosPrincipal";
-            this.lblTotalMotosPrincipal.Size = new System.Drawing.Size(106, 40);
-            this.lblTotalMotosPrincipal.TabIndex = 3;
-            this.lblTotalMotosPrincipal.Text = "1025";
-            this.lblTotalMotosPrincipal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblTotalCarrosPrincipal
-            // 
-            this.lblTotalCarrosPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(188)))), ((int)(((byte)(177)))));
-            this.lblTotalCarrosPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblTotalCarrosPrincipal.ForeColor = System.Drawing.Color.Black;
-            this.lblTotalCarrosPrincipal.Location = new System.Drawing.Point(272, 319);
-            this.lblTotalCarrosPrincipal.Name = "lblTotalCarrosPrincipal";
-            this.lblTotalCarrosPrincipal.Size = new System.Drawing.Size(106, 40);
-            this.lblTotalCarrosPrincipal.TabIndex = 2;
-            this.lblTotalCarrosPrincipal.Text = "1025";
-            this.lblTotalCarrosPrincipal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblFecha
-            // 
-            this.lblFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblFecha.ForeColor = System.Drawing.Color.White;
-            this.lblFecha.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblFecha.Location = new System.Drawing.Point(119, 166);
-            this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(385, 38);
-            this.lblFecha.TabIndex = 1;
-            this.lblFecha.Text = "31 de septiembre de año 2023";
-            this.lblFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // lblHora
-            // 
-            this.lblHora.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.lblHora.ForeColor = System.Drawing.Color.White;
-            this.lblHora.Location = new System.Drawing.Point(235, 126);
-            this.lblHora.Name = "lblHora";
-            this.lblHora.Size = new System.Drawing.Size(162, 40);
-            this.lblHora.TabIndex = 0;
-            this.lblHora.Text = "24:45";
-            this.lblHora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            // 
-            // pnl_LateralDerecha_Principal
-            // 
-            this.pnl_LateralDerecha_Principal.BackColor = System.Drawing.Color.White;
-            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_CerrarPrincipal);
-            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_ReportePatios);
-            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_Mensualidades);
-            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_FacturaContingencia);
-            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_SaldoEnLinea);
-            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_Arqueo);
-            this.pnl_LateralDerecha_Principal.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_LateralDerecha_Principal.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnl_LateralDerecha_Principal.Location = new System.Drawing.Point(628, 0);
-            this.pnl_LateralDerecha_Principal.Name = "pnl_LateralDerecha_Principal";
-            this.pnl_LateralDerecha_Principal.Size = new System.Drawing.Size(189, 594);
-            this.pnl_LateralDerecha_Principal.TabIndex = 2;
-            // 
-            // btn_CerrarPrincipal
-            // 
-            this.btn_CerrarPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_CerrarPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_CerrarPrincipal.FlatAppearance.BorderSize = 0;
-            this.btn_CerrarPrincipal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_CerrarPrincipal.Location = new System.Drawing.Point(0, 535);
-            this.btn_CerrarPrincipal.Name = "btn_CerrarPrincipal";
-            this.btn_CerrarPrincipal.Size = new System.Drawing.Size(189, 59);
-            this.btn_CerrarPrincipal.TabIndex = 15;
-            this.btn_CerrarPrincipal.Text = "button1";
-            this.btn_CerrarPrincipal.UseVisualStyleBackColor = true;
-            this.btn_CerrarPrincipal.Click += new System.EventHandler(this.button1_Click);
-            // 
-            // btn_ReportePatios
-            // 
-            this.btn_ReportePatios.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_ReportePatios.FlatAppearance.BorderSize = 0;
-            this.btn_ReportePatios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_ReportePatios.Location = new System.Drawing.Point(0, 252);
-            this.btn_ReportePatios.Name = "btn_ReportePatios";
-            this.btn_ReportePatios.Size = new System.Drawing.Size(189, 63);
-            this.btn_ReportePatios.TabIndex = 3;
-            this.btn_ReportePatios.Text = "Reporte Patios";
-            this.btn_ReportePatios.UseVisualStyleBackColor = true;
-            this.btn_ReportePatios.Click += new System.EventHandler(this.btn_ReportePatios_Click);
-            // 
-            // btn_Mensualidades
-            // 
-            this.btn_Mensualidades.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Mensualidades.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Mensualidades.FlatAppearance.BorderSize = 0;
-            this.btn_Mensualidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Mensualidades.Location = new System.Drawing.Point(0, 189);
-            this.btn_Mensualidades.Name = "btn_Mensualidades";
-            this.btn_Mensualidades.Size = new System.Drawing.Size(189, 63);
-            this.btn_Mensualidades.TabIndex = 12;
-            this.btn_Mensualidades.Text = "Mensualidades";
-            this.btn_Mensualidades.UseVisualStyleBackColor = true;
-            this.btn_Mensualidades.Click += new System.EventHandler(this.btn_Mensualidades_Click);
-            // 
-            // btn_FacturaContingencia
-            // 
-            this.btn_FacturaContingencia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_FacturaContingencia.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_FacturaContingencia.FlatAppearance.BorderSize = 0;
-            this.btn_FacturaContingencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_FacturaContingencia.Location = new System.Drawing.Point(0, 126);
-            this.btn_FacturaContingencia.Name = "btn_FacturaContingencia";
-            this.btn_FacturaContingencia.Size = new System.Drawing.Size(189, 63);
-            this.btn_FacturaContingencia.TabIndex = 5;
-            this.btn_FacturaContingencia.Text = "Factura Contingencia";
-            this.btn_FacturaContingencia.UseVisualStyleBackColor = true;
-            this.btn_FacturaContingencia.Click += new System.EventHandler(this.btn_FacturaContingencia_Click);
-            // 
-            // btn_SaldoEnLinea
-            // 
-            this.btn_SaldoEnLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_SaldoEnLinea.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_SaldoEnLinea.FlatAppearance.BorderSize = 0;
-            this.btn_SaldoEnLinea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_SaldoEnLinea.Location = new System.Drawing.Point(0, 63);
-            this.btn_SaldoEnLinea.Name = "btn_SaldoEnLinea";
-            this.btn_SaldoEnLinea.Size = new System.Drawing.Size(189, 63);
-            this.btn_SaldoEnLinea.TabIndex = 4;
-            this.btn_SaldoEnLinea.Text = "Saldo En linea";
-            this.btn_SaldoEnLinea.UseVisualStyleBackColor = true;
-            this.btn_SaldoEnLinea.Click += new System.EventHandler(this.btn_SaldoEnLinea_Click);
-            // 
-            // btn_Arqueo
-            // 
-            this.btn_Arqueo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Arqueo.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Arqueo.FlatAppearance.BorderSize = 0;
-            this.btn_Arqueo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Arqueo.Location = new System.Drawing.Point(0, 0);
-            this.btn_Arqueo.Name = "btn_Arqueo";
-            this.btn_Arqueo.Size = new System.Drawing.Size(189, 63);
-            this.btn_Arqueo.TabIndex = 14;
-            this.btn_Arqueo.Text = "Arqueo";
-            this.btn_Arqueo.UseVisualStyleBackColor = true;
-            this.btn_Arqueo.Click += new System.EventHandler(this.btn_Arqueo_Click_1);
-            // 
-            // tabEntrada
-            // 
-            this.tabEntrada.Controls.Add(this.Imagen_FondoEntrada);
-            this.tabEntrada.Controls.Add(this.pnl_LateralDerechaEntrada);
-            this.tabEntrada.Location = new System.Drawing.Point(4, 22);
-            this.tabEntrada.Name = "tabEntrada";
-            this.tabEntrada.Padding = new System.Windows.Forms.Padding(3);
-            this.tabEntrada.Size = new System.Drawing.Size(817, 594);
-            this.tabEntrada.TabIndex = 0;
-            this.tabEntrada.Text = "Entrada";
-            this.tabEntrada.UseVisualStyleBackColor = true;
-            // 
-            // Imagen_FondoEntrada
-            // 
-            this.Imagen_FondoEntrada.BackgroundImage = global::BlockAndPass.PPMWinform.Properties.Resources.ImagenFondoIngreso;
-            this.Imagen_FondoEntrada.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Imagen_FondoEntrada.Controls.Add(this.btnConfirmaIngreso);
-            this.Imagen_FondoEntrada.Controls.Add(this.cbEntrada);
-            this.Imagen_FondoEntrada.Controls.Add(this.chbAutorizado);
-            this.Imagen_FondoEntrada.Controls.Add(this.dtpFechaIngreso);
-            this.Imagen_FondoEntrada.Controls.Add(this.tbModuloIngreso);
-            this.Imagen_FondoEntrada.Controls.Add(this.tbNombreAutortizado);
-            this.Imagen_FondoEntrada.Controls.Add(this.tbTipoVehiculo);
-            this.Imagen_FondoEntrada.Controls.Add(this.tbPlaca);
-            this.Imagen_FondoEntrada.Dock = System.Windows.Forms.DockStyle.Fill;
-            this.Imagen_FondoEntrada.Location = new System.Drawing.Point(3, 3);
-            this.Imagen_FondoEntrada.Name = "Imagen_FondoEntrada";
-            this.Imagen_FondoEntrada.Size = new System.Drawing.Size(622, 588);
-            this.Imagen_FondoEntrada.TabIndex = 4;
-            // 
-            // btnConfirmaIngreso
-            // 
-            this.btnConfirmaIngreso.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfirmaIngreso.FlatAppearance.BorderSize = 0;
-            this.btnConfirmaIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmaIngreso.Location = new System.Drawing.Point(238, 499);
-            this.btnConfirmaIngreso.Name = "btnConfirmaIngreso";
-            this.btnConfirmaIngreso.Size = new System.Drawing.Size(147, 63);
-            this.btnConfirmaIngreso.TabIndex = 8;
-            this.btnConfirmaIngreso.Text = "Confirmar Ingreso";
-            this.btnConfirmaIngreso.UseVisualStyleBackColor = true;
-            this.btnConfirmaIngreso.Click += new System.EventHandler(this.btnConfirmaIngreso_Click);
-            // 
-            // cbEntrada
-            // 
-            this.cbEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.cbEntrada.FormattingEnabled = true;
-            this.cbEntrada.Location = new System.Drawing.Point(85, 576);
-            this.cbEntrada.Name = "cbEntrada";
-            this.cbEntrada.Size = new System.Drawing.Size(144, 21);
-            this.cbEntrada.TabIndex = 17;
-            this.cbEntrada.Visible = false;
-            // 
-            // chbAutorizado
-            // 
-            this.chbAutorizado.AutoSize = true;
-            this.chbAutorizado.Location = new System.Drawing.Point(3, 580);
-            this.chbAutorizado.Name = "chbAutorizado";
-            this.chbAutorizado.Size = new System.Drawing.Size(76, 17);
-            this.chbAutorizado.TabIndex = 16;
-            this.chbAutorizado.Text = "Autorizado";
-            this.chbAutorizado.UseVisualStyleBackColor = true;
-            this.chbAutorizado.Visible = false;
-            // 
-            // dtpFechaIngreso
-            // 
-            this.dtpFechaIngreso.CustomFormat = "HH:mm:ss dd/MM/yy";
-            this.dtpFechaIngreso.Enabled = false;
-            this.dtpFechaIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dtpFechaIngreso.Location = new System.Drawing.Point(233, 360);
-            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
-            this.dtpFechaIngreso.Size = new System.Drawing.Size(246, 29);
-            this.dtpFechaIngreso.TabIndex = 15;
-            // 
-            // tbModuloIngreso
-            // 
-            this.tbModuloIngreso.BackColor = System.Drawing.Color.White;
-            this.tbModuloIngreso.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbModuloIngreso.Enabled = false;
-            this.tbModuloIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbModuloIngreso.ForeColor = System.Drawing.Color.Black;
-            this.tbModuloIngreso.Location = new System.Drawing.Point(233, 397);
-            this.tbModuloIngreso.Name = "tbModuloIngreso";
-            this.tbModuloIngreso.Size = new System.Drawing.Size(246, 31);
-            this.tbModuloIngreso.TabIndex = 14;
-            // 
-            // tbNombreAutortizado
-            // 
-            this.tbNombreAutortizado.BackColor = System.Drawing.Color.White;
-            this.tbNombreAutortizado.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbNombreAutortizado.Enabled = false;
-            this.tbNombreAutortizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbNombreAutortizado.ForeColor = System.Drawing.Color.Black;
-            this.tbNombreAutortizado.Location = new System.Drawing.Point(233, 311);
-            this.tbNombreAutortizado.Name = "tbNombreAutortizado";
-            this.tbNombreAutortizado.Size = new System.Drawing.Size(246, 31);
-            this.tbNombreAutortizado.TabIndex = 12;
-            // 
-            // tbTipoVehiculo
-            // 
-            this.tbTipoVehiculo.BackColor = System.Drawing.Color.White;
-            this.tbTipoVehiculo.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbTipoVehiculo.Enabled = false;
-            this.tbTipoVehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbTipoVehiculo.ForeColor = System.Drawing.Color.Black;
-            this.tbTipoVehiculo.Location = new System.Drawing.Point(233, 272);
-            this.tbTipoVehiculo.Name = "tbTipoVehiculo";
-            this.tbTipoVehiculo.Size = new System.Drawing.Size(246, 31);
-            this.tbTipoVehiculo.TabIndex = 11;
-            // 
-            // tbPlaca
-            // 
-            this.tbPlaca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(222)))), ((int)(((byte)(98)))));
-            this.tbPlaca.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.tbPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbPlaca.Location = new System.Drawing.Point(184, 82);
-            this.tbPlaca.Name = "tbPlaca";
-            this.tbPlaca.Size = new System.Drawing.Size(255, 55);
-            this.tbPlaca.TabIndex = 10;
-            this.tbPlaca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
-            this.tbPlaca.TextChanged += new System.EventHandler(this.tbPlaca_TextChanged);
-            this.tbPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPlaca_KeyPress);
-            // 
-            // pnl_LateralDerechaEntrada
-            // 
-            this.pnl_LateralDerechaEntrada.BackColor = System.Drawing.Color.White;
-            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Cerrar);
-            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Otros);
-            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Motos);
-            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Carro);
-            this.pnl_LateralDerechaEntrada.Dock = System.Windows.Forms.DockStyle.Right;
-            this.pnl_LateralDerechaEntrada.ForeColor = System.Drawing.SystemColors.ControlText;
-            this.pnl_LateralDerechaEntrada.Location = new System.Drawing.Point(625, 3);
-            this.pnl_LateralDerechaEntrada.Name = "pnl_LateralDerechaEntrada";
-            this.pnl_LateralDerechaEntrada.Size = new System.Drawing.Size(189, 588);
-            this.pnl_LateralDerechaEntrada.TabIndex = 3;
-            // 
-            // btn_Cerrar
-            // 
-            this.btn_Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Cerrar.Dock = System.Windows.Forms.DockStyle.Bottom;
-            this.btn_Cerrar.FlatAppearance.BorderSize = 0;
-            this.btn_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Cerrar.Location = new System.Drawing.Point(0, 529);
-            this.btn_Cerrar.Name = "btn_Cerrar";
-            this.btn_Cerrar.Size = new System.Drawing.Size(189, 59);
-            this.btn_Cerrar.TabIndex = 7;
-            this.btn_Cerrar.Text = "button1";
-            this.btn_Cerrar.UseVisualStyleBackColor = true;
-            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click_1);
-            // 
-            // btn_Otros
-            // 
-            this.btn_Otros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Otros.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Otros.FlatAppearance.BorderSize = 0;
-            this.btn_Otros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Otros.Location = new System.Drawing.Point(0, 126);
-            this.btn_Otros.Name = "btn_Otros";
-            this.btn_Otros.Size = new System.Drawing.Size(189, 63);
-            this.btn_Otros.TabIndex = 6;
-            this.btn_Otros.Text = "Otros";
-            this.btn_Otros.UseVisualStyleBackColor = true;
-            this.btn_Otros.Click += new System.EventHandler(this.btn_Otros_Click);
-            // 
-            // btn_Motos
-            // 
-            this.btn_Motos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Motos.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Motos.FlatAppearance.BorderSize = 0;
-            this.btn_Motos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Motos.Location = new System.Drawing.Point(0, 63);
-            this.btn_Motos.Name = "btn_Motos";
-            this.btn_Motos.Size = new System.Drawing.Size(189, 63);
-            this.btn_Motos.TabIndex = 5;
-            this.btn_Motos.Text = "Motos";
-            this.btn_Motos.UseVisualStyleBackColor = true;
-            this.btn_Motos.Click += new System.EventHandler(this.btn_Motos_Click);
-            // 
-            // btn_Carro
-            // 
-            this.btn_Carro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Carro.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Carro.FlatAppearance.BorderSize = 0;
-            this.btn_Carro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Carro.Location = new System.Drawing.Point(0, 0);
-            this.btn_Carro.Name = "btn_Carro";
-            this.btn_Carro.Size = new System.Drawing.Size(189, 63);
-            this.btn_Carro.TabIndex = 4;
-            this.btn_Carro.Text = "Carros";
-            this.btn_Carro.UseVisualStyleBackColor = true;
-            this.btn_Carro.Click += new System.EventHandler(this.btn_Carro_Click);
             // 
             // tabCobrar
             // 
@@ -860,6 +480,7 @@
             this.txtPlacaBuscar.Size = new System.Drawing.Size(252, 55);
             this.txtPlacaBuscar.TabIndex = 33;
             this.txtPlacaBuscar.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.txtPlacaBuscar.Click += new System.EventHandler(this.txtPlacaBuscar_Click);
             this.txtPlacaBuscar.TextChanged += new System.EventHandler(this.txtPlacaBuscar_TextChanged);
             this.txtPlacaBuscar.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.txtPlacaBuscar_KeyPress);
             // 
@@ -979,14 +600,383 @@
             this.btn_Cortesia.UseVisualStyleBackColor = true;
             this.btn_Cortesia.Click += new System.EventHandler(this.btn_Cortesia_Click);
             // 
-            // tabArqueo
+            // tabEntrada
             // 
-            this.tabArqueo.Location = new System.Drawing.Point(4, 22);
-            this.tabArqueo.Name = "tabArqueo";
-            this.tabArqueo.Size = new System.Drawing.Size(817, 594);
-            this.tabArqueo.TabIndex = 3;
-            this.tabArqueo.Text = "Arqueo";
-            this.tabArqueo.UseVisualStyleBackColor = true;
+            this.tabEntrada.Controls.Add(this.Imagen_FondoEntrada);
+            this.tabEntrada.Controls.Add(this.pnl_LateralDerechaEntrada);
+            this.tabEntrada.Location = new System.Drawing.Point(4, 22);
+            this.tabEntrada.Name = "tabEntrada";
+            this.tabEntrada.Padding = new System.Windows.Forms.Padding(3);
+            this.tabEntrada.Size = new System.Drawing.Size(817, 594);
+            this.tabEntrada.TabIndex = 0;
+            this.tabEntrada.Text = "Entrada";
+            this.tabEntrada.UseVisualStyleBackColor = true;
+            // 
+            // Imagen_FondoEntrada
+            // 
+            this.Imagen_FondoEntrada.BackgroundImage = global::BlockAndPass.PPMWinform.Properties.Resources.ImagenFondoIngreso;
+            this.Imagen_FondoEntrada.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Imagen_FondoEntrada.Controls.Add(this.btnConfirmaIngreso);
+            this.Imagen_FondoEntrada.Controls.Add(this.cbEntrada);
+            this.Imagen_FondoEntrada.Controls.Add(this.chbAutorizado);
+            this.Imagen_FondoEntrada.Controls.Add(this.dtpFechaIngreso);
+            this.Imagen_FondoEntrada.Controls.Add(this.tbModuloIngreso);
+            this.Imagen_FondoEntrada.Controls.Add(this.tbNombreAutortizado);
+            this.Imagen_FondoEntrada.Controls.Add(this.tbTipoVehiculo);
+            this.Imagen_FondoEntrada.Controls.Add(this.tbPlaca);
+            this.Imagen_FondoEntrada.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Imagen_FondoEntrada.Location = new System.Drawing.Point(3, 3);
+            this.Imagen_FondoEntrada.Name = "Imagen_FondoEntrada";
+            this.Imagen_FondoEntrada.Size = new System.Drawing.Size(622, 588);
+            this.Imagen_FondoEntrada.TabIndex = 4;
+            // 
+            // btnConfirmaIngreso
+            // 
+            this.btnConfirmaIngreso.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btnConfirmaIngreso.FlatAppearance.BorderSize = 0;
+            this.btnConfirmaIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btnConfirmaIngreso.Location = new System.Drawing.Point(238, 499);
+            this.btnConfirmaIngreso.Name = "btnConfirmaIngreso";
+            this.btnConfirmaIngreso.Size = new System.Drawing.Size(147, 63);
+            this.btnConfirmaIngreso.TabIndex = 8;
+            this.btnConfirmaIngreso.Text = "Confirmar Ingreso";
+            this.btnConfirmaIngreso.UseVisualStyleBackColor = true;
+            this.btnConfirmaIngreso.Click += new System.EventHandler(this.btnConfirmaIngreso_Click);
+            // 
+            // cbEntrada
+            // 
+            this.cbEntrada.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.cbEntrada.FormattingEnabled = true;
+            this.cbEntrada.Location = new System.Drawing.Point(85, 576);
+            this.cbEntrada.Name = "cbEntrada";
+            this.cbEntrada.Size = new System.Drawing.Size(144, 21);
+            this.cbEntrada.TabIndex = 17;
+            this.cbEntrada.Visible = false;
+            // 
+            // chbAutorizado
+            // 
+            this.chbAutorizado.AutoSize = true;
+            this.chbAutorizado.Location = new System.Drawing.Point(3, 580);
+            this.chbAutorizado.Name = "chbAutorizado";
+            this.chbAutorizado.Size = new System.Drawing.Size(76, 17);
+            this.chbAutorizado.TabIndex = 16;
+            this.chbAutorizado.Text = "Autorizado";
+            this.chbAutorizado.UseVisualStyleBackColor = true;
+            this.chbAutorizado.Visible = false;
+            // 
+            // dtpFechaIngreso
+            // 
+            this.dtpFechaIngreso.CustomFormat = "HH:mm:ss dd/MM/yy";
+            this.dtpFechaIngreso.Enabled = false;
+            this.dtpFechaIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 14.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.dtpFechaIngreso.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
+            this.dtpFechaIngreso.Location = new System.Drawing.Point(233, 360);
+            this.dtpFechaIngreso.Name = "dtpFechaIngreso";
+            this.dtpFechaIngreso.Size = new System.Drawing.Size(246, 29);
+            this.dtpFechaIngreso.TabIndex = 15;
+            // 
+            // tbModuloIngreso
+            // 
+            this.tbModuloIngreso.BackColor = System.Drawing.Color.White;
+            this.tbModuloIngreso.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbModuloIngreso.Enabled = false;
+            this.tbModuloIngreso.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbModuloIngreso.ForeColor = System.Drawing.Color.Black;
+            this.tbModuloIngreso.Location = new System.Drawing.Point(233, 397);
+            this.tbModuloIngreso.Name = "tbModuloIngreso";
+            this.tbModuloIngreso.Size = new System.Drawing.Size(246, 31);
+            this.tbModuloIngreso.TabIndex = 14;
+            // 
+            // tbNombreAutortizado
+            // 
+            this.tbNombreAutortizado.BackColor = System.Drawing.Color.White;
+            this.tbNombreAutortizado.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbNombreAutortizado.Enabled = false;
+            this.tbNombreAutortizado.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbNombreAutortizado.ForeColor = System.Drawing.Color.Black;
+            this.tbNombreAutortizado.Location = new System.Drawing.Point(233, 311);
+            this.tbNombreAutortizado.Name = "tbNombreAutortizado";
+            this.tbNombreAutortizado.Size = new System.Drawing.Size(246, 31);
+            this.tbNombreAutortizado.TabIndex = 12;
+            // 
+            // tbTipoVehiculo
+            // 
+            this.tbTipoVehiculo.BackColor = System.Drawing.Color.White;
+            this.tbTipoVehiculo.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbTipoVehiculo.Enabled = false;
+            this.tbTipoVehiculo.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbTipoVehiculo.ForeColor = System.Drawing.Color.Black;
+            this.tbTipoVehiculo.Location = new System.Drawing.Point(233, 272);
+            this.tbTipoVehiculo.Name = "tbTipoVehiculo";
+            this.tbTipoVehiculo.Size = new System.Drawing.Size(246, 31);
+            this.tbTipoVehiculo.TabIndex = 11;
+            // 
+            // tbPlaca
+            // 
+            this.tbPlaca.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(242)))), ((int)(((byte)(222)))), ((int)(((byte)(98)))));
+            this.tbPlaca.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.tbPlaca.Font = new System.Drawing.Font("Microsoft Sans Serif", 36F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbPlaca.Location = new System.Drawing.Point(184, 82);
+            this.tbPlaca.Name = "tbPlaca";
+            this.tbPlaca.Size = new System.Drawing.Size(255, 55);
+            this.tbPlaca.TabIndex = 10;
+            this.tbPlaca.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.tbPlaca.TextChanged += new System.EventHandler(this.tbPlaca_TextChanged);
+            this.tbPlaca.KeyPress += new System.Windows.Forms.KeyPressEventHandler(this.tbPlaca_KeyPress);
+            // 
+            // pnl_LateralDerechaEntrada
+            // 
+            this.pnl_LateralDerechaEntrada.BackColor = System.Drawing.Color.White;
+            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Cerrar);
+            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Otros);
+            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Motos);
+            this.pnl_LateralDerechaEntrada.Controls.Add(this.btn_Carro);
+            this.pnl_LateralDerechaEntrada.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnl_LateralDerechaEntrada.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnl_LateralDerechaEntrada.Location = new System.Drawing.Point(625, 3);
+            this.pnl_LateralDerechaEntrada.Name = "pnl_LateralDerechaEntrada";
+            this.pnl_LateralDerechaEntrada.Size = new System.Drawing.Size(189, 588);
+            this.pnl_LateralDerechaEntrada.TabIndex = 3;
+            // 
+            // btn_Cerrar
+            // 
+            this.btn_Cerrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Cerrar.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_Cerrar.FlatAppearance.BorderSize = 0;
+            this.btn_Cerrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Cerrar.Location = new System.Drawing.Point(0, 529);
+            this.btn_Cerrar.Name = "btn_Cerrar";
+            this.btn_Cerrar.Size = new System.Drawing.Size(189, 59);
+            this.btn_Cerrar.TabIndex = 7;
+            this.btn_Cerrar.Text = "button1";
+            this.btn_Cerrar.UseVisualStyleBackColor = true;
+            this.btn_Cerrar.Click += new System.EventHandler(this.btn_Cerrar_Click_1);
+            // 
+            // btn_Otros
+            // 
+            this.btn_Otros.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Otros.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Otros.FlatAppearance.BorderSize = 0;
+            this.btn_Otros.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Otros.Location = new System.Drawing.Point(0, 126);
+            this.btn_Otros.Name = "btn_Otros";
+            this.btn_Otros.Size = new System.Drawing.Size(189, 63);
+            this.btn_Otros.TabIndex = 6;
+            this.btn_Otros.Text = "Otros";
+            this.btn_Otros.UseVisualStyleBackColor = true;
+            this.btn_Otros.Click += new System.EventHandler(this.btn_Otros_Click);
+            // 
+            // btn_Motos
+            // 
+            this.btn_Motos.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Motos.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Motos.FlatAppearance.BorderSize = 0;
+            this.btn_Motos.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Motos.Location = new System.Drawing.Point(0, 63);
+            this.btn_Motos.Name = "btn_Motos";
+            this.btn_Motos.Size = new System.Drawing.Size(189, 63);
+            this.btn_Motos.TabIndex = 5;
+            this.btn_Motos.Text = "Motos";
+            this.btn_Motos.UseVisualStyleBackColor = true;
+            this.btn_Motos.Click += new System.EventHandler(this.btn_Motos_Click);
+            // 
+            // btn_Carro
+            // 
+            this.btn_Carro.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Carro.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Carro.FlatAppearance.BorderSize = 0;
+            this.btn_Carro.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Carro.Location = new System.Drawing.Point(0, 0);
+            this.btn_Carro.Name = "btn_Carro";
+            this.btn_Carro.Size = new System.Drawing.Size(189, 63);
+            this.btn_Carro.TabIndex = 4;
+            this.btn_Carro.Text = "Carros";
+            this.btn_Carro.UseVisualStyleBackColor = true;
+            this.btn_Carro.Click += new System.EventHandler(this.btn_Carro_Click);
+            // 
+            // tabMenuPrincipal
+            // 
+            this.tabMenuPrincipal.Controls.Add(this.Imagen_Principal);
+            this.tabMenuPrincipal.Controls.Add(this.pnl_LateralDerecha_Principal);
+            this.tabMenuPrincipal.Location = new System.Drawing.Point(4, 22);
+            this.tabMenuPrincipal.Name = "tabMenuPrincipal";
+            this.tabMenuPrincipal.Size = new System.Drawing.Size(817, 594);
+            this.tabMenuPrincipal.TabIndex = 2;
+            this.tabMenuPrincipal.Text = "Principal";
+            this.tabMenuPrincipal.UseVisualStyleBackColor = true;
+            // 
+            // Imagen_Principal
+            // 
+            this.Imagen_Principal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.Imagen_Principal.Controls.Add(this.lblTotalMotosPrincipal);
+            this.Imagen_Principal.Controls.Add(this.lblTotalCarrosPrincipal);
+            this.Imagen_Principal.Controls.Add(this.lblFecha);
+            this.Imagen_Principal.Controls.Add(this.lblHora);
+            this.Imagen_Principal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.Imagen_Principal.Location = new System.Drawing.Point(0, 0);
+            this.Imagen_Principal.Name = "Imagen_Principal";
+            this.Imagen_Principal.Size = new System.Drawing.Size(628, 594);
+            this.Imagen_Principal.TabIndex = 3;
+            // 
+            // lblTotalMotosPrincipal
+            // 
+            this.lblTotalMotosPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(188)))), ((int)(((byte)(177)))));
+            this.lblTotalMotosPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalMotosPrincipal.ForeColor = System.Drawing.Color.Black;
+            this.lblTotalMotosPrincipal.Location = new System.Drawing.Point(272, 459);
+            this.lblTotalMotosPrincipal.Name = "lblTotalMotosPrincipal";
+            this.lblTotalMotosPrincipal.Size = new System.Drawing.Size(106, 40);
+            this.lblTotalMotosPrincipal.TabIndex = 3;
+            this.lblTotalMotosPrincipal.Text = "1025";
+            this.lblTotalMotosPrincipal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblTotalCarrosPrincipal
+            // 
+            this.lblTotalCarrosPrincipal.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(190)))), ((int)(((byte)(188)))), ((int)(((byte)(177)))));
+            this.lblTotalCarrosPrincipal.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblTotalCarrosPrincipal.ForeColor = System.Drawing.Color.Black;
+            this.lblTotalCarrosPrincipal.Location = new System.Drawing.Point(272, 319);
+            this.lblTotalCarrosPrincipal.Name = "lblTotalCarrosPrincipal";
+            this.lblTotalCarrosPrincipal.Size = new System.Drawing.Size(106, 40);
+            this.lblTotalCarrosPrincipal.TabIndex = 2;
+            this.lblTotalCarrosPrincipal.Text = "1025";
+            this.lblTotalCarrosPrincipal.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblFecha
+            // 
+            this.lblFecha.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblFecha.ForeColor = System.Drawing.Color.White;
+            this.lblFecha.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
+            this.lblFecha.Location = new System.Drawing.Point(119, 166);
+            this.lblFecha.Name = "lblFecha";
+            this.lblFecha.Size = new System.Drawing.Size(385, 38);
+            this.lblFecha.TabIndex = 1;
+            this.lblFecha.Text = "31 de septiembre de año 2023";
+            this.lblFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // lblHora
+            // 
+            this.lblHora.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.lblHora.Font = new System.Drawing.Font("Microsoft Sans Serif", 20.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.lblHora.ForeColor = System.Drawing.Color.White;
+            this.lblHora.Location = new System.Drawing.Point(235, 126);
+            this.lblHora.Name = "lblHora";
+            this.lblHora.Size = new System.Drawing.Size(162, 40);
+            this.lblHora.TabIndex = 0;
+            this.lblHora.Text = "24:45";
+            this.lblHora.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            // 
+            // pnl_LateralDerecha_Principal
+            // 
+            this.pnl_LateralDerecha_Principal.BackColor = System.Drawing.Color.White;
+            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_CerrarPrincipal);
+            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_ReportePatios);
+            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_Mensualidades);
+            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_FacturaContingencia);
+            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_SaldoEnLinea);
+            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_Arqueo);
+            this.pnl_LateralDerecha_Principal.Dock = System.Windows.Forms.DockStyle.Right;
+            this.pnl_LateralDerecha_Principal.ForeColor = System.Drawing.SystemColors.ControlText;
+            this.pnl_LateralDerecha_Principal.Location = new System.Drawing.Point(628, 0);
+            this.pnl_LateralDerecha_Principal.Name = "pnl_LateralDerecha_Principal";
+            this.pnl_LateralDerecha_Principal.Size = new System.Drawing.Size(189, 594);
+            this.pnl_LateralDerecha_Principal.TabIndex = 2;
+            // 
+            // btn_CerrarPrincipal
+            // 
+            this.btn_CerrarPrincipal.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_CerrarPrincipal.Dock = System.Windows.Forms.DockStyle.Bottom;
+            this.btn_CerrarPrincipal.FlatAppearance.BorderSize = 0;
+            this.btn_CerrarPrincipal.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_CerrarPrincipal.Location = new System.Drawing.Point(0, 535);
+            this.btn_CerrarPrincipal.Name = "btn_CerrarPrincipal";
+            this.btn_CerrarPrincipal.Size = new System.Drawing.Size(189, 59);
+            this.btn_CerrarPrincipal.TabIndex = 15;
+            this.btn_CerrarPrincipal.Text = "button1";
+            this.btn_CerrarPrincipal.UseVisualStyleBackColor = true;
+            this.btn_CerrarPrincipal.Click += new System.EventHandler(this.button1_Click);
+            // 
+            // btn_ReportePatios
+            // 
+            this.btn_ReportePatios.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_ReportePatios.FlatAppearance.BorderSize = 0;
+            this.btn_ReportePatios.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ReportePatios.Location = new System.Drawing.Point(0, 252);
+            this.btn_ReportePatios.Name = "btn_ReportePatios";
+            this.btn_ReportePatios.Size = new System.Drawing.Size(189, 63);
+            this.btn_ReportePatios.TabIndex = 3;
+            this.btn_ReportePatios.Text = "Reporte Patios";
+            this.btn_ReportePatios.UseVisualStyleBackColor = true;
+            this.btn_ReportePatios.Click += new System.EventHandler(this.btn_ReportePatios_Click);
+            // 
+            // btn_Mensualidades
+            // 
+            this.btn_Mensualidades.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Mensualidades.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Mensualidades.FlatAppearance.BorderSize = 0;
+            this.btn_Mensualidades.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Mensualidades.Location = new System.Drawing.Point(0, 189);
+            this.btn_Mensualidades.Name = "btn_Mensualidades";
+            this.btn_Mensualidades.Size = new System.Drawing.Size(189, 63);
+            this.btn_Mensualidades.TabIndex = 12;
+            this.btn_Mensualidades.Text = "Mensualidades";
+            this.btn_Mensualidades.UseVisualStyleBackColor = true;
+            this.btn_Mensualidades.Click += new System.EventHandler(this.btn_Mensualidades_Click);
+            // 
+            // btn_FacturaContingencia
+            // 
+            this.btn_FacturaContingencia.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_FacturaContingencia.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_FacturaContingencia.FlatAppearance.BorderSize = 0;
+            this.btn_FacturaContingencia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_FacturaContingencia.Location = new System.Drawing.Point(0, 126);
+            this.btn_FacturaContingencia.Name = "btn_FacturaContingencia";
+            this.btn_FacturaContingencia.Size = new System.Drawing.Size(189, 63);
+            this.btn_FacturaContingencia.TabIndex = 5;
+            this.btn_FacturaContingencia.Text = "Factura Contingencia";
+            this.btn_FacturaContingencia.UseVisualStyleBackColor = true;
+            this.btn_FacturaContingencia.Click += new System.EventHandler(this.btn_FacturaContingencia_Click);
+            // 
+            // btn_SaldoEnLinea
+            // 
+            this.btn_SaldoEnLinea.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_SaldoEnLinea.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_SaldoEnLinea.FlatAppearance.BorderSize = 0;
+            this.btn_SaldoEnLinea.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_SaldoEnLinea.Location = new System.Drawing.Point(0, 63);
+            this.btn_SaldoEnLinea.Name = "btn_SaldoEnLinea";
+            this.btn_SaldoEnLinea.Size = new System.Drawing.Size(189, 63);
+            this.btn_SaldoEnLinea.TabIndex = 4;
+            this.btn_SaldoEnLinea.Text = "Saldo En linea";
+            this.btn_SaldoEnLinea.UseVisualStyleBackColor = true;
+            this.btn_SaldoEnLinea.Click += new System.EventHandler(this.btn_SaldoEnLinea_Click);
+            // 
+            // btn_Arqueo
+            // 
+            this.btn_Arqueo.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Arqueo.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Arqueo.FlatAppearance.BorderSize = 0;
+            this.btn_Arqueo.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Arqueo.Location = new System.Drawing.Point(0, 0);
+            this.btn_Arqueo.Name = "btn_Arqueo";
+            this.btn_Arqueo.Size = new System.Drawing.Size(189, 63);
+            this.btn_Arqueo.TabIndex = 14;
+            this.btn_Arqueo.Text = "Arqueo";
+            this.btn_Arqueo.UseVisualStyleBackColor = true;
+            this.btn_Arqueo.Click += new System.EventHandler(this.btn_Arqueo_Click_1);
+            // 
+            // tabPrincipal
+            // 
+            this.tabPrincipal.Controls.Add(this.tabMenuPrincipal);
+            this.tabPrincipal.Controls.Add(this.tabEntrada);
+            this.tabPrincipal.Controls.Add(this.tabCobrar);
+            this.tabPrincipal.Dock = System.Windows.Forms.DockStyle.Fill;
+            this.tabPrincipal.Location = new System.Drawing.Point(189, 80);
+            this.tabPrincipal.Name = "tabPrincipal";
+            this.tabPrincipal.SelectedIndex = 0;
+            this.tabPrincipal.Size = new System.Drawing.Size(825, 620);
+            this.tabPrincipal.TabIndex = 3;
             // 
             // Menu
             // 
@@ -1007,18 +997,18 @@
             this.pnl_InfoUsuario.ResumeLayout(false);
             this.pnl_InfoUsuario.PerformLayout();
             ((System.ComponentModel.ISupportInitialize)(this.LogoUsuario)).EndInit();
-            this.tabPrincipal.ResumeLayout(false);
-            this.tabMenuPrincipal.ResumeLayout(false);
-            this.Imagen_Principal.ResumeLayout(false);
-            this.pnl_LateralDerecha_Principal.ResumeLayout(false);
-            this.tabEntrada.ResumeLayout(false);
-            this.Imagen_FondoEntrada.ResumeLayout(false);
-            this.Imagen_FondoEntrada.PerformLayout();
-            this.pnl_LateralDerechaEntrada.ResumeLayout(false);
             this.tabCobrar.ResumeLayout(false);
             this.Imagen_FondoCobrar.ResumeLayout(false);
             this.Imagen_FondoCobrar.PerformLayout();
             this.pnl_LateralDerechaCobrar.ResumeLayout(false);
+            this.tabEntrada.ResumeLayout(false);
+            this.Imagen_FondoEntrada.ResumeLayout(false);
+            this.Imagen_FondoEntrada.PerformLayout();
+            this.pnl_LateralDerechaEntrada.ResumeLayout(false);
+            this.tabMenuPrincipal.ResumeLayout(false);
+            this.Imagen_Principal.ResumeLayout(false);
+            this.pnl_LateralDerecha_Principal.ResumeLayout(false);
+            this.tabPrincipal.ResumeLayout(false);
             this.ResumeLayout(false);
 
         }
@@ -1027,10 +1017,6 @@
 
         private System.Windows.Forms.Panel pnlEnecabezado;
         private System.Windows.Forms.Panel pnlBarraLateralIzquierda;
-        private System.Windows.Forms.TabControl tabPrincipal;
-        private System.Windows.Forms.TabPage tabEntrada;
-        private System.Windows.Forms.TabPage tabCobrar;
-        private System.Windows.Forms.TabPage tabMenuPrincipal;
         private System.Windows.Forms.Panel pnl_InfoUsuario;
         private System.Windows.Forms.Label tbUsuario;
         private System.Windows.Forms.Label tbNombreUsuario;
@@ -1038,45 +1024,18 @@
         private System.Windows.Forms.Button btn_Cobrar;
         private System.Windows.Forms.Button btn_Entrada;
         private System.Windows.Forms.Button btn_Principal;
-        private System.Windows.Forms.Panel pnl_LateralDerechaEntrada;
-        private System.Windows.Forms.Panel pnl_LateralDerechaCobrar;
-        private System.Windows.Forms.Button btn_Motos;
-        private System.Windows.Forms.Button btn_Carro;
-        private System.Windows.Forms.Button btn_Otros;
-        private System.Windows.Forms.Button btn_FacturaElectronica;
-        private System.Windows.Forms.Button btn_Convenios;
-        private System.Windows.Forms.Button btn_TarifasEspeciales;
-        private System.Windows.Forms.Button btn_Cortesia;
-        private System.Windows.Forms.Button btn_Reposicion;
-        private System.Windows.Forms.TabPage tabArqueo;
         private System.Windows.Forms.PictureBox LogoUsuario;
-        private System.Windows.Forms.Panel Imagen_FondoEntrada;
-        private System.Windows.Forms.Panel Imagen_FondoCobrar;
-        private System.Windows.Forms.Panel Imagen_Principal;
-        private System.Windows.Forms.Panel pnl_LateralDerecha_Principal;
-        private System.Windows.Forms.Button btn_ReportePatios;
-        private System.Windows.Forms.Button btn_Mensualidades;
-        private System.Windows.Forms.Button btn_FacturaContingencia;
-        private System.Windows.Forms.Button btn_SaldoEnLinea;
-        private System.Windows.Forms.Button btn_Arqueo;
-        private System.Windows.Forms.Label lblHora;
-        private System.Windows.Forms.Label lblFecha;
-        private System.Windows.Forms.Label lblTotalMotosPrincipal;
-        private System.Windows.Forms.Label lblTotalCarrosPrincipal;
-        private System.Windows.Forms.TextBox tbPlaca;
-        private System.Windows.Forms.TextBox tbTipoVehiculo;
-        private System.Windows.Forms.TextBox tbModuloIngreso;
-        private System.Windows.Forms.TextBox tbNombreAutortizado;
-        private System.Windows.Forms.DateTimePicker dtpFechaIngreso;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label lblSede;
         private System.Windows.Forms.ComboBox cbSede;
         private System.Windows.Forms.ComboBox cbPPM;
         private System.Windows.Forms.ComboBox cbEstacionamiento;
-        private System.Windows.Forms.CheckBox chbAutorizado;
-        private System.Windows.Forms.ComboBox cbEntrada;
-        private System.Windows.Forms.Button btnConfirmaIngreso;
-        private System.Windows.Forms.TextBox txtPlacaBuscar;
+        private System.Windows.Forms.TabPage tabCobrar;
+        private System.Windows.Forms.Panel Imagen_FondoCobrar;
+        private System.Windows.Forms.Button btn_ConfirmarCobro;
+        private System.Windows.Forms.CheckBox ckMensualidadDocumento;
+        private System.Windows.Forms.TextBox tbCodigo;
+        private System.Windows.Forms.TextBox tbCambioCobrar;
         private System.Windows.Forms.TextBox tbRecibidoCobrar;
         private System.Windows.Forms.TextBox tbValorAPagarCobrar;
         private System.Windows.Forms.TextBox tbTiempoCobrar;
@@ -1086,13 +1045,43 @@
         private System.Windows.Forms.TextBox tbConvenioCobrar;
         private System.Windows.Forms.TextBox tbNombreAutorizadoCobrar;
         private System.Windows.Forms.TextBox tbTipoVehiculoCobrar;
-        private System.Windows.Forms.TextBox tbCambioCobrar;
-        private System.Windows.Forms.TextBox tbCodigo;
-        private System.Windows.Forms.CheckBox ckMensualidadDocumento;
-        private System.Windows.Forms.Button btn_ConfirmarCobro;
-        private System.Windows.Forms.Button btn_Cascos;
-        private System.Windows.Forms.Button btn_Cerrar;
-        private System.Windows.Forms.Button btn_CerrarPrincipal;
+        private System.Windows.Forms.TextBox txtPlacaBuscar;
+        private System.Windows.Forms.Panel pnl_LateralDerechaCobrar;
         private System.Windows.Forms.Button btn_CerrarCobrar;
+        private System.Windows.Forms.Button btn_Cascos;
+        private System.Windows.Forms.Button btn_Reposicion;
+        private System.Windows.Forms.Button btn_FacturaElectronica;
+        private System.Windows.Forms.Button btn_Convenios;
+        private System.Windows.Forms.Button btn_TarifasEspeciales;
+        private System.Windows.Forms.Button btn_Cortesia;
+        private System.Windows.Forms.TabPage tabEntrada;
+        private System.Windows.Forms.Panel Imagen_FondoEntrada;
+        private System.Windows.Forms.Button btnConfirmaIngreso;
+        private System.Windows.Forms.ComboBox cbEntrada;
+        private System.Windows.Forms.CheckBox chbAutorizado;
+        private System.Windows.Forms.DateTimePicker dtpFechaIngreso;
+        private System.Windows.Forms.TextBox tbModuloIngreso;
+        private System.Windows.Forms.TextBox tbNombreAutortizado;
+        private System.Windows.Forms.TextBox tbTipoVehiculo;
+        private System.Windows.Forms.TextBox tbPlaca;
+        private System.Windows.Forms.Panel pnl_LateralDerechaEntrada;
+        private System.Windows.Forms.Button btn_Cerrar;
+        private System.Windows.Forms.Button btn_Otros;
+        private System.Windows.Forms.Button btn_Motos;
+        private System.Windows.Forms.Button btn_Carro;
+        private System.Windows.Forms.TabPage tabMenuPrincipal;
+        private System.Windows.Forms.Panel Imagen_Principal;
+        private System.Windows.Forms.Label lblTotalMotosPrincipal;
+        private System.Windows.Forms.Label lblTotalCarrosPrincipal;
+        private System.Windows.Forms.Label lblFecha;
+        private System.Windows.Forms.Label lblHora;
+        private System.Windows.Forms.Panel pnl_LateralDerecha_Principal;
+        private System.Windows.Forms.Button btn_CerrarPrincipal;
+        private System.Windows.Forms.Button btn_ReportePatios;
+        private System.Windows.Forms.Button btn_Mensualidades;
+        private System.Windows.Forms.Button btn_FacturaContingencia;
+        private System.Windows.Forms.Button btn_SaldoEnLinea;
+        private System.Windows.Forms.Button btn_Arqueo;
+        private System.Windows.Forms.TabControl tabPrincipal;
     }
 }

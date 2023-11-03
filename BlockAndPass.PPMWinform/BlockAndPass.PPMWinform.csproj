@@ -196,6 +196,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SaldoEnLinea.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SaldoEnLinea.Designer.cs">
+      <DependentUpon>SaldoEnLinea.cs</DependentUpon>
+    </Compile>
     <Compile Include="Tickets\DataSetCopia.Designer.cs">
       <AutoGen>True</AutoGen>
       <DesignTime>True</DesignTime>
@@ -219,6 +225,7 @@
     </Compile>
     <Compile Include="Tickets\DataSetTicketPago.cs">
       <DependentUpon>DataSetTicketPago.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tickets\DataSetTicketPago.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -227,6 +234,7 @@
     </Compile>
     <Compile Include="Tickets\DataSetTicketPagoMensualidad.cs">
       <DependentUpon>DataSetTicketPagoMensualidad.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tickets\DataSetTicketPagoMensualidad.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -303,6 +311,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SaldoEnLinea.resx">
+      <DependentUpon>SaldoEnLinea.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Tickets\CopiaFactura.rdlc">
       <CopyToOutputDirectory>Always</CopyToOutputDirectory>
     </EmbeddedResource>

@@ -483,7 +483,7 @@ namespace BlockAndPass.PPMWinform
         {
             ReestablecerBotonesLateralIzquierdo();
             btn_ReportePatios.BackgroundImage = Image.FromFile(@"Media\Png\btn_ArqueoPresionado.png");
-            tabPrincipal.SelectedTab = tabArqueo;
+            //tabPrincipal.SelectedTab = tabSaldoEnLinea;
         }
 
         private void btn_Arqueo_Click_1(object sender, EventArgs e)
@@ -3781,7 +3781,6 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralIzquierdo();
             ReestablecerBotonInferior();
             //Funcion ClickPlacaBuscar 
-
             clickTimer = new System.Windows.Forms.Timer();
             clickTimer.Interval = 15000; 
             clickTimer.Tick += (s, e) =>
@@ -3841,6 +3840,12 @@ namespace BlockAndPass.PPMWinform
             }
 
 
+        }
+
+        private void txtPlacaBuscar_Click(object sender, EventArgs e)
+        {
+            tmrHora.Stop();
+            clickTimer.Start(); 
         }
 
 
