@@ -408,7 +408,7 @@ namespace BlockAndPass.PPMWinform
                 DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION","Crear Entrada", MessageBoxButtons.YesNo,  MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (result3 == DialogResult.Yes)
                 {
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), Convert.ToInt32( _IdAutorizacion).ToString());
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, _IdModuloEntrada, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), Convert.ToInt32( _IdAutorizacion).ToString());
 
                     if (oInfo.Exito)
                     {

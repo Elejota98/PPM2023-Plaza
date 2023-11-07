@@ -69,7 +69,7 @@
             this.btn_Cortesia = new System.Windows.Forms.Button();
             this.tabEntrada = new System.Windows.Forms.TabPage();
             this.Imagen_FondoEntrada = new System.Windows.Forms.Panel();
-            this.btnConfirmaIngreso = new System.Windows.Forms.Button();
+            this.btn_ConfirmaIngreso = new System.Windows.Forms.Button();
             this.cbEntrada = new System.Windows.Forms.ComboBox();
             this.chbAutorizado = new System.Windows.Forms.CheckBox();
             this.dtpFechaIngreso = new System.Windows.Forms.DateTimePicker();
@@ -89,6 +89,7 @@
             this.lblFecha = new System.Windows.Forms.Label();
             this.lblHora = new System.Windows.Forms.Label();
             this.pnl_LateralDerecha_Principal = new System.Windows.Forms.Panel();
+            this.btn_Copia = new System.Windows.Forms.Button();
             this.btn_CerrarPrincipal = new System.Windows.Forms.Button();
             this.btn_ReportePatios = new System.Windows.Forms.Button();
             this.btn_Mensualidades = new System.Windows.Forms.Button();
@@ -486,7 +487,7 @@
             // 
             // pnl_LateralDerechaCobrar
             // 
-            this.pnl_LateralDerechaCobrar.BackColor = System.Drawing.SystemColors.Control;
+            this.pnl_LateralDerechaCobrar.BackColor = System.Drawing.Color.White;
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_CerrarCobrar);
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Cascos);
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Reposicion);
@@ -616,7 +617,7 @@
             // 
             this.Imagen_FondoEntrada.BackgroundImage = global::BlockAndPass.PPMWinform.Properties.Resources.ImagenFondoIngreso;
             this.Imagen_FondoEntrada.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.Imagen_FondoEntrada.Controls.Add(this.btnConfirmaIngreso);
+            this.Imagen_FondoEntrada.Controls.Add(this.btn_ConfirmaIngreso);
             this.Imagen_FondoEntrada.Controls.Add(this.cbEntrada);
             this.Imagen_FondoEntrada.Controls.Add(this.chbAutorizado);
             this.Imagen_FondoEntrada.Controls.Add(this.dtpFechaIngreso);
@@ -630,18 +631,18 @@
             this.Imagen_FondoEntrada.Size = new System.Drawing.Size(622, 588);
             this.Imagen_FondoEntrada.TabIndex = 4;
             // 
-            // btnConfirmaIngreso
+            // btn_ConfirmaIngreso
             // 
-            this.btnConfirmaIngreso.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btnConfirmaIngreso.FlatAppearance.BorderSize = 0;
-            this.btnConfirmaIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btnConfirmaIngreso.Location = new System.Drawing.Point(238, 499);
-            this.btnConfirmaIngreso.Name = "btnConfirmaIngreso";
-            this.btnConfirmaIngreso.Size = new System.Drawing.Size(147, 63);
-            this.btnConfirmaIngreso.TabIndex = 8;
-            this.btnConfirmaIngreso.Text = "Confirmar Ingreso";
-            this.btnConfirmaIngreso.UseVisualStyleBackColor = true;
-            this.btnConfirmaIngreso.Click += new System.EventHandler(this.btnConfirmaIngreso_Click);
+            this.btn_ConfirmaIngreso.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_ConfirmaIngreso.FlatAppearance.BorderSize = 0;
+            this.btn_ConfirmaIngreso.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_ConfirmaIngreso.Location = new System.Drawing.Point(238, 499);
+            this.btn_ConfirmaIngreso.Name = "btn_ConfirmaIngreso";
+            this.btn_ConfirmaIngreso.Size = new System.Drawing.Size(147, 63);
+            this.btn_ConfirmaIngreso.TabIndex = 8;
+            this.btn_ConfirmaIngreso.Text = "Confirmar Ingreso";
+            this.btn_ConfirmaIngreso.UseVisualStyleBackColor = true;
+            this.btn_ConfirmaIngreso.Click += new System.EventHandler(this.btnConfirmaIngreso_Click);
             // 
             // cbEntrada
             // 
@@ -870,6 +871,7 @@
             // pnl_LateralDerecha_Principal
             // 
             this.pnl_LateralDerecha_Principal.BackColor = System.Drawing.Color.White;
+            this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_Copia);
             this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_CerrarPrincipal);
             this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_ReportePatios);
             this.pnl_LateralDerecha_Principal.Controls.Add(this.btn_Mensualidades);
@@ -882,6 +884,19 @@
             this.pnl_LateralDerecha_Principal.Name = "pnl_LateralDerecha_Principal";
             this.pnl_LateralDerecha_Principal.Size = new System.Drawing.Size(189, 594);
             this.pnl_LateralDerecha_Principal.TabIndex = 2;
+            // 
+            // btn_Copia
+            // 
+            this.btn_Copia.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Copia.FlatAppearance.BorderSize = 0;
+            this.btn_Copia.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Copia.Location = new System.Drawing.Point(0, 315);
+            this.btn_Copia.Name = "btn_Copia";
+            this.btn_Copia.Size = new System.Drawing.Size(189, 63);
+            this.btn_Copia.TabIndex = 16;
+            this.btn_Copia.Text = "Copia Factura";
+            this.btn_Copia.UseVisualStyleBackColor = true;
+            this.btn_Copia.Click += new System.EventHandler(this.btn_Copia_Click);
             // 
             // btn_CerrarPrincipal
             // 
@@ -1056,7 +1071,7 @@
         private System.Windows.Forms.Button btn_Cortesia;
         private System.Windows.Forms.TabPage tabEntrada;
         private System.Windows.Forms.Panel Imagen_FondoEntrada;
-        private System.Windows.Forms.Button btnConfirmaIngreso;
+        private System.Windows.Forms.Button btn_ConfirmaIngreso;
         private System.Windows.Forms.ComboBox cbEntrada;
         private System.Windows.Forms.CheckBox chbAutorizado;
         private System.Windows.Forms.DateTimePicker dtpFechaIngreso;
@@ -1083,5 +1098,6 @@
         private System.Windows.Forms.Button btn_SaldoEnLinea;
         private System.Windows.Forms.Button btn_Arqueo;
         private System.Windows.Forms.TabControl tabPrincipal;
+        private System.Windows.Forms.Button btn_Copia;
     }
 }

@@ -1385,6 +1385,86 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ObtenerInformacionAutorizadoMensualidad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerInformacionAutorizadoMensualidadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerInformacionAutorizadoMensualidadResult" type="tns:InfoDatosAutorizadoMensualidadResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoDatosAutorizadoMensualidadResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="lstInfoDatosAutorizadoResponse" type="tns:ArrayOfObtenerDatosAutorizadosPorDocumentoOPlacaResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ArrayOfObtenerDatosAutorizadosPorDocumentoOPlacaResponse">
+        <s:sequence>
+          <s:element minOccurs="0" maxOccurs="unbounded" name="ObtenerDatosAutorizadosPorDocumentoOPlacaResponse" nillable="true" type="tns:ObtenerDatosAutorizadosPorDocumentoOPlacaResponse" />
+        </s:sequence>
+      </s:complexType>
+      <s:complexType name="ObtenerDatosAutorizadosPorDocumentoOPlacaResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="NombreApellidos" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Documento" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdTarjeta" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdAutorizacion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Placa1" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Placa2" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="Placa3" type="s:string" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaInicio" type="s:dateTime" />
+          <s:element minOccurs="1" maxOccurs="1" name="FechaFin" type="s:dateTime" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ActualizaDatosMensualidad">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="documento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="placa1" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="placa2" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechaInicio" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fechaFinal" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ActualizaDatosMensualidadResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ActualizaDatosMensualidadResult" type="tns:ActualizarDatosMensualidadResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="ActualizarDatosMensualidadResponse">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="ObtenerTransaccionSinSalidaPorIdTarjeta">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idTarjeta" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerTransaccionSinSalidaPorIdTarjetaResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerTransaccionSinSalidaPorIdTarjetaResult" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="ObtenerInformacionUsuarioSoapIn">
@@ -1723,6 +1803,24 @@
   <wsdl:message name="ObtenerRutaCodigoBarrasSoapOut">
     <wsdl:part name="parameters" element="tns:ObtenerRutaCodigoBarrasResponse" />
   </wsdl:message>
+  <wsdl:message name="ObtenerInformacionAutorizadoMensualidadSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerInformacionAutorizadoMensualidad" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerInformacionAutorizadoMensualidadSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerInformacionAutorizadoMensualidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaDatosMensualidadSoapIn">
+    <wsdl:part name="parameters" element="tns:ActualizaDatosMensualidad" />
+  </wsdl:message>
+  <wsdl:message name="ActualizaDatosMensualidadSoapOut">
+    <wsdl:part name="parameters" element="tns:ActualizaDatosMensualidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerTransaccionSinSalidaPorIdTarjetaSoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerTransaccionSinSalidaPorIdTarjeta" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerTransaccionSinSalidaPorIdTarjetaSoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerTransaccionSinSalidaPorIdTarjetaResponse" />
+  </wsdl:message>
   <wsdl:portType name="ServicesByPSoap">
     <wsdl:operation name="ObtenerInformacionUsuario">
       <wsdl:input message="tns:ObtenerInformacionUsuarioSoapIn" />
@@ -1947,6 +2045,18 @@
     <wsdl:operation name="ObtenerRutaCodigoBarras">
       <wsdl:input message="tns:ObtenerRutaCodigoBarrasSoapIn" />
       <wsdl:output message="tns:ObtenerRutaCodigoBarrasSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerInformacionAutorizadoMensualidad">
+      <wsdl:input message="tns:ObtenerInformacionAutorizadoMensualidadSoapIn" />
+      <wsdl:output message="tns:ObtenerInformacionAutorizadoMensualidadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaDatosMensualidad">
+      <wsdl:input message="tns:ActualizaDatosMensualidadSoapIn" />
+      <wsdl:output message="tns:ActualizaDatosMensualidadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTransaccionSinSalidaPorIdTarjeta">
+      <wsdl:input message="tns:ObtenerTransaccionSinSalidaPorIdTarjetaSoapIn" />
+      <wsdl:output message="tns:ObtenerTransaccionSinSalidaPorIdTarjetaSoapOut" />
     </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServicesByPSoap" type="tns:ServicesByPSoap">
@@ -2455,6 +2565,33 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerInformacionAutorizadoMensualidad">
+      <soap:operation soapAction="http://tempuri.org/ObtenerInformacionAutorizadoMensualidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaDatosMensualidad">
+      <soap:operation soapAction="http://tempuri.org/ActualizaDatosMensualidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTransaccionSinSalidaPorIdTarjeta">
+      <soap:operation soapAction="http://tempuri.org/ObtenerTransaccionSinSalidaPorIdTarjeta" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ServicesByPSoap12" type="tns:ServicesByPSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2955,6 +3092,33 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerRutaCodigoBarras">
       <soap12:operation soapAction="http://tempuri.org/ObtenerRutaCodigoBarras" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerInformacionAutorizadoMensualidad">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerInformacionAutorizadoMensualidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ActualizaDatosMensualidad">
+      <soap12:operation soapAction="http://tempuri.org/ActualizaDatosMensualidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerTransaccionSinSalidaPorIdTarjeta">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerTransaccionSinSalidaPorIdTarjeta" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

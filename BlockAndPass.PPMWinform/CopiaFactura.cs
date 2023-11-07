@@ -47,7 +47,7 @@ namespace BlockAndPass.PPMWinform
         {
 
             string NUMFACT = tbnumerofactura.Text;
-            string IDMOULO = cboIdModulo.SelectedItem.ToString();
+            string IDMODULO = cboIdModulo.SelectedItem.ToString();
 
             string data = @"" + sSerial + "";
             conexionSQL.ConnectionString = data;
@@ -73,8 +73,22 @@ namespace BlockAndPass.PPMWinform
 
             if (TIPO == "1")
             {
+                string IdSelect = cboIdModulo.SelectedItem.ToString();
+                switch (IdSelect)
+                {
+                    case "PUB":
+                        IDMODULO = "PUB";
+                        break;
+                    case "DES":
+                        IDMODULO = "DES";
+                        break;
+                    case "PPE":
+                        IDMODULO = "PPE";
+                        break;
 
-                this.dataTable1TableAdapter1.Fill(this.dataSetCopia.DataTable1, NUMFACT, IDMOULO);
+                }
+
+                this.dataTable1TableAdapter1.Fill(this.dataSetCopia.DataTable1, NUMFACT, IDMODULO);
                 //this.DATA
 
                 this.reportViewer1.RefreshReport();

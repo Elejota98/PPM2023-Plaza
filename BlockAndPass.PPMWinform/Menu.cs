@@ -224,6 +224,7 @@ namespace BlockAndPass.PPMWinform
             {
 
                 tbTipoVehiculo.Text = "";
+                LimpiarDatosEntrada();
                 tbPlaca.Focus();
 
             }
@@ -395,6 +396,10 @@ namespace BlockAndPass.PPMWinform
             btn_Otros.Text = "";
             btn_Otros.BackgroundImageLayout = ImageLayout.Stretch;
 
+            btn_ConfirmaIngreso.BackgroundImage = Image.FromFile(@"Media\Png\btn_ConfirmarEntrada.png");
+            btn_ConfirmaIngreso.Text = "";
+            btn_ConfirmaIngreso.BackgroundImageLayout = ImageLayout.Stretch;
+
 
         }
 
@@ -531,6 +536,10 @@ namespace BlockAndPass.PPMWinform
                     MessageBox.Show(rgis.ErrorMessage, "Arqueo PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 }
             }
+            else
+            {
+                ReestablecerBotonesLateralDerechoPrincipal();
+            }
         }
 
         private void btn_SaldoEnLinea_Click(object sender, EventArgs e)
@@ -538,6 +547,12 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralDerechoPrincipal();
             btn_SaldoEnLinea.BackgroundImage = Image.FromFile(@"Media\Png\btn_SaldoEnLineaPresionado.png");
             //tabPrincipal.SelectedTab = tabSaldoEnLinea;
+            SaldoEnLinea popup = new SaldoEnLinea();
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.Cancel)
+            {
+                ReestablecerBotonesLateralDerechoPrincipal();
+            }
         }
 
         private void btn_FacturaContingencia_Click(object sender, EventArgs e)
@@ -552,6 +567,12 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralDerechoPrincipal();
             btn_Mensualidades.BackgroundImage = Image.FromFile(@"Media\Png\btn_MensualidadesPresionado.png");
             //tabPrincipal.SelectedTab = tabMensualidades;
+            AjusteMensualidadPopUp popup = new AjusteMensualidadPopUp();
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.Cancel)
+            {
+                ReestablecerBotonesLateralDerechoPrincipal();
+            }
         }
 
         private void btn_ReportePatios_Click(object sender, EventArgs e)
@@ -559,6 +580,13 @@ namespace BlockAndPass.PPMWinform
             ReestablecerBotonesLateralDerechoPrincipal();
             btn_ReportePatios.BackgroundImage = Image.FromFile(@"Media\Png\btn_ReportePatiosPresionado.png");
             //tabPrincipal.SelectedTab = tabReportePatios;
+
+            ReportePatios popup = new ReportePatios();
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.Cancel)
+            {
+                ReestablecerBotonesLateralDerechoPrincipal();
+            }
         }
 
         private void btn_Carro_Click(object sender, EventArgs e)
@@ -573,7 +601,7 @@ namespace BlockAndPass.PPMWinform
                     _IdTipoVehiculo = 1;
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Carro", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Carro";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                 }
                 else
@@ -600,7 +628,7 @@ namespace BlockAndPass.PPMWinform
                     _IdTipoVehiculo = 2;
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Moto", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Moto";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
 
                 }
@@ -624,7 +652,7 @@ namespace BlockAndPass.PPMWinform
                 {
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorra 2 Llantas", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Zorra 2 Llantas";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -633,7 +661,7 @@ namespace BlockAndPass.PPMWinform
                 {
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorra 4 Llantas", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Zorra 4 Llantas";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -643,7 +671,7 @@ namespace BlockAndPass.PPMWinform
                   
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorras Grandes", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Zorras Grandes";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -653,7 +681,7 @@ namespace BlockAndPass.PPMWinform
                    
                      MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Moto Carga", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Moto Carga";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -662,7 +690,7 @@ namespace BlockAndPass.PPMWinform
                 {  
                      MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Autos - Luv", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Autos - Luv";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -671,7 +699,7 @@ namespace BlockAndPass.PPMWinform
                 {
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Camioneta", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Camioneta";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -680,7 +708,7 @@ namespace BlockAndPass.PPMWinform
                 {
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NHR Sencilla", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "NHR Sencilla";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -689,7 +717,7 @@ namespace BlockAndPass.PPMWinform
                 {
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NHR-2", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "NHR-2";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -698,7 +726,7 @@ namespace BlockAndPass.PPMWinform
                 {
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NPR-NQR-NHR-3", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "NPR-NQR-NHR-3";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -707,7 +735,7 @@ namespace BlockAndPass.PPMWinform
                 {
                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Remision Transcarnes", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                     tbTipoVehiculo.Text = "Remision Transcarnes";
-                    btnConfirmaIngreso.Focus();
+                    btn_ConfirmaIngreso.Focus();
                     ReestablecerBotonesLateralDerechoEntradas();
                     _IdTipoVehiculo = popup.IdTipoVehiculo;
 
@@ -1184,60 +1212,211 @@ namespace BlockAndPass.PPMWinform
 
         private void btnConfirmaIngreso_Click(object sender, EventArgs e)
         {
+            btn_ConfirmaIngreso.BackgroundImage = Image.FromFile(@"Media\Png\btn_ConfirmarEntradaPresionado.png");
+            btn_ConfirmaIngreso.Text = "";
+            btn_ConfirmaIngreso.BackgroundImageLayout = ImageLayout.Stretch;
             if (tbPlaca.Text != string.Empty)
             {
-                if (chbAutorizado.Checked)
+                if (EsAutorizado(tbPlaca.Text))
                 {
-
-                    //DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION", "Crear Entrada", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
-                    //if (result3 == DialogResult.Yes)
-                    //{
-                    //CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, _IdTipoVehiculo.ToString(), Convert.ToInt32(_IdAutorizacion).ToString());
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, tbModuloIngreso.Text, tbPlaca.Text, dtpFechaIngreso.Value, Convert.ToString(_IdTipoVehiculo), Convert.ToInt32(_IdAutorizacion).ToString());
-
-                    if (oInfo.Exito)
+                    if (!TieneVigencia(tbPlaca.Text))
                     {
-                        LimpiarDatosEntrada();
-                        tbPlaca.Enabled = true;
-                        MessageBox.Show("Entrada realizada correctamente", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        this.DialogResult = DialogResult.None;
+                        DialogResult result3 = MessageBox.Show("El autorizado tiene la vigencia vencida.\n ¿Desea registrar la entrada por horas?", "Crear Entrada", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                        //MessageBox.Show("El autorizado tiene la vigencia vencida.", "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (result3 == DialogResult.Yes)
+                        {
+                            CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, tbModuloIngreso.Text, tbPlaca.Text, dtpFechaIngreso.Value, Convert.ToString(_IdTipoVehiculo), string.Empty);
+                            if (oInfo.Exito)
+                            {
+                                ImprimirTicketEntrada();
+                                LimpiarDatosEntrada();
+                                tbPlaca.Focus();
+                                tbPlaca.Enabled = true;
 
+                            }
+                            else
+                            {
+                                MessageBox.Show("Error al crear la entrada", "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                LimpiarDatosEntrada();
+                                tbPlaca.Focus();
+                                tbPlaca.Enabled = true;
+
+
+                            }
+                        }
+                        else
+                        {
+                            LimpiarDatosEntrada();
+                            tbPlaca.Focus();
+                            tbPlaca.Enabled = true;
+
+                        }
+                        //this.Close();
                     }
                     else
                     {
-                        this.DialogResult = DialogResult.None;
-                        MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        if (TieneTransaccionAbierta(tbPlaca.Text))
+                        {
+                            //MessageBox.Show("El autorizado tiene una transaccion pendiente de salida.", "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+
+                            DialogResult result4 = MessageBox.Show("¿El autorizado tiene una salida pendiente, ¿Desea registrar la salida? " + oCardResponse.placa, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                            if (result4 == DialogResult.Yes)
+                            {
+                                //bContinuarLiquidacion = false;
+                                CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), tbModuloIngreso.Text);
+                                if (oCarrilxIdModuloResponse.Exito)
+                                {
+                                    //string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
+
+                                    //CardResponse oCardResponseExit = new CardResponse();
+                                    //oCardResponseExit = ExitCardAutho(clave, oCardResponse.idCard);
+                                    //if (!oCardResponseExit.error)
+                                    //{
+                                    CreaSalidaResponse resp = cliente.CrearSalida2(cbEstacionamiento.SelectedValue.ToString(), tbPlaca.Text, _IdTransaccion, oCarrilxIdModuloResponse.Carril.ToString(), tbModuloIngreso.Text, _IdTarjeta);
+
+                                    if (resp.Exito)
+                                    {
+                                        MessageBox.Show("Salida creada con EXITO", "Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        LimpiarDatosEntrada();
+                                        tbPlaca.Focus();
+                                        tbPlaca.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        this.DialogResult = DialogResult.None;
+                                        MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        LimpiarDatosEntrada();
+                                        tbPlaca.Focus();
+                                        tbPlaca.Enabled = true;
+                                    }
+                                    //}
+                                    //else
+                                    //{
+                                    //    Cargando(false);
+                                    //    MessageBox.Show(oCardResponseExit.errorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //}
+
+                                }
+                                else
+                                {
+                                    MessageBox.Show("No fue posible encontrar el carril asociado al modulo.", "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+                            }
+                            else
+                            {
+                                ReestablecerBotonesLateralDerechoEntradas();
+                                LimpiarDatosEntrada();
+                                tbPlaca.Focus();
+                                tbPlaca.Enabled = true;
+
+                            }
+
+                        }
+                        else
+                        {
+                            //CREAR ENTRADA
+                            chbAutorizado.Checked = true;
+                            if (tbPlaca.Text != string.Empty)
+                            {
+                                if (chbAutorizado.Checked)
+                                {
+                                    //DialogResult result3 = MessageBox.Show("¿Desea crear una entrada de autorizado? \n TENGA EN CUENTA QUE NO PODRA CAMBIAR ESTA SELECCION", "Crear Entrada", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                                    //if (result3 == DialogResult.Yes)
+                                    //{
+                                        CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, _IdModuloEntrada, tbPlaca.Text, dtpFechaIngreso.Value, _IdTipoVehiculo.ToString(), Convert.ToInt32(_IdAutorizacion).ToString());
+
+                                        if (oInfo.Exito)
+                                        {
+                                            MessageBox.Show("Bienvenido Sr/Sra "+tbNombreAutortizado.Text+ " ", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                        LimpiarDatosEntrada();
+                                        tbPlaca.Focus();
+                                        tbPlaca.Enabled = true;
+
+
+                                    }
+                                    else
+                                        {
+                                            MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                        }
+                                    //}
+                                    //else
+                                    //{
+                                    //    //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+
+                                    //    //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
+
+                                    //    //CardResponse oCardResponse = CreateAuthEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdTarjeta);
+                                    //    //if (!oCardResponse.error)
+                                    //    //{
+                                    //    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), Convert.ToInt32(_IdAutorizacion).ToString());
+
+                                    //    if (oInfo.Exito)
+                                    //    {
+                                    //        this.DialogResult = DialogResult.OK;
+                                    //    }
+                                    //    else
+                                    //    {
+                                    //        this.DialogResult = DialogResult.None;
+                                    //        MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM Clienete Normal", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //    }
+                                    //    //}
+                                    //    //else
+                                    //    //{
+                                    //    //    this.DialogResult = DialogResult.None;
+                                    //    //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //    //}
+                                    //}
+                                }
+                                else
+                                {
+                                    //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
+
+                                    //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
+
+                                    //CardResponse oCardResponse = CreateEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString());
+                                    //if (!oCardResponse.error)
+                                    //{
+
+                                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, cbEntrada.Text, tbPlaca.Text, dtpFechaIngreso.Value, _IdTipoVehiculo.ToString(), string.Empty);
+
+                                    if (oInfo.Exito)
+                                    {
+                                        ImprimirTicketEntrada();
+                                        LimpiarDatosEntrada();
+                                        tbPlaca.Focus();
+                                        tbPlaca.Enabled = true;
+                                    }
+                                    else
+                                    {
+                                        this.DialogResult = DialogResult.None;
+                                        MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                    //}
+                                    //else
+                                    //{
+                                    //    this.DialogResult = DialogResult.None;
+                                    //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    //}
+                                }
+
+                            }
+                            else
+                            {
+                                this.DialogResult = DialogResult.None;
+                                MessageBox.Show("Error Crear Entrada PPM", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+
+
+
+                        }
                     }
-                    //}
-                    //else
-                    //{
-                    //    //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
-
-                    //    //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
-
-                    //    //CardResponse oCardResponse = CreateAuthEntry(clave, tbPlaca.Text, cbEntrada.Text, dtpFechaIngreso.Value, cbTipoVehiculo.SelectedValue.ToString(), _IdTarjeta);
-                    //    //if (!oCardResponse.error)
-                    //    //{
-                    //    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, tbModuloIngreso.Text, tbPlaca.Text, dtpFechaIngreso.Value, Convert.ToString(_IdTipoVehiculo), Convert.ToInt32(_IdAutorizacion).ToString());
-
-                    //    if (oInfo.Exito)
-                    //    {
-                    //        this.DialogResult = DialogResult.OK;
-                    //    }
-                    //    else
-                    //    {
-                    //        this.DialogResult = DialogResult.None;
-                    //        MessageBox.Show(oInfo.ErrorMessage, "Error Crear Entrada PPM Clienete Normal", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    }
-                    //    //}
-                    //    //else
-                    //    //{
-                    //    //    this.DialogResult = DialogResult.None;
-                    //    //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //    //}
-                    //}
                 }
                 else
                 {
+                    chbAutorizado.Checked = false;
+                    chbAutorizado.Visible = false;
                     //MessageBox.Show("Coloque la tarjeta en el lector y presione continuar.", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Information, MessageBoxDefaultButton.Button1);
 
                     //string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", _IdEstacionamiento.ToString());
@@ -1246,12 +1425,14 @@ namespace BlockAndPass.PPMWinform
                     //if (!oCardResponse.error)
                     //{
 
-                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, tbModuloIngreso.Text, tbPlaca.Text, dtpFechaIngreso.Value, _IdTipoVehiculo.ToString(), string.Empty);
+                    CreaEntradaResponse oInfo = cliente.CrearEntrada(_IdEstacionamiento.ToString(), _IdTarjeta, _IdModuloEntrada, tbPlaca.Text, dtpFechaIngreso.Value, _IdTipoVehiculo.ToString(), string.Empty);
 
                     if (oInfo.Exito)
                     {
                         ImprimirTicketEntrada();
                         LimpiarDatosEntrada();
+                        tbPlaca.Focus();
+                        tbPlaca.Enabled = true;
                     }
                     else
                     {
@@ -1264,13 +1445,10 @@ namespace BlockAndPass.PPMWinform
                     //    this.DialogResult = DialogResult.None;
                     //    MessageBox.Show(oCardResponse.errorMessage, "Error Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     //}
-                }
 
+                }
             }
-            else
-            {
-                LimpiarDatosEntrada();
-            }
+
         }
 
         private void tbPlaca_KeyPress(object sender, KeyPressEventArgs e)
@@ -1282,7 +1460,7 @@ namespace BlockAndPass.PPMWinform
             }
             if (tbPlaca.Text != string.Empty || tbPlaca.Text != "")
             {
-                if (e.KeyChar == (char)13)
+               if (e.KeyChar == (char)13)
                 {
                     if (EsAutorizado(tbPlaca.Text))
                     {
@@ -1325,7 +1503,11 @@ namespace BlockAndPass.PPMWinform
                                     CarrilxIdModuloResponse oCarrilxIdModuloResponse = cliente.ObtenerCarrilxIdModulo(cbEstacionamiento.SelectedValue.ToString(), tbModuloIngreso.Text);
                                     if (oCarrilxIdModuloResponse.Exito)
                                     {
-                                        //string sIdTransaccion = Convert.ToDateTime(oCardResponse.fechEntrada).ToString("yyyyMMddHHmmss") + oCarrilxIdModuloResponse.Carril + cbEstacionamiento.SelectedValue.ToString();
+                                        string idTransaccion = cliente.ObtenerTransaccionSinSalidaPorIdTarjeta(_IdTarjeta);
+                                        if (idTransaccion != string.Empty)
+                                        {
+                                            _IdTransaccion = idTransaccion;
+                                        }
 
                                         //CardResponse oCardResponseExit = new CardResponse();
                                         //oCardResponseExit = ExitCardAutho(clave, oCardResponse.idCard);
@@ -1369,9 +1551,7 @@ namespace BlockAndPass.PPMWinform
                                 //chbAutorizado.Visible = true;
                                 chbAutorizado.Enabled = false;
                                 tbPlaca.Enabled = false;
-                                btnConfirmaIngreso.Focus();
-
-
+                                btn_ConfirmaIngreso.Focus();
 
                             }
                         }
@@ -1380,7 +1560,7 @@ namespace BlockAndPass.PPMWinform
                     {
                         chbAutorizado.Checked = false;
                         chbAutorizado.Visible = false;
-                        btnConfirmaIngreso.Focus();
+                        btn_ConfirmaIngreso.Focus();
 
                     }
                 }
@@ -1437,7 +1617,13 @@ namespace BlockAndPass.PPMWinform
 
         private void btn_ConfirmarCobro_Click(object sender, EventArgs e)
         {
-            btn_ConfirmarCobro.BackgroundImage = Image.FromFile(@"Media\Png\btn_ConfirmarPresionado.png");
+            #region Old
+            //btn_ConfirmarCobro.BackgroundImage = Image.FromFile(@"Media\Png\btn_ConfirmarPresionado.png");
+            //tmrHora.Stop();
+            //clickTimer.Start();
+            //LeerInfoPorPlaca();
+            #endregion
+
             tmrHora.Stop();
             clickTimer.Start();
             if (Convert.ToInt64(tbValorAPagarCobrar.Text.Replace("$", "").Replace(".", "")) > 0)
@@ -1477,11 +1663,13 @@ namespace BlockAndPass.PPMWinform
                         {
                             ImprimirPagoNormal(_IdTransaccion);
                             LimpiarDatosCobrar();
+                           
                         }
                         else
                         {
                             //Cargando(false);
                             MessageBox.Show(pagoNormal.ErrorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            LimpiarDatosCobrar();
                         }
                         //}
                         //else
@@ -1526,6 +1714,7 @@ namespace BlockAndPass.PPMWinform
                         {
                             //Cargando(false);
                             MessageBox.Show(pagoNormal.ErrorMessage, "Error Pagar Mensualidad PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            LimpiarDatosCobrar();
                         }
                     }
                     #endregion
@@ -1534,7 +1723,7 @@ namespace BlockAndPass.PPMWinform
             else
             {
 
-                DialogResult result3 = MessageBox.Show("Valor a pagar = 0 ¿Desea crear la salida para la transaccion: " + _IdTransaccion, "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                DialogResult result3 = MessageBox.Show("Valor a pagar = 0 ¿Desea crear la salida para la transaccion: " + _IdTransaccion.ToString(), "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
                 if (result3 == DialogResult.Yes)
                 {
                     CreaSalidaResponse resp = cliente.CrearSalida3(cbEstacionamiento.SelectedValue.ToString(), _IdTransaccion, cbPPM.SelectedValue.ToString());
@@ -1546,6 +1735,7 @@ namespace BlockAndPass.PPMWinform
                     else
                     {
                         MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        LimpiarDatosCobrar();
                     }
                 }
                 else
@@ -1558,6 +1748,7 @@ namespace BlockAndPass.PPMWinform
 
                 RestablecerPPM();
             }
+
         }
 
         private void txtPlacaBuscar_KeyPress(object sender, KeyPressEventArgs e)
@@ -1620,12 +1811,14 @@ namespace BlockAndPass.PPMWinform
             {
                 if (tbCodigo.Text != string.Empty || txtPlacaBuscar.Text != "")
                 {
+
                     btn_ConfirmarCobro_Click(btn_ConfirmarCobro, EventArgs.Empty);
+
                 }
                 else
                 {
                     this.DialogResult = DialogResult.None;
-                    MessageBox.Show("Error Crear Entrada PPM", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    MessageBox.Show("Error al momento de realizar el cobro", "Crear Entrada", MessageBoxButtons.OK, MessageBoxIcon.Error);
                     this.Close();
                 }
 
@@ -1714,6 +1907,11 @@ namespace BlockAndPass.PPMWinform
             tbPlaca.Text = "";
             tbNombreAutortizado.Text = "";
             tbPlaca.Focus();
+            chbAutorizado.Checked = false;
+            btn_ConfirmaIngreso.BackgroundImage = Image.FromFile(@"Media\Png\btn_ConfirmarEntrada.png");
+            btn_ConfirmaIngreso.Text = "";
+            btn_ConfirmaIngreso.BackgroundImageLayout = ImageLayout.Stretch;
+
             //tbPlaca.Enabled = true;
         }
         #endregion
@@ -2658,7 +2856,7 @@ namespace BlockAndPass.PPMWinform
 
         public void LimpiarDatosCobrar()
         {
-            btn_Cobrar.BackgroundImage = Image.FromFile(@"Media\Png\btn_Cobrar.png");
+            btn_ConfirmarCobro.BackgroundImage = Image.FromFile(@"Media\Png\btn_Confirmar.png");
             txtPlacaBuscar.Text = "";
             tbTipoVehiculoCobrar.Text = "";
             tbNombreAutorizadoCobrar.Text = "";
@@ -3832,6 +4030,7 @@ namespace BlockAndPass.PPMWinform
                 btn_ReportePatios.Visible = false;
                 btn_Mensualidades.Visible = false;
                 btn_Cortesia.Visible = false;
+                
 
             }
             else if(_CargoUsuario=="CONTROL INTERNO")
@@ -3848,6 +4047,21 @@ namespace BlockAndPass.PPMWinform
             clickTimer.Start(); 
         }
 
-
+        private void btn_Copia_Click(object sender, EventArgs e)
+        {
+            CopiaFactura popup = new CopiaFactura();
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {
+            }
+            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
+            {
+                MessageBox.Show("Operacion cancelada por el usuario", "Copia de factura PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+            }
+            else
+            {
+                MessageBox.Show("Error al procesar ventana copia de factura", "Copia de factura PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
     }
 }

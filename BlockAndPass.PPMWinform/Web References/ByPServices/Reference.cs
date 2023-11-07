@@ -141,6 +141,12 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         private System.Threading.SendOrPostCallback ObtenerRutaCodigoBarrasOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ObtenerInformacionAutorizadoMensualidadOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ActualizaDatosMensualidadOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ObtenerTransaccionSinSalidaPorIdTarjetaOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -346,6 +352,15 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         public event ObtenerRutaCodigoBarrasCompletedEventHandler ObtenerRutaCodigoBarrasCompleted;
+        
+        /// <remarks/>
+        public event ObtenerInformacionAutorizadoMensualidadCompletedEventHandler ObtenerInformacionAutorizadoMensualidadCompleted;
+        
+        /// <remarks/>
+        public event ActualizaDatosMensualidadCompletedEventHandler ActualizaDatosMensualidadCompleted;
+        
+        /// <remarks/>
+        public event ObtenerTransaccionSinSalidaPorIdTarjetaCompletedEventHandler ObtenerTransaccionSinSalidaPorIdTarjetaCompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerInformacionUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -2130,6 +2145,103 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerInformacionAutorizadoMensualidad", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoDatosAutorizadoMensualidadResponse ObtenerInformacionAutorizadoMensualidad(string documento, string placa) {
+            object[] results = this.Invoke("ObtenerInformacionAutorizadoMensualidad", new object[] {
+                        documento,
+                        placa});
+            return ((InfoDatosAutorizadoMensualidadResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ObtenerInformacionAutorizadoMensualidadAsync(string documento, string placa) {
+            this.ObtenerInformacionAutorizadoMensualidadAsync(documento, placa, null);
+        }
+        
+        /// <remarks/>
+        public void ObtenerInformacionAutorizadoMensualidadAsync(string documento, string placa, object userState) {
+            if ((this.ObtenerInformacionAutorizadoMensualidadOperationCompleted == null)) {
+                this.ObtenerInformacionAutorizadoMensualidadOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerInformacionAutorizadoMensualidadOperationCompleted);
+            }
+            this.InvokeAsync("ObtenerInformacionAutorizadoMensualidad", new object[] {
+                        documento,
+                        placa}, this.ObtenerInformacionAutorizadoMensualidadOperationCompleted, userState);
+        }
+        
+        private void OnObtenerInformacionAutorizadoMensualidadOperationCompleted(object arg) {
+            if ((this.ObtenerInformacionAutorizadoMensualidadCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ObtenerInformacionAutorizadoMensualidadCompleted(this, new ObtenerInformacionAutorizadoMensualidadCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ActualizaDatosMensualidad", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ActualizarDatosMensualidadResponse ActualizaDatosMensualidad(string documento, string placa1, string placa2, string fechaInicio, string fechaFinal) {
+            object[] results = this.Invoke("ActualizaDatosMensualidad", new object[] {
+                        documento,
+                        placa1,
+                        placa2,
+                        fechaInicio,
+                        fechaFinal});
+            return ((ActualizarDatosMensualidadResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ActualizaDatosMensualidadAsync(string documento, string placa1, string placa2, string fechaInicio, string fechaFinal) {
+            this.ActualizaDatosMensualidadAsync(documento, placa1, placa2, fechaInicio, fechaFinal, null);
+        }
+        
+        /// <remarks/>
+        public void ActualizaDatosMensualidadAsync(string documento, string placa1, string placa2, string fechaInicio, string fechaFinal, object userState) {
+            if ((this.ActualizaDatosMensualidadOperationCompleted == null)) {
+                this.ActualizaDatosMensualidadOperationCompleted = new System.Threading.SendOrPostCallback(this.OnActualizaDatosMensualidadOperationCompleted);
+            }
+            this.InvokeAsync("ActualizaDatosMensualidad", new object[] {
+                        documento,
+                        placa1,
+                        placa2,
+                        fechaInicio,
+                        fechaFinal}, this.ActualizaDatosMensualidadOperationCompleted, userState);
+        }
+        
+        private void OnActualizaDatosMensualidadOperationCompleted(object arg) {
+            if ((this.ActualizaDatosMensualidadCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ActualizaDatosMensualidadCompleted(this, new ActualizaDatosMensualidadCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerTransaccionSinSalidaPorIdTarjeta", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public string ObtenerTransaccionSinSalidaPorIdTarjeta(string idTarjeta) {
+            object[] results = this.Invoke("ObtenerTransaccionSinSalidaPorIdTarjeta", new object[] {
+                        idTarjeta});
+            return ((string)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ObtenerTransaccionSinSalidaPorIdTarjetaAsync(string idTarjeta) {
+            this.ObtenerTransaccionSinSalidaPorIdTarjetaAsync(idTarjeta, null);
+        }
+        
+        /// <remarks/>
+        public void ObtenerTransaccionSinSalidaPorIdTarjetaAsync(string idTarjeta, object userState) {
+            if ((this.ObtenerTransaccionSinSalidaPorIdTarjetaOperationCompleted == null)) {
+                this.ObtenerTransaccionSinSalidaPorIdTarjetaOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerTransaccionSinSalidaPorIdTarjetaOperationCompleted);
+            }
+            this.InvokeAsync("ObtenerTransaccionSinSalidaPorIdTarjeta", new object[] {
+                        idTarjeta}, this.ObtenerTransaccionSinSalidaPorIdTarjetaOperationCompleted, userState);
+        }
+        
+        private void OnObtenerTransaccionSinSalidaPorIdTarjetaOperationCompleted(object arg) {
+            if ((this.ObtenerTransaccionSinSalidaPorIdTarjetaCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ObtenerTransaccionSinSalidaPorIdTarjetaCompleted(this, new ObtenerTransaccionSinSalidaPorIdTarjetaCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -2225,6 +2337,225 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             }
             set {
                 this.cargoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ActualizarDatosMensualidadResponse {
+        
+        private bool exitoField;
+        
+        private string errorMessageField;
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorMessage {
+            get {
+                return this.errorMessageField;
+            }
+            set {
+                this.errorMessageField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ObtenerDatosAutorizadosPorDocumentoOPlacaResponse {
+        
+        private bool exitoField;
+        
+        private string errorMessageField;
+        
+        private string nombreApellidosField;
+        
+        private string documentoField;
+        
+        private string idTarjetaField;
+        
+        private string idAutorizacionField;
+        
+        private string placa1Field;
+        
+        private string placa2Field;
+        
+        private string placa3Field;
+        
+        private System.DateTime fechaInicioField;
+        
+        private System.DateTime fechaFinField;
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorMessage {
+            get {
+                return this.errorMessageField;
+            }
+            set {
+                this.errorMessageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NombreApellidos {
+            get {
+                return this.nombreApellidosField;
+            }
+            set {
+                this.nombreApellidosField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Documento {
+            get {
+                return this.documentoField;
+            }
+            set {
+                this.documentoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IdTarjeta {
+            get {
+                return this.idTarjetaField;
+            }
+            set {
+                this.idTarjetaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IdAutorizacion {
+            get {
+                return this.idAutorizacionField;
+            }
+            set {
+                this.idAutorizacionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Placa1 {
+            get {
+                return this.placa1Field;
+            }
+            set {
+                this.placa1Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Placa2 {
+            get {
+                return this.placa2Field;
+            }
+            set {
+                this.placa2Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Placa3 {
+            get {
+                return this.placa3Field;
+            }
+            set {
+                this.placa3Field = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime FechaInicio {
+            get {
+                return this.fechaInicioField;
+            }
+            set {
+                this.fechaInicioField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public System.DateTime FechaFin {
+            get {
+                return this.fechaFinField;
+            }
+            set {
+                this.fechaFinField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class InfoDatosAutorizadoMensualidadResponse {
+        
+        private bool exitoField;
+        
+        private string errorMessageField;
+        
+        private ObtenerDatosAutorizadosPorDocumentoOPlacaResponse[] lstInfoDatosAutorizadoResponseField;
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorMessage {
+            get {
+                return this.errorMessageField;
+            }
+            set {
+                this.errorMessageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public ObtenerDatosAutorizadosPorDocumentoOPlacaResponse[] lstInfoDatosAutorizadoResponse {
+            get {
+                return this.lstInfoDatosAutorizadoResponseField;
+            }
+            set {
+                this.lstInfoDatosAutorizadoResponseField = value;
             }
         }
     }
@@ -6801,6 +7132,84 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         private object[] results;
         
         internal ObtenerRutaCodigoBarrasCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public string Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ObtenerInformacionAutorizadoMensualidadCompletedEventHandler(object sender, ObtenerInformacionAutorizadoMensualidadCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ObtenerInformacionAutorizadoMensualidadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ObtenerInformacionAutorizadoMensualidadCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoDatosAutorizadoMensualidadResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoDatosAutorizadoMensualidadResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ActualizaDatosMensualidadCompletedEventHandler(object sender, ActualizaDatosMensualidadCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ActualizaDatosMensualidadCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ActualizaDatosMensualidadCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ActualizarDatosMensualidadResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ActualizarDatosMensualidadResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ObtenerTransaccionSinSalidaPorIdTarjetaCompletedEventHandler(object sender, ObtenerTransaccionSinSalidaPorIdTarjetaCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ObtenerTransaccionSinSalidaPorIdTarjetaCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ObtenerTransaccionSinSalidaPorIdTarjetaCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
                 base(exception, cancelled, userState) {
             this.results = results;
         }

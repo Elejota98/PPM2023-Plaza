@@ -384,6 +384,18 @@ D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebServiceLocalR
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csproj.CopyComplete
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.dll
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.pdb
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csprojResolveAssemblyReference.cache
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.cache
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.compiled
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\BlockAndPass.WebServiceLocalReader.dll.config
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.WebPages.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\Microsoft.Web.Infrastructure.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.Razor.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.WebPages.Deployment.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.WebPages.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\Microsoft.Web.Infrastructure.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.Razor.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\System.Web.WebPages.Deployment.xml
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.WebPages.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.Razor.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\bin\es\System.Web.WebPages.Deployment.resources.dll
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csproj.AssemblyReference.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csproj.CoreCompileInputs.cache
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csproj.CopyComplete

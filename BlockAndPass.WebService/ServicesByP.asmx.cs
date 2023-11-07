@@ -8,6 +8,7 @@ using System.Data;
 using System.Data.SqlClient;
 using System.IO;
 using System.Linq;
+using System.Runtime.InteropServices;
 using System.ServiceModel;
 using System.Web;
 using System.Web.Services;
@@ -910,7 +911,7 @@ namespace BlockAndPass.WebService
                         command.ExecuteNonQuery();
 
                         command.CommandText =
-                            "update T_Partes set DineroActual=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM')+" + total + ", sincronizacion = 0  where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM'";
+                            "update T_Partes set DineroActual=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='" + documentoUsuario + "')+" + total + ", sincronizacion = 0  where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='"+documentoUsuario+"'";
                         command.ExecuteNonQuery();
 
                         // Attempt to commit the transaction.
@@ -3167,6 +3168,173 @@ namespace BlockAndPass.WebService
             return valor;
         }
 
+        [WebMethod]
+        public InfoDatosAutorizadoMensualidadResponse ObtenerInformacionAutorizadoMensualidad(string documento, string placa)
+        {
+            List<ObtenerDatosAutorizadosPorDocumentoOPlacaResponse> lstItemsAutorizado = new List<ObtenerDatosAutorizadosPorDocumentoOPlacaResponse>();
+            InfoDatosAutorizadoMensualidadResponse oInfoAutorizadoResponse = new InfoDatosAutorizadoMensualidadResponse();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = string.Empty;
+
+
+            if (documento == string.Empty || documento == "")
+            {
+
+                query = "SELECT * FROM T_PersonasAutorizadas WHERE Placa1='" + placa + "' or Placa2='" + placa + "' or Placa3='" + placa + "' or Placa4='" + placa + "' or Placa5='" + placa + "'";
+
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Check is the reader has any rows at all before starting to read.
+                            if (reader.HasRows)
+                            {
+                                // Read advances to the next row.
+                                while (reader.Read())
+                                {
+                                    ObtenerDatosAutorizadosPorDocumentoOPlacaResponse oInfoDatosAutorizadosResponse = new ObtenerDatosAutorizadosPorDocumentoOPlacaResponse();
+                                    oInfoDatosAutorizadosResponse.Documento = reader[0].ToString();
+                                    oInfoDatosAutorizadosResponse.IdAutorizacion = reader[1].ToString();
+                                    oInfoDatosAutorizadosResponse.NombreApellidos = reader[3].ToString();
+                                    oInfoDatosAutorizadosResponse.IdTarjeta = reader[4].ToString();
+                                    oInfoDatosAutorizadosResponse.FechaInicio = Convert.ToDateTime(reader[11].ToString());
+                                    oInfoDatosAutorizadosResponse.FechaFin = Convert.ToDateTime(reader[12].ToString());
+                                    oInfoDatosAutorizadosResponse.Placa1 = reader[15].ToString();
+                                    oInfoDatosAutorizadosResponse.Placa2 = reader[16].ToString();
+                                    oInfoDatosAutorizadosResponse.Placa3 = reader[17].ToString();
+                                    lstItemsAutorizado.Add(oInfoDatosAutorizadosResponse);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (lstItemsAutorizado.Count > 0)
+                {
+                    oInfoAutorizadoResponse.lstInfoDatosAutorizadoResponse = lstItemsAutorizado;
+                }
+                else
+                {
+                    oInfoAutorizadoResponse.Exito = false;
+                    oInfoAutorizadoResponse.ErrorMessage = "No encuentra informacion del autorizado.";
+                }
+            }
+             else if(documento!=string.Empty || documento != "" && placa==string.Empty || placa=="")
+            {
+                query = "SELECT * FROM T_PersonasAutorizadas WHERE Documento='"+documento+"'";
+
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Check is the reader has any rows at all before starting to read.
+                            if (reader.HasRows)
+                            {
+                                // Read advances to the next row.
+                                while (reader.Read())
+                                {
+                                    ObtenerDatosAutorizadosPorDocumentoOPlacaResponse oInfoDatosAutorizadosResponse = new ObtenerDatosAutorizadosPorDocumentoOPlacaResponse();
+                                    oInfoDatosAutorizadosResponse.Documento = reader[0].ToString();
+                                    oInfoDatosAutorizadosResponse.IdAutorizacion = reader[1].ToString();
+                                    oInfoDatosAutorizadosResponse.NombreApellidos = reader[3].ToString();
+                                    oInfoDatosAutorizadosResponse.IdTarjeta = reader[4].ToString();
+                                    oInfoDatosAutorizadosResponse.FechaInicio = Convert.ToDateTime(reader[11].ToString());
+                                    oInfoDatosAutorizadosResponse.FechaFin = Convert.ToDateTime(reader[12].ToString());
+                                    oInfoDatosAutorizadosResponse.Placa1 = reader[15].ToString();
+                                    oInfoDatosAutorizadosResponse.Placa2 = reader[16].ToString();
+                                    oInfoDatosAutorizadosResponse.Placa3 = reader[17].ToString();
+                                    lstItemsAutorizado.Add(oInfoDatosAutorizadosResponse);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (lstItemsAutorizado.Count > 0)
+                {
+                    oInfoAutorizadoResponse.lstInfoDatosAutorizadoResponse = lstItemsAutorizado;
+                }
+                else
+                {
+                    oInfoAutorizadoResponse.Exito = false;
+                    oInfoAutorizadoResponse.ErrorMessage = "No encuentra informacion del autorizado.";
+                }
+            }
+
+
+
+            return oInfoAutorizadoResponse;
+        }
+
+        [WebMethod]
+        public ActualizarDatosMensualidadResponse ActualizaDatosMensualidad(string documento, string placa1, string placa2, string fechaInicio, string fechaFinal )
+        {
+            ActualizarDatosMensualidadResponse oActualizarDatosMensualidadResponse = new ActualizarDatosMensualidadResponse();
+
+           var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = string.Empty;
+
+           query = "UPDATE T_PersonasAutorizadas SET Placa1='"+placa1+"', Placa2='"+placa2+"', FechaInicio=CONVERT(datetime,'"+fechaInicio+"',101), FechaFin=CONVERT(datetime,'"+fechaFinal+" 23:59:59',101) where Documento='"+documento+"'";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    int respuesta = cmd.ExecuteNonQuery();
+
+                    if (respuesta <= 0)
+                    {
+                        oActualizarDatosMensualidadResponse.Exito = false;
+                        oActualizarDatosMensualidadResponse.ErrorMessage = "No fue posible actualizar el registro.";
+                    }
+                }
+            }
+            return oActualizarDatosMensualidadResponse;
+
+        }    
+
+        [WebMethod]
+        public string ObtenerTransaccionSinSalidaPorIdTarjeta(string idTarjeta)
+        {
+            string valor = string.Empty;
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+            string query = string.Empty;
+
+            query = "SELECT TOP(1) IdTransaccion from T_Transacciones WHERE IdTarjeta='"+ idTarjeta + "' AND FechaSalida='1900-01-01 00:00:00.000' AND ModuloSalida IS NULL ORDER BY FechaEntrada DESC ";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+                                valor = reader[0].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+            return valor;
+        }
+
+
 
     }
 
@@ -3498,6 +3666,145 @@ namespace BlockAndPass.WebService
             get { return _IdAutorizacion; }
             set { _IdAutorizacion = value; }
         }
+        //private string _IdEstacionamiento = string.Empty;
+    }
+    public class InfoDatosAutorizadoMensualidadResponse
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+
+        private List<ObtenerDatosAutorizadosPorDocumentoOPlacaResponse> _lstInfoDatosAutorizadoResponse = new List<ObtenerDatosAutorizadosPorDocumentoOPlacaResponse>();
+
+        public List<ObtenerDatosAutorizadosPorDocumentoOPlacaResponse> lstInfoDatosAutorizadoResponse
+        {
+            get { return _lstInfoDatosAutorizadoResponse; }
+            set { _lstInfoDatosAutorizadoResponse = value; }
+        }
+    }
+
+    public class ActualizarDatosMensualidadResponse
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }  
+        
+    }
+
+    public class ObtenerDatosAutorizadosPorDocumentoOPlacaResponse
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+
+        private string _NombreApellidos = string.Empty;
+
+        public string NombreApellidos
+        {
+            get { return _NombreApellidos; }
+            set { _NombreApellidos = value; }
+        }
+
+        private string _Documento = string.Empty;
+
+        public string Documento
+        {
+            get { return _Documento; }
+            set { _Documento = value; }
+        }
+
+        private string _IdTarjeta = string.Empty;
+
+        public string IdTarjeta
+        {
+            get { return _IdTarjeta; }
+            set { _IdTarjeta = value; }
+        }
+
+        private string _IdAutorizacion = string.Empty;
+
+        public string IdAutorizacion
+        {
+            get { return _IdAutorizacion; }
+            set { _IdAutorizacion = value; }
+        }
+
+        private string _Placa1 = string.Empty;
+
+        public string Placa1
+        {
+            get { return _Placa1; }
+            set { _Placa1 = value; }
+        }
+
+        private string _Placa2 = string.Empty;
+
+        public string Placa2
+        {
+            get { return _Placa2; }
+            set { _Placa2 = value; }
+        }
+
+        private string _Placa3 = string.Empty;
+
+        public string Placa3
+        {
+            get { return _Placa3; }
+            set { _Placa3 = value; }
+        }
+
+        private DateTime _FechaInicio = DateTime.Now;
+
+        public DateTime FechaInicio
+        {
+            get { return _FechaInicio; }
+            set { _FechaInicio = value; }
+        }
+
+        private DateTime _FechaFin = DateTime.Now;
+
+        public DateTime FechaFin
+        {
+            get { return _FechaFin; }
+            set { _FechaFin = value; }
+        }
+
         //private string _IdEstacionamiento = string.Empty;
     }
 

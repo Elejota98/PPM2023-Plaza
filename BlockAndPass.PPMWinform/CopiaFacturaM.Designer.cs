@@ -73,10 +73,11 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.Transparent;
             this.label1.Location = new System.Drawing.Point(182, 484);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(126, 17);
+            this.label1.Size = new System.Drawing.Size(131, 18);
             this.label1.TabIndex = 18;
             this.label1.Text = "Numero de factura";
             // 
@@ -100,7 +101,9 @@
             this.cboIdModulo.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F);
             this.cboIdModulo.FormattingEnabled = true;
             this.cboIdModulo.Items.AddRange(new object[] {
-            "PQ"});
+            "PUB",
+            "DES",
+            "PPE"});
             this.cboIdModulo.Location = new System.Drawing.Point(4, 513);
             this.cboIdModulo.Name = "cboIdModulo";
             this.cboIdModulo.Size = new System.Drawing.Size(121, 24);
@@ -109,10 +112,11 @@
             // label2
             // 
             this.label2.AutoSize = true;
-            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 10F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 11.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label2.ForeColor = System.Drawing.Color.Transparent;
             this.label2.Location = new System.Drawing.Point(39, 484);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(54, 17);
+            this.label2.Size = new System.Drawing.Size(58, 18);
             this.label2.TabIndex = 24;
             this.label2.Text = "Modulo";
             // 
@@ -162,8 +166,8 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.BackColor = System.Drawing.Color.LightGray;
-            this.ClientSize = new System.Drawing.Size(349, 603);
+            this.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
+            this.ClientSize = new System.Drawing.Size(341, 595);
             this.ControlBox = false;
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Ok);
