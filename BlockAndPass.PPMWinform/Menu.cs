@@ -1755,7 +1755,16 @@ namespace BlockAndPass.PPMWinform
         {
             if (e.KeyChar == (char)13)
             {
-                LeerInfoPorPlaca();
+                if (txtPlacaBuscar.Text != string.Empty && txtPlacaBuscar.Text != "")
+                {
+                    LeerInfoPorPlaca();
+
+                }
+                else
+                {
+                    txtPlacaBuscar.Text = "";
+                    tbCodigo.Focus();
+                }
             }
         }
 
@@ -1772,7 +1781,8 @@ namespace BlockAndPass.PPMWinform
                 else
                 {
                     tbCodigo.Text = string.Empty;
-                    LeerInfoPorPlaca();
+                    //LeerInfoPorPlaca();
+                    tbCodigo.Focus();
 
                 }
             }
@@ -2891,6 +2901,7 @@ namespace BlockAndPass.PPMWinform
                 tbUsuario.Update();
                 documentoUsuario = response.Documento;
                 tbNombreUsuario.Text = response.Nombres;
+                nombresUsuario = response.Usuario;
                 tbNombreUsuario.Update();
             }
             else
@@ -3541,24 +3552,27 @@ namespace BlockAndPass.PPMWinform
                 {
                     foreach (var item in facturas)
                     {
+                        CapturaRutaBarras();
+
                         ReportDataSource datasource = new ReportDataSource();
                         LocalReport oLocalReport = new LocalReport();
 
                         datasource = new ReportDataSource("DataSetTicketPago", (DataTable)GenerarTicketPago(item).Tables[0]);
                         oLocalReport.ReportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Tickets\{0}.rdlc", "ticketPago"));
-
-
+                        ReportParameter urlImage = new ReportParameter("imgUrl", new Uri(Convert.ToString(_imgUrl)).AbsoluteUri);
+                        oLocalReport.EnableExternalImages = true;
+                        oLocalReport.SetParameters(new ReportParameter[] { urlImage });
                         oLocalReport.DataSources.Add(datasource);
                         oLocalReport.Refresh();
-
                         ReportPrintDocument ore = new ReportPrintDocument(oLocalReport);
                         ore.PrintController = new StandardPrintController();
                         ore.Print();
-
                         oLocalReport.Dispose();
                         oLocalReport = null;
                         ore.Dispose();
                         ore = null;
+                        EliminarCodigoBarras();
+
                     }
                 }
                 bPrint = true;
@@ -3668,6 +3682,21 @@ namespace BlockAndPass.PPMWinform
             foreach (var item in infoTicket)
             {
                 DataSetTicketPago.TablaTicketPagoRow rowDatosFactura = facturacion.TablaTicketPago.NewTablaTicketPagoRow();
+
+
+                // Crear una instancia de BarcodeWriter
+                BarcodeWriter barcodeWriter = new BarcodeWriter();
+                barcodeWriter.Format = BarcodeFormat.CODE_128;
+
+                // Generar el código de barras como un objeto Bitmap
+                Bitmap barcodeBitmap = barcodeWriter.Write(Convert.ToString(item.IdTransaccion));
+                string rutaGuardar = _imgUrl;
+                // Guardar el código de barras en un archivo con el nombre IdTransaccion
+                string codigoBarrasFileName = rutaGuardar + "\\" + item.IdTransaccion + ".png";
+                barcodeBitmap.Save(codigoBarrasFileName);
+                _imgUrl = codigoBarrasFileName;
+                // Limpieza
+                barcodeBitmap.Dispose();
 
                 rowDatosFactura.Cambio = Convert.ToDouble(item.Cambio);
                 rowDatosFactura.Direccion = item.Direccion;
@@ -3998,6 +4027,7 @@ namespace BlockAndPass.PPMWinform
 
             var dataSource2 = new List<Object>();
             dataSource2.Add(new { Name = oInfoPPMService.Estacionamiento, Value = oInfoPPMService.IdEstacionamiento });
+            _IdEstacionamiento = Convert.ToInt32(oInfoPPMService.IdEstacionamiento.ToString());
 
             //Setup data binding
             this.cbEstacionamiento.DataSource = dataSource2;

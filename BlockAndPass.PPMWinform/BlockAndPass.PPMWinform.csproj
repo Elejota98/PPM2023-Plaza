@@ -237,6 +237,7 @@
     </Compile>
     <Compile Include="Tickets\DataSetTicketPago.cs">
       <DependentUpon>DataSetTicketPago.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tickets\DataSetTicketPago.Designer.cs">
       <AutoGen>True</AutoGen>
@@ -245,6 +246,7 @@
     </Compile>
     <Compile Include="Tickets\DataSetTicketPagoMensualidad.cs">
       <DependentUpon>DataSetTicketPagoMensualidad.xsd</DependentUpon>
+      <SubType>Component</SubType>
     </Compile>
     <Compile Include="Tickets\DataSetTicketPagoMensualidad.Designer.cs">
       <AutoGen>True</AutoGen>
