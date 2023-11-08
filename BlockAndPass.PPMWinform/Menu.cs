@@ -3709,7 +3709,7 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.Placa = item.Placa;
                 rowDatosFactura.Recibido = Convert.ToDouble(item.ValorRecibido);
                 rowDatosFactura.Resolucion = item.NumeroResolucion;
-                rowDatosFactura.Rut = "NIT 804003167 - 1";
+                rowDatosFactura.Rut = "NIT 804003167 - 1";                
                 rowDatosFactura.Telefono = item.Telefono;
                 rowDatosFactura.TotalFinal = total;
                 rowDatosFactura.Total = Convert.ToDouble(item.Total);
@@ -3718,7 +3718,7 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.TipoPago = item.Tipo;
                 rowDatosFactura.Fecha2 = item.FechaEntrada;
                 rowDatosFactura.Vehiculo = item.TipoVehiculo;
-                rowDatosFactura.VigenciaFactura = item.Vigencia;
+                //rowDatosFactura.VigenciaFactura = item.Vigencia;
                 rowDatosFactura.NombreUsuario = nombresUsuario;
 
                 facturacion.TablaTicketPago.AddTablaTicketPagoRow(rowDatosFactura);
@@ -3812,7 +3812,7 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.Nombre = item.Nombre;
                 rowDatosFactura.NumeroFactura = item.NumeroFactura;
                 rowDatosFactura.Resolucion = item.NumeroResolucion;
-                rowDatosFactura.Rut = "NIT 800064936 - 5";
+                rowDatosFactura.Rut = "NIT 804003167 - 1";
                 rowDatosFactura.Telefono = item.Telefono;
                 rowDatosFactura.TotalFinal = total;
                 rowDatosFactura.Total = Convert.ToDouble(item.Total);
@@ -3821,7 +3821,7 @@ namespace BlockAndPass.PPMWinform
                 rowDatosFactura.TipoPago = item.Tipo;
                 rowDatosFactura.NombreAutorizacion = item.NombreAutorizacion;
                 rowDatosFactura.Documento = item.Documento;
-                rowDatosFactura.VigenciaFactura = item.Vigencia;
+                //rowDatosFactura.VigenciaFactura = item.Vigencia;
                 rowDatosFactura.NombreUsuario = nombresUsuario;
                 rowDatosFactura.NombreApellidos = item.NombreApellidos;
                 rowDatosFactura.Placa1 = item.Placa1;

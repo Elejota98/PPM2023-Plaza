@@ -2,17 +2,6 @@
 <Report xmlns="http://schemas.microsoft.com/sqlserver/reporting/2008/01/reportdefinition" xmlns:rd="http://schemas.microsoft.com/SQLServer/reporting/reportdesigner">
   <Body>
     <ReportItems>
-      <Line Name="Line2">
-        <Top>7.61325cm</Top>
-        <Left>0.28686cm</Left>
-        <Height>0cm</Height>
-        <Width>6.40292cm</Width>
-        <Style>
-          <Border>
-            <Style>Solid</Style>
-          </Border>
-        </Style>
-      </Line>
       <Textbox Name="Textbox3">
         <CanGrow>true</CanGrow>
         <KeepTogether>true</KeepTogether>
@@ -26,15 +15,16 @@
                 </Style>
               </TextRun>
             </TextRuns>
-            <Style />
+            <Style>
+              <TextAlign>Center</TextAlign>
+            </Style>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox3</rd:DefaultName>
-        <Top>6.93539cm</Top>
-        <Left>0.54298cm</Left>
+        <Top>6.62065cm</Top>
+        <Left>0.28686cm</Left>
         <Height>0.52063cm</Height>
         <Width>2.89688cm</Width>
-        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -66,11 +56,11 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox4</rd:DefaultName>
-        <Top>6.93539cm</Top>
-        <Left>3.43985cm</Left>
+        <Top>6.62065cm</Top>
+        <Left>3.18373cm</Left>
         <Height>0.52063cm</Height>
-        <Width>2.83104cm</Width>
-        <ZIndex>2</ZIndex>
+        <Width>3.24993cm</Width>
+        <ZIndex>1</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -82,11 +72,11 @@
         </Style>
       </Textbox>
       <Line Name="Line3">
-        <Top>6.85425cm</Top>
+        <Top>6.53951cm</Top>
         <Left>0.28686cm</Left>
         <Height>0cm</Height>
         <Width>6.40292cm</Width>
-        <ZIndex>3</ZIndex>
+        <ZIndex>2</ZIndex>
         <Style>
           <Border>
             <Style>Solid</Style>
@@ -116,19 +106,15 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox7</rd:DefaultName>
-        <Top>4.01586cm</Top>
-        <Left>0.59379cm</Left>
+        <Top>3.9453cm</Top>
+        <Left>0.28686cm</Left>
         <Height>0.6cm</Height>
         <Width>5.72791cm</Width>
-        <ZIndex>4</ZIndex>
+        <ZIndex>3</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
       <Textbox Name="Resolucion">
@@ -138,7 +124,7 @@
           <Paragraph>
             <TextRuns>
               <TextRun>
-                <Value>RESOLUCION </Value>
+                <Value xml:space="preserve"> </Value>
                 <Style>
                   <FontSize>9pt</FontSize>
                 </Style>
@@ -156,19 +142,16 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Resolucion</rd:DefaultName>
-        <Top>8.51427cm</Top>
-        <Left>0.59379cm</Left>
-        <Height>0.6cm</Height>
+        <Top>7.88239cm</Top>
+        <Left>0.33767cm</Left>
+        <Height>0.86458cm</Height>
         <Width>5.72792cm</Width>
-        <ZIndex>5</ZIndex>
+        <ZIndex>4</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
+          <VerticalAlign>Middle</VerticalAlign>
         </Style>
       </Textbox>
       <Textbox Name="Textbox9">
@@ -194,19 +177,15 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox9</rd:DefaultName>
-        <Top>2.78764cm</Top>
-        <Left>0.59378cm</Left>
+        <Top>2.71708cm</Top>
+        <Left>0.28685cm</Left>
         <Height>0.6cm</Height>
         <Width>5.72791cm</Width>
-        <ZIndex>6</ZIndex>
+        <ZIndex>5</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
       <Tablix Name="Tablix1">
@@ -253,8 +232,7 @@
                       <rd:DefaultName>Textbox5</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -288,8 +266,7 @@
                       <rd:DefaultName>Textbox8</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -323,8 +300,7 @@
                       <rd:DefaultName>Textbox14</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -358,8 +334,7 @@
                       <rd:DefaultName>Textbox12</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -397,8 +372,7 @@
                       <rd:DefaultName>TipoPago</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -431,8 +405,7 @@
                       <rd:DefaultName>Subtotal</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -465,8 +438,7 @@
                       <rd:DefaultName>Iva</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -498,8 +470,7 @@
                       <rd:DefaultName>Total</rd:DefaultName>
                       <Style>
                         <Border>
-                          <Color>LightGrey</Color>
-                          <Style>Solid</Style>
+                          <Style>None</Style>
                         </Border>
                         <PaddingLeft>2pt</PaddingLeft>
                         <PaddingRight>2pt</PaddingRight>
@@ -533,11 +504,11 @@
           </TablixMembers>
         </TablixRowHierarchy>
         <DataSetName>DataSetTicketPago</DataSetName>
-        <Top>5.51296cm</Top>
+        <Top>5.19822cm</Top>
         <Left>0.28686cm</Left>
         <Height>1.2cm</Height>
         <Width>6.40292cm</Width>
-        <ZIndex>7</ZIndex>
+        <ZIndex>6</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -573,19 +544,15 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox2</rd:DefaultName>
-        <Top>4.6335cm</Top>
-        <Left>0.59379cm</Left>
+        <Top>4.56294cm</Top>
+        <Left>0.28686cm</Left>
         <Height>0.6cm</Height>
         <Width>5.7279cm</Width>
-        <ZIndex>8</ZIndex>
+        <ZIndex>7</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
       <Textbox Name="Textbox6">
@@ -611,55 +578,15 @@
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox6</rd:DefaultName>
-        <Top>3.41261cm</Top>
-        <Left>0.59379cm</Left>
+        <Top>3.34205cm</Top>
+        <Left>0.28686cm</Left>
         <Height>0.6cm</Height>
         <Width>5.7279cm</Width>
-        <ZIndex>9</ZIndex>
+        <ZIndex>8</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
-        </Style>
-      </Textbox>
-      <Textbox Name="Textbox10">
-        <CanGrow>true</CanGrow>
-        <KeepTogether>true</KeepTogether>
-        <Paragraphs>
-          <Paragraph>
-            <TextRuns>
-              <TextRun>
-                <Value>VENCE: </Value>
-                <Style />
-              </TextRun>
-              <TextRun>
-                <Value>=Fields!VigenciaFactura.Value</Value>
-                <Style />
-              </TextRun>
-            </TextRuns>
-            <Style>
-              <TextAlign>Center</TextAlign>
-            </Style>
-          </Paragraph>
-        </Paragraphs>
-        <rd:DefaultName>Textbox10</rd:DefaultName>
-        <Top>9.29066cm</Top>
-        <Left>0.64459cm</Left>
-        <Height>0.6cm</Height>
-        <Width>5.67712cm</Width>
-        <ZIndex>10</ZIndex>
-        <Style>
-          <Border>
-            <Style>None</Style>
-          </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
       <Textbox Name="Textbox18">
@@ -683,11 +610,11 @@ NIT: 901308148-3</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Textbox15</rd:DefaultName>
-        <Top>11.60233cm</Top>
-        <Left>0.6446cm</Left>
+        <Top>10.28225cm</Top>
+        <Left>0.33767cm</Left>
         <Height>0.97394cm</Height>
         <Width>5.72792cm</Width>
-        <ZIndex>11</ZIndex>
+        <ZIndex>9</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -723,19 +650,15 @@ NIT: 901308148-3</Value>
           </Paragraph>
         </Paragraphs>
         <rd:DefaultName>Resolucion</rd:DefaultName>
-        <Top>7.71908cm</Top>
-        <Left>0.54298cm</Left>
+        <Top>7.28239cm</Top>
+        <Left>0.33765cm</Left>
         <Height>0.6cm</Height>
         <Width>5.72792cm</Width>
-        <ZIndex>12</ZIndex>
+        <ZIndex>10</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
       <Image Name="Image1">
@@ -745,7 +668,7 @@ NIT: 901308148-3</Value>
         <Top>0.3175cm</Top>
         <Height>2.29375cm</Height>
         <Width>2.26729cm</Width>
-        <ZIndex>13</ZIndex>
+        <ZIndex>11</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -837,15 +760,11 @@ NIT: 901308148-3</Value>
         <Left>2.26729cm</Left>
         <Height>2.26688cm</Height>
         <Width>4.80889cm</Width>
-        <ZIndex>14</ZIndex>
+        <ZIndex>12</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
           </Border>
-          <PaddingLeft>2pt</PaddingLeft>
-          <PaddingRight>2pt</PaddingRight>
-          <PaddingTop>2pt</PaddingTop>
-          <PaddingBottom>2pt</PaddingBottom>
         </Style>
       </Textbox>
       <Image Name="Image2">
@@ -853,11 +772,10 @@ NIT: 901308148-3</Value>
         <Value>=Parameters!imgUrl.Value</Value>
         <MIMEType>image/png</MIMEType>
         <Sizing>Fit</Sizing>
-        <Top>9.92594cm</Top>
-        <Left>0.28686cm</Left>
+        <Top>8.74698cm</Top>
         <Height>1.5cm</Height>
-        <Width>6.78932cm</Width>
-        <ZIndex>15</ZIndex>
+        <Width>7.07618cm</Width>
+        <ZIndex>13</ZIndex>
         <Style>
           <Border>
             <Style>None</Style>
@@ -865,10 +783,10 @@ NIT: 901308148-3</Value>
         </Style>
       </Image>
     </ReportItems>
-    <Height>5.08125in</Height>
+    <Height>4.66458in</Height>
     <Style />
   </Body>
-  <Width>2.92344in</Width>
+  <Width>2.91302in</Width>
   <Page>
     <PageHeight>5.5in</PageHeight>
     <PageWidth>3.5in</PageWidth>

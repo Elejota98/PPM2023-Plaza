@@ -668,11 +668,11 @@ namespace BlockAndPass.WebService
 
             string query = string.Empty;
 
-            query = "select f.Prefijo + '-' + p.NumeroFactura, e.Nombre, e.TelefonoContacto, e.Direccion, c.IdModulo, p.FechaPago, p.IdTransaccion, t.PlacaEntrada, tp.TipoPago, p.Total, t.ValorRecibido, t.Cambio, p.Subtotal, p.Iva, f.NumeroResolucion + ' ' + f.FechaResolucion + ' DEL ' + f.FacturaInicial + ' AL ' + f.FacturaFinal , t.FechaEntrada, tv.TipoVehiculo,"
+            query = "select f.Prefijo + '-' + p.NumeroFactura, e.Nombre, e.TelefonoContacto, e.Direccion, c.IdModulo, p.FechaPago, p.IdTransaccion, t.PlacaEntrada, tp.TipoPago, p.Total, t.ValorRecibido, t.Cambio, p.Subtotal, p.Iva, +' Res '+ f.NumeroResolucion + ' de la ' + f.FacturaInicial + ' a ' + f.FacturaFinal +' del '+ f.FechaResolucion +' al '+ f.FechaFinResolucion, t.FechaEntrada, tv.TipoVehiculo,"
                     + " (select count(cantidad) from (select count(*) as cantidad"
                                 + " from T_Pagos"
                                 + " where IdTransaccion='"+idTransaccion+"'"
-                                + " group by(NumeroFactura)) as myTable), f.FechaFinResolucion"
+                                + " group by(NumeroFactura)) as myTable)"
                     + " from T_Pagos as p"
                     + " inner join T_Estacionamientos as e"
                     + " on p.IdEstacionamiento=e.IdEstacionamiento"
@@ -722,7 +722,7 @@ namespace BlockAndPass.WebService
                                 oInfoItemsFacturaResponse.FechaEntrada = reader[15].ToString();
                                 oInfoItemsFacturaResponse.TipoVehiculo = reader[16].ToString();
                                 oInfoItemsFacturaResponse.Cantidad = reader[17].ToString();
-                                oInfoItemsFacturaResponse.Vigencia = reader[18].ToString();
+                                //oInfoItemsFacturaResponse.Vigencia = reader[18].ToString();
 
                                 lstItemsFactura.Add(oInfoItemsFacturaResponse);
                             }
@@ -957,7 +957,7 @@ namespace BlockAndPass.WebService
             string query = string.Empty;
             try
             {
-                query = "select top(1) f.Prefijo + '-' + p.NumeroFactura, e.Nombre, e.TelefonoContacto, e.Direccion, c.IdModulo, p.FechaPago, p.IdTransaccion, tp.TipoPago, p.Total, p.Subtotal, p.Iva, f.NumeroResolucion + ' ' + f.FechaResolucion + ' DEL ' + f.FacturaInicial + ' AL ' + f.FacturaFinal, au.NombreAutorizacion, pa.Documento, f.FechaFinResolucion , pa.Nit , pa.NombreEmpresa, pa.Placa1,pa.NombreApellidos"
+                query = "select top(1) f.Prefijo + '-' + p.NumeroFactura, e.Nombre, e.TelefonoContacto, e.Direccion, c.IdModulo, p.FechaPago, p.IdTransaccion, tp.TipoPago, p.Total, p.Subtotal, p.Iva, +' Res '+ f.NumeroResolucion + ' de la ' + f.FacturaInicial + ' a ' + f.FacturaFinal +' del '+ f.FechaResolucion +' al '+ f.FechaFinResolucion, au.NombreAutorizacion, pa.Documento, pa.Nit , pa.NombreEmpresa, pa.Placa1,pa.NombreApellidos"
                          + " from T_Pagos as p"
                          + " inner join T_Estacionamientos as e"
                          + " on p.IdEstacionamiento=e.IdEstacionamiento"
@@ -1003,13 +1003,13 @@ namespace BlockAndPass.WebService
                                     oInfoItemsFacturaMensualidadResponse.NumeroResolucion = reader[11].ToString();
                                     oInfoItemsFacturaMensualidadResponse.NombreAutorizacion = reader[12].ToString();
                                     oInfoItemsFacturaMensualidadResponse.Documento = reader[13].ToString();
-                                    oInfoItemsFacturaMensualidadResponse.Vigencia = reader[14].ToString();
+                                    //oInfoItemsFacturaMensualidadResponse.Vigencia = reader[14].ToString();
 
                                  //   new fields
-                                    oInfoItemsFacturaMensualidadResponse.NombreEmpresa = reader[15].ToString();
-                                    oInfoItemsFacturaMensualidadResponse.Nit = reader[16].ToString();
-                                    oInfoItemsFacturaMensualidadResponse.Placa1 = reader[17].ToString();
-                                    oInfoItemsFacturaMensualidadResponse.NombreApellidos = reader[18].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.NombreEmpresa = reader[14].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Nit = reader[15].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Placa1 = reader[16].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.NombreApellidos = reader[17].ToString();
                                     lstItemsFactura.Add(oInfoItemsFacturaMensualidadResponse);
                                 }
                             }
