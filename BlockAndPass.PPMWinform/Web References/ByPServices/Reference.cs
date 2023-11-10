@@ -85,6 +85,8 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         private System.Threading.SendOrPostCallback AplicarElEventoOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ActualizaraTipoVehiculoOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ObtenerListaMotivosCortesiaXEstacionamientoOperationCompleted;
         
         private System.Threading.SendOrPostCallback ObtenerCarrilxIdModuloOperationCompleted;
@@ -278,6 +280,9 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         public event AplicarElEventoCompletedEventHandler AplicarElEventoCompleted;
+        
+        /// <remarks/>
+        public event ActualizaraTipoVehiculoCompletedEventHandler ActualizaraTipoVehiculoCompleted;
         
         /// <remarks/>
         public event ObtenerListaMotivosCortesiaXEstacionamientoCompletedEventHandler ObtenerListaMotivosCortesiaXEstacionamientoCompleted;
@@ -1296,6 +1301,37 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             if ((this.AplicarElEventoCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.AplicarElEventoCompleted(this, new AplicarElEventoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ActualizaraTipoVehiculo", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public ActualizarTipoVehiculoResponse ActualizaraTipoVehiculo(string idTransaccion, int idTipoVehiculo) {
+            object[] results = this.Invoke("ActualizaraTipoVehiculo", new object[] {
+                        idTransaccion,
+                        idTipoVehiculo});
+            return ((ActualizarTipoVehiculoResponse)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ActualizaraTipoVehiculoAsync(string idTransaccion, int idTipoVehiculo) {
+            this.ActualizaraTipoVehiculoAsync(idTransaccion, idTipoVehiculo, null);
+        }
+        
+        /// <remarks/>
+        public void ActualizaraTipoVehiculoAsync(string idTransaccion, int idTipoVehiculo, object userState) {
+            if ((this.ActualizaraTipoVehiculoOperationCompleted == null)) {
+                this.ActualizaraTipoVehiculoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnActualizaraTipoVehiculoOperationCompleted);
+            }
+            this.InvokeAsync("ActualizaraTipoVehiculo", new object[] {
+                        idTransaccion,
+                        idTipoVehiculo}, this.ActualizaraTipoVehiculoOperationCompleted, userState);
+        }
+        
+        private void OnActualizaraTipoVehiculoOperationCompleted(object arg) {
+            if ((this.ActualizaraTipoVehiculoCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ActualizaraTipoVehiculoCompleted(this, new ActualizaraTipoVehiculoCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -4493,6 +4529,39 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class ActualizarTipoVehiculoResponse {
+        
+        private bool exitoField;
+        
+        private string errorMessageField;
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorMessage {
+            get {
+                return this.errorMessageField;
+            }
+            set {
+                this.errorMessageField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class AplicarEventoResponse {
         
         private bool exitoField;
@@ -6807,6 +6876,32 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((AplicarEventoResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ActualizaraTipoVehiculoCompletedEventHandler(object sender, ActualizaraTipoVehiculoCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ActualizaraTipoVehiculoCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ActualizaraTipoVehiculoCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public ActualizarTipoVehiculoResponse Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((ActualizarTipoVehiculoResponse)(this.results[0]));
             }
         }
     }

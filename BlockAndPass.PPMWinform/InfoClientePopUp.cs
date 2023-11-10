@@ -88,6 +88,12 @@ namespace BlockAndPass.PPMWinform
             }
 
         }
+
+        private void btn_Cancel_Click(object sender, EventArgs e)
+        {
+            this.DialogResult = DialogResult.Cancel;
+            this.Close();
+        }
         }
     }
 

@@ -97,6 +97,7 @@
             this.btn_SaldoEnLinea = new System.Windows.Forms.Button();
             this.btn_Arqueo = new System.Windows.Forms.Button();
             this.tabPrincipal = new System.Windows.Forms.TabControl();
+            this.btn_Otros_Cobrar = new System.Windows.Forms.Button();
             this.pnlEnecabezado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).BeginInit();
             this.pnlBarraLateralIzquierda.SuspendLayout();
@@ -488,6 +489,7 @@
             // pnl_LateralDerechaCobrar
             // 
             this.pnl_LateralDerechaCobrar.BackColor = System.Drawing.Color.White;
+            this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Otros_Cobrar);
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_CerrarCobrar);
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Cascos);
             this.pnl_LateralDerechaCobrar.Controls.Add(this.btn_Reposicion);
@@ -993,6 +995,20 @@
             this.tabPrincipal.Size = new System.Drawing.Size(825, 620);
             this.tabPrincipal.TabIndex = 3;
             // 
+            // btn_Otros_Cobrar
+            // 
+            this.btn_Otros_Cobrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Otros_Cobrar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Otros_Cobrar.FlatAppearance.BorderSize = 0;
+            this.btn_Otros_Cobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Otros_Cobrar.Location = new System.Drawing.Point(0, 378);
+            this.btn_Otros_Cobrar.Name = "btn_Otros_Cobrar";
+            this.btn_Otros_Cobrar.Size = new System.Drawing.Size(189, 63);
+            this.btn_Otros_Cobrar.TabIndex = 13;
+            this.btn_Otros_Cobrar.Text = "Otros";
+            this.btn_Otros_Cobrar.UseVisualStyleBackColor = true;
+            this.btn_Otros_Cobrar.Click += new System.EventHandler(this.btn_Otros_Cobrar_Click);
+            // 
             // Menu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -1099,5 +1115,6 @@
         private System.Windows.Forms.Button btn_Arqueo;
         private System.Windows.Forms.TabControl tabPrincipal;
         private System.Windows.Forms.Button btn_Copia;
+        private System.Windows.Forms.Button btn_Otros_Cobrar;
     }
 }

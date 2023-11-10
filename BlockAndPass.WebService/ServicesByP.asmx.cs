@@ -767,8 +767,6 @@ namespace BlockAndPass.WebService
                     + " on p.IdTransaccion = t.IdTransaccion"
                     + " inner join T_TipoPago as tp"
                     + " on p.IdTipoPago=tp.IdTipoPago"
-                    + " inner join T_Facturacion as f"
-                    + " on p.IdFacturacion = f.IdFacturacion"
                     + " inner join T_TipoVehiculo as tv"
                     + " on tv.IdTipoVehiculo = t.IdTipoVehiculo"
                     + " where p.IdTransaccion='" + idTransaccion + "'"
@@ -1769,6 +1767,34 @@ namespace BlockAndPass.WebService
         }
 
         [WebMethod]
+        public ActualizarTipoVehiculoResponse ActualizaraTipoVehiculo(string idTransaccion, int idTipoVehiculo)
+        {
+            ActualizarTipoVehiculoResponse oActualizarTipoVehiculoResponse = new ActualizarTipoVehiculoResponse();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+
+            query = "UPDATE T_Transacciones SET IdTipoVehiculo="+idTipoVehiculo+" WHERE IdTransaccion='"+idTransaccion+"'";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    int result = cmd.ExecuteNonQuery();
+                    if (result <= 0)
+                    {
+                        oActualizarTipoVehiculoResponse.Exito = false;
+                        oActualizarTipoVehiculoResponse.ErrorMessage = "No fue posible actualizar el registro";
+                    }
+                }
+            }
+
+            return oActualizarTipoVehiculoResponse;
+        }
+
+        [WebMethod]
         public MotivosCortesiaResponse ObtenerListaMotivosCortesiaXEstacionamiento(string idEstacionamiento)
         {
             MotivosCortesiaResponse oMotivosCortesiaResponse = new MotivosCortesiaResponse();
@@ -2150,6 +2176,12 @@ namespace BlockAndPass.WebService
                                   "where  P.IdModulo = '" + idModulo + "' and T.IdEstacionamiento='" + idEstacionamiento + "' and P.DocumentoUsuario='"+documentoUsuario+"'" +
                                   "and P.FechaPago between (select max(FechaFin) from T_Arqueos where  IdModulo = '" + idModulo + "' and Valor != 0 and IdEstacionamiento='" + idEstacionamiento + "' and IdUsuario='"+documentoUsuario+"') and getdate())";
 
+
+            string queryValorFE = "(select (case when SUM(P.Total) is null then 0 else SUM(P.Total) end)  " +
+                                  "from T_PagosFE as P inner join T_Transacciones as T on CAST(T.IdTransaccion as varchar) = P.IdTransaccion " +
+                                  "where  P.IdModulo = '" + idModulo + "' and T.IdEstacionamiento='" + idEstacionamiento + "' and P.DocumentoUsuario='" + documentoUsuario + "'" +
+                                  "and P.FechaPago between (select max(FechaFin) from T_Arqueos where  IdModulo = '" + idModulo + "' and Valor != 0 and IdEstacionamiento='" + idEstacionamiento + "' and IdUsuario='" + documentoUsuario + "') and getdate())";
+
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 connection.Open();
@@ -2173,7 +2205,7 @@ namespace BlockAndPass.WebService
                     command.ExecuteNonQuery();
 
                     command.CommandText =
-                            "update T_Arqueos set FechaFin=GetDate(), Valor=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='"+documentoUsuario+"'), CantTransacciones=" + queryCantidad + " , Producido=" + queryValor + ", Conteo = " + manual + ", Sincronizacion = 'false' where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and idArqueo=" + idArqueo;
+                            "update T_Arqueos set FechaFin=GetDate(), Valor=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='" + documentoUsuario + "'), CantTransacciones=" + queryCantidad + " , Producido=(" + queryValor + ")+(" + queryValorFE + "), Conteo = " + manual + ", Sincronizacion = 'false' where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and idArqueo=" + idArqueo;
                     command.ExecuteNonQuery();
 
                     command.CommandText =
@@ -3858,7 +3890,7 @@ namespace BlockAndPass.WebService
                         foreach (string[] item in pagosFinal)
                         {
                             command.CommandText =
-                                "Insert into T_Pagos (IdTransaccion, IdEstacionamiento, IdModulo, IdFacturacion, IdTipoPago, FechaPago, Subtotal, Iva, Total, NumeroFactura, DocumentoUsuario, Identificacion) VALUES "
+                                "Insert into T_PagosFE (IdTransaccion, IdEstacionamiento, IdModulo, IdFacturacion, IdTipoPago, FechaPago, Subtotal, Iva, Total, NumeroFactura, DocumentoUsuario, Identificacion) VALUES "
                                 + "('" + idTransaccion + "', '" + idEstacionamiento + "', '" + idModulo + "', '" + idFacturacion + "', '" + item[0] + "', convert(datetime,'" + fecha + "',103), '" + item[1] + "', '" + item[2] + "', '" + item[3] + "', '" + item[4] + "', '" + documentoUsuario + "', '"+identificacion+"')";
                             command.ExecuteNonQuery();
                         }
@@ -5134,6 +5166,25 @@ namespace BlockAndPass.WebService
     }
 
     public class AplicarEventoResponse
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+    }
+
+    public class ActualizarTipoVehiculoResponse
     {
         private bool _Exito = true;
 

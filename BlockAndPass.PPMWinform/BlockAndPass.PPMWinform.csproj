@@ -456,6 +456,9 @@
     <None Include="Web References\ByPServices\ActualizarDatosMensualidadResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
+    <None Include="Web References\ByPServices\ActualizarTipoVehiculoResponse.datasource">
+      <DependentUpon>Reference.map</DependentUpon>
+    </None>
     <None Include="Web References\ByPServices\ActualizaVigenciaAutorizadoResponse.datasource">
       <DependentUpon>Reference.map</DependentUpon>
     </None>
