@@ -24,6 +24,16 @@ namespace BlockAndPass.PPMWinform
             set { _IdEstacionamiento = value; }
         }
 
+
+        private string _Placas = "";
+
+        public string Placas
+        {
+            get { return _Placas; }
+            set { _Placas = value; }
+        }
+
+
         public string IdTransaccion
         {
             get { return _IdTransaccion; }
@@ -79,11 +89,11 @@ namespace BlockAndPass.PPMWinform
                             {
                                 AplicaCascoResponse oInfo = new AplicaCascoResponse();
 
-                                oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero.Text);
+                                oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero.Text, Placas);
 
                                 if (tbCasillero2.Text != string.Empty)
                                 {
-                                    oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero2.Text);
+                                    oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero2.Text,Placas);
                                 }
 
                                 if (oInfo.Exito)
@@ -140,6 +150,11 @@ namespace BlockAndPass.PPMWinform
         {
             this.DialogResult = DialogResult.Cancel;
             this.Close();
+        }
+
+        private void CascosPoUp_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }

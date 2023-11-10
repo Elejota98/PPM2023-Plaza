@@ -339,6 +339,28 @@
           <s:element minOccurs="0" maxOccurs="1" name="Vigencia" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="ObtenerDatosFacturaFE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idTransaccion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerDatosFacturaFEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerDatosFacturaFEResult" type="tns:InfoFacturaResponseFE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoFacturaResponseFE">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="LstItems" type="tns:ArrayOfInfoItemsFacturaResponse" />
+          <s:element minOccurs="0" maxOccurs="1" name="LstItemsMensualidad" type="tns:ArrayOfInfoItemsFacturaMensualidadResponse" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="ObtenerDatosFacturaEntrada">
         <s:complexType>
           <s:sequence>
@@ -401,6 +423,35 @@
           <s:element minOccurs="0" maxOccurs="1" name="IdAutorizacion" type="s:string" />
         </s:sequence>
       </s:complexType>
+      <s:element name="PagarMensualidadFE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pagosstring" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idEstacionamiento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idModulo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="total" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentoUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="identificacion" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PagarMensualidadFEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PagarMensualidadFEResult" type="tns:InfoPagoMensualidadServiceFE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoPagoMensualidadServiceFE">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdTranaccion" type="s:string" />
+          <s:element minOccurs="0" maxOccurs="1" name="IdAutorizacion" type="s:string" />
+        </s:sequence>
+      </s:complexType>
       <s:element name="ObtenerDatosFacturaMensualidad">
         <s:complexType>
           <s:sequence>
@@ -413,6 +464,21 @@
         <s:complexType>
           <s:sequence>
             <s:element minOccurs="0" maxOccurs="1" name="ObtenerDatosFacturaMensualidadResult" type="tns:InfoFacturaResponse" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerDatosFacturaMensualidadFE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="idTransaccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idAutorizacion" type="s:string" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ObtenerDatosFacturaMensualidadFEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ObtenerDatosFacturaMensualidadFEResult" type="tns:InfoFacturaResponseFE" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -509,6 +575,7 @@
             <s:element minOccurs="0" maxOccurs="1" name="idTransaccion" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="idEstacionamiento" type="s:string" />
             <s:element minOccurs="0" maxOccurs="1" name="Casillero" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="placa" type="s:string" />
           </s:sequence>
         </s:complexType>
       </s:element>
@@ -1465,6 +1532,54 @@
           </s:sequence>
         </s:complexType>
       </s:element>
+      <s:element name="ValidarClientePorNit">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="1" maxOccurs="1" name="nit" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="ValidarClientePorNitResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="ValidarClientePorNitResult" type="tns:InfoClienteFacturacionElectronica" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoClienteFacturacionElectronica">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Identificacion" type="s:int" />
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="Nombre" type="s:string" />
+        </s:sequence>
+      </s:complexType>
+      <s:element name="PagarClienteParticularFE">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="pagosstring" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idEstacionamiento" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idTransaccion" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="idModulo" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="fecha" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="total" type="s:string" />
+            <s:element minOccurs="0" maxOccurs="1" name="documentoUsuario" type="s:string" />
+            <s:element minOccurs="1" maxOccurs="1" name="identificacion" type="s:int" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:element name="PagarClienteParticularFEResponse">
+        <s:complexType>
+          <s:sequence>
+            <s:element minOccurs="0" maxOccurs="1" name="PagarClienteParticularFEResult" type="tns:InfoPagoNormalServiceFE" />
+          </s:sequence>
+        </s:complexType>
+      </s:element>
+      <s:complexType name="InfoPagoNormalServiceFE">
+        <s:sequence>
+          <s:element minOccurs="1" maxOccurs="1" name="Exito" type="s:boolean" />
+          <s:element minOccurs="0" maxOccurs="1" name="ErrorMessage" type="s:string" />
+        </s:sequence>
+      </s:complexType>
     </s:schema>
   </wsdl:types>
   <wsdl:message name="ObtenerInformacionUsuarioSoapIn">
@@ -1539,6 +1654,12 @@
   <wsdl:message name="ObtenerDatosFacturaSoapOut">
     <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaResponse" />
   </wsdl:message>
+  <wsdl:message name="ObtenerDatosFacturaFESoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaFE" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerDatosFacturaFESoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaFEResponse" />
+  </wsdl:message>
   <wsdl:message name="ObtenerDatosFacturaEntradaSoapIn">
     <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaEntrada" />
   </wsdl:message>
@@ -1551,11 +1672,23 @@
   <wsdl:message name="PagarMensualidadSoapOut">
     <wsdl:part name="parameters" element="tns:PagarMensualidadResponse" />
   </wsdl:message>
+  <wsdl:message name="PagarMensualidadFESoapIn">
+    <wsdl:part name="parameters" element="tns:PagarMensualidadFE" />
+  </wsdl:message>
+  <wsdl:message name="PagarMensualidadFESoapOut">
+    <wsdl:part name="parameters" element="tns:PagarMensualidadFEResponse" />
+  </wsdl:message>
   <wsdl:message name="ObtenerDatosFacturaMensualidadSoapIn">
     <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaMensualidad" />
   </wsdl:message>
   <wsdl:message name="ObtenerDatosFacturaMensualidadSoapOut">
     <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaMensualidadResponse" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerDatosFacturaMensualidadFESoapIn">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaMensualidadFE" />
+  </wsdl:message>
+  <wsdl:message name="ObtenerDatosFacturaMensualidadFESoapOut">
+    <wsdl:part name="parameters" element="tns:ObtenerDatosFacturaMensualidadFEResponse" />
   </wsdl:message>
   <wsdl:message name="AplicarEtiquetaMotoSoapIn">
     <wsdl:part name="parameters" element="tns:AplicarEtiquetaMoto" />
@@ -1821,6 +1954,18 @@
   <wsdl:message name="ObtenerTransaccionSinSalidaPorIdTarjetaSoapOut">
     <wsdl:part name="parameters" element="tns:ObtenerTransaccionSinSalidaPorIdTarjetaResponse" />
   </wsdl:message>
+  <wsdl:message name="ValidarClientePorNitSoapIn">
+    <wsdl:part name="parameters" element="tns:ValidarClientePorNit" />
+  </wsdl:message>
+  <wsdl:message name="ValidarClientePorNitSoapOut">
+    <wsdl:part name="parameters" element="tns:ValidarClientePorNitResponse" />
+  </wsdl:message>
+  <wsdl:message name="PagarClienteParticularFESoapIn">
+    <wsdl:part name="parameters" element="tns:PagarClienteParticularFE" />
+  </wsdl:message>
+  <wsdl:message name="PagarClienteParticularFESoapOut">
+    <wsdl:part name="parameters" element="tns:PagarClienteParticularFEResponse" />
+  </wsdl:message>
   <wsdl:portType name="ServicesByPSoap">
     <wsdl:operation name="ObtenerInformacionUsuario">
       <wsdl:input message="tns:ObtenerInformacionUsuarioSoapIn" />
@@ -1870,6 +2015,10 @@
       <wsdl:input message="tns:ObtenerDatosFacturaSoapIn" />
       <wsdl:output message="tns:ObtenerDatosFacturaSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaFE">
+      <wsdl:input message="tns:ObtenerDatosFacturaFESoapIn" />
+      <wsdl:output message="tns:ObtenerDatosFacturaFESoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ObtenerDatosFacturaEntrada">
       <wsdl:input message="tns:ObtenerDatosFacturaEntradaSoapIn" />
       <wsdl:output message="tns:ObtenerDatosFacturaEntradaSoapOut" />
@@ -1878,9 +2027,17 @@
       <wsdl:input message="tns:PagarMensualidadSoapIn" />
       <wsdl:output message="tns:PagarMensualidadSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="PagarMensualidadFE">
+      <wsdl:input message="tns:PagarMensualidadFESoapIn" />
+      <wsdl:output message="tns:PagarMensualidadFESoapOut" />
+    </wsdl:operation>
     <wsdl:operation name="ObtenerDatosFacturaMensualidad">
       <wsdl:input message="tns:ObtenerDatosFacturaMensualidadSoapIn" />
       <wsdl:output message="tns:ObtenerDatosFacturaMensualidadSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaMensualidadFE">
+      <wsdl:input message="tns:ObtenerDatosFacturaMensualidadFESoapIn" />
+      <wsdl:output message="tns:ObtenerDatosFacturaMensualidadFESoapOut" />
     </wsdl:operation>
     <wsdl:operation name="AplicarEtiquetaMoto">
       <wsdl:input message="tns:AplicarEtiquetaMotoSoapIn" />
@@ -2058,6 +2215,14 @@
       <wsdl:input message="tns:ObtenerTransaccionSinSalidaPorIdTarjetaSoapIn" />
       <wsdl:output message="tns:ObtenerTransaccionSinSalidaPorIdTarjetaSoapOut" />
     </wsdl:operation>
+    <wsdl:operation name="ValidarClientePorNit">
+      <wsdl:input message="tns:ValidarClientePorNitSoapIn" />
+      <wsdl:output message="tns:ValidarClientePorNitSoapOut" />
+    </wsdl:operation>
+    <wsdl:operation name="PagarClienteParticularFE">
+      <wsdl:input message="tns:PagarClienteParticularFESoapIn" />
+      <wsdl:output message="tns:PagarClienteParticularFESoapOut" />
+    </wsdl:operation>
   </wsdl:portType>
   <wsdl:binding name="ServicesByPSoap" type="tns:ServicesByPSoap">
     <soap:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2169,6 +2334,15 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaFE">
+      <soap:operation soapAction="http://tempuri.org/ObtenerDatosFacturaFE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ObtenerDatosFacturaEntrada">
       <soap:operation soapAction="http://tempuri.org/ObtenerDatosFacturaEntrada" style="document" />
       <wsdl:input>
@@ -2187,8 +2361,26 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="PagarMensualidadFE">
+      <soap:operation soapAction="http://tempuri.org/PagarMensualidadFE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ObtenerDatosFacturaMensualidad">
       <soap:operation soapAction="http://tempuri.org/ObtenerDatosFacturaMensualidad" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaMensualidadFE">
+      <soap:operation soapAction="http://tempuri.org/ObtenerDatosFacturaMensualidadFE" style="document" />
       <wsdl:input>
         <soap:body use="literal" />
       </wsdl:input>
@@ -2592,6 +2784,24 @@
         <soap:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ValidarClientePorNit">
+      <soap:operation soapAction="http://tempuri.org/ValidarClientePorNit" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PagarClienteParticularFE">
+      <soap:operation soapAction="http://tempuri.org/PagarClienteParticularFE" style="document" />
+      <wsdl:input>
+        <soap:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
   </wsdl:binding>
   <wsdl:binding name="ServicesByPSoap12" type="tns:ServicesByPSoap">
     <soap12:binding transport="http://schemas.xmlsoap.org/soap/http" />
@@ -2703,6 +2913,15 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaFE">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerDatosFacturaFE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ObtenerDatosFacturaEntrada">
       <soap12:operation soapAction="http://tempuri.org/ObtenerDatosFacturaEntrada" style="document" />
       <wsdl:input>
@@ -2721,8 +2940,26 @@
         <soap12:body use="literal" />
       </wsdl:output>
     </wsdl:operation>
+    <wsdl:operation name="PagarMensualidadFE">
+      <soap12:operation soapAction="http://tempuri.org/PagarMensualidadFE" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
     <wsdl:operation name="ObtenerDatosFacturaMensualidad">
       <soap12:operation soapAction="http://tempuri.org/ObtenerDatosFacturaMensualidad" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ObtenerDatosFacturaMensualidadFE">
+      <soap12:operation soapAction="http://tempuri.org/ObtenerDatosFacturaMensualidadFE" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>
@@ -3119,6 +3356,24 @@
     </wsdl:operation>
     <wsdl:operation name="ObtenerTransaccionSinSalidaPorIdTarjeta">
       <soap12:operation soapAction="http://tempuri.org/ObtenerTransaccionSinSalidaPorIdTarjeta" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="ValidarClientePorNit">
+      <soap12:operation soapAction="http://tempuri.org/ValidarClientePorNit" style="document" />
+      <wsdl:input>
+        <soap12:body use="literal" />
+      </wsdl:input>
+      <wsdl:output>
+        <soap12:body use="literal" />
+      </wsdl:output>
+    </wsdl:operation>
+    <wsdl:operation name="PagarClienteParticularFE">
+      <soap12:operation soapAction="http://tempuri.org/PagarClienteParticularFE" style="document" />
       <wsdl:input>
         <soap12:body use="literal" />
       </wsdl:input>

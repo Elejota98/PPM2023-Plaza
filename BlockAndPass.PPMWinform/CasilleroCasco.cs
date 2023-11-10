@@ -83,11 +83,11 @@ namespace BlockAndPass.PPMWinform
                                 {
                                     AplicaCascoResponse oInfo = new AplicaCascoResponse();
 
-                                    oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero.Text);
+                                    //oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero.Text);
 
                                     if (tbCasillero2.Text != string.Empty)
                                     {
-                                        oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero2.Text);
+                                        //oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero2.Text);
                                     }
 
                                     if (oInfo.Exito)
@@ -191,11 +191,11 @@ namespace BlockAndPass.PPMWinform
                             {
                                 AplicaCascoResponse oInfo = new AplicaCascoResponse();
 
-                                oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero.Text);
+                                //oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero.Text);
 
                                 if (tbCasillero2.Text != string.Empty)
                                 {
-                                    oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero2.Text);
+                                    //oInfo = cliente.AplicarCasco(sIdTransaccion, _IdEstacionamiento.ToString(), tbCasillero2.Text);
                                 }
 
                                 if (oInfo.Exito)

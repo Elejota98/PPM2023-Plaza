@@ -255,7 +255,7 @@ namespace BlockAndPass.WebService
 
             string query = string.Empty;
 
-            query = "SELECT  dbo.T_Transacciones.IdTransaccion, dbo.T_Transacciones.CarrilEntrada, dbo.T_Transacciones.ModuloEntrada, dbo.T_Transacciones.IdEstacionamiento, dbo.T_Transacciones.IdTarjeta, dbo.T_Transacciones.PlacaEntrada," +
+            query = "SELECT TOP(1)  dbo.T_Transacciones.IdTransaccion, dbo.T_Transacciones.CarrilEntrada, dbo.T_Transacciones.ModuloEntrada, dbo.T_Transacciones.IdEstacionamiento, dbo.T_Transacciones.IdTarjeta, dbo.T_Transacciones.PlacaEntrada," +
                 " dbo.T_Transacciones.FechaEntrada, dbo.T_Transacciones.FechaSalida, dbo.T_Transacciones.ModuloSalida, dbo.T_Transacciones.CarrilSalida, dbo.T_Transacciones.PlacaSalida, dbo.T_Transacciones.IdTipoVehiculo, dbo.T_TipoVehiculo.TipoVehiculo, " +
                 "dbo.T_Transacciones.IdCortesia, dbo.T_Transacciones.IdAutorizado, dbo.T_Transacciones.IdConvenio1, dbo.T_Transacciones.IdConvenio2, dbo.T_Transacciones.IdConvenio3, dbo.T_Transacciones.ValorRecibido, " +
                 " dbo.T_Transacciones.Cambio, dbo.T_Transacciones.Sincronizacion, dbo.T_Transacciones.SincronizacionPago, dbo.T_Transacciones.SincronizacionSalida FROM  dbo.T_Transacciones INNER JOIN" +
@@ -745,6 +745,91 @@ namespace BlockAndPass.WebService
         }
 
         [WebMethod]
+        public InfoFacturaResponseFE ObtenerDatosFacturaFE(string idTransaccion)
+        {
+            List<InfoItemsFacturaResponse> lstItemsFactura = new List<InfoItemsFacturaResponse>();
+            InfoFacturaResponseFE oInfoFacturaResponse = new InfoFacturaResponseFE();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+
+            query = "select  p.NumeroFactura, e.Nombre, e.TelefonoContacto, e.Direccion, c.IdModulo, p.FechaPago, p.IdTransaccion, t.PlacaEntrada, tp.TipoPago, p.Total, t.ValorRecibido, t.Cambio, p.Subtotal, p.Iva,t.FechaEntrada, tv.TipoVehiculo,"
+                    + " (select count(cantidad) from (select count(*) as cantidad"
+                                + " from T_PagosFE"
+                                + " where IdTransaccion='" + idTransaccion + "'"
+                                + " group by(NumeroFactura)) as myTable)"
+                    + " from T_PagosFE as p"
+                    + " inner join T_Estacionamientos as e"
+                    + " on p.IdEstacionamiento=e.IdEstacionamiento"
+                    + " inner join T_Configuracion as c"
+                    + " on p.IdModulo=c.IdModulo"
+                    + " inner join T_Transacciones as t"
+                    + " on p.IdTransaccion = t.IdTransaccion"
+                    + " inner join T_TipoPago as tp"
+                    + " on p.IdTipoPago=tp.IdTipoPago"
+                    + " inner join T_Facturacion as f"
+                    + " on p.IdFacturacion = f.IdFacturacion"
+                    + " inner join T_TipoVehiculo as tv"
+                    + " on tv.IdTipoVehiculo = t.IdTipoVehiculo"
+                    + " where p.IdTransaccion='" + idTransaccion + "'"
+                    + " order by p.NumeroFactura asc";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+                                InfoItemsFacturaResponse oInfoItemsFacturaResponse = new InfoItemsFacturaResponse();
+                                oInfoItemsFacturaResponse.NumeroFactura = reader[0].ToString();
+                                oInfoItemsFacturaResponse.Nombre = reader[1].ToString();
+                                oInfoItemsFacturaResponse.Telefono = reader[2].ToString();
+                                oInfoItemsFacturaResponse.Direccion = reader[3].ToString();
+                                oInfoItemsFacturaResponse.Modulo = reader[4].ToString();
+                                oInfoItemsFacturaResponse.Fecha = reader[5].ToString();
+                                oInfoItemsFacturaResponse.IdTransaccion = reader[6].ToString();
+                                oInfoItemsFacturaResponse.Placa = reader[7].ToString();
+                                oInfoItemsFacturaResponse.Tipo = reader[8].ToString();
+                                oInfoItemsFacturaResponse.Total = reader[9].ToString();
+                                oInfoItemsFacturaResponse.ValorRecibido = reader[10].ToString();
+                                oInfoItemsFacturaResponse.Cambio = reader[11].ToString();
+                                oInfoItemsFacturaResponse.Subtotal = reader[12].ToString();
+                                oInfoItemsFacturaResponse.Iva = reader[13].ToString();
+                                //oInfoItemsFacturaResponse.NumeroResolucion = reader[14].ToString();
+                                oInfoItemsFacturaResponse.FechaEntrada = reader[14].ToString();
+                                oInfoItemsFacturaResponse.TipoVehiculo = reader[15].ToString();
+                                oInfoItemsFacturaResponse.Cantidad = reader[16].ToString();
+                                //oInfoItemsFacturaResponse.Vigencia = reader[18].ToString();
+
+                                lstItemsFactura.Add(oInfoItemsFacturaResponse);
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (lstItemsFactura.Count > 0)
+            {
+                oInfoFacturaResponse.LstItems = lstItemsFactura;
+            }
+            else
+            {
+                oInfoFacturaResponse.Exito = false;
+                oInfoFacturaResponse.ErrorMessage = "No encuentra informacion facturacion.";
+            }
+
+            return oInfoFacturaResponse;
+        }
+
+        [WebMethod]
         public InfoEntradaResponse ObtenerDatosFacturaEntrada(string moduloEntrada)
         {
             List<InfoItemsFacturaEntradaResponse> lstItemsFacturaEntrada = new List<InfoItemsFacturaEntradaResponse>();
@@ -948,6 +1033,155 @@ namespace BlockAndPass.WebService
         }
 
         [WebMethod]
+        public InfoPagoMensualidadServiceFE PagarMensualidadFE(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string placa, string documentoUsuario, int identificacion)
+        {
+            ArrayList pagosFinal = new ArrayList();
+
+            fecha = DateTime.Now.ToString("dd/MM/yyyy HH:mm:ss");
+
+
+            string[] pagos = pagosstring.Split(',');
+
+            string response = string.Empty;
+            InfoPagoMensualidadServiceFE oInfoPagoMensualidadService = new InfoPagoMensualidadServiceFE();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+
+            query = "select IdPago, MAX(NumeroFactura) from T_PagosFE where NumeroFactura>0 and IdEstacionamiento=" + idEstacionamiento + " GROUP BY IdPago";
+
+            int facturaActual = 0;
+            string idFacturacion = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+                                idFacturacion = reader[0].ToString();
+                                facturaActual = Convert.ToInt32(reader[1]) + 1;
+                            }
+                        }
+                    }
+                }
+            }
+
+            query = "select Documento, IdAutorizacion from T_PersonasAutorizadas  where Placa1='" + placa + "' or Placa2='" + placa + "' or Placa3='" + placa + "' or Placa4='" + placa + "' or Placa5='" + placa + "'";
+
+            string documentoAutorizado = string.Empty;
+            string idAutorizacion = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+                                documentoAutorizado = reader[0].ToString();
+                                idAutorizacion = reader[1].ToString();
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (facturaActual > 0)
+            {
+                for (int i = 0; i < pagos.Length; i++)
+                {
+                    string[] temporalPagos = pagos[i].Split('-');
+                    pagosFinal.Add(new string[] { temporalPagos[0], temporalPagos[1], temporalPagos[2], temporalPagos[3], (Convert.ToInt32(facturaActual)).ToString() });
+                }
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = connection.CreateCommand();
+                    SqlTransaction transaction;
+
+                    // Start a local transaction.
+                    transaction = connection.BeginTransaction("PayTransaction");
+
+                    // Must assign both transaction object and connection 
+                    // to Command object for a pending local transaction
+                    command.Connection = connection;
+                    command.Transaction = transaction;
+
+                    try
+                    {
+                        //command.CommandText =
+                        //    "update T_Facturacion set facturaActual = " + Convert.ToInt32(Convert.ToInt32(facturaActual) + 1) + " where idfacturacion = " + idFacturacion;
+                        //command.ExecuteNonQuery();
+
+
+
+                        foreach (string[] item in pagosFinal)
+                        {
+                            command.CommandText =
+                                "Insert into T_PagosFE (IdTransaccion, IdEstacionamiento, IdModulo, IdFacturacion, IdTipoPago, FechaPago, Subtotal, Iva, Total, NumeroFactura, IdAutorizado, DocumentoUsuario, Identificacion) VALUES "
+                                + "('" + documentoAutorizado + "', '" + idEstacionamiento + "', '" + idModulo + "', '" + idFacturacion + "', '" + item[0] + "', getdate(), '" + item[1] + "', '" + item[2] + "', '" + item[3] + "', '" + item[4] + "','" + idAutorizacion + "', '" + documentoUsuario + "', '"+identificacion+"')";
+                            command.ExecuteNonQuery();
+                        }
+
+                        command.CommandText =
+                            "Insert into T_Movimientos (IdTransaccion, IdEstacionamiento, IdModulo, Parte, Accion, Denominacion, Cantidad, Valor, FechaMovimiento) VALUES "
+                            + "('" + documentoAutorizado + "','" + idEstacionamiento + "','" + idModulo + "','CM','Entrada','" + total + "','1','" + total + "',GETDATE())";
+                        command.ExecuteNonQuery();
+
+                        command.CommandText =
+                            "update T_Partes set DineroActual=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='" + documentoUsuario + "')+" + total + ", sincronizacion = 0  where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='" + documentoUsuario + "'";
+                        command.ExecuteNonQuery();
+
+                        // Attempt to commit the transaction.
+                        transaction.Commit();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        oInfoPagoMensualidadService.Exito = false;
+                        oInfoPagoMensualidadService.ErrorMessage = "EXCEPCION BD No guarda modificaciones en BD: " + ex.InnerException + "//////////" + ex.Message + " - " + documentoAutorizado + "////" + ex.Source;
+                        // Attempt to roll back the transaction. 
+                        try
+                        {
+                            transaction.Rollback();
+                        }
+                        catch (Exception ex2)
+                        {
+                            //No rollback
+                        }
+                    }
+                }
+
+            }
+            else
+            {
+                oInfoPagoMensualidadService.Exito = false;
+                oInfoPagoMensualidadService.ErrorMessage = "No encontro facturas disponibles o autorizaciones asociadas a ese idTarjeta";
+            }
+
+            oInfoPagoMensualidadService.IdTranaccion = documentoAutorizado;
+            oInfoPagoMensualidadService.IdAutorizacion = idAutorizacion;
+
+            return oInfoPagoMensualidadService;
+        }
+
+        [WebMethod]
         public InfoFacturaResponse ObtenerDatosFacturaMensualidad(string idTransaccion, string idAutorizacion)
         {
             List<InfoItemsFacturaMensualidadResponse> lstItemsFactura = new List<InfoItemsFacturaMensualidadResponse>();
@@ -1010,6 +1244,126 @@ namespace BlockAndPass.WebService
                                     oInfoItemsFacturaMensualidadResponse.Nit = reader[15].ToString();
                                     oInfoItemsFacturaMensualidadResponse.Placa1 = reader[16].ToString();
                                     oInfoItemsFacturaMensualidadResponse.NombreApellidos = reader[17].ToString();
+                                    lstItemsFactura.Add(oInfoItemsFacturaMensualidadResponse);
+                                }
+                            }
+                        }
+                    }
+                }
+
+                if (lstItemsFactura.Count > 0)
+                {
+                    oInfoFacturaResponse.LstItemsMensualidad = lstItemsFactura;
+                }
+                else
+                {
+                    oInfoFacturaResponse.Exito = false;
+                    oInfoFacturaResponse.ErrorMessage = "No encuentra informacion facturacion.; " + query;
+                }
+            }
+            catch (Exception e)
+            {
+                oInfoFacturaResponse.Exito = false;
+                oInfoFacturaResponse.ErrorMessage = "Exception; .; " + e.InnerException + " " + e.Message;
+            }
+
+            return oInfoFacturaResponse;
+        }
+
+        [WebMethod]
+        public InfoFacturaResponseFE ObtenerDatosFacturaMensualidadFE(string idTransaccion, string idAutorizacion)
+        {
+            List<InfoItemsFacturaMensualidadResponse> lstItemsFactura = new List<InfoItemsFacturaMensualidadResponse>();
+            InfoFacturaResponseFE oInfoFacturaResponse = new InfoFacturaResponseFE();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+            string num_factura = string.Empty;
+
+            try
+            {
+                //query = "select top(1) f.Prefijo + '-' + p.NumeroFactura, e.Nombre, e.TelefonoContacto, e.Direccion, c.IdModulo, p.FechaPago, p.IdTransaccion, tp.TipoPago, p.Total, p.Subtotal, p.Iva, +' Res '+ f.NumeroResolucion + ' de la ' + f.FacturaInicial + ' a ' + f.FacturaFinal +' del '+ f.FechaResolucion +' al '+ f.FechaFinResolucion, au.NombreAutorizacion, pa.Documento, pa.Nit , pa.NombreEmpresa, pa.Placa1,pa.NombreApellidos"
+                //         + " from T_Pagos as p"
+                //         + " inner join T_Estacionamientos as e"
+                //         + " on p.IdEstacionamiento=e.IdEstacionamiento"
+                //         + " inner join T_Configuracion as c"
+                //         + " on p.IdModulo=c.IdModulo"
+                //         + " inner join T_TipoPago as tp"
+                //         + " on p.IdTipoPago=tp.IdTipoPago"
+                //         + " inner join T_Facturacion as f"
+                //         + " on p.IdFacturacion = f.IdFacturacion"
+                //         + " inner join T_Autorizaciones as au"
+                //         + " on au.IdAutorizacion=p.IdAutorizado"
+                //         + " inner join T_PersonasAutorizadas as pa"
+                //         + " on pa.Documento=p.IdTransaccion"
+                //         + " where p.IdTransaccion='" + idTransaccion + "' and p.IdAutorizado='" + idAutorizacion + "'"
+                //         + " order by FechaPago desc";
+
+                query = "SELECT top (1) NumeroFactura FROM T_PagosFE where IdTransaccion='" + idTransaccion + "' and IdAutorizado='" + idAutorizacion + "' and FechaPago between DATEADD(HH,-1,GETDATE()) and GETDATE() order by FechaPago desc";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Check is the reader has any rows at all before starting to read.
+                            if (reader.HasRows)
+                            {
+                                // Read advances to the next row.
+                                while (reader.Read())
+                                {
+                                    num_factura = reader["NumeroFactura"].ToString();
+                                }
+                            }
+                        }
+                    }
+                }
+
+                query = "select top(2)  p.NumeroFactura, e.Nombre, e.TelefonoContacto, e.Direccion, c.IdModulo, p.FechaPago, p.IdTransaccion, tp.TipoPago, p.Total, p.Subtotal, p.Iva, au.NombreAutorizacion, pa.Documento" +
+               "  from T_PagosFE as p  inner join T_Estacionamientos as e   on p.IdEstacionamiento=e.IdEstacionamiento   inner join T_Configuracion as c  " +
+               "     on p.IdModulo=c.IdModulo     inner join T_TipoPago as tp    on p.IdTipoPago=tp.IdTipoPago     inner join T_Autorizaciones as au  " +
+               " on au.IdAutorizacion=p.IdAutorizado                         inner join T_PersonasAutorizadas as pa     on pa.Documento=p.IdTransaccion" +
+               "   where p.IdTransaccion='" + idTransaccion + "' and p.NumeroFactura='" + num_factura + "' and p.IdAutorizado='" + idAutorizacion + "'   " +
+               "  order by FechaPago desc";
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    using (SqlCommand cmd = new SqlCommand(query, connection))
+                    {
+                        connection.Open();
+                        using (SqlDataReader reader = cmd.ExecuteReader())
+                        {
+                            // Check is the reader has any rows at all before starting to read.
+                            if (reader.HasRows)
+                            {
+                                // Read advances to the next row.
+                                while (reader.Read())
+                                {
+                                    InfoItemsFacturaMensualidadResponse oInfoItemsFacturaMensualidadResponse = new InfoItemsFacturaMensualidadResponse();
+
+                                    oInfoItemsFacturaMensualidadResponse.NumeroFactura = reader[0].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Nombre = reader[1].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Telefono = reader[2].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Direccion = reader[3].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Modulo = reader[4].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Fecha = reader[5].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.IdTransaccion = reader[6].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Tipo = reader[7].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Total = reader[8].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Subtotal = reader[9].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Iva = reader[10].ToString();
+                                    //oInfoItemsFacturaMensualidadResponse.NumeroResolucion = reader[11].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.NombreAutorizacion = reader[11].ToString();
+                                    oInfoItemsFacturaMensualidadResponse.Documento = reader[12].ToString();
+                                    //oInfoItemsFacturaMensualidadResponse.Vigencia = reader[14].ToString();
+
+                                    //   new fields
+                                    //oInfoItemsFacturaMensualidadResponse.NombreEmpresa = reader[14].ToString();
+                                    //oInfoItemsFacturaMensualidadResponse.Nit = reader[15].ToString();
+                                    //oInfoItemsFacturaMensualidadResponse.Placa1 = reader[16].ToString();
+                                    //oInfoItemsFacturaMensualidadResponse.NombreApellidos = reader[17].ToString();
                                     lstItemsFactura.Add(oInfoItemsFacturaMensualidadResponse);
                                 }
                             }
@@ -1163,6 +1517,18 @@ namespace BlockAndPass.WebService
             }
 
 
+            query = "update T_Cascos set Estado = 0 where IdTransaccion = '" + idTransaccion + "'";
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    int respuesta = cmd.ExecuteNonQuery();
+                }
+            }           
+
+
             return oAplicarCortesisTransaccionResponse;
         }
 
@@ -1199,7 +1565,7 @@ namespace BlockAndPass.WebService
         }
 
         [WebMethod]
-        public AplicaCascoResponse AplicarCasco(string idTransaccion, string idEstacionamiento, string Casillero)
+        public AplicaCascoResponse AplicarCasco(string idTransaccion, string idEstacionamiento, string Casillero, string placa)
         {
             string response = string.Empty;
             AplicaCascoResponse oAplicarCascoResponse = new AplicaCascoResponse();
@@ -1208,7 +1574,7 @@ namespace BlockAndPass.WebService
             string query = string.Empty;
 
 
-            query = "insert into T_Cascos values('" + idTransaccion + "','" + idEstacionamiento + "','" + Casillero + "',GETDATE(),'false','true')";
+            query = "insert into T_Cascos values('" + idTransaccion + "','" + idEstacionamiento + "','" + Casillero + "', '"+placa+"', GETDATE(),'false','true')";
 
 
 
@@ -2984,7 +3350,6 @@ namespace BlockAndPass.WebService
             return array;
         }
 
-
         [WebMethod]
         public ValidarConvenioResponse ValidarConvenios(string codigo)
         {
@@ -3334,8 +3699,281 @@ namespace BlockAndPass.WebService
             return valor;
         }
 
+        [WebMethod]
+        public InfoClienteFacturacionElectronica ValidarClientePorNit(int nit)
+        {
+            InfoClienteFacturacionElectronica array = new InfoClienteFacturacionElectronica();
+
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+            string NombreApellidos = string.Empty;
+            string RazonSocial = string.Empty;
 
 
+            query = "SELECT TOP(1) RazonSocial, NombreApellidos FROM T_Clientes WHERE Identificacion='" + nit + "'";
+
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+                                NombreApellidos = reader["NombreApellidos"].ToString();
+                                RazonSocial = reader["RazonSocial"].ToString();
+
+                            }
+                        }
+                    }
+                }
+            }
+
+            if (NombreApellidos != string.Empty)
+            {
+                array.Exito = true;
+                array.Nombre = NombreApellidos.ToString();
+            }
+            else if (RazonSocial != string.Empty)
+            {
+                array.Exito = true;
+                array.Nombre = RazonSocial.ToString();
+            }
+            else
+            {
+                array.Exito = false;
+                //array.ErrorMessage = "No se encontro autorizado.";
+            }
+
+            return array;
+        }
+
+        [WebMethod]
+        public InfoPagoNormalServiceFE PagarClienteParticularFE(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total, string documentoUsuario, int identificacion)
+        {
+            ArrayList pagosFinal = new ArrayList();
+
+            if (fecha.Split(' ').Length > 2)
+            {
+                if (fecha.Split(' ')[2][0] == 'p')
+                {
+                    int horaFinal = Convert.ToInt32(fecha.Split(' ')[1].Split(':')[0]);
+                    if (Convert.ToInt32(fecha.Split(' ')[1].Split(':')[0]) != 12)
+                    {
+                        horaFinal = Convert.ToInt32(fecha.Split(' ')[1].Split(':')[0]) + 12;
+                    }
+
+                    fecha = fecha.Split(' ')[0] + " " + horaFinal + ":" + fecha.Split(' ')[1].Split(':')[1] + ":" + fecha.Split(' ')[1].Split(':')[2];
+                }
+                else
+                {
+                    int horaFinal = Convert.ToInt32(fecha.Split(' ')[1].Split(':')[0]);
+                    if (Convert.ToInt32(fecha.Split(' ')[1].Split(':')[0]) != 12)
+                    {
+                        horaFinal = Convert.ToInt32(fecha.Split(' ')[1].Split(':')[0]) - 12;
+                    }
+                    fecha = fecha.Split(' ')[0] + " " + fecha.Split(' ')[1];
+                }
+            }
+            else
+            {
+                fecha = fecha.Split(' ')[0] + " " + fecha.Split(' ')[1];
+            }
+
+
+            string[] pagos = pagosstring.Split(',');
+
+            InfoPagoNormalServiceFE oInfoPagoService = new InfoPagoNormalServiceFE();
+            var connectionString = ConfigurationManager.ConnectionStrings["ConnectionString"].ConnectionString;
+
+            string query = string.Empty;
+
+            query = "select IdPago, MAX(NumeroFactura) from T_PagosFE where NumeroFactura>0 and IdEstacionamiento=" + idEstacionamiento + " GROUP BY IdPago";
+
+
+            int facturaActual = 0;
+            string idFacturacion = string.Empty;
+
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                using (SqlCommand cmd = new SqlCommand(query, connection))
+                {
+                    connection.Open();
+                    using (SqlDataReader reader = cmd.ExecuteReader())
+                    {
+                        // Check is the reader has any rows at all before starting to read.
+                        if (reader.HasRows)
+                        {
+                            // Read advances to the next row.
+                            while (reader.Read())
+                            {
+                                idFacturacion = reader[0].ToString();
+                                facturaActual = Convert.ToInt32(reader[1]) + 1;
+                            }
+                        }
+                    }
+                }
+            }
+            if (facturaActual > 0)
+            {
+                for (int i = 0; i < pagos.Length; i++)
+                {
+                    string[] temporalPagos = pagos[i].Split('-');
+                    pagosFinal.Add(new string[] { temporalPagos[0], temporalPagos[1], temporalPagos[2], temporalPagos[3], (Convert.ToInt32(facturaActual)).ToString() });
+                }
+
+                using (SqlConnection connection = new SqlConnection(connectionString))
+                {
+                    connection.Open();
+
+                    SqlCommand command = connection.CreateCommand();
+                    SqlTransaction transaction;
+
+                    // Start a local transaction.
+                    transaction = connection.BeginTransaction("PayTransaction");
+
+                    // Must assign both transaction object and connection 
+                    // to Command object for a pending local transaction
+                    command.Connection = connection;
+                    command.Transaction = transaction;
+
+                    try
+                    {
+                        //command.CommandText =
+                        //    "update T_Facturacion set facturaActual = " + Convert.ToInt32(Convert.ToInt32(facturaActual) + 1) + " where idfacturacion = " + idFacturacion;
+                        //command.ExecuteNonQuery();
+
+                        command.CommandText =
+                            "update T_Cascos set Estado = 0 where IdTransaccion = '" + idTransaccion + "'";
+                        command.ExecuteNonQuery();
+
+
+                        foreach (string[] item in pagosFinal)
+                        {
+                            command.CommandText =
+                                "Insert into T_Pagos (IdTransaccion, IdEstacionamiento, IdModulo, IdFacturacion, IdTipoPago, FechaPago, Subtotal, Iva, Total, NumeroFactura, DocumentoUsuario, Identificacion) VALUES "
+                                + "('" + idTransaccion + "', '" + idEstacionamiento + "', '" + idModulo + "', '" + idFacturacion + "', '" + item[0] + "', convert(datetime,'" + fecha + "',103), '" + item[1] + "', '" + item[2] + "', '" + item[3] + "', '" + item[4] + "', '" + documentoUsuario + "', '"+identificacion+"')";
+                            command.ExecuteNonQuery();
+                        }
+
+                        command.CommandText =
+                            "Insert into T_Movimientos (IdTransaccion, IdEstacionamiento, IdModulo, Parte, Accion, Denominacion, Cantidad, Valor, FechaMovimiento) VALUES "
+                            + "('" + idTransaccion + "','" + idEstacionamiento + "','" + idModulo + "','CM','Entrada','" + total + "','1','" + total + "',GETDATE())";
+                        command.ExecuteNonQuery();
+
+                        command.CommandText =
+                            "update T_Partes set DineroActual=(select DineroActual from T_Partes where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='" + documentoUsuario + "')+" + total + ", sincronizacion = 0 where IdModulo='" + idModulo + "' and IdEstacionamiento='" + idEstacionamiento + "' and NombreParte='CM' and DocumentoUsuario='" + documentoUsuario + "'";
+                        command.ExecuteNonQuery();
+
+                        command.CommandText =
+                            "update T_Transacciones set ValorRecibido = '" + total + "',Cambio=0 where idTransaccion='" + idTransaccion + "'";
+                        command.ExecuteNonQuery();
+
+                        // Attempt to commit the transaction.
+                        transaction.Commit();
+
+                    }
+                    catch (Exception ex)
+                    {
+                        oInfoPagoService.Exito = false;
+                        oInfoPagoService.ErrorMessage = "EXCEPCION BD No guarda modificaciones en BD: " + ex.Data + "//////////" + ex.Message + " - " + idTransaccion + "////" + ex.StackTrace;//+ " - " + fechaAntes;
+                        // Attempt to roll back the transaction. 
+                        try
+                        {
+                            transaction.Rollback();
+                        }
+                        catch (Exception ex2)
+                        {
+                            //No rollback
+                        }
+                    }
+                }
+            }
+            else
+            {
+                oInfoPagoService.Exito = false;
+                oInfoPagoService.ErrorMessage = "No encontro facturas disponibles." + query;
+            }
+
+            //string path = "c://log.txt";
+            //string createText = query;
+            //File.WriteAllText(path, createText);
+
+            //// Open the file to read from.
+            //string readText = File.ReadAllText(path);
+
+            return oInfoPagoService;
+        }
+
+
+
+    }
+
+    public class InfoFacturaResponseFE
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+
+        private List<InfoItemsFacturaResponse> _lstItems = new List<InfoItemsFacturaResponse>();
+
+        public List<InfoItemsFacturaResponse> LstItems
+        {
+            get { return _lstItems; }
+            set { _lstItems = value; }
+        }
+
+        private List<InfoItemsFacturaMensualidadResponse> _lstItemsMensualidad = new List<InfoItemsFacturaMensualidadResponse>();
+
+        public List<InfoItemsFacturaMensualidadResponse> LstItemsMensualidad
+        {
+            get { return _lstItemsMensualidad; }
+            set { _lstItemsMensualidad = value; }
+        }
+    }
+
+    public class InfoClienteFacturacionElectronica
+    {
+        private int _Identificacion = 0;
+        public int Identificacion
+        {
+            get { return _Identificacion; }
+            set { _Identificacion = value; }
+        }
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _Nombre = string.Empty;
+
+        public string Nombre
+        {
+            get { return _Nombre; }
+            set { _Nombre = value; }
+        }
     }
 
     public class InfoCantidadVehiculosActualesResponse
@@ -4824,6 +5462,40 @@ namespace BlockAndPass.WebService
         }
     }
 
+    public class InfoPagoMensualidadServiceFE
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+
+        private string _IdTranaccion = string.Empty;
+
+        public string IdTranaccion
+        {
+            get { return _IdTranaccion; }
+            set { _IdTranaccion = value; }
+        }
+        private string _IdAutorizacion = string.Empty;
+
+        public string IdAutorizacion
+        {
+            get { return _IdAutorizacion; }
+            set { _IdAutorizacion = value; }
+        }
+    }
+
     public class LiquidacionService
     {
         private bool _Exito = true;
@@ -5138,6 +5810,25 @@ namespace BlockAndPass.WebService
     }
 
     public class InfoPagoNormalService
+    {
+        private bool _Exito = true;
+
+        public bool Exito
+        {
+            get { return _Exito; }
+            set { _Exito = value; }
+        }
+
+        private string _ErrorMessage = string.Empty;
+
+        public string ErrorMessage
+        {
+            get { return _ErrorMessage; }
+            set { _ErrorMessage = value; }
+        }
+    }
+
+    public class InfoPagoNormalServiceFE
     {
         private bool _Exito = true;
 

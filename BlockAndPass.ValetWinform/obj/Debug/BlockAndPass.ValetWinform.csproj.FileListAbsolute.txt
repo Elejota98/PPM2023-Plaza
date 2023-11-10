@@ -117,14 +117,12 @@ D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\bin\D
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\bin\Debug\EGlobalT.Device.SmartCardFeeders.dll
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\bin\Debug\EGlobalT.Device.SmartCardReaders.dll
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\bin\Debug\EGlobalT.Device.Tools.dll
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.csproj.AssemblyReference.cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.CustomKeyBoard.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.Ingresar.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.Login.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.Properties.Resources.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.Valet.resources
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.csproj.GenerateResource.cache
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.csproj.CoreCompileInputs.cache
-D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.csproj.CopyComplete
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.exe
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.csprojResolveAssemblyReference.cache

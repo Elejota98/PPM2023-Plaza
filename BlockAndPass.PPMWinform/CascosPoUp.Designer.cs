@@ -36,15 +36,18 @@
             this.tbCasillero2 = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.tbCasillero = new System.Windows.Forms.TextBox();
+            this.label1 = new System.Windows.Forms.Label();
+            this.panel1.SuspendLayout();
             this.SuspendLayout();
             // 
             // panel1
             // 
             this.panel1.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(139)))), ((int)(((byte)(180)))), ((int)(((byte)(77)))));
+            this.panel1.Controls.Add(this.label1);
             this.panel1.Dock = System.Windows.Forms.DockStyle.Top;
             this.panel1.Location = new System.Drawing.Point(0, 0);
             this.panel1.Name = "panel1";
-            this.panel1.Size = new System.Drawing.Size(360, 55);
+            this.panel1.Size = new System.Drawing.Size(360, 70);
             this.panel1.TabIndex = 0;
             // 
             // btn_Cancel
@@ -59,7 +62,7 @@
             this.btn_Cancel.IconSize = 20;
             this.btn_Cancel.Image = ((System.Drawing.Image)(resources.GetObject("btn_Cancel.Image")));
             this.btn_Cancel.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Cancel.Location = new System.Drawing.Point(72, 191);
+            this.btn_Cancel.Location = new System.Drawing.Point(74, 183);
             this.btn_Cancel.Name = "btn_Cancel";
             this.btn_Cancel.Size = new System.Drawing.Size(90, 35);
             this.btn_Cancel.TabIndex = 55;
@@ -80,7 +83,7 @@
             this.btn_Ok.IconSize = 20;
             this.btn_Ok.Image = ((System.Drawing.Image)(resources.GetObject("btn_Ok.Image")));
             this.btn_Ok.ImageAlign = System.Drawing.ContentAlignment.MiddleLeft;
-            this.btn_Ok.Location = new System.Drawing.Point(191, 191);
+            this.btn_Ok.Location = new System.Drawing.Point(183, 183);
             this.btn_Ok.Name = "btn_Ok";
             this.btn_Ok.Size = new System.Drawing.Size(102, 35);
             this.btn_Ok.TabIndex = 54;
@@ -95,7 +98,7 @@
             this.label3.BackColor = System.Drawing.Color.Transparent;
             this.label3.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label3.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.label3.Location = new System.Drawing.Point(54, 121);
+            this.label3.Location = new System.Drawing.Point(56, 121);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(108, 25);
             this.label3.TabIndex = 53;
@@ -104,7 +107,7 @@
             // tbCasillero2
             // 
             this.tbCasillero2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCasillero2.Location = new System.Drawing.Point(168, 118);
+            this.tbCasillero2.Location = new System.Drawing.Point(170, 118);
             this.tbCasillero2.Name = "tbCasillero2";
             this.tbCasillero2.Size = new System.Drawing.Size(112, 31);
             this.tbCasillero2.TabIndex = 52;
@@ -115,7 +118,7 @@
             this.label2.BackColor = System.Drawing.Color.Transparent;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.label2.ForeColor = System.Drawing.Color.FromArgb(((int)(((byte)(84)))), ((int)(((byte)(88)))), ((int)(((byte)(88)))));
-            this.label2.Location = new System.Drawing.Point(54, 84);
+            this.label2.Location = new System.Drawing.Point(56, 84);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(108, 25);
             this.label2.TabIndex = 51;
@@ -124,16 +127,27 @@
             // tbCasillero
             // 
             this.tbCasillero.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.tbCasillero.Location = new System.Drawing.Point(168, 81);
+            this.tbCasillero.Location = new System.Drawing.Point(170, 81);
             this.tbCasillero.Name = "tbCasillero";
             this.tbCasillero.Size = new System.Drawing.Size(112, 31);
             this.tbCasillero.TabIndex = 50;
+            // 
+            // label1
+            // 
+            this.label1.AutoSize = true;
+            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 21.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.label1.ForeColor = System.Drawing.Color.White;
+            this.label1.Location = new System.Drawing.Point(12, 19);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(113, 33);
+            this.label1.TabIndex = 7;
+            this.label1.Text = "Cascos";
             // 
             // CascosPoUp
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(360, 250);
+            this.ClientSize = new System.Drawing.Size(360, 230);
             this.Controls.Add(this.btn_Cancel);
             this.Controls.Add(this.btn_Ok);
             this.Controls.Add(this.label3);
@@ -144,6 +158,9 @@
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.None;
             this.Name = "CascosPoUp";
             this.Text = "CascosPoUp";
+            this.Load += new System.EventHandler(this.CascosPoUp_Load);
+            this.panel1.ResumeLayout(false);
+            this.panel1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -158,5 +175,6 @@
         private System.Windows.Forms.TextBox tbCasillero2;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.TextBox tbCasillero;
+        private System.Windows.Forms.Label label1;
     }
 }

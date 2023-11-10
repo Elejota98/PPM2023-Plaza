@@ -53,11 +53,17 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         private System.Threading.SendOrPostCallback ObtenerDatosFacturaOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ObtenerDatosFacturaFEOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ObtenerDatosFacturaEntradaOperationCompleted;
         
         private System.Threading.SendOrPostCallback PagarMensualidadOperationCompleted;
         
+        private System.Threading.SendOrPostCallback PagarMensualidadFEOperationCompleted;
+        
         private System.Threading.SendOrPostCallback ObtenerDatosFacturaMensualidadOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback ObtenerDatosFacturaMensualidadFEOperationCompleted;
         
         private System.Threading.SendOrPostCallback AplicarEtiquetaMotoOperationCompleted;
         
@@ -147,6 +153,10 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         private System.Threading.SendOrPostCallback ObtenerTransaccionSinSalidaPorIdTarjetaOperationCompleted;
         
+        private System.Threading.SendOrPostCallback ValidarClientePorNitOperationCompleted;
+        
+        private System.Threading.SendOrPostCallback PagarClienteParticularFEOperationCompleted;
+        
         private bool useDefaultCredentialsSetExplicitly;
         
         /// <remarks/>
@@ -222,13 +232,22 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         public event ObtenerDatosFacturaCompletedEventHandler ObtenerDatosFacturaCompleted;
         
         /// <remarks/>
+        public event ObtenerDatosFacturaFECompletedEventHandler ObtenerDatosFacturaFECompleted;
+        
+        /// <remarks/>
         public event ObtenerDatosFacturaEntradaCompletedEventHandler ObtenerDatosFacturaEntradaCompleted;
         
         /// <remarks/>
         public event PagarMensualidadCompletedEventHandler PagarMensualidadCompleted;
         
         /// <remarks/>
+        public event PagarMensualidadFECompletedEventHandler PagarMensualidadFECompleted;
+        
+        /// <remarks/>
         public event ObtenerDatosFacturaMensualidadCompletedEventHandler ObtenerDatosFacturaMensualidadCompleted;
+        
+        /// <remarks/>
+        public event ObtenerDatosFacturaMensualidadFECompletedEventHandler ObtenerDatosFacturaMensualidadFECompleted;
         
         /// <remarks/>
         public event AplicarEtiquetaMotoCompletedEventHandler AplicarEtiquetaMotoCompleted;
@@ -361,6 +380,12 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         public event ObtenerTransaccionSinSalidaPorIdTarjetaCompletedEventHandler ObtenerTransaccionSinSalidaPorIdTarjetaCompleted;
+        
+        /// <remarks/>
+        public event ValidarClientePorNitCompletedEventHandler ValidarClientePorNitCompleted;
+        
+        /// <remarks/>
+        public event PagarClienteParticularFECompletedEventHandler PagarClienteParticularFECompleted;
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerInformacionUsuario", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
@@ -741,6 +766,35 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerDatosFacturaFE", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoFacturaResponseFE ObtenerDatosFacturaFE(string idTransaccion) {
+            object[] results = this.Invoke("ObtenerDatosFacturaFE", new object[] {
+                        idTransaccion});
+            return ((InfoFacturaResponseFE)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ObtenerDatosFacturaFEAsync(string idTransaccion) {
+            this.ObtenerDatosFacturaFEAsync(idTransaccion, null);
+        }
+        
+        /// <remarks/>
+        public void ObtenerDatosFacturaFEAsync(string idTransaccion, object userState) {
+            if ((this.ObtenerDatosFacturaFEOperationCompleted == null)) {
+                this.ObtenerDatosFacturaFEOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerDatosFacturaFEOperationCompleted);
+            }
+            this.InvokeAsync("ObtenerDatosFacturaFE", new object[] {
+                        idTransaccion}, this.ObtenerDatosFacturaFEOperationCompleted, userState);
+        }
+        
+        private void OnObtenerDatosFacturaFEOperationCompleted(object arg) {
+            if ((this.ObtenerDatosFacturaFECompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ObtenerDatosFacturaFECompleted(this, new ObtenerDatosFacturaFECompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerDatosFacturaEntrada", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public InfoEntradaResponse ObtenerDatosFacturaEntrada(string moduloEntrada) {
             object[] results = this.Invoke("ObtenerDatosFacturaEntrada", new object[] {
@@ -811,6 +865,49 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PagarMensualidadFE", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoPagoMensualidadServiceFE PagarMensualidadFE(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string placa, string documentoUsuario, int identificacion) {
+            object[] results = this.Invoke("PagarMensualidadFE", new object[] {
+                        pagosstring,
+                        idEstacionamiento,
+                        idModulo,
+                        fecha,
+                        total,
+                        placa,
+                        documentoUsuario,
+                        identificacion});
+            return ((InfoPagoMensualidadServiceFE)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PagarMensualidadFEAsync(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string placa, string documentoUsuario, int identificacion) {
+            this.PagarMensualidadFEAsync(pagosstring, idEstacionamiento, idModulo, fecha, total, placa, documentoUsuario, identificacion, null);
+        }
+        
+        /// <remarks/>
+        public void PagarMensualidadFEAsync(string pagosstring, string idEstacionamiento, string idModulo, string fecha, string total, string placa, string documentoUsuario, int identificacion, object userState) {
+            if ((this.PagarMensualidadFEOperationCompleted == null)) {
+                this.PagarMensualidadFEOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPagarMensualidadFEOperationCompleted);
+            }
+            this.InvokeAsync("PagarMensualidadFE", new object[] {
+                        pagosstring,
+                        idEstacionamiento,
+                        idModulo,
+                        fecha,
+                        total,
+                        placa,
+                        documentoUsuario,
+                        identificacion}, this.PagarMensualidadFEOperationCompleted, userState);
+        }
+        
+        private void OnPagarMensualidadFEOperationCompleted(object arg) {
+            if ((this.PagarMensualidadFECompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PagarMensualidadFECompleted(this, new PagarMensualidadFECompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerDatosFacturaMensualidad", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
         public InfoFacturaResponse ObtenerDatosFacturaMensualidad(string idTransaccion, string idAutorizacion) {
             object[] results = this.Invoke("ObtenerDatosFacturaMensualidad", new object[] {
@@ -838,6 +935,37 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             if ((this.ObtenerDatosFacturaMensualidadCompleted != null)) {
                 System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
                 this.ObtenerDatosFacturaMensualidadCompleted(this, new ObtenerDatosFacturaMensualidadCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ObtenerDatosFacturaMensualidadFE", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoFacturaResponseFE ObtenerDatosFacturaMensualidadFE(string idTransaccion, string idAutorizacion) {
+            object[] results = this.Invoke("ObtenerDatosFacturaMensualidadFE", new object[] {
+                        idTransaccion,
+                        idAutorizacion});
+            return ((InfoFacturaResponseFE)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ObtenerDatosFacturaMensualidadFEAsync(string idTransaccion, string idAutorizacion) {
+            this.ObtenerDatosFacturaMensualidadFEAsync(idTransaccion, idAutorizacion, null);
+        }
+        
+        /// <remarks/>
+        public void ObtenerDatosFacturaMensualidadFEAsync(string idTransaccion, string idAutorizacion, object userState) {
+            if ((this.ObtenerDatosFacturaMensualidadFEOperationCompleted == null)) {
+                this.ObtenerDatosFacturaMensualidadFEOperationCompleted = new System.Threading.SendOrPostCallback(this.OnObtenerDatosFacturaMensualidadFEOperationCompleted);
+            }
+            this.InvokeAsync("ObtenerDatosFacturaMensualidadFE", new object[] {
+                        idTransaccion,
+                        idAutorizacion}, this.ObtenerDatosFacturaMensualidadFEOperationCompleted, userState);
+        }
+        
+        private void OnObtenerDatosFacturaMensualidadFEOperationCompleted(object arg) {
+            if ((this.ObtenerDatosFacturaMensualidadFECompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ObtenerDatosFacturaMensualidadFECompleted(this, new ObtenerDatosFacturaMensualidadFECompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
             }
         }
         
@@ -973,28 +1101,30 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         
         /// <remarks/>
         [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/AplicarCasco", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
-        public AplicaCascoResponse AplicarCasco(string idTransaccion, string idEstacionamiento, string Casillero) {
+        public AplicaCascoResponse AplicarCasco(string idTransaccion, string idEstacionamiento, string Casillero, string placa) {
             object[] results = this.Invoke("AplicarCasco", new object[] {
                         idTransaccion,
                         idEstacionamiento,
-                        Casillero});
+                        Casillero,
+                        placa});
             return ((AplicaCascoResponse)(results[0]));
         }
         
         /// <remarks/>
-        public void AplicarCascoAsync(string idTransaccion, string idEstacionamiento, string Casillero) {
-            this.AplicarCascoAsync(idTransaccion, idEstacionamiento, Casillero, null);
+        public void AplicarCascoAsync(string idTransaccion, string idEstacionamiento, string Casillero, string placa) {
+            this.AplicarCascoAsync(idTransaccion, idEstacionamiento, Casillero, placa, null);
         }
         
         /// <remarks/>
-        public void AplicarCascoAsync(string idTransaccion, string idEstacionamiento, string Casillero, object userState) {
+        public void AplicarCascoAsync(string idTransaccion, string idEstacionamiento, string Casillero, string placa, object userState) {
             if ((this.AplicarCascoOperationCompleted == null)) {
                 this.AplicarCascoOperationCompleted = new System.Threading.SendOrPostCallback(this.OnAplicarCascoOperationCompleted);
             }
             this.InvokeAsync("AplicarCasco", new object[] {
                         idTransaccion,
                         idEstacionamiento,
-                        Casillero}, this.AplicarCascoOperationCompleted, userState);
+                        Casillero,
+                        placa}, this.AplicarCascoOperationCompleted, userState);
         }
         
         private void OnAplicarCascoOperationCompleted(object arg) {
@@ -2242,6 +2372,78 @@ namespace BlockAndPass.PPMWinform.ByPServices {
         }
         
         /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/ValidarClientePorNit", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoClienteFacturacionElectronica ValidarClientePorNit(int nit) {
+            object[] results = this.Invoke("ValidarClientePorNit", new object[] {
+                        nit});
+            return ((InfoClienteFacturacionElectronica)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void ValidarClientePorNitAsync(int nit) {
+            this.ValidarClientePorNitAsync(nit, null);
+        }
+        
+        /// <remarks/>
+        public void ValidarClientePorNitAsync(int nit, object userState) {
+            if ((this.ValidarClientePorNitOperationCompleted == null)) {
+                this.ValidarClientePorNitOperationCompleted = new System.Threading.SendOrPostCallback(this.OnValidarClientePorNitOperationCompleted);
+            }
+            this.InvokeAsync("ValidarClientePorNit", new object[] {
+                        nit}, this.ValidarClientePorNitOperationCompleted, userState);
+        }
+        
+        private void OnValidarClientePorNitOperationCompleted(object arg) {
+            if ((this.ValidarClientePorNitCompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.ValidarClientePorNitCompleted(this, new ValidarClientePorNitCompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
+        [System.Web.Services.Protocols.SoapDocumentMethodAttribute("http://tempuri.org/PagarClienteParticularFE", RequestNamespace="http://tempuri.org/", ResponseNamespace="http://tempuri.org/", Use=System.Web.Services.Description.SoapBindingUse.Literal, ParameterStyle=System.Web.Services.Protocols.SoapParameterStyle.Wrapped)]
+        public InfoPagoNormalServiceFE PagarClienteParticularFE(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total, string documentoUsuario, int identificacion) {
+            object[] results = this.Invoke("PagarClienteParticularFE", new object[] {
+                        pagosstring,
+                        idEstacionamiento,
+                        idTransaccion,
+                        idModulo,
+                        fecha,
+                        total,
+                        documentoUsuario,
+                        identificacion});
+            return ((InfoPagoNormalServiceFE)(results[0]));
+        }
+        
+        /// <remarks/>
+        public void PagarClienteParticularFEAsync(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total, string documentoUsuario, int identificacion) {
+            this.PagarClienteParticularFEAsync(pagosstring, idEstacionamiento, idTransaccion, idModulo, fecha, total, documentoUsuario, identificacion, null);
+        }
+        
+        /// <remarks/>
+        public void PagarClienteParticularFEAsync(string pagosstring, string idEstacionamiento, string idTransaccion, string idModulo, string fecha, string total, string documentoUsuario, int identificacion, object userState) {
+            if ((this.PagarClienteParticularFEOperationCompleted == null)) {
+                this.PagarClienteParticularFEOperationCompleted = new System.Threading.SendOrPostCallback(this.OnPagarClienteParticularFEOperationCompleted);
+            }
+            this.InvokeAsync("PagarClienteParticularFE", new object[] {
+                        pagosstring,
+                        idEstacionamiento,
+                        idTransaccion,
+                        idModulo,
+                        fecha,
+                        total,
+                        documentoUsuario,
+                        identificacion}, this.PagarClienteParticularFEOperationCompleted, userState);
+        }
+        
+        private void OnPagarClienteParticularFEOperationCompleted(object arg) {
+            if ((this.PagarClienteParticularFECompleted != null)) {
+                System.Web.Services.Protocols.InvokeCompletedEventArgs invokeArgs = ((System.Web.Services.Protocols.InvokeCompletedEventArgs)(arg));
+                this.PagarClienteParticularFECompleted(this, new PagarClienteParticularFECompletedEventArgs(invokeArgs.Results, invokeArgs.Error, invokeArgs.Cancelled, invokeArgs.UserState));
+            }
+        }
+        
+        /// <remarks/>
         public new void CancelAsync(object userState) {
             base.CancelAsync(userState);
         }
@@ -2337,6 +2539,84 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             }
             set {
                 this.cargoField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class InfoPagoNormalServiceFE {
+        
+        private bool exitoField;
+        
+        private string errorMessageField;
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorMessage {
+            get {
+                return this.errorMessageField;
+            }
+            set {
+                this.errorMessageField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class InfoClienteFacturacionElectronica {
+        
+        private int identificacionField;
+        
+        private bool exitoField;
+        
+        private string nombreField;
+        
+        /// <remarks/>
+        public int Identificacion {
+            get {
+                return this.identificacionField;
+            }
+            set {
+                this.identificacionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                this.nombreField = value;
             }
         }
     }
@@ -4477,6 +4757,63 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class InfoPagoMensualidadServiceFE {
+        
+        private bool exitoField;
+        
+        private string errorMessageField;
+        
+        private string idTranaccionField;
+        
+        private string idAutorizacionField;
+        
+        /// <remarks/>
+        public bool Exito {
+            get {
+                return this.exitoField;
+            }
+            set {
+                this.exitoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string ErrorMessage {
+            get {
+                return this.errorMessageField;
+            }
+            set {
+                this.errorMessageField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IdTranaccion {
+            get {
+                return this.idTranaccionField;
+            }
+            set {
+                this.idTranaccionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IdAutorizacion {
+            get {
+                return this.idAutorizacionField;
+            }
+            set {
+                this.idAutorizacionField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
     public partial class InfoPagoMensualidadService {
         
         private bool exitoField;
@@ -4636,233 +4973,53 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     [System.Diagnostics.DebuggerStepThroughAttribute()]
     [System.ComponentModel.DesignerCategoryAttribute("code")]
     [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
-    public partial class InfoItemsFacturaMensualidadResponse {
+    public partial class InfoFacturaResponseFE {
         
-        private string numeroFacturaField;
+        private bool exitoField;
         
-        private string nombreField;
+        private string errorMessageField;
         
-        private string telefonoField;
+        private InfoItemsFacturaResponse[] lstItemsField;
         
-        private string direccionField;
-        
-        private string moduloField;
-        
-        private string fechaField;
-        
-        private string idTransaccionField;
-        
-        private string tipoField;
-        
-        private string totalField;
-        
-        private string subtotalField;
-        
-        private string ivaField;
-        
-        private string numeroResolucionField;
-        
-        private string nombreAutorizacionField;
-        
-        private string documentoField;
-        
-        private string nitField;
-        
-        private string nombreEmpresaField;
-        
-        private string nombreApellidosField;
-        
-        private string placa1Field;
-        
-        private string vigenciaField;
+        private InfoItemsFacturaMensualidadResponse[] lstItemsMensualidadField;
         
         /// <remarks/>
-        public string NumeroFactura {
+        public bool Exito {
             get {
-                return this.numeroFacturaField;
+                return this.exitoField;
             }
             set {
-                this.numeroFacturaField = value;
+                this.exitoField = value;
             }
         }
         
         /// <remarks/>
-        public string Nombre {
+        public string ErrorMessage {
             get {
-                return this.nombreField;
+                return this.errorMessageField;
             }
             set {
-                this.nombreField = value;
+                this.errorMessageField = value;
             }
         }
         
         /// <remarks/>
-        public string Telefono {
+        public InfoItemsFacturaResponse[] LstItems {
             get {
-                return this.telefonoField;
+                return this.lstItemsField;
             }
             set {
-                this.telefonoField = value;
+                this.lstItemsField = value;
             }
         }
         
         /// <remarks/>
-        public string Direccion {
+        public InfoItemsFacturaMensualidadResponse[] LstItemsMensualidad {
             get {
-                return this.direccionField;
+                return this.lstItemsMensualidadField;
             }
             set {
-                this.direccionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Modulo {
-            get {
-                return this.moduloField;
-            }
-            set {
-                this.moduloField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Fecha {
-            get {
-                return this.fechaField;
-            }
-            set {
-                this.fechaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string IdTransaccion {
-            get {
-                return this.idTransaccionField;
-            }
-            set {
-                this.idTransaccionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Tipo {
-            get {
-                return this.tipoField;
-            }
-            set {
-                this.tipoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Total {
-            get {
-                return this.totalField;
-            }
-            set {
-                this.totalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Subtotal {
-            get {
-                return this.subtotalField;
-            }
-            set {
-                this.subtotalField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Iva {
-            get {
-                return this.ivaField;
-            }
-            set {
-                this.ivaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string NumeroResolucion {
-            get {
-                return this.numeroResolucionField;
-            }
-            set {
-                this.numeroResolucionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string NombreAutorizacion {
-            get {
-                return this.nombreAutorizacionField;
-            }
-            set {
-                this.nombreAutorizacionField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Documento {
-            get {
-                return this.documentoField;
-            }
-            set {
-                this.documentoField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Nit {
-            get {
-                return this.nitField;
-            }
-            set {
-                this.nitField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string NombreEmpresa {
-            get {
-                return this.nombreEmpresaField;
-            }
-            set {
-                this.nombreEmpresaField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string NombreApellidos {
-            get {
-                return this.nombreApellidosField;
-            }
-            set {
-                this.nombreApellidosField = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Placa1 {
-            get {
-                return this.placa1Field;
-            }
-            set {
-                this.placa1Field = value;
-            }
-        }
-        
-        /// <remarks/>
-        public string Vigencia {
-            get {
-                return this.vigenciaField;
-            }
-            set {
-                this.vigenciaField = value;
+                this.lstItemsMensualidadField = value;
             }
         }
     }
@@ -5090,6 +5247,243 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             }
             set {
                 this.cantidadField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Vigencia {
+            get {
+                return this.vigenciaField;
+            }
+            set {
+                this.vigenciaField = value;
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Xml", "4.8.9037.0")]
+    [System.SerializableAttribute()]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    [System.Xml.Serialization.XmlTypeAttribute(Namespace="http://tempuri.org/")]
+    public partial class InfoItemsFacturaMensualidadResponse {
+        
+        private string numeroFacturaField;
+        
+        private string nombreField;
+        
+        private string telefonoField;
+        
+        private string direccionField;
+        
+        private string moduloField;
+        
+        private string fechaField;
+        
+        private string idTransaccionField;
+        
+        private string tipoField;
+        
+        private string totalField;
+        
+        private string subtotalField;
+        
+        private string ivaField;
+        
+        private string numeroResolucionField;
+        
+        private string nombreAutorizacionField;
+        
+        private string documentoField;
+        
+        private string nitField;
+        
+        private string nombreEmpresaField;
+        
+        private string nombreApellidosField;
+        
+        private string placa1Field;
+        
+        private string vigenciaField;
+        
+        /// <remarks/>
+        public string NumeroFactura {
+            get {
+                return this.numeroFacturaField;
+            }
+            set {
+                this.numeroFacturaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Nombre {
+            get {
+                return this.nombreField;
+            }
+            set {
+                this.nombreField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Telefono {
+            get {
+                return this.telefonoField;
+            }
+            set {
+                this.telefonoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Direccion {
+            get {
+                return this.direccionField;
+            }
+            set {
+                this.direccionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Modulo {
+            get {
+                return this.moduloField;
+            }
+            set {
+                this.moduloField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Fecha {
+            get {
+                return this.fechaField;
+            }
+            set {
+                this.fechaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string IdTransaccion {
+            get {
+                return this.idTransaccionField;
+            }
+            set {
+                this.idTransaccionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Tipo {
+            get {
+                return this.tipoField;
+            }
+            set {
+                this.tipoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Total {
+            get {
+                return this.totalField;
+            }
+            set {
+                this.totalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Subtotal {
+            get {
+                return this.subtotalField;
+            }
+            set {
+                this.subtotalField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Iva {
+            get {
+                return this.ivaField;
+            }
+            set {
+                this.ivaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NumeroResolucion {
+            get {
+                return this.numeroResolucionField;
+            }
+            set {
+                this.numeroResolucionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NombreAutorizacion {
+            get {
+                return this.nombreAutorizacionField;
+            }
+            set {
+                this.nombreAutorizacionField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Documento {
+            get {
+                return this.documentoField;
+            }
+            set {
+                this.documentoField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Nit {
+            get {
+                return this.nitField;
+            }
+            set {
+                this.nitField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NombreEmpresa {
+            get {
+                return this.nombreEmpresaField;
+            }
+            set {
+                this.nombreEmpresaField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string NombreApellidos {
+            get {
+                return this.nombreApellidosField;
+            }
+            set {
+                this.nombreApellidosField = value;
+            }
+        }
+        
+        /// <remarks/>
+        public string Placa1 {
+            get {
+                return this.placa1Field;
+            }
+            set {
+                this.placa1Field = value;
             }
         }
         
@@ -6003,6 +6397,32 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ObtenerDatosFacturaFECompletedEventHandler(object sender, ObtenerDatosFacturaFECompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ObtenerDatosFacturaFECompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ObtenerDatosFacturaFECompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoFacturaResponseFE Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoFacturaResponseFE)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerDatosFacturaEntradaCompletedEventHandler(object sender, ObtenerDatosFacturaEntradaCompletedEventArgs e);
     
     /// <remarks/>
@@ -6055,6 +6475,32 @@ namespace BlockAndPass.PPMWinform.ByPServices {
     
     /// <remarks/>
     [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void PagarMensualidadFECompletedEventHandler(object sender, PagarMensualidadFECompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PagarMensualidadFECompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PagarMensualidadFECompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoPagoMensualidadServiceFE Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoPagoMensualidadServiceFE)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
     public delegate void ObtenerDatosFacturaMensualidadCompletedEventHandler(object sender, ObtenerDatosFacturaMensualidadCompletedEventArgs e);
     
     /// <remarks/>
@@ -6075,6 +6521,32 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((InfoFacturaResponse)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ObtenerDatosFacturaMensualidadFECompletedEventHandler(object sender, ObtenerDatosFacturaMensualidadFECompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ObtenerDatosFacturaMensualidadFECompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ObtenerDatosFacturaMensualidadFECompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoFacturaResponseFE Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoFacturaResponseFE)(this.results[0]));
             }
         }
     }
@@ -7219,6 +7691,58 @@ namespace BlockAndPass.PPMWinform.ByPServices {
             get {
                 this.RaiseExceptionIfNecessary();
                 return ((string)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void ValidarClientePorNitCompletedEventHandler(object sender, ValidarClientePorNitCompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class ValidarClientePorNitCompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal ValidarClientePorNitCompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoClienteFacturacionElectronica Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoClienteFacturacionElectronica)(this.results[0]));
+            }
+        }
+    }
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    public delegate void PagarClienteParticularFECompletedEventHandler(object sender, PagarClienteParticularFECompletedEventArgs e);
+    
+    /// <remarks/>
+    [System.CodeDom.Compiler.GeneratedCodeAttribute("System.Web.Services", "4.8.9037.0")]
+    [System.Diagnostics.DebuggerStepThroughAttribute()]
+    [System.ComponentModel.DesignerCategoryAttribute("code")]
+    public partial class PagarClienteParticularFECompletedEventArgs : System.ComponentModel.AsyncCompletedEventArgs {
+        
+        private object[] results;
+        
+        internal PagarClienteParticularFECompletedEventArgs(object[] results, System.Exception exception, bool cancelled, object userState) : 
+                base(exception, cancelled, userState) {
+            this.results = results;
+        }
+        
+        /// <remarks/>
+        public InfoPagoNormalServiceFE Result {
+            get {
+                this.RaiseExceptionIfNecessary();
+                return ((InfoPagoNormalServiceFE)(this.results[0]));
             }
         }
     }

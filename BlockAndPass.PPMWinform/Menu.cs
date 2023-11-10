@@ -346,6 +346,10 @@ namespace BlockAndPass.PPMWinform
             btn_ReportePatios.Text = "";
             btn_ReportePatios.BackgroundImageLayout = ImageLayout.Stretch;
 
+            btn_Copia.BackgroundImage = Image.FromFile(@"Media\Png\btn_copia.png");
+            btn_Copia.Text = "";
+            btn_Copia.BackgroundImageLayout = ImageLayout.Stretch;
+
         }
 
         public void ReestablecerBotonesLateralDerechoCobro()
@@ -757,6 +761,7 @@ namespace BlockAndPass.PPMWinform
 
             CascosPoUp popup = new CascosPoUp(cbEstacionamiento.SelectedValue.ToString(), _IdTransaccion);
             popup.ShowDialog();
+            popup.Placas = txtPlacaBuscar.Text;
             if (popup.DialogResult == DialogResult.OK)
             {
                 MessageBox.Show("Tarifa casco creada con EXITO", "Crear tarifa casco PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
@@ -1200,7 +1205,143 @@ namespace BlockAndPass.PPMWinform
         {
             ReestablecerBotonesLateralDerechoCobro();
             btn_FacturaElectronica.BackgroundImage = Image.FromFile(@"Media\Png\btn_FacturaElectronicaPresionado.png");
+      
             //tabPrincipal.SelectedTab = tabReportePatios;
+            InfoClientePopUp popup = new InfoClientePopUp();
+            int nitCliente = 0;
+            popup.ShowDialog();
+            if (popup.DialogResult == DialogResult.OK)
+            {              
+                if (Convert.ToInt64(tbValorAPagarCobrar.Text.Replace("$", "").Replace(".", "")) > 0)
+                {
+                    cnt = 0;
+                    tmrTimeOutPago.Stop();
+                    nitCliente = popup.Nit;
+                    tmrHora.Stop();
+                    clickTimer.Start();
+                    //Cargando(true);
+                    string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+                    if (clave != string.Empty)
+                    {
+                        #region Estacionamiento
+                        if (!ckMensualidadDocumento.Checked)
+                        {
+                            //CardResponse oCardResponse = new CardResponse();
+                            //oCardResponse = PayCard(clave, tbIdTarjeta.Text, cbPPM.SelectedValue.ToString(), DateTime.ParseExact(tbHoraPago.Text, "dd'/'MM'/'yyyy HH':'mm':'ss", CultureInfo.CurrentCulture));
+                            //if (!oCardResponse.error)
+                            //{
+                            string pagosFinal = "";
+                            double sumTotalPagar = 0;
+                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                            {
+                                if (pagosFinal == string.Empty)
+                                {
+                                }
+                                else
+                                {
+                                    pagosFinal += ',';
+                                }
+                                sumTotalPagar += item.Total;
+                                pagosFinal += item.Tipo + "-" + item.SubTotal + "-" + item.Iva + "-" + item.Total;
+                            }
+                            string fechaPago = Convert.ToString(DateTime.Now);
+
+                            InfoPagoNormalServiceFE pagoNormal = cliente.PagarClienteParticularFE(pagosFinal, cbEstacionamiento.SelectedValue.ToString(), _IdTransaccion, cbPPM.SelectedValue.ToString(), fechaPago, sumTotalPagar.ToString(), documentoUsuario,nitCliente);
+
+                            if (pagoNormal.Exito)
+                            {
+                                ImprimirPagoNormalFE(_IdTransaccion);
+                                LimpiarDatosCobrar();
+
+                            }
+                            else
+                            {
+                                //Cargando(false);
+                                MessageBox.Show(pagoNormal.ErrorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                LimpiarDatosCobrar();
+                            }
+                            //}
+                            //else
+                            //{
+                            //    Cargando(false);
+                            //    MessageBox.Show(oCardResponse.errorMessage, "Error Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            //}
+                        }
+                        #endregion
+                        #region Mensualidad
+                        else
+                        {
+                            //Mensualidad
+                            string pagosFinal = "";
+                            double sumTotalPagar = 0;
+                            foreach (DatosLiquidacionService item in liquidacion.LstLiquidacion)
+                            {
+                                sumTotalPagar += item.Total;
+                                pagosFinal += item.Tipo + "-" + item.SubTotal + "-" + item.Iva + "-" + item.Total;
+                            }
+
+                            InfoPagoMensualidadServiceFE pagoNormal = cliente.PagarMensualidadFE(pagosFinal, cbEstacionamiento.SelectedValue.ToString(), cbPPM.SelectedValue.ToString(), DateTime.Now.ToString(), sumTotalPagar.ToString(), txtPlacaBuscar.Text, documentoUsuario, nitCliente);
+
+                            if (pagoNormal.Exito)
+                            {
+                                CardResponse oCardResponse = new CardResponse();
+                                oCardResponse = LimpiarReposicion(clave);
+                                if (!oCardResponse.error)
+                                {
+                                    ImprimirPagoMensualidadFE(pagoNormal.IdTranaccion, pagoNormal.IdAutorizacion);
+                                    LimpiarDatosCobrar();
+                                }
+
+                                else if (ckMensualidadDocumento.Checked == true && txtPlacaBuscar.Text != null)
+                                {
+
+                                    ImprimirPagoMensualidad(pagoNormal.IdTranaccion, pagoNormal.IdAutorizacion);
+                                    LimpiarDatosCobrar();
+                                }
+                            }
+                            else
+                            {
+                                //Cargando(false);
+                                MessageBox.Show(pagoNormal.ErrorMessage, "Error Pagar Mensualidad PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                LimpiarDatosCobrar();
+                            }
+                        }
+                        #endregion
+                    }
+                }
+                else
+                {
+
+                    DialogResult result3 = MessageBox.Show("Valor a pagar = 0 ¿Desea crear la salida para la transaccion: " + _IdTransaccion.ToString(), "Crear Salida", MessageBoxButtons.YesNo, MessageBoxIcon.Question, MessageBoxDefaultButton.Button2);
+                    if (result3 == DialogResult.Yes)
+                    {
+                        CreaSalidaResponse resp = cliente.CrearSalida3(cbEstacionamiento.SelectedValue.ToString(), _IdTransaccion, cbPPM.SelectedValue.ToString());
+
+                        if (resp.Exito)
+                        {
+                            MessageBox.Show("Salida registrada exitosamente.", "Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        }
+                        else
+                        {
+                            MessageBox.Show(resp.ErrorMessage, "Error Crear Salida PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            LimpiarDatosCobrar();
+                        }
+                    }
+                    else
+                    {
+                        MessageBox.Show("Valor a Pagar = 0, no se registro la salida", "Pagar PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                    }
+
+
+                    //Cargando(false);
+
+                    RestablecerPPM();
+                }
+            }
+            LimpiarDatosCobrar();
+            ReestablecerBotonesLateralDerechoCobro();
+
+
         }
 
         private void btn_Reposicion_Click(object sender, EventArgs e)
@@ -3387,6 +3528,27 @@ namespace BlockAndPass.PPMWinform
         #endregion
 
         #region Impresion
+        private void ImprimirPagoNormalFE(string idTransaccion)
+        {
+            InfoFacturaResponseFE oInfoFacturaResponse = cliente.ObtenerDatosFacturaFE(idTransaccion);
+            if (oInfoFacturaResponse.Exito)
+            {
+                bool resultado = PrintTicket(oInfoFacturaResponse.LstItems.ToList());
+                if (!resultado)
+                {
+                    MessageBox.Show("No fue posible imprimir ticket", "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                //RestablecerPPM();
+                //Cargando(false);
+            }
+            else
+            {
+                RestablecerPPM();
+                //Cargando(false);
+                MessageBox.Show(oInfoFacturaResponse.ErrorMessage, "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         private void ImprimirPagoNormal(string idTransaccion)
         {
             InfoFacturaResponse oInfoFacturaResponse = cliente.ObtenerDatosFactura(idTransaccion);
@@ -3584,6 +3746,82 @@ namespace BlockAndPass.PPMWinform
             return bPrint;
         }
 
+        public bool PrintTicketFE(List<InfoItemsFacturaResponse> datos)
+        {
+            bool bPrint = false;
+
+            try
+            {
+
+                List<List<InfoItemsFacturaResponse>> facturas = new List<List<InfoItemsFacturaResponse>>();
+                foreach (InfoItemsFacturaResponse item in datos)
+                {
+                    bool find = false;
+                    if (facturas.Count > 0)
+                    {
+                        foreach (List<InfoItemsFacturaResponse> item2 in facturas)
+                        {
+                            if (item2[0].NumeroFactura == item.NumeroFactura)
+                            {
+                                find = true;
+                                item2.Add(item);
+                            }
+                        }
+
+                        if (!find)
+                        {
+                            List<InfoItemsFacturaResponse> otraFactura = new List<InfoItemsFacturaResponse>();
+                            otraFactura.Add(item);
+                            facturas.Add(otraFactura);
+                        }
+                        find = false;
+                    }
+                    else
+                    {
+                        List<InfoItemsFacturaResponse> primeraFactura = new List<InfoItemsFacturaResponse>();
+                        primeraFactura.Add(item);
+                        facturas.Add(primeraFactura);
+                    }
+                }
+
+
+
+                if (facturas.Count > 0)
+                {
+                    foreach (var item in facturas)
+                    {
+                        CapturaRutaBarras();
+
+                        ReportDataSource datasource = new ReportDataSource();
+                        LocalReport oLocalReport = new LocalReport();
+
+                        datasource = new ReportDataSource("DataSetTicketPago", (DataTable)GenerarTicketPagoFE(item).Tables[0]);
+                        oLocalReport.ReportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Tickets\{0}.rdlc", "ticketPagoFE"));
+                        ReportParameter urlImage = new ReportParameter("imgUrl", new Uri(Convert.ToString(_imgUrl)).AbsoluteUri);
+                        oLocalReport.EnableExternalImages = true;
+                        oLocalReport.SetParameters(new ReportParameter[] { urlImage });
+                        oLocalReport.DataSources.Add(datasource);
+                        oLocalReport.Refresh();
+                        ReportPrintDocument ore = new ReportPrintDocument(oLocalReport);
+                        ore.PrintController = new StandardPrintController();
+                        ore.Print();
+                        oLocalReport.Dispose();
+                        oLocalReport = null;
+                        ore.Dispose();
+                        ore = null;
+                        EliminarCodigoBarras();
+
+                    }
+                }
+                bPrint = true;
+            }
+            catch (Exception e)
+            {
+                bPrint = false;
+            }
+            return bPrint;
+        }
+
         private DataSetTicketEntrada GenerarTicketEntrada(List<InfoItemsFacturaEntradaResponse> infoTicket)
         {
             DataSetTicketEntrada facturacion = new DataSetTicketEntrada();
@@ -3678,10 +3916,13 @@ namespace BlockAndPass.PPMWinform
             {
                 total += Convert.ToDouble(item.Total);
             }
+              string rutaGuardar = _imgUrl;
+              string codigoBarrasFileName = string.Empty;
 
             foreach (var item in infoTicket)
             {
                 DataSetTicketPago.TablaTicketPagoRow rowDatosFactura = facturacion.TablaTicketPago.NewTablaTicketPagoRow();
+                 codigoBarrasFileName = rutaGuardar + "\\" + item.IdTransaccion + ".png";
 
 
                 // Crear una instancia de BarcodeWriter
@@ -3690,14 +3931,16 @@ namespace BlockAndPass.PPMWinform
 
                 // Generar el código de barras como un objeto Bitmap
                 Bitmap barcodeBitmap = barcodeWriter.Write(Convert.ToString(item.IdTransaccion));
-                string rutaGuardar = _imgUrl;
-                // Guardar el código de barras en un archivo con el nombre IdTransaccion
-                string codigoBarrasFileName = rutaGuardar + "\\" + item.IdTransaccion + ".png";
-                barcodeBitmap.Save(codigoBarrasFileName);
-                _imgUrl = codigoBarrasFileName;
-                // Limpieza
-                barcodeBitmap.Dispose();
 
+                //barcodeBitmap.Save(codigoBarrasFileName);
+                if (!File.Exists(codigoBarrasFileName))
+                {
+                    barcodeWriter = new BarcodeWriter();
+                    barcodeWriter.Format = BarcodeFormat.CODE_128;
+                    barcodeBitmap = barcodeWriter.Write(Convert.ToString(item.IdTransaccion));
+                    barcodeBitmap.Save(codigoBarrasFileName);
+                    barcodeBitmap.Dispose();
+                }
                 rowDatosFactura.Cambio = Convert.ToDouble(item.Cambio);
                 rowDatosFactura.Direccion = item.Direccion;
                 rowDatosFactura.Fecha = item.Fecha;
@@ -3723,6 +3966,71 @@ namespace BlockAndPass.PPMWinform
 
                 facturacion.TablaTicketPago.AddTablaTicketPagoRow(rowDatosFactura);
             }
+            _imgUrl = codigoBarrasFileName;
+
+            return facturacion;
+        }
+
+        private DataSetTicketPago GenerarTicketPagoFE(List<InfoItemsFacturaResponse> infoTicket)
+        {
+            DataSetTicketPago facturacion = new DataSetTicketPago();
+
+            double total = 0;
+            foreach (var item in infoTicket)
+            {
+                total += Convert.ToDouble(item.Total);
+            }
+            string rutaGuardar = _imgUrl;
+            string codigoBarrasFileName = string.Empty;
+
+            foreach (var item in infoTicket)
+            {
+                DataSetTicketPago.TablaTicketPagoRow rowDatosFactura = facturacion.TablaTicketPago.NewTablaTicketPagoRow();
+                codigoBarrasFileName = rutaGuardar + "\\" + item.IdTransaccion + ".png";
+
+
+                // Crear una instancia de BarcodeWriter
+                BarcodeWriter barcodeWriter = new BarcodeWriter();
+                barcodeWriter.Format = BarcodeFormat.CODE_128;
+
+                // Generar el código de barras como un objeto Bitmap
+                Bitmap barcodeBitmap = barcodeWriter.Write(Convert.ToString(item.IdTransaccion));
+
+                //barcodeBitmap.Save(codigoBarrasFileName);
+                if (!File.Exists(codigoBarrasFileName))
+                {
+                    barcodeWriter = new BarcodeWriter();
+                    barcodeWriter.Format = BarcodeFormat.CODE_128;
+                    barcodeBitmap = barcodeWriter.Write(Convert.ToString(item.IdTransaccion));
+                    barcodeBitmap.Save(codigoBarrasFileName);
+                    barcodeBitmap.Dispose();
+                }
+                rowDatosFactura.Cambio = Convert.ToDouble(item.Cambio);
+                rowDatosFactura.Direccion = item.Direccion;
+                rowDatosFactura.Fecha = item.Fecha;
+                rowDatosFactura.IdTransaccion = item.IdTransaccion;
+                rowDatosFactura.Informacion = "Esta infromacion esta quemada en el codigo, deberia obtenerse de algun lugar";
+                rowDatosFactura.Modulo = item.Modulo;
+                rowDatosFactura.Nombre = item.Nombre;
+                rowDatosFactura.NumeroFactura = item.NumeroFactura;
+                rowDatosFactura.Placa = item.Placa;
+                rowDatosFactura.Recibido = Convert.ToDouble(item.ValorRecibido);
+                rowDatosFactura.Resolucion = item.NumeroResolucion;
+                rowDatosFactura.Rut = "NIT 804003167 - 1";
+                rowDatosFactura.Telefono = item.Telefono;
+                rowDatosFactura.TotalFinal = total;
+                rowDatosFactura.Total = Convert.ToDouble(item.Total);
+                rowDatosFactura.Subtotal = Convert.ToDouble(item.Subtotal);
+                rowDatosFactura.Iva = Convert.ToDouble(item.Iva);
+                rowDatosFactura.TipoPago = item.Tipo;
+                rowDatosFactura.Fecha2 = item.FechaEntrada;
+                rowDatosFactura.Vehiculo = item.TipoVehiculo;
+                //rowDatosFactura.VigenciaFactura = item.Vigencia;
+                rowDatosFactura.NombreUsuario = nombresUsuario;
+
+                facturacion.TablaTicketPago.AddTablaTicketPagoRow(rowDatosFactura);
+            }
+            _imgUrl = codigoBarrasFileName;
 
             return facturacion;
         }
@@ -3756,6 +4064,28 @@ namespace BlockAndPass.PPMWinform
                 MessageBox.Show(oInfoFacturaResponse.ErrorMessage, "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
+
+        private void ImprimirPagoMensualidadFE(string idTransaccion, string idAutorizacion)
+        {
+            InfoFacturaResponseFE oInfoFacturaResponse = cliente.ObtenerDatosFacturaMensualidadFE(idTransaccion, idAutorizacion);
+            if (oInfoFacturaResponse.Exito)
+            {
+                bool resultado = PrintTicketMensualidadFE(oInfoFacturaResponse.LstItemsMensualidad.ToList());
+                if (!resultado)
+                {
+                    MessageBox.Show("No fue posible imprimir ticket Mensualidad", "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                }
+
+                RestablecerPPM();
+                //Cargando(false);
+            }
+            else
+            {
+                RestablecerPPM();
+                //Cargando(false);
+                MessageBox.Show(oInfoFacturaResponse.ErrorMessage, "Error Imprimir PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+        }
         public bool PrintTicketMensualidad(List<InfoItemsFacturaMensualidadResponse> datos)
         {
             bool bPrint = false;
@@ -3768,6 +4098,41 @@ namespace BlockAndPass.PPMWinform
 
                 datasource = new ReportDataSource("DataSetTicketPago", (DataTable)GenerarTicketPagoMensualidad(datos).Tables[0]);
                 oLocalReport.ReportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Tickets\{0}.rdlc", "ticketPagoM"));
+
+
+                oLocalReport.DataSources.Add(datasource);
+                oLocalReport.Refresh();
+
+                ReportPrintDocument ore = new ReportPrintDocument(oLocalReport);
+                ore.PrintController = new StandardPrintController();
+                ore.Print();
+
+                oLocalReport.Dispose();
+                oLocalReport = null;
+                ore.Dispose();
+                ore = null;
+
+                bPrint = true;
+            }
+            catch (Exception e)
+            {
+                bPrint = false;
+            }
+            return bPrint;
+        }
+
+        public bool PrintTicketMensualidadFE(List<InfoItemsFacturaMensualidadResponse> datos)
+        {
+            bool bPrint = false;
+
+            try
+            {
+
+                ReportDataSource datasource = new ReportDataSource();
+                LocalReport oLocalReport = new LocalReport();
+
+                datasource = new ReportDataSource("DataSetTicketPago", (DataTable)GenerarTicketPagoMensualidadFE(datos).Tables[0]);
+                oLocalReport.ReportPath = Path.Combine(AppDomain.CurrentDomain.BaseDirectory, string.Format(@"Tickets\{0}.rdlc", "ticketPagoMFE"));
 
 
                 oLocalReport.DataSources.Add(datasource);
@@ -3829,6 +4194,53 @@ namespace BlockAndPass.PPMWinform
                 //NEW FIELDS
                 rowDatosFactura.Nit = item.NombreEmpresa;
                 rowDatosFactura.NombreEmpresa = item.Nit;
+                //
+
+                facturacion.TablaTicketPago.AddTablaTicketPagoRow(rowDatosFactura);
+            }
+
+            return facturacion;
+        }
+
+        private DataSetTicketPagoMensualidad GenerarTicketPagoMensualidadFE(List<InfoItemsFacturaMensualidadResponse> infoTicket)
+        {
+            DataSetTicketPagoMensualidad facturacion = new DataSetTicketPagoMensualidad();
+
+            double total = 0;
+            foreach (var item in infoTicket)
+            {
+                total += Convert.ToDouble(item.Total);
+            }
+
+            foreach (var item in infoTicket)
+            {
+                DataSetTicketPagoMensualidad.TablaTicketPagoRow rowDatosFactura = facturacion.TablaTicketPago.NewTablaTicketPagoRow();
+
+                rowDatosFactura.Direccion = item.Direccion;
+                rowDatosFactura.Fecha = item.Fecha;
+                rowDatosFactura.IdTransaccion = item.IdTransaccion;
+                rowDatosFactura.Informacion = "Esta infromacion esta quemada en el codigo, deberia obtenerse de algun lugar";
+                rowDatosFactura.Modulo = item.Modulo;
+                rowDatosFactura.Nombre = item.Nombre;
+                rowDatosFactura.NumeroFactura = item.NumeroFactura;
+                rowDatosFactura.Resolucion = item.NumeroResolucion;
+                rowDatosFactura.Rut = "NIT 804003167 - 1";
+                rowDatosFactura.Telefono = item.Telefono;
+                rowDatosFactura.TotalFinal = total;
+                rowDatosFactura.Total = Convert.ToDouble(item.Total);
+                rowDatosFactura.Subtotal = Convert.ToDouble(item.Subtotal);
+                rowDatosFactura.Iva = Convert.ToDouble(item.Iva);
+                rowDatosFactura.TipoPago = item.Tipo;
+                rowDatosFactura.NombreAutorizacion = item.NombreAutorizacion;
+                rowDatosFactura.Documento = item.Documento;
+                //rowDatosFactura.VigenciaFactura = item.Vigencia;
+                rowDatosFactura.NombreUsuario = nombresUsuario;
+                rowDatosFactura.NombreApellidos = item.NombreApellidos;
+                rowDatosFactura.Placa1 = item.Placa1;
+
+                //NEW FIELDS
+                //rowDatosFactura.Nit = item.NombreEmpresa;
+                //rowDatosFactura.NombreEmpresa = item.Nit;
                 //
 
                 facturacion.TablaTicketPago.AddTablaTicketPagoRow(rowDatosFactura);
@@ -4079,6 +4491,8 @@ namespace BlockAndPass.PPMWinform
 
         private void btn_Copia_Click(object sender, EventArgs e)
         {
+            ReestablecerBotonesLateralDerechoPrincipal();
+            btn_Copia.BackgroundImage = Image.FromFile(@"Media\Png\btn_copiaPresionado.png");
             CopiaFactura popup = new CopiaFactura();
             popup.ShowDialog();
             if (popup.DialogResult == DialogResult.OK)
@@ -4087,6 +4501,8 @@ namespace BlockAndPass.PPMWinform
             else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
             {
                 MessageBox.Show("Operacion cancelada por el usuario", "Copia de factura PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                ReestablecerBotonesLateralDerechoPrincipal();
+
             }
             else
             {

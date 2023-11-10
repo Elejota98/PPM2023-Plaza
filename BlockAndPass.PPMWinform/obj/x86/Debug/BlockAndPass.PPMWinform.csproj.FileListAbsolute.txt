@@ -1192,3 +1192,4 @@ D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\bin\x86
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.csprojResolveAssemblyReference.cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\RdlCompile.compiled
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.PPMWinform\obj\x86\Debug\BlockAndPass.PPMWinform.InfoClientePopUp.resources
