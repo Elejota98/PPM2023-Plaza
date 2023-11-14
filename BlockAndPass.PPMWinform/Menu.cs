@@ -598,162 +598,170 @@ namespace BlockAndPass.PPMWinform
 
         private void btn_Carro_Click(object sender, EventArgs e)
         {
-            ReestablecerBotonesLateralDerechoEntradas();
-            btn_Carro.BackgroundImage = Image.FromFile(@"Media\Png\btn_CarroPresionado.png");
-            //tabPrincipal.SelectedTab = tabReportePatios;
-            if (tbTipoVehiculo.Text != "")
+            if (tbPlaca.Text != string.Empty)
             {
-                if (tbTipoVehiculo.Text != "Carro")
+                ReestablecerBotonesLateralDerechoEntradas();
+                btn_Carro.BackgroundImage = Image.FromFile(@"Media\Png\btn_CarroPresionado.png");
+                //tabPrincipal.SelectedTab = tabReportePatios;
+                if (tbTipoVehiculo.Text != "")
                 {
-                    _IdTipoVehiculo = 1;
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Carro", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Carro";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                }
-                else
-                {
-                    ReestablecerBotonesLateralDerechoEntradas();
+                    if (tbTipoVehiculo.Text != "Carro")
+                    {
+                        _IdTipoVehiculo = 1;
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Carro", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Carro";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                    }
+                    else
+                    {
+                        ReestablecerBotonesLateralDerechoEntradas();
 
+                    }
                 }
+
             }
-
-
-
 
         }
 
         private void btn_Motos_Click(object sender, EventArgs e)
         {
-            ReestablecerBotonesLateralDerechoEntradas();
-            btn_Motos.BackgroundImage = Image.FromFile(@"Media\Png\btn_MotoPresionado.png");
-            //tabPrincipal.SelectedTab = tabReportePatios;
-            if (tbTipoVehiculo.Text != "")
+            if (tbPlaca.Text != string.Empty) 
             {
-                if (tbTipoVehiculo.Text != "Moto")
+                ReestablecerBotonesLateralDerechoEntradas();
+                btn_Motos.BackgroundImage = Image.FromFile(@"Media\Png\btn_MotoPresionado.png");
+                //tabPrincipal.SelectedTab = tabReportePatios;
+                if (tbTipoVehiculo.Text != "")
                 {
-                    _IdTipoVehiculo = 2;
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Moto", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Moto";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
+                    if (tbTipoVehiculo.Text != "Moto")
+                    {
+                        _IdTipoVehiculo = 2;
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Moto", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Moto";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
 
-                }
-                else
-                {
-                    ReestablecerBotonesLateralDerechoEntradas();
+                    }
+                    else
+                    {
+                        ReestablecerBotonesLateralDerechoEntradas();
+                    }
                 }
             }
+
         }
 
         private void btn_Otros_Click(object sender, EventArgs e)
         {
-            ReestablecerBotonesLateralDerechoEntradas();
-            btn_Otros.BackgroundImage = Image.FromFile(@"Media\Png\btn_OtroPresionado.png");
-            TipoVehiculosOtros popup = new TipoVehiculosOtros();
-            popup.ShowDialog();
-
-            if (popup.DialogResult == DialogResult.OK)
-            {
-                if (popup.IdTipoVehiculo == 7)
-                {
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorra 2 Llantas", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Zorra 2 Llantas";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if(popup.IdTipoVehiculo == 8)
-                {
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorra 4 Llantas", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Zorra 4 Llantas";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if (popup.IdTipoVehiculo == 9)
-                {
-                  
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorras Grandes", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Zorras Grandes";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if (popup.IdTipoVehiculo == 16)
-                {
-                   
-                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Moto Carga", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Moto Carga";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if (popup.IdTipoVehiculo == 10)
-                {  
-                     MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Autos - Luv", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Autos - Luv";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if (popup.IdTipoVehiculo == 11)
-                {
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Camioneta", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Camioneta";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if (popup.IdTipoVehiculo == 12)
-                {
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NHR Sencilla", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "NHR Sencilla";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if (popup.IdTipoVehiculo == 13)
-                {
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NHR-2", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "NHR-2";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if (popup.IdTipoVehiculo == 14)
-                {
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NPR-NQR-NHR-3", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "NPR-NQR-NHR-3";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-                if (popup.IdTipoVehiculo == 15)
-                {
-                    MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Remision Transcarnes", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                    tbTipoVehiculo.Text = "Remision Transcarnes";
-                    btn_ConfirmaIngreso.Focus();
-                    ReestablecerBotonesLateralDerechoEntradas();
-                    _IdTipoVehiculo = popup.IdTipoVehiculo;
-
-                }
-
-            }
-            else if(popup.DialogResult == DialogResult.Cancel)
+            if (tbPlaca.Text != string.Empty)
             {
                 ReestablecerBotonesLateralDerechoEntradas();
+                btn_Otros.BackgroundImage = Image.FromFile(@"Media\Png\btn_OtroPresionado.png");
+                TipoVehiculosOtros popup = new TipoVehiculosOtros();
+                popup.ShowDialog();
+
+                if (popup.DialogResult == DialogResult.OK)
+                {
+                    if (popup.IdTipoVehiculo == 7)
+                    {
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorra 2 Llantas", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Zorra 2 Llantas";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 8)
+                    {
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorra 4 Llantas", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Zorra 4 Llantas";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 9)
+                    {
+
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Zorras Grandes", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Zorras Grandes";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 16)
+                    {
+
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Moto Carga", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Moto Carga";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 10)
+                    {
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Autos - Luv", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Autos - Luv";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 11)
+                    {
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Camioneta", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Camioneta";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 12)
+                    {
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NHR Sencilla", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "NHR Sencilla";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 13)
+                    {
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NHR-2", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "NHR-2";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 14)
+                    {
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a NPR-NQR-NHR-3", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "NPR-NQR-NHR-3";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+                    if (popup.IdTipoVehiculo == 15)
+                    {
+                        MessageBox.Show("Se cambio el vehículo con placa " + tbPlaca.Text + " a Remision Transcarnes", "Crear Entrada PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                        tbTipoVehiculo.Text = "Remision Transcarnes";
+                        btn_ConfirmaIngreso.Focus();
+                        ReestablecerBotonesLateralDerechoEntradas();
+                        _IdTipoVehiculo = popup.IdTipoVehiculo;
+
+                    }
+
+                }
+                else if (popup.DialogResult == DialogResult.Cancel)
+                {
+                    ReestablecerBotonesLateralDerechoEntradas();
+                }
+                //tabPrincipal.SelectedTab = tabReportePatios;
             }
-            //tabPrincipal.SelectedTab = tabReportePatios;
         }
 
         private void btn_Cascos_Click(object sender, EventArgs e)
@@ -806,49 +814,172 @@ namespace BlockAndPass.PPMWinform
 
         private void btn_Cortesia_Click(object sender, EventArgs e)
         {
-            ReestablecerBotonesLateralDerechoCobro();
-            btn_Cortesia.BackgroundImage = Image.FromFile(@"Media\Png\btn_CortesiaPresionado.png");
-            CortesiaPopUp popup = new CortesiaPopUp(cbEstacionamiento.SelectedValue.ToString());
-            popup.ShowDialog();
-
-
-            string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
-            if (clave != string.Empty)
+            if (txtPlacaBuscar.Text != string.Empty)
             {
-                //CardResponse oCardResponse = GetCardInfo(clave);
-                //if (!oCardResponse.error)
-                //{
-                //if (oCardResponse.reposicion)
-                //{
-                //    Cargando(false);
-                //    MessageBox.Show("NO se puede aplicar cortesía a una REPOSICION", "Error Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                //}  
-                if (_IdTransaccion != string.Empty && tbCodigo.Text!=string.Empty)
+                ReestablecerBotonesLateralDerechoCobro();
+                btn_Cortesia.BackgroundImage = Image.FromFile(@"Media\Png\btn_CortesiaPresionado.png");
+                CortesiaPopUp popup = new CortesiaPopUp(cbEstacionamiento.SelectedValue.ToString());
+                popup.ShowDialog();
+
+
+                string clave = cliente.ObtenerValorParametroxNombre("claveTarjeta", cbEstacionamiento.SelectedValue.ToString());
+                if (clave != string.Empty)
                 {
-                    InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(_IdTransaccion, cbEstacionamiento.SelectedValue.ToString());
-                    if (informacionTransaccion.Exito)
+                    //CardResponse oCardResponse = GetCardInfo(clave);
+                    //if (!oCardResponse.error)
+                    //{
+                    //if (oCardResponse.reposicion)
+                    //{
+                    //    Cargando(false);
+                    //    MessageBox.Show("NO se puede aplicar cortesía a una REPOSICION", "Error Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                    //}  
+                    if (_IdTransaccion != string.Empty && tbCodigo.Text != string.Empty)
                     {
-                        //yyyyMMddHHmmssce
-
-                        string sIdTransaccion = informacionTransaccion.IdTransaccion;
-
-                        //tbIdTarjeta.Text = oCardResponse.idCard;
-                        InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
-                        //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
-                        if (oInfoTransaccionService.Exito)
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorIdTransaccion(_IdTransaccion, cbEstacionamiento.SelectedValue.ToString());
+                        if (informacionTransaccion.Exito)
                         {
-                            AplicarCortesiaResponse oAplicarCortesiaResponse = cliente.AplicarLaCortesia(cbEstacionamiento.SelectedValue.ToString(), popup.Observacion, popup.Motivo.ToString(), oInfoTransaccionService.IdTransaccion, _DocumentoUsuario);
-                            if (oAplicarCortesiaResponse.Exito)
+                            //yyyyMMddHHmmssce
+
+                            string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                            //tbIdTarjeta.Text = oCardResponse.idCard;
+                            InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+                            //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
+                            if (oInfoTransaccionService.Exito)
                             {
-                                AplicarCortesiaTransaccionResponse oAplicarCortesiaTransaccionResponse = cliente.AplicarCotesiaTransaccion(sIdTransaccion, Convert.ToInt32(popup.Motivo.ToString()));
-                                if (oAplicarCortesiaTransaccionResponse.Exito)
+                                AplicarCortesiaResponse oAplicarCortesiaResponse = cliente.AplicarLaCortesia(cbEstacionamiento.SelectedValue.ToString(), popup.Observacion, popup.Motivo.ToString(), oInfoTransaccionService.IdTransaccion, _DocumentoUsuario);
+                                if (oAplicarCortesiaResponse.Exito)
                                 {
-                                    //oCardResponse = AplicarCortesia(clave);
-                                    if (tbCasilleroCobrar.Text != string.Empty)
+                                    AplicarCortesiaTransaccionResponse oAplicarCortesiaTransaccionResponse = cliente.AplicarCotesiaTransaccion(sIdTransaccion, Convert.ToInt32(popup.Motivo.ToString()));
+                                    if (oAplicarCortesiaTransaccionResponse.Exito)
                                     {
-                                        AplicaCascoResponse oInfo = cliente.LiberarCasco(sIdTransaccion);
-                                        if (oInfo.Exito)
+                                        //oCardResponse = AplicarCortesia(clave);
+                                        if (tbCasilleroCobrar.Text != string.Empty)
                                         {
+                                            AplicaCascoResponse oInfo = cliente.LiberarCasco(sIdTransaccion);
+                                            if (oInfo.Exito)
+                                            {
+                                                if (oAplicarCortesiaResponse.Exito)
+                                                {
+
+                                                    MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    LeerInfoPorPlaca();
+
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
+                                                //}
+                                                //else 
+                                                //{
+                                                //    Cargando(false);
+                                                //    MessageBox.Show(oCardResponse.errorMessage, "Error al liberar casillero PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //}
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show(oAplicarCortesiaResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                        else
+                                        {
+
+                                            if (oAplicarCortesiaResponse.Exito)
+                                            {
+
+                                                MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+
+                                    }
+                                    else
+                                    {
+                                        MessageBox.Show(oAplicarCortesiaTransaccionResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    }
+                                }
+                                else
+                                {
+                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                }
+
+
+                            }
+                            else
+                            {
+                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            }
+
+
+                        }
+                        else
+                        {
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        }
+                        //}
+                        //else
+                        //{
+                        //    Cargando(false);
+                        //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
+                    }
+                    else if (txtPlacaBuscar.Text != string.Empty && txtPlacaBuscar.Text != "------" && txtPlacaBuscar.Text != "")
+                    {
+                        InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorPlaca(txtPlacaBuscar.Text, cbEstacionamiento.SelectedValue.ToString());
+                        if (informacionTransaccion.Exito)
+                        {
+                            //yyyyMMddHHmmssce
+
+                            string sIdTransaccion = informacionTransaccion.IdTransaccion;
+
+                            //tbIdTarjeta.Text = oCardResponse.idCard;
+                            InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
+                            //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
+                            if (oInfoTransaccionService.Exito)
+                            {
+                                AplicarCortesiaResponse oAplicarCortesiaResponse = cliente.AplicarLaCortesia(cbEstacionamiento.SelectedValue.ToString(), popup.Observacion, popup.Motivo.ToString(), oInfoTransaccionService.IdTransaccion, _DocumentoUsuario);
+                                if (oAplicarCortesiaResponse.Exito)
+                                {
+                                    AplicarCortesiaTransaccionResponse oAplicarCortesiaTransaccionResponse = cliente.AplicarCotesiaTransaccion(sIdTransaccion, Convert.ToInt32(popup.Motivo.ToString()));
+                                    if (oAplicarCortesiaTransaccionResponse.Exito)
+                                    {
+                                        //oCardResponse = AplicarCortesia(clave);
+                                        if (tbCasilleroCobrar.Text != string.Empty)
+                                        {
+                                            AplicaCascoResponse oInfo = cliente.LiberarCasco(sIdTransaccion);
+                                            if (oInfo.Exito)
+                                            {
+                                                if (oAplicarCortesiaResponse.Exito)
+                                                {
+
+                                                    MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
+                                                    LeerInfoPorPlaca();
+
+                                                }
+                                                else
+                                                {
+                                                    MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                }
+                                                //}
+                                                //else 
+                                                //{
+                                                //    Cargando(false);
+                                                //    MessageBox.Show(oCardResponse.errorMessage, "Error al liberar casillero PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                                //}
+                                            }
+                                            else
+                                            {
+                                                MessageBox.Show(oAplicarCortesiaResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                            }
+                                        }
+                                        else
+                                        {
+
                                             if (oAplicarCortesiaResponse.Exito)
                                             {
 
@@ -860,176 +991,55 @@ namespace BlockAndPass.PPMWinform
                                             {
                                                 MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                             }
-                                            //}
-                                            //else 
-                                            //{
-                                            //    Cargando(false);
-                                            //    MessageBox.Show(oCardResponse.errorMessage, "Error al liberar casillero PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            //}
                                         }
-                                        else
-                                        {
-                                            MessageBox.Show(oAplicarCortesiaResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        }
+
                                     }
                                     else
                                     {
-
-                                        if (oAplicarCortesiaResponse.Exito)
-                                        {
-
-                                            MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        }
+                                        MessageBox.Show(oAplicarCortesiaTransaccionResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                     }
-
                                 }
                                 else
                                 {
-                                    MessageBox.Show(oAplicarCortesiaTransaccionResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                    MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                                 }
+
+
                             }
                             else
                             {
-                                MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                                MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                             }
 
 
                         }
                         else
                         {
-                            MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
                         }
-
-
+                        //}
+                        //else
+                        //{
+                        //    Cargando(false);
+                        //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        //}
                     }
+
                     else
                     {
-                        MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        MessageBox.Show("Error al procesar ventana cortesia", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                        ReestablecerBotonesLateralDerechoCobro();
                     }
-                    //}
-                    //else
-                    //{
-                    //    Cargando(false);
-                    //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
                 }
-               else if (txtPlacaBuscar.Text != string.Empty && txtPlacaBuscar.Text!= "------" && txtPlacaBuscar.Text!="")
+                else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
                 {
-                    InfoTransaccionResponse informacionTransaccion = cliente.ConsultarInfoTransaccionPorPlaca(txtPlacaBuscar.Text, cbEstacionamiento.SelectedValue.ToString());
-                    if (informacionTransaccion.Exito)
-                    {
-                        //yyyyMMddHHmmssce
-
-                        string sIdTransaccion = informacionTransaccion.IdTransaccion;
-
-                        //tbIdTarjeta.Text = oCardResponse.idCard;
-                        InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccionxId(sIdTransaccion);
-                        //InfoTransaccionService oInfoTransaccionService = cliente.ConsultarInfoTransaccion(cbEstacionamiento.SelectedValue.ToString(), oCardResponse.idCard, oCardResponse.moduloEntrada);
-                        if (oInfoTransaccionService.Exito)
-                        {
-                            AplicarCortesiaResponse oAplicarCortesiaResponse = cliente.AplicarLaCortesia(cbEstacionamiento.SelectedValue.ToString(), popup.Observacion, popup.Motivo.ToString(), oInfoTransaccionService.IdTransaccion, _DocumentoUsuario);
-                            if (oAplicarCortesiaResponse.Exito)
-                            {
-                                AplicarCortesiaTransaccionResponse oAplicarCortesiaTransaccionResponse = cliente.AplicarCotesiaTransaccion(sIdTransaccion, Convert.ToInt32(popup.Motivo.ToString()));
-                                if (oAplicarCortesiaTransaccionResponse.Exito)
-                                {
-                                    //oCardResponse = AplicarCortesia(clave);
-                                    if (tbCasilleroCobrar.Text != string.Empty)
-                                    {
-                                        AplicaCascoResponse oInfo = cliente.LiberarCasco(sIdTransaccion);
-                                        if (oInfo.Exito)
-                                        {
-                                            if (oAplicarCortesiaResponse.Exito)
-                                            {
-
-                                                MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                                LeerInfoPorPlaca();
-
-                                            }
-                                            else
-                                            {
-                                                MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            }
-                                            //}
-                                            //else 
-                                            //{
-                                            //    Cargando(false);
-                                            //    MessageBox.Show(oCardResponse.errorMessage, "Error al liberar casillero PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                            //}
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show(oAplicarCortesiaResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        }
-                                    }
-                                    else
-                                    {
-
-                                        if (oAplicarCortesiaResponse.Exito)
-                                        {
-
-                                            MessageBox.Show("Cortesia aplicada exitosamente", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-                                            LeerInfoPorPlaca();
-
-                                        }
-                                        else
-                                        {
-                                            MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                        }
-                                    }
-
-                                }
-                                else
-                                {
-                                    MessageBox.Show(oAplicarCortesiaTransaccionResponse.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                                }
-                            }
-                            else
-                            {
-                                MessageBox.Show(oInfoTransaccionService.ErrorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                            }
-
-
-                        }
-                        else
-                        {
-                            MessageBox.Show("No obtiene carril apartir del modulo", "Error Leer PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                        }
-
-
-                    }
-                    else
-                    {
-                        MessageBox.Show(oCardResponse.errorMessage, "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    }
-                    //}
-                    //else
-                    //{
-                    //    Cargando(false);
-                    //    MessageBox.Show("No se encontro parametro claveTarjeta para el estacionamiento = " + cbEstacionamiento.SelectedValue.ToString(), "Error Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    //}
+                    MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
                 }
-
                 else
                 {
                     MessageBox.Show("Error al procesar ventana cortesia", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                    ReestablecerBotonesLateralDerechoCobro();
                 }
-            }
-            else if (popup.DialogResult == System.Windows.Forms.DialogResult.Cancel)
-            {
-                MessageBox.Show("Operacion cancelada por el usuario", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Information);
-            }
-            else
-            {
-                MessageBox.Show("Error al procesar ventana cortesia", "Aplicar Cortesia PPM", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-        
+            }        
     }
 
         private void btn_TarifasEspeciales_Click(object sender, EventArgs e)
