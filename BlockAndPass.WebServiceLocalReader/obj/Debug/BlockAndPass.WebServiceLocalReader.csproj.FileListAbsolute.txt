@@ -386,3 +386,4 @@ D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebServiceLocalR
 D:\PROYECTOS\PARQUEARSE\PlazaCentral\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.pdb
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\RdlCompile.compiled
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.WebServiceLocalReader\obj\Debug\BlockAndPass.WebServiceLocalReader.csprojResolveAssemblyReference.cache

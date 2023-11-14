@@ -125,3 +125,4 @@ D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\D
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.csproj.GenerateResource.cache
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.exe
 D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.pdb
+D:\PROYECTOS\PLAZA CENTRAL\Codigos\ADMIN&PPV2023\BlockAndPass.ValetWinform\obj\Debug\BlockAndPass.ValetWinform.csprojResolveAssemblyReference.cache
