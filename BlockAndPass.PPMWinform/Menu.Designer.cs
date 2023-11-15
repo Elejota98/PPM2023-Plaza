@@ -60,6 +60,7 @@
             this.tbTipoVehiculoCobrar = new System.Windows.Forms.TextBox();
             this.txtPlacaBuscar = new System.Windows.Forms.TextBox();
             this.pnl_LateralDerechaCobrar = new System.Windows.Forms.Panel();
+            this.btn_Otros_Cobrar = new System.Windows.Forms.Button();
             this.btn_CerrarCobrar = new System.Windows.Forms.Button();
             this.btn_Cascos = new System.Windows.Forms.Button();
             this.btn_Reposicion = new System.Windows.Forms.Button();
@@ -97,7 +98,6 @@
             this.btn_SaldoEnLinea = new System.Windows.Forms.Button();
             this.btn_Arqueo = new System.Windows.Forms.Button();
             this.tabPrincipal = new System.Windows.Forms.TabControl();
-            this.btn_Otros_Cobrar = new System.Windows.Forms.Button();
             this.pnlEnecabezado.SuspendLayout();
             ((System.ComponentModel.ISupportInitialize)(this.Imagen_Logo)).BeginInit();
             this.pnlBarraLateralIzquierda.SuspendLayout();
@@ -504,6 +504,20 @@
             this.pnl_LateralDerechaCobrar.Size = new System.Drawing.Size(189, 588);
             this.pnl_LateralDerechaCobrar.TabIndex = 3;
             // 
+            // btn_Otros_Cobrar
+            // 
+            this.btn_Otros_Cobrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
+            this.btn_Otros_Cobrar.Dock = System.Windows.Forms.DockStyle.Top;
+            this.btn_Otros_Cobrar.FlatAppearance.BorderSize = 0;
+            this.btn_Otros_Cobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
+            this.btn_Otros_Cobrar.Location = new System.Drawing.Point(0, 378);
+            this.btn_Otros_Cobrar.Name = "btn_Otros_Cobrar";
+            this.btn_Otros_Cobrar.Size = new System.Drawing.Size(189, 63);
+            this.btn_Otros_Cobrar.TabIndex = 13;
+            this.btn_Otros_Cobrar.Text = "Otros";
+            this.btn_Otros_Cobrar.UseVisualStyleBackColor = true;
+            this.btn_Otros_Cobrar.Click += new System.EventHandler(this.btn_Otros_Cobrar_Click);
+            // 
             // btn_CerrarCobrar
             // 
             this.btn_CerrarCobrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
@@ -851,9 +865,9 @@
             this.lblFecha.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.lblFecha.ForeColor = System.Drawing.Color.White;
             this.lblFecha.ImageAlign = System.Drawing.ContentAlignment.BottomCenter;
-            this.lblFecha.Location = new System.Drawing.Point(119, 166);
+            this.lblFecha.Location = new System.Drawing.Point(124, 166);
             this.lblFecha.Name = "lblFecha";
-            this.lblFecha.Size = new System.Drawing.Size(385, 38);
+            this.lblFecha.Size = new System.Drawing.Size(415, 38);
             this.lblFecha.TabIndex = 1;
             this.lblFecha.Text = "31 de septiembre de año 2023";
             this.lblFecha.TextAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -994,20 +1008,6 @@
             this.tabPrincipal.SelectedIndex = 0;
             this.tabPrincipal.Size = new System.Drawing.Size(825, 620);
             this.tabPrincipal.TabIndex = 3;
-            // 
-            // btn_Otros_Cobrar
-            // 
-            this.btn_Otros_Cobrar.BackgroundImageLayout = System.Windows.Forms.ImageLayout.Stretch;
-            this.btn_Otros_Cobrar.Dock = System.Windows.Forms.DockStyle.Top;
-            this.btn_Otros_Cobrar.FlatAppearance.BorderSize = 0;
-            this.btn_Otros_Cobrar.FlatStyle = System.Windows.Forms.FlatStyle.Flat;
-            this.btn_Otros_Cobrar.Location = new System.Drawing.Point(0, 378);
-            this.btn_Otros_Cobrar.Name = "btn_Otros_Cobrar";
-            this.btn_Otros_Cobrar.Size = new System.Drawing.Size(189, 63);
-            this.btn_Otros_Cobrar.TabIndex = 13;
-            this.btn_Otros_Cobrar.Text = "Otros";
-            this.btn_Otros_Cobrar.UseVisualStyleBackColor = true;
-            this.btn_Otros_Cobrar.Click += new System.EventHandler(this.btn_Otros_Cobrar_Click);
             // 
             // Menu
             // 

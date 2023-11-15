@@ -19,6 +19,7 @@ namespace BlockAndPass.PPMWinform
         ServicesByP cliente = new ServicesByP();
         private int _IdEstacionamiento = 0;
         private string _IdTransaccion = "";
+        private int _IdTipoVehiculo = 0;
 
 
         public int IdEstacionamiento
@@ -38,6 +39,13 @@ namespace BlockAndPass.PPMWinform
             InitializeComponent();
             _IdEstacionamiento = Convert.ToInt32(iIdEstacionamiento);
             _IdTransaccion = idTransaccion;
+            //_IdTipoVehiculo = idTipoVehiculo;
+        }
+
+        public int IdTipoVehiculo
+        {
+            get { return _IdTipoVehiculo; }
+            set { _IdTipoVehiculo = value; }
         }
 
         private void btn_Ok_Click(object sender, EventArgs e)

@@ -192,7 +192,7 @@ namespace BlockAndPass.PPMWinform
 
             //lblTiempoFuera.Text = "Usted dispone de " + (15 - cnt) + " segundos para pagar.";
 
-            if (cnt >= 15)
+            if (cnt >= 40)
             {
                 tmrTimeOutPago.Stop();
                 RestablecerPPM();
@@ -772,7 +772,7 @@ namespace BlockAndPass.PPMWinform
                 btn_Cascos.BackgroundImage = Image.FromFile(@"Media\Png\btn_CascosPresionado.png");
                 //tabPrincipal.SelectedTab = tabReportePatios;
 
-                CascosPoUp popup = new CascosPoUp(cbEstacionamiento.SelectedValue.ToString(), _IdTransaccion);
+                CascosPoUp popup = new CascosPoUp(cbEstacionamiento.SelectedValue.ToString(), _IdTransaccion, _IdTipoVehiculo);
                 popup.ShowDialog();
                 popup.Placas = txtPlacaBuscar.Text;
                 if (popup.DialogResult == DialogResult.OK)
